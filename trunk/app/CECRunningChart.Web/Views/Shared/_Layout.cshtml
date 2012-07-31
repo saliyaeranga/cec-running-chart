@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    @*<link rel="stylesheet" href="http://view.jqueryui.com/menubar/demos/demos.css" type="text/css" />
+    <link rel="stylesheet" href="http://view.jqueryui.com/menubar/themes/base/jquery.ui.all.css" type="text/css" />*@
+
+    @*<script src="@Url.Content("~/Scripts/jquery-1.7.2.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/ui/jquery-ui-1.8.21.custom.js")" type="text/javascript"></script>*@
+
+    @*<script src="@Url.Content("~/Scripts/jquery.ui.core.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.widget.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.position.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.button.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.menu.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.menubar.js")" type="text/javascript"></script>*@
+
+    <script type="text/javascript">
+        $(function () {
+            
+//            $(".menubar-icons").menubar({
+//                autoExpand: true,
+//                menuIcon: true,
+//                buttons: true,
+//                position: {
+//                    within: $("#demo-frame").add(window).first()
+//                }
+//            });
+
+        });
+    </script>
+    <style>
+        #bar1, #bar2
+        {
+            margin: 0 0 4em;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>
+                    My MVC Application</h1>
+            </div>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <div id="menucontainer">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+                @*<ul id="bar2" class="menubar-icons">
+                    <li><a href="#File">File</a>
+                        <ul>
+                            <li><a href="#Open...">Open...</a></li>
+                            <li class="ui-state-disabled">Open recent...</li>
+                            <li><a href="#Save">Save</a></li>
+                            <li><a href="#Save%20as...">Save as...</a></li>
+                            <li><a href="#Close">Close</a></li>
+                            <li><a href="#Quit">Quit</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#Edit">Edit</a>
+                        <ul>
+                            <li><a href="#Copy">Copy</a></li>
+                            <li><a href="#Cut">Cut</a></li>
+                            <li class="ui-state-disabled">Paste</li>
+                        </ul>
+                    </li>
+                    <li><a href="#View">View</a>
+                        <ul>
+                            <li><a href="#Fullscreen">Fullscreen</a></li>
+                            <li><a href="#Fit%20into%20view">Fit into view</a></li>
+                            <li><a href="#Encoding">Encoding</a>
+                                <ul>
+                                    <li><a href="#Auto-detect">Auto-detect</a></li>
+                                    <li><a href="#UTF-8">UTF-8</a></li>
+                                    <li><a href="#UTF-16">UTF-16</a>
+                                        <ul>
+                                            <li><a href="#Option%201">Option 1</a></li>
+                                            <li><a href="#Option%202">Option 2</a></li>
+                                            <li><a href="#Option%203">Option 3</a></li>
+                                            <li><a href="#Option%204">Option 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#Customize...">Customize...</a></li>
+                        </ul>
+                    </li>
+                </ul>*@
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>

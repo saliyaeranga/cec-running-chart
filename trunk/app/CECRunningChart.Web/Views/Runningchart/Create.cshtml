@@ -1,0 +1,94 @@
+﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<style type="text/css">
+    table tr td input[type="text"]
+    {
+        width: 110px;
+    }
+</style>
+<link rel="stylesheet" href="@Url.Content("~/Content/themes/base/jquery.ui.timepicker.css")" type="text/css" /><script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.timepicker.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#BillDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+        setTimePickers();
+    });
+
+    function setTimePickers() {
+        $('.timepick').timepicker({
+            showPeriod: true,
+            showLeadingZero: true
+        });
+    }
+</script>
+@using (Html.BeginForm("create", "runningchart", FormMethod.Post))
+{
+    <h2>New Running Chart</h2>
+    <div id="BasicInfo">
+        <table>
+            <tr>
+                <td>Running Chart #</td>
+                <td><input type="text" id="RunningchartId" name="RunningchartId" value="@Model.RunningchartId" /></td>
+                <td>Bill Number</td>
+                <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" /></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input type="text" id="BillDate" name="BillDate" value="@Model.BillDate.ToString("d")" /></td>
+                <td>Driver Name</td>
+                <td><input type="text" id="DriverName" name="DriverName" maxlength="200" /></td>
+            </tr>
+            <tr>
+                <td>Vehicle #</td>
+                <td>
+                    @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId" })
+                </td>
+                <td>Fuel Left Begning of the Day</td>
+                <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" /> L</td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="PumpStationInfo">
+        @Html.Partial("_Pumpstations", Model.SelectedPumpstations)
+    </div>
+    <br />
+    <div id="ChartItems">
+        @Html.Partial("_ChartItems", Model)
+    </div>
+    <br />
+    <div id="Statistics">
+        <table>
+            <tr>
+                <td>Fuel Left End of the Day</td>
+                <td>Fuel Usage of the Day</td>
+                @*<td>&nbsp;</td>*@
+            </tr>
+            <tr>
+                <td><input type="text" id="FuelLeftEndOfDay" name="FuelLeftEndOfDay" /></td>
+                <td><input type="text" id="FuelUsageOfDay" name="FuelUsageOfDay" /></td>
+                @*<td><input type="button" value="Calculate Values" /></td>*@
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Daily Note</td>
+            </tr>
+            <tr>
+                <td><textarea rows="5" cols="27" id="DailyNote" name="DailyNote"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="Authorization">
+        <input type="submit" value="Send to Approve" />
+    </div>
+}

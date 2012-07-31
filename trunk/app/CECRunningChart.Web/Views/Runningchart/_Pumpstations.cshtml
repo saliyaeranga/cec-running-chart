@@ -1,0 +1,59 @@
+﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
+           
+<script type="text/javascript">
+    function PopulatePumpstationRows(isAdding, isRemoving, removingId) {
+        var formParameters = new Object();
+        formParameters.isAddingNewItem = isAdding;
+
+        var itemCount = document.getElementById("PumpstationsCount").value;
+        for (var i = 0; i < itemCount; i++) {
+            formParameters["[" + i + "].SelectedPumpstationId"] = document.getElementById("SelectedPumpstations[" + i + "].SelectedPumpstationId").value;
+            formParameters["[" + i + "].PumpAmount"] = document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value;
+
+            // Is removing this item
+            if (isRemoving == true && i == removingId) {
+                formParameters["[" + i + "].IsRemoving"] = true;
+            }
+        }
+
+        $.ajaxSetup({ cache: false });
+        $.post('@Url.Action("PoulatePumpstationItems", "Runningchart")', formParameters, function (data) {
+            document.getElementById("PumpStationInfo").innerHTML = data;
+            //            setDatePickers();
+        });
+    }
+</script>
+@{ int itemCount = 0; }
+<table>
+    <tr>
+        <td>Pump Station</td>
+        <td>Pump Amount</td>
+        <td>&nbsp;</td>
+    </tr>
+    @if (Model.SelectedPumpstations != null && Model.SelectedPumpstations.Count > 0)
+    {
+        itemCount = Model.SelectedPumpstations.Count;
+        int index = 0;
+        foreach (var pumpstation in Model.SelectedPumpstations)
+        {
+            var pumpstationId = string.Concat("SelectedPumpstations[", index, "].SelectedPumpstationId");
+            var amountId = string.Concat("SelectedPumpstations[", index, "].PumpAmount");
+            <tr>
+                <td>
+                    @*<input type="hidden" name="@string.Concat("SelectedPumpstations[", index, "].PumpstationId")" value="@pumpstation.PumpstationId" />
+                    <input type="text" name="@string.Concat("SelectedPumpstations[", index, "].PumpStationName")" value="@pumpstation.PumpStationName" />*@
+                    @Html.DropDownList(pumpstationId, Model.GetPumpstationOptions(pumpstation.SelectedPumpstationId), new { @id = pumpstationId, @class = "todo" })
+                </td>
+                <td><input type="text" id="@amountId" name="@amountId" value="@pumpstation.PumpAmount" /></td>
+                <td><input type="button" value="Remove" onclick="PopulatePumpstationRows(false, true, @index);" /></td>
+            </tr>
+            index++;
+        }
+    }
+    <tr>
+        <td><input type="button" value="Add" onclick="PopulatePumpstationRows(true, false, 0);" /></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<input type="hidden" id="PumpstationsCount" value="@itemCount" />

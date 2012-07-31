@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CECRunningChart.Web.Models.Runningchart.RunningchartModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Runningchart Id
+        </th>
+        <th>
+            Bill Number
+        </th>
+        <th>
+            Bill Date
+        </th>
+        <th>
+            Driver Name
+        </th>
+        <th>
+            Vehicle #
+        </th>
+        @*<th>
+            FuelLeftBegningOfDay
+        </th>
+        <th>
+            FuelLeftEndOfDay
+        </th>
+        <th>
+            FuelUsageOfDay
+        </th>
+        <th>
+            DailyNote
+        </th>
+        <th>
+            SelectedVehicleId
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunningchartId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillNumber)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.BillDate)*@
+            @item.BillDate.ToString("d")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectedVehicleNo)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.FuelLeftBegningOfDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelLeftEndOfDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelUsageOfDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DailyNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectedVehicleId)
+        </td>*@
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.RunningchartId }) |*@
+            @Html.ActionLink("Details", "Details", new { id = item.RunningchartId })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
+        </td>
+    </tr>
+}
+
+</table>

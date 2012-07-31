@@ -1,0 +1,92 @@
+﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
+
+<script type="text/javascript">
+    function PopulateChartRows(isAdding, isRemoving, removingId) {
+        var formParameters = new Object();
+        formParameters.isAddingNewItem = isAdding;
+
+        var itemCount = $("#ChartItemsCount").val();
+        for (var index = 0; index < itemCount; index++) {
+            formParameters["[" + index + "].StartTime"] = document.getElementById("SelectedChartItems[" + index + "].StartTime").value;
+            formParameters["[" + index + "].EndTime"] = document.getElementById("SelectedChartItems[" + index + "].EndTime").value;
+            formParameters["[" + index + "].TimeDifference"] = document.getElementById("SelectedChartItems[" + index + "].TimeDifference").value;
+            formParameters["[" + index + "].StartMeter"] = document.getElementById("SelectedChartItems["+ index+ "].StartMeter").value;
+            formParameters["[" + index + "].EndMeter"] = document.getElementById("SelectedChartItems[" + index + "].EndMeter").value;
+            formParameters["[" + index + "].MeterDifference"] = document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value;
+            formParameters["[" + index + "].SelectedProjectId"] = document.getElementById("SelectedChartItems["+ index+ "].SelectedProjectId").value;
+            formParameters["[" + index + "].SelectedProjectManager"] = document.getElementById("SelectedChartItems["+ index+ "].SelectedProjectManager").value;
+
+            // Is removing this item
+            if (isRemoving == true && index == removingId) {
+                formParameters["[" + index + "].IsRemoving"] = true;
+            }
+        }
+
+        $.ajaxSetup({ cache: false });
+        $.post('@Url.Action("PoulateChartItems", "Runningchart")', formParameters, function (data) {
+            document.getElementById("ChartItems").innerHTML = data;
+            setTimePickers();
+        });
+    }
+
+    function calculateTimeDiff() {
+
+    }
+</script>
+@{ int itemCount = 0; }
+<table>
+    <tr>
+        <td>Start Time</td>
+        <td>End Time</td>
+        <td>Time Difference</td>
+        <td>Start Meter</td>
+        <td>End Meter</td>
+        <td>Meter Difference</td>
+        <td>Project Name</td>
+        <td>Project Manager</td>
+        <td>&nbsp;</td>
+    </tr>
+    @if (Model.SelectedChartItems != null && Model.SelectedChartItems.Count > 0)
+    {
+        itemCount = Model.SelectedChartItems.Count;
+        int index = 0;
+        
+        foreach (var item in Model.SelectedChartItems)
+        {
+            string startTimeId = string.Concat("SelectedChartItems[", index, "].StartTime");
+            string endTimeId = string.Concat("SelectedChartItems[", index, "].EndTime");
+            string timeDiffId = string.Concat("SelectedChartItems[", index, "].TimeDifference");
+            string startMeterId = string.Concat("SelectedChartItems[", index, "].StartMeter");
+            string endMeterId = string.Concat("SelectedChartItems[", index, "].EndMeter");
+            string meterDiffId = string.Concat("SelectedChartItems[", index, "].MeterDifference");
+            string selectedProjectId = string.Concat("SelectedChartItems[", index, "].SelectedProjectId");
+            string selectedProjectManagerId = string.Concat("SelectedChartItems[", index, "].SelectedProjectManager");
+            
+            <tr>
+                <td><input type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" /></td>
+                <td><input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick" onblur="calculateTimeDiff();" /></td>
+                <td><input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" /></td>
+                <td><input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" maxlength="10" /></td>
+                <td><input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" maxlength="10" /></td>
+                <td><input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" /></td>
+                <td>
+                    @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
+                </td>
+                <td><input type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" /></td>
+                <td><input type="button" value="Remove" onclick="PopulateChartRows(false, true, @index);" /></td>
+            </tr>
+            index++;
+        }
+    }
+    <tr>
+        <td><input type="button" value="Add" onclick="PopulateChartRows(true, false, 0);" /></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<input type="hidden" id="ChartItemsCount" value="@itemCount" />
