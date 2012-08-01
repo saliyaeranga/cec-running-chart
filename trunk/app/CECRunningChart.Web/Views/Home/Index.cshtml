@@ -1,8 +1,43 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LoginPageLayout.cshtml";
+    ViewBag.Title = "CEC-Login Page";
 }
-
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+<div class="row">
+    <div class="logo">
+        <img src="/Content/images/logo.png" />
+    </div>
+</div>
+<div class="row">
+    <div class="companyName">
+        <h1>
+            Consulting Engineers & Contractors (Pvt) Ltd</h1>
+        <h2>
+            Daily Running Chart</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="logBox">
+        <div class="icon">
+            <img src="/Content/images/loginIcon.png" />
+        </div>
+        <div class="row">
+            <div class="lable">
+                User Name
+            </div>
+            <div class="data">
+                <input type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="lable">
+                Password
+            </div>
+            <div class="data">
+                <input type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="btn"> <input type="button" name="Login"/> </div>
+        </div>
+    </div>
+</div>
