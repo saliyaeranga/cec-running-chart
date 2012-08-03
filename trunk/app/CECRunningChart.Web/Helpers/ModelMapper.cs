@@ -7,6 +7,8 @@ using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Web.Models.Project;
 using CECRunningChart.Web.Models.Runningchart;
+using CECRunningChart.Web.Models.User;
+using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Helpers
 {
@@ -123,6 +125,21 @@ namespace CECRunningChart.Web.Helpers
                         };
 
             return model.ToList<RunningchartModel>();
+        }
+
+        public static UserModel GetUserModel(Core.User user)
+        {
+            if (user == null)
+                return null;
+
+            return new UserModel()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                NICNumber = user.NICNumber,
+                IsActiveUser = user.IsActiveUser,
+                Role = (UserRole)user.RoleId
+            };
         }
     }
 }

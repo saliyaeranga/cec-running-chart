@@ -72,6 +72,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ModelMapper.cs" />
+    <Compile Include="Helpers\SessionKeys.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Project\ProjectModel.cs" />
     <Compile Include="Models\Pumpstation\PumpstationModel.cs" />
@@ -162,6 +163,10 @@
     <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CECRunningChart.Common\CECRunningChart.Common.csproj">
+      <Project>{D4E23C17-6BEE-4F7B-8C42-C0A8EC3BF4A0}</Project>
+      <Name>CECRunningChart.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CECRunningChart.Core\CECRunningChart.Core.csproj">
       <Project>{B5A6E26E-603B-4871-B1CE-0F322EA5C1FD}</Project>
       <Name>CECRunningChart.Core</Name>
@@ -227,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Manage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

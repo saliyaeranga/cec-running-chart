@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CECRunningChart.Services.User;
 using CECRunningChart.Core;
 using CECRunningChart.Web.Models.User;
+using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -25,7 +26,7 @@ namespace CECRunningChart.Web.Controllers
                                UserName = u.UserName,
                                Password = u.Password,
                                NICNumber = u.NICNumber,
-                               RoleId = u.RoleId,
+                               Role = (UserRole)u.RoleId,
                                IsActiveUser = u.IsActiveUser
                            };
             return View(userModel);

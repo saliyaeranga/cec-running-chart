@@ -41,6 +41,9 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("VehicleNumber")]
         public string VehicleNumber { get; set; }
 
+        public int RunningchartOperatorId { get; set; } //TODO: Add this to DB
+        //TODO: Add Runningchart modification history table
+
         //[XmlElementAttribute("Id")]
         //public string DayEndVehicleLocation { get; set; } // Where is the vehicle at the end of the day - Project.Location
 

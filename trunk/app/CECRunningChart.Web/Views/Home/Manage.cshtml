@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Manage</h2>
+@{ var user = Session[CECRunningChart.Web.Helpers.SessionKeys.UserInfo] as CECRunningChart.Web.Models.User.UserModel;}
+Hello @user.UserName

@@ -8,20 +8,14 @@ namespace CECRunningChart.Data.User
 {
     public class UserDataProvider : BaseDataProvider, IUserDataProvider
     {
-        public bool ValidateUser(string userName, string password)
+        public DataSet ValidateUser(string userName, string password)
         {
             try
             {
-                bool isValid = false;
                 Parameters parameters = new Parameters();
-                parameters.Add("@UserId", userName);
+                parameters.Add("@UserName", userName);
                 parameters.Add("@Password", password);
-                using (var reader = ExecuteReader("proc_GetUserById", parameters))
-                {
-                    isValid = reader.Read();
-                }
-
-                return isValid;
+                return ExecuteDataSet("proc_ValidateUser", parameters);
             }
             catch (Exception)
             {

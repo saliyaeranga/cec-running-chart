@@ -8,7 +8,7 @@ namespace CECRunningChart.Data.User
 {
     public interface IUserDataProvider
     {
-        bool ValidateUser(string userName, string password);
+        DataSet ValidateUser(string userName, string password);
         bool AddNewUser(CECRunningChart.Core.User user);
         bool UpdateUser(CECRunningChart.Core.User user);
         DataSet GetAllActiveUsers();

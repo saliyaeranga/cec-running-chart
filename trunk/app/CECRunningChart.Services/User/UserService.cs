@@ -16,11 +16,14 @@ namespace CECRunningChart.Services.User
             userDataProvider = new UserDataProvider();
         }
 
-        public bool ValidateUser(string userName, string password)
+        public Core.User ValidateUser(string userName, string password)
         {
             try
             {
-                return userDataProvider.ValidateUser(userName, password);
+                var userDataSet = userDataProvider.ValidateUser(userName, password);
+                if (userDataSet.Tables[0].Rows.Count <= 0)
+                    return null;
+                return ConversionHelper.ConvertToObject<Core.User>(userDataSet.Tables[0].Rows[0]);
             }
             catch (Exception)
             {

@@ -1,7 +1,13 @@
-﻿@{
+﻿@model CECRunningChart.Web.Models.User.UserModel
+@{
     Layout = "~/Views/Shared/_LoginPageLayout.cshtml";
     ViewBag.Title = "CEC-Login Page";
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UserName").focus();
+    });
+</script>
 <div class="row">
     <div class="logo">
         <img src="/Content/images/logo.png" />
@@ -16,16 +22,30 @@
     </div>
 </div>
 <div class="row">
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
     <div class="logBox">
         <div class="icon">
             <img src="/Content/images/loginIcon.png" />
         </div>
+        @if (ViewBag.InvalidUsernameOrPassword != null && ViewBag.InvalidUsernameOrPassword)
+        {
+            <div class="row">
+                <div class="lable">
+                    &nbsp;
+                </div>
+                <div class="data" style="color:Red;">
+                    &nbsp;Invalid Username or Pssword. Please try again.
+                </div>
+            </div>
+        }
+        
         <div class="row">
             <div class="lable">
                 User Name
             </div>
             <div class="data">
-                <input type="text" />
+                <input type="text" id="UserName" name="UserName" value="@Model.UserName" />
             </div>
         </div>
         <div class="row">
@@ -33,11 +53,12 @@
                 Password
             </div>
             <div class="data">
-                <input type="text" />
+                <input type="password" id="Password" name="Password" />
             </div>
         </div>
         <div class="row">
-            <div class="btn"> <input type="button" name="Login"/> </div>
+            <div class="btn"> <input type="submit" name="Login"/> </div>
         </div>
     </div>
+}
 </div>

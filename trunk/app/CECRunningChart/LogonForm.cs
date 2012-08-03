@@ -20,7 +20,7 @@ namespace CECRunningChart
             try
             {
                 IUserService userService = new UserService();
-                bool isUserAuthorized = userService.ValidateUser(txtUserName.Text, txtPassword.Text);
+                bool isUserAuthorized = false; // userService.ValidateUser(txtUserName.Text, txtPassword.Text);
                 if (!isUserAuthorized)
                 {
                     lblError.Text = "Invalid user name or password. Please try again.";

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CECRunningChart.Common
 {
-    public enum UserRoles
+    public enum UserRole
     {
-        Role1 = 0,
-        Role2,
-        Role3,
-        Role4
+        None = 0,
+        Admin = 1,
+        RunningChartOperator = 2,
+        RunningChartInspector = 3
     }
 }
