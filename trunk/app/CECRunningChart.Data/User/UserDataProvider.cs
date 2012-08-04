@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace CECRunningChart.Data.User
 {
     public class UserDataProvider : BaseDataProvider, IUserDataProvider
     {
+        #region IUserDataProvider Members
+
         public DataSet ValidateUser(string userName, string password)
         {
             try
@@ -130,5 +129,6 @@ namespace CECRunningChart.Data.User
             }
         }
 
+        #endregion
     }
 }

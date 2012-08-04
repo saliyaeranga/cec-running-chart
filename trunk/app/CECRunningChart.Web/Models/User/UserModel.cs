@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CECRunningChart.Common;
-using System.Web.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Models.User
 {
     public class UserModel
     {
+        #region Public Properties
+
         public int Id { get; set; }
 
         [DisplayName("User Name")]
@@ -35,6 +35,10 @@ namespace CECRunningChart.Web.Models.User
         [DisplayName("Date Added")]
         public DateTime DateAdded { get; set; }
 
+        #endregion
+
+        #region Public methods
+
         public IEnumerable<SelectListItem> GetUserRoleOptions()
         {
             List<SelectListItem> options = new List<SelectListItem>(3)
@@ -49,5 +53,7 @@ namespace CECRunningChart.Web.Models.User
 
             return options;
         }
+
+        #endregion
     }
 }

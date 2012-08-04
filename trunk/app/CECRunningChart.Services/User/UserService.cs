@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CECRunningChart.Data.User;
 using System.Data;
+using CECRunningChart.Data.User;
 
 namespace CECRunningChart.Services.User
 {
     public class UserService : IUserService
     {
-        private IUserDataProvider userDataProvider;
+        #region Private Members
+
+        private readonly IUserDataProvider userDataProvider;
+
+        #endregion
+
+        #region Constructor
 
         public UserService()
         {
             userDataProvider = new UserDataProvider();
         }
+
+        #endregion
+
+        #region IUserService Members
 
         public Core.User ValidateUser(string userName, string password)
         {
@@ -69,5 +77,7 @@ namespace CECRunningChart.Services.User
 
             return false;
         }
+
+        #endregion
     }
 }
