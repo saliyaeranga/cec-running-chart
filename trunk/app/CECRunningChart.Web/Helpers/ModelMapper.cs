@@ -40,6 +40,8 @@ namespace CECRunningChart.Web.Helpers
             return projectsList.ToList<ProjectModel>();
         }
 
+        #region Vehicle Mappings
+
         public static List<VehicleModel> GetVehicleModelList(IEnumerable<Vehicle> vehicles)
         {
             var vehicleList = from v in vehicles
@@ -52,6 +54,8 @@ namespace CECRunningChart.Web.Helpers
                               };
             return vehicleList.ToList<VehicleModel>();
         }
+
+        #endregion
 
         #region Runningchart Mappings
 
@@ -141,6 +145,8 @@ namespace CECRunningChart.Web.Helpers
             return new UserModel()
             {
                 Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 UserName = user.UserName,
                 NICNumber = user.NICNumber,
                 IsActiveUser = user.IsActiveUser,
@@ -159,6 +165,8 @@ namespace CECRunningChart.Web.Helpers
                              select new UserModel
                              {
                                  Id = u.Id,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
                                  UserName = u.UserName,
                                  NICNumber = u.NICNumber,
                                  Role = (UserRole)u.RoleId,
@@ -177,6 +185,8 @@ namespace CECRunningChart.Web.Helpers
             return new User()
             {
                 Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 UserName = model.UserName,
                 NICNumber = model.NICNumber,
                 IsActiveUser = model.IsActiveUser,

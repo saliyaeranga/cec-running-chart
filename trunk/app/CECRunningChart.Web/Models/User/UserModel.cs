@@ -13,14 +13,26 @@ namespace CECRunningChart.Web.Models.User
 
         public int Id { get; set; }
 
+        [DisplayName("First Name")]
+        [Required(ErrorMessage = "First name is required.")]
+        [MaxLength(100, ErrorMessage = "First name can not have more than 100 characters")]
+        public string FirstName { get; set; }
+
+        [DisplayName("Last Name")]
+        [MaxLength(100, ErrorMessage = "Last name can not have more than 100 characters")]
+        public string LastName { get; set; }
+
         [DisplayName("User Name")]
         [Required(ErrorMessage="Username is required.")]
+        [MaxLength(20, ErrorMessage = "First name can not have more than 20 characters")]
         public string UserName { get; set; }
 
         [DisplayName("Password")]
+        [MaxLength(20, ErrorMessage = "Password can not have more than 20 characters")]
         public string Password { get; set; }
 
         [DisplayName("NIC Number")]
+        [MaxLength(10, ErrorMessage = "NIC can not have more than 10 characters")]
         public string NICNumber { get; set; }
 
         [DisplayName("Role")]

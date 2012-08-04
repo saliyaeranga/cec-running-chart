@@ -27,6 +27,8 @@ namespace CECRunningChart.Data.User
             try
             {
                 Parameters parameters = new Parameters();
+                parameters.Add("@FirstName", user.FirstName);
+                parameters.Add("@LastName", user.LastName);
                 parameters.Add("@UserName", user.UserName);
                 parameters.Add("@NICNumber", user.NICNumber);
                 parameters.Add("@RoleId", user.RoleId);

@@ -10,6 +10,12 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("Id")]
         public int Id { get; set; }
 
+        [XmlElementAttribute("FirstName")]
+        public string FirstName { get; set; }
+
+        [XmlElementAttribute("LastName")]
+        public string LastName { get; set; }
+
         [XmlElementAttribute("UserName")]
         public string UserName { get; set; }
 

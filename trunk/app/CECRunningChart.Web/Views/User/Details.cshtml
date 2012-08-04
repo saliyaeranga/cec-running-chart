@@ -1,38 +1,46 @@
 ﻿@model CECRunningChart.Web.Models.User.UserModel
-
 @{
     ViewBag.Title = "Details";
 }
-
 <fieldset>
     <legend>User Details</legend>
-
-    <div class="display-label">UserName</div>
+    <div class="display-label">
+        First Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+    <div class="display-label">
+        Last Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+    <div class="display-label">
+        User Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserName)
     </div>
-
-    <div class="display-label">NICNumber</div>
+    <div class="display-label">
+        NIC #</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.NICNumber)
     </div>
-
-    <div class="display-label">RoleName</div>
+    <div class="display-label">
+        Role</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.RoleName)
     </div>
-
-    <div class="display-label">IsActiveUser</div>
+    <div class="display-label">
+        Is Active User</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.IsActiveUser)
     </div>
-
-    <div class="display-label">DateAdded</div>
+    <div class="display-label">
+        Date Added</div>
     <div class="display-field">
         @Model.DateAdded.ToString("d")
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
