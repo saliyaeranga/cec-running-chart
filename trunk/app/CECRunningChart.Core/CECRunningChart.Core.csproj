@@ -48,6 +48,7 @@
     <Compile Include="RunningchartDetails.cs" />
     <Compile Include="RunningchartPumpstation.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserRole.cs" />
     <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

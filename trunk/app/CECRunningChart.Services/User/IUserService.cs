@@ -11,6 +11,8 @@ namespace CECRunningChart.Services.User
         bool AddNewUser(Core.User user);
         bool UpdateUser(Core.User user);
         List<Core.User> GetAllActiveUsers();
-        CECRunningChart.Core.User GetUser(int id);
+        List<Core.User> GetAllUsers();
+        Core.User GetUser(int id);
+        bool ResetPassword(int userId, string oldPassword, string newPassword);
     }
 }

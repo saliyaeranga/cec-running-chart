@@ -53,6 +53,8 @@ namespace CECRunningChart.Web.Helpers
             return vehicleList.ToList<VehicleModel>();
         }
 
+        #region Runningchart Mappings
+
         public static Runningchart GetRunningchartFromRunningchartModel(RunningchartModel model)
         {
             Runningchart runningChart = new Runningchart()
@@ -127,6 +129,10 @@ namespace CECRunningChart.Web.Helpers
             return model.ToList<RunningchartModel>();
         }
 
+        #endregion
+
+        #region User Mappings
+
         public static UserModel GetUserModel(Core.User user)
         {
             if (user == null)
@@ -138,8 +144,48 @@ namespace CECRunningChart.Web.Helpers
                 UserName = user.UserName,
                 NICNumber = user.NICNumber,
                 IsActiveUser = user.IsActiveUser,
-                Role = (UserRole)user.RoleId
+                RoleName = user.RoleName,
+                Role = (UserRole)user.RoleId,
+                DateAdded = user.DateAdded
             };
         }
+
+        public static List<UserModel> GetUserModelList(List<User> users)
+        {
+            if (users == null)
+                return null;
+
+            var userModels = from u in users
+                             select new UserModel
+                             {
+                                 Id = u.Id,
+                                 UserName = u.UserName,
+                                 NICNumber = u.NICNumber,
+                                 Role = (UserRole)u.RoleId,
+                                 RoleName = u.RoleName,
+                                 IsActiveUser = u.IsActiveUser,
+                                 DateAdded = u.DateAdded
+                             };
+            return userModels.ToList<UserModel>();
+        }
+
+        public static User GetUser(UserModel model)
+        {
+            if (model == null)
+                return null;
+
+            return new User()
+            {
+                Id = model.Id,
+                UserName = model.UserName,
+                NICNumber = model.NICNumber,
+                IsActiveUser = model.IsActiveUser,
+                RoleName = model.RoleName,
+                RoleId = (int)model.Role,
+                DateAdded = model.DateAdded
+            };
+        }
+
+        #endregion
     }
 }

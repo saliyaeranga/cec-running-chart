@@ -29,7 +29,6 @@ namespace CECRunningChart.Data.User
             {
                 Parameters parameters = new Parameters();
                 parameters.Add("@UserName", user.UserName);
-                parameters.Add("@Password", user.Password);
                 parameters.Add("@NICNumber", user.NICNumber);
                 parameters.Add("@RoleId", user.RoleId);
                 parameters.Add("@IsActive", user.IsActiveUser);
@@ -48,8 +47,6 @@ namespace CECRunningChart.Data.User
             {
                 Parameters parameters = new Parameters();
                 parameters.Add("@UserId", user.Id);
-                parameters.Add("@UserName", user.UserName);
-                parameters.Add("@Password", user.Password);
                 parameters.Add("@NICNumber", user.NICNumber);
                 parameters.Add("@RoleId", user.RoleId);
                 parameters.Add("@IsActive", user.IsActiveUser);
@@ -74,6 +71,18 @@ namespace CECRunningChart.Data.User
             }
         }
 
+        public DataSet GetAllUsers()
+        {
+            try
+            {
+                return ExecuteDataSet("proc_GetAllUsers", null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public DataSet GetUser(int id)
         {
             try
@@ -87,5 +96,39 @@ namespace CECRunningChart.Data.User
                 throw;
             }
         }
+
+        public bool IsValidPasswordRestRequest(int userId, string oldPassword)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@UserId", userId);
+                parameters.Add("@OldPassword", oldPassword);
+                int value = ExecuteScalar("proc_ValidPasswordResetRequest", parameters);
+                return value == 1;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public bool ResetPassword(int userId, string newPassword)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@UserId", userId);
+                parameters.Add("@Password", newPassword);
+                ExecuteNoneQuery("proc_UpdateUserPass", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

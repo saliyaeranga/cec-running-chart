@@ -25,7 +25,13 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("RoleId")]
         public int RoleId { get; set; }
 
+        [XmlElementAttribute("RoleName")]
+        public string RoleName { get; set; }
+
         [XmlElementAttribute("IsActiveUser")]
         public bool IsActiveUser { get; set; }
+
+        [XmlElementAttribute("DateAdded")]
+        public DateTime DateAdded { get; set; }
     }
 }

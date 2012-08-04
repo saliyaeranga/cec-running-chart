@@ -47,10 +47,27 @@ namespace CECRunningChart.Services.User
             return ConversionHelper.ConvertToList<Core.User>(userDataSet);
         }
 
+        public List<Core.User> GetAllUsers()
+        {
+            DataSet userDataSet = userDataProvider.GetAllUsers();
+            return ConversionHelper.ConvertToList<Core.User>(userDataSet);
+        }
+
         public Core.User GetUser(int id)
         {
             DataSet userDataSet = userDataProvider.GetUser(id);
             return ConversionHelper.ConvertToObject<Core.User>(userDataSet.Tables[0].Rows[0]);
+        }
+
+        public bool ResetPassword(int userId, string oldPassword, string newPassword)
+        {
+            if (userDataProvider.IsValidPasswordRestRequest(userId, oldPassword))
+            {
+                userDataProvider.ResetPassword(userId, newPassword);
+                return true;
+            }
+
+            return false;
         }
     }
 }

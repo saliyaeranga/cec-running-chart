@@ -12,6 +12,9 @@ namespace CECRunningChart.Data.User
         bool AddNewUser(CECRunningChart.Core.User user);
         bool UpdateUser(CECRunningChart.Core.User user);
         DataSet GetAllActiveUsers();
+        DataSet GetAllUsers();
         DataSet GetUser(int id);
+        bool IsValidPasswordRestRequest(int userId, string oldPassword);
+        bool ResetPassword(int userId, string newPassword);
     }
 }

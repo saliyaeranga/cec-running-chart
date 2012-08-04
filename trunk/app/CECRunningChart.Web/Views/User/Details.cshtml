@@ -1,0 +1,38 @@
+﻿@model CECRunningChart.Web.Models.User.UserModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<fieldset>
+    <legend>User Details</legend>
+
+    <div class="display-label">UserName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">NICNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NICNumber)
+    </div>
+
+    <div class="display-label">RoleName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+    </div>
+
+    <div class="display-label">IsActiveUser</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActiveUser)
+    </div>
+
+    <div class="display-label">DateAdded</div>
+    <div class="display-field">
+        @Model.DateAdded.ToString("d")
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
