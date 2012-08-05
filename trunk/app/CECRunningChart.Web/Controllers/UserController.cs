@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using CECRunningChart.Core;
 using CECRunningChart.Services.User;
+using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.User;
-using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
