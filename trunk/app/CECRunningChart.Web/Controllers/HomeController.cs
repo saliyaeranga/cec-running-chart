@@ -7,6 +7,8 @@ using CECRunningChart.Web.Models.User;
 using CECRunningChart.Services.User;
 using CECRunningChart.Web.Helpers;
 using System.Web.Security;
+using System.Security.Principal;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -54,9 +56,8 @@ namespace CECRunningChart.Web.Controllers
             // Add logedin user to session
             var userInfo = ModelMapper.GetUserModel(user);
             Session[SessionKeys.UserInfo] = userInfo;
-
-            // Create ticket and cookie
             FormsAuthentication.SetAuthCookie(userInfo.UserName, false);
+
             if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                                     && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
             {

@@ -8,6 +8,7 @@ using CECRunningChart.Web.Models.User;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         #region Private Members
