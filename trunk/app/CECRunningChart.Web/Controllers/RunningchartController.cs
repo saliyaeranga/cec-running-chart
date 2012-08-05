@@ -11,9 +11,11 @@ using CECRunningChart.Services.ProjectService;
 using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Core;
 using CECRunningChart.Services.Runningchart;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
     public class RunningchartController : Controller
     {
         IRunningchartService runningchartService;

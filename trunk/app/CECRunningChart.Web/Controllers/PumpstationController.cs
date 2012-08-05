@@ -3,9 +3,12 @@ using System.Web.Mvc;
 using CECRunningChart.Core;
 using CECRunningChart.Services.Pumpstation;
 using CECRunningChart.Web.Models.Pumpstation;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
+    [CECAuthorize(Roles = "Admin")]
     public class PumpstationController : Controller
     {
         #region Private Members

@@ -5,6 +5,7 @@ using CECRunningChart.Core;
 using CECRunningChart.Services.User;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.User;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -29,6 +30,7 @@ namespace CECRunningChart.Web.Controllers
         #region Public Methods
 
         [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Index()
         {
             try
@@ -44,6 +46,7 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
             try
@@ -59,12 +62,14 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View(new UserModel());
         } 
 
         [HttpPost]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Create(UserModel model)
         {
             try
@@ -85,6 +90,7 @@ namespace CECRunningChart.Web.Controllers
         }
         
         [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             try
@@ -100,6 +106,7 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpPost]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Edit(UserModel model)
         {
             try
