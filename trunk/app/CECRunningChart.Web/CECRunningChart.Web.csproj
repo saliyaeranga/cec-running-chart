@@ -85,6 +85,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\logIn.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\innerBg.png" />
+    <Content Include="Content\images\logboxBg.png" />
+    <Content Include="Content\images\loginBg.png" />
+    <Content Include="Content\images\loginBtn.png" />
+    <Content Include="Content\images\loginIcon.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logoutBtn.png" />
+    <Content Include="Content\scripts\jquery-1.7.2.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -235,6 +245,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Manage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Inner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\innerPage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

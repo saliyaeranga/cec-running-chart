@@ -1,0 +1,64 @@
+﻿body
+{
+    background-image: url('/Content/images/innerBg.png');
+    font-family: Arial;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    top: 0px;
+    left: 0px;
+}
+.header
+{
+    width: 97%;
+    margin: 0 20px;
+}
+.logo, .companyName
+{
+    float: left;
+    position: relative;
+}
+.logoutBtndiv
+{
+    float:right;
+}
+.header .logo img
+{
+    height: 74px;
+    width: 108px;
+    padding: 10px;
+}
+.companyName
+{
+    color: #DA241B;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 0 0 0.2em #111118, 0 0 0.2em #E4E0D1, 0 0 0.2em #3F3F42;
+    margin: 1.8% 5%;
+}
+.mainContent
+{
+    Width:97%;
+    height:100%;
+    min-height:535px;
+    padding:10px;
+    clear:both;
+    background:#ffffff;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;   
+}
+@media all and (min-width:0) {
+    .mainContent { min-height:600px \0/; }  /* IE9-IE10pp4 */
+}
+.logoutBtn
+{
+    border:none;
+    margin:0px;
+    padding:0px;
+    background-image: url('/Content/images/logoutBtn.png');
+    width:184px;
+    height:40px;
+    margin-top: 57px;
+    cursor:pointer;
+    margin-right:20px;
+}

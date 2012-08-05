@@ -85,7 +85,7 @@
 {
     float:left;
 }
-.logBox .row .data input[type="text"]
+.logBox .row .data input[type="text"], .logBox .row .data input[type="password"]
 {
     width:330px;
     height:25px;
@@ -94,7 +94,7 @@
 {
     float:right;
 }
-.logBox .row .btn input[type="button"]
+.logBox .row .btn input[type="submit"]
 {
     background-image:url('/Content/images/loginBtn.png');
     width:109px;
@@ -105,7 +105,7 @@
     margin-right: 30px;
     cursor:pointer;
 }
-.logBox .row .btn input[type="button"]:hover
+.logBox .row .btn input[type="submit"]:hover
 {
     zoom: 1;
 	filter: alpha(opacity=90);

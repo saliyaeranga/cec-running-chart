@@ -43,6 +43,10 @@ namespace CECRunningChart.Web.Controllers
             return RedirectToAction("Manage", "Home");
         }
 
+        public ActionResult innerPage()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             return View();
