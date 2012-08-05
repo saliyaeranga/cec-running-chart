@@ -14,6 +14,8 @@ namespace CECRunningChart.Web.Helpers
 {
     public static class ModelMapper
     {
+        #region Pumpstation Mapping
+
         public static List<PumpstationModel> GetPumpStationModelList(IEnumerable<PumpStation> pumpstations)
         {
             var pumpStationList = from p in pumpstations
@@ -25,6 +27,8 @@ namespace CECRunningChart.Web.Helpers
                                   };
             return pumpStationList.ToList<PumpstationModel>();
         }
+
+        #endregion
 
         #region Project Mappings
 
@@ -80,10 +84,47 @@ namespace CECRunningChart.Web.Helpers
                               {
                                   Id = v.Id,
                                   VehicleNumber = v.VehicleNumber,
-                                  VehicleType = v.VehicleType,
-                                  Description = v.Description
+                                  CompanyCode = v.CompanyCode,
+                                  VehicleTypeId = v.VehicleTypeId,
+                                  VehicleTypeName = v.VehicleTypeName,
+                                  Description = v.Description,
+                                  DriverOperatorName = v.DriverOperatorName,
+                                  FuelUsage = v.FuelUsage,
+                                  FuelType = v.FuelType,
+                                  FuelTypeName = v.FuelTypeName,
+                                  LubricantType = v.LubricantType,
+                                  LubricantTypeName = v.LubricantTypeName,
+                                  IsHiredVehicle = v.IsHiredVehicle,
+                                  HireRate = v.HireRate,
+                                  OwnerName = v.OwnerName,
+                                  IsVehicle = v.IsVehicle,
+                                  Status = v.Status
                               };
             return vehicleList.ToList<VehicleModel>();
+        }
+
+        public static VehicleModel GetVehicleModel(Vehicle vehicle)
+        {
+            return new VehicleModel()
+            {
+                Id = vehicle.Id,
+                VehicleNumber = vehicle.VehicleNumber,
+                CompanyCode = vehicle.CompanyCode,
+                VehicleTypeId = vehicle.VehicleTypeId,
+                VehicleTypeName = vehicle.VehicleTypeName,
+                Description = vehicle.Description,
+                DriverOperatorName = vehicle.DriverOperatorName,
+                FuelUsage = vehicle.FuelUsage,
+                FuelType = vehicle.FuelType,
+                FuelTypeName = vehicle.FuelTypeName,
+                LubricantType = vehicle.LubricantType,
+                LubricantTypeName = vehicle.LubricantTypeName,
+                IsHiredVehicle = vehicle.IsHiredVehicle,
+                HireRate = vehicle.HireRate,
+                OwnerName = vehicle.OwnerName,
+                IsVehicle = vehicle.IsVehicle,
+                Status = vehicle.Status
+            };
         }
 
         public static FuelModel GetFuelModel(FuelType fuelType)

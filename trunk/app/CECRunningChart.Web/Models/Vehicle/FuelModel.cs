@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace CECRunningChart.Web.Models.Vehicle
 {
     public class FuelModel
     {
+        #region Public Prperties
+
         public int Id { get; set; }
 
         [DisplayName("Fuel Type")]
@@ -18,5 +16,7 @@ namespace CECRunningChart.Web.Models.Vehicle
         [Required(ErrorMessage = "Fuel rate is required.")]
         [DataType(DataType.Currency)]
         public decimal FuelRate { get; set; }
+
+        #endregion
     }
 }

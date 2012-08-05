@@ -1,45 +1,49 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Vehicle.VehicleModel>
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Vehicles & Machines";
 }
-
-<h2>Manage Vehicles & Machines</h2>
-
+<h2>
+    Manage Vehicles & Machines</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
         <th>
-            Vehicle / Machine #
+            Vehicle #
+        </th>
+        <th>
+            Company Code
         </th>
         <th>
             Vehicle / Machine Type
         </th>
         <th>
-            Description
+            Driver / Operator Name
         </th>
-        <th></th>
+        <th>
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverOperatorName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>

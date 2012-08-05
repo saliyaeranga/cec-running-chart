@@ -17,7 +17,7 @@ namespace CECRunningChart.Web.Controllers
     {
         #region Private Members
 
-        private IVehicleService vehicleService;
+        private readonly IVehicleService vehicleService;
 
         #endregion
 
@@ -38,15 +38,7 @@ namespace CECRunningChart.Web.Controllers
             try
             {
                 var vehicles = vehicleService.GetAllVehicles();
-                var vehiclesList = from v in vehicles
-                                      select new VehicleModel
-                                      {
-                                          Id = v.Id,
-                                          VehicleNumber = v.VehicleNumber,
-                                          VehicleType = v.VehicleType,
-                                          Description = v.Description
-                                      };
-                var model = vehiclesList.ToList<VehicleModel>();
+                List<VehicleModel> model = ModelMapper.GetVehicleModelList(vehicles);
                 return View(model);
             }
             catch (Exception)
@@ -60,7 +52,8 @@ namespace CECRunningChart.Web.Controllers
         {
             try
             {
-                VehicleModel model = GetVehicleModelById(id);
+                var vehicle = vehicleService.GetVehicle(id);
+                VehicleModel model = ModelMapper.GetVehicleModel(vehicle);
                 return View(model);
             }
             catch (Exception)
@@ -254,7 +247,7 @@ namespace CECRunningChart.Web.Controllers
             {
                 Id = vehicle.Id,
                 VehicleNumber = vehicle.VehicleNumber,
-                VehicleType = vehicle.VehicleType,
+                VehicleTypeId = vehicle.VehicleTypeId,
                 Description = vehicle.Description,
                 Status = vehicle.Status
             };
@@ -266,7 +259,7 @@ namespace CECRunningChart.Web.Controllers
             {
                 Id = model.Id,
                 VehicleNumber = model.VehicleNumber,
-                VehicleType = model.VehicleType,
+                VehicleTypeId = model.VehicleTypeId,
                 Description = model.Description,
                 Status = model.Status
             };
