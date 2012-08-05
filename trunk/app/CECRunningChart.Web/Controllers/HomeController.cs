@@ -32,12 +32,12 @@ namespace CECRunningChart.Web.Controllers
         {
             if (Request.IsAuthenticated)
                 return RedirectToAction("Manage");
-            
-            return View(new UserModel());
+
+            return View(new LogOnModel());
         }
 
         [HttpPost]
-        public ActionResult Index(UserModel model, string returnUrl)
+        public ActionResult Index(LogOnModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
