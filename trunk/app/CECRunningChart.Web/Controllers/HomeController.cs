@@ -33,7 +33,14 @@ namespace CECRunningChart.Web.Controllers
         public ActionResult Index()
         {
             if (Request.IsAuthenticated)
+            {
+                if (Session[SessionKeys.UserInfo] == null)
+                {
+                    //TODO
+                    return View(new LogOnModel());
+                }
                 return RedirectToAction("Manage");
+            }
 
             return View(new LogOnModel());
         }

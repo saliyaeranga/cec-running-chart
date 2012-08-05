@@ -1,25 +1,21 @@
 ﻿@model CECRunningChart.Web.Models.Pumpstation.PumpstationModel
-
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
 <fieldset>
-    <legend>PumpstationModel</legend>
-
-    <div class="display-label">PumpStationName</div>
+    <legend>Pumpstation Details</legend>
+    <div class="display-label">
+        Pumpstation Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PumpStationName)
     </div>
-
-    <div class="display-label">Description</div>
+    <div class="display-label">
+        Description</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Description)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -9,7 +9,7 @@ namespace CECRunningChart.Services.Pumpstation
     {
         #region Private Members
 
-        private IPumpstationDataProvider dataProvider;
+        private readonly IPumpstationDataProvider dataProvider;
 
         #endregion
 
