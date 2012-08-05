@@ -40,6 +40,8 @@ namespace CECRunningChart.Web.Helpers
             return projectsList.ToList<ProjectModel>();
         }
 
+        #region Vehicle Mappings
+
         public static List<VehicleModel> GetVehicleModelList(IEnumerable<Vehicle> vehicles)
         {
             var vehicleList = from v in vehicles
@@ -52,6 +54,10 @@ namespace CECRunningChart.Web.Helpers
                               };
             return vehicleList.ToList<VehicleModel>();
         }
+
+        #endregion
+
+        #region Runningchart Mappings
 
         public static Runningchart GetRunningchartFromRunningchartModel(RunningchartModel model)
         {
@@ -127,6 +133,10 @@ namespace CECRunningChart.Web.Helpers
             return model.ToList<RunningchartModel>();
         }
 
+        #endregion
+
+        #region User Mappings
+
         public static UserModel GetUserModel(Core.User user)
         {
             if (user == null)
@@ -135,11 +145,57 @@ namespace CECRunningChart.Web.Helpers
             return new UserModel()
             {
                 Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 UserName = user.UserName,
                 NICNumber = user.NICNumber,
                 IsActiveUser = user.IsActiveUser,
-                Role = (UserRole)user.RoleId
+                RoleName = user.RoleName,
+                Role = (UserRole)user.RoleId,
+                DateAdded = user.DateAdded
             };
         }
+
+        public static List<UserModel> GetUserModelList(List<User> users)
+        {
+            if (users == null)
+                return null;
+
+            var userModels = from u in users
+                             select new UserModel
+                             {
+                                 Id = u.Id,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 UserName = u.UserName,
+                                 NICNumber = u.NICNumber,
+                                 Role = (UserRole)u.RoleId,
+                                 RoleName = u.RoleName,
+                                 IsActiveUser = u.IsActiveUser,
+                                 DateAdded = u.DateAdded
+                             };
+            return userModels.ToList<UserModel>();
+        }
+
+        public static User GetUser(UserModel model)
+        {
+            if (model == null)
+                return null;
+
+            return new User()
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.UserName,
+                NICNumber = model.NICNumber,
+                IsActiveUser = model.IsActiveUser,
+                RoleName = model.RoleName,
+                RoleId = (int)model.Role,
+                DateAdded = model.DateAdded
+            };
+        }
+
+        #endregion
     }
 }

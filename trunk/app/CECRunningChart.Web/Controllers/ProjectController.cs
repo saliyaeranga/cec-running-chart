@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using CECRunningChart.Services.ProjectService;
 using CECRunningChart.Web.Models.Project;
 using CECRunningChart.Core;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
+    [CECAuthorize(Roles = "Admin")]
     public class ProjectController : Controller
     {
         #region Private Members

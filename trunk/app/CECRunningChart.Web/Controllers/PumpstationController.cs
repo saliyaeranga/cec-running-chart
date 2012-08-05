@@ -2,15 +2,18 @@
 using System.Web.Mvc;
 using CECRunningChart.Core;
 using CECRunningChart.Services.Pumpstation;
+using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Models.Pumpstation;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
+    [CECAuthorize(Roles = "Admin")]
     public class PumpstationController : Controller
     {
         #region Private Members
 
-        private IPumpstationService pumpstationService;
+        private readonly IPumpstationService pumpstationService;
 
         #endregion
 
@@ -90,6 +93,7 @@ namespace CECRunningChart.Web.Controllers
             }
         }
 
+        /*
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -110,6 +114,7 @@ namespace CECRunningChart.Web.Controllers
                 return View();
             }
         }
+        */
 
         #endregion
 

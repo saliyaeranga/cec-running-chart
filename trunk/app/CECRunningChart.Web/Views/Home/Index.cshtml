@@ -1,4 +1,4 @@
-﻿@model CECRunningChart.Web.Models.User.UserModel
+﻿@model CECRunningChart.Web.Models.User.LogOnModel
 @{
     Layout = "~/Views/Shared/_LoginPageLayout.cshtml";
     ViewBag.Title = "CEC-Login Page";
@@ -6,6 +6,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#UserName").focus();
+        //TODO: Add jquery validation
     });
 </script>
 <div class="row">
@@ -39,13 +40,13 @@
                 </div>
             </div>
         }
-        
+        @Html.ValidationSummary(false)
         <div class="row">
             <div class="lable">
                 User Name
             </div>
             <div class="data">
-                <input type="text" id="UserName" name="UserName" value="@Model.UserName" />
+                <input type="text" id="UserName" name="UserName" value="@Model.UserName" maxlength="20" />
             </div>
         </div>
         <div class="row">
@@ -53,7 +54,7 @@
                 Password
             </div>
             <div class="data">
-                <input type="password" id="Password" name="Password" />
+                <input type="password" id="Password" name="Password" maxlength="20" />
             </div>
         </div>
         <div class="row">

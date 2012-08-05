@@ -61,6 +61,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CECAuthorize.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Models\Runningchart\ChartPumpstationItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartPumpstationModel.cs" />
     <Compile Include="Models\Runningchart\RunningchartModel.cs" />
+    <Compile Include="Models\User\LogOnModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\Vehicle\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,9 +165,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -245,6 +245,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Manage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Reset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Inner.cshtml" />

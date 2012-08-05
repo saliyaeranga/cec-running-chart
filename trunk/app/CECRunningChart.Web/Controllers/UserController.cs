@@ -1,121 +1,154 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CECRunningChart.Services.User;
 using CECRunningChart.Core;
+using CECRunningChart.Services.User;
+using CECRunningChart.Web.Common;
+using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.User;
-using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
-        //
-        // GET: /User/
+        #region Private Members
 
+        private readonly IUserService userService;
+
+        #endregion
+
+        #region Constructor
+
+        public UserController()
+        {
+            userService = new UserService();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Index()
-        {
-            IUserService userService = new UserService();
-            List<User> users = userService.GetAllActiveUsers();
-            var userModel = from u in users
-                           select new UserModel
-                           {
-                               Id = u.Id,
-                               UserName = u.UserName,
-                               Password = u.Password,
-                               NICNumber = u.NICNumber,
-                               Role = (UserRole)u.RoleId,
-                               IsActiveUser = u.IsActiveUser
-                           };
-            return View(userModel);
-        }
-
-        //
-        // GET: /User/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /User/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /User/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                List<User> users = userService.GetAllUsers();
+                var userModel = ModelMapper.GetUserModelList(users);
+                return View(userModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-                return RedirectToAction("Index");
+        [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
+        public ActionResult Details(int id)
+        {
+            try
+            {
+                var user = userService.GetUser(id);
+                UserModel model = ModelMapper.GetUserModel(user);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            return View(new UserModel());
+        } 
+
+        [HttpPost]
+        [CECAuthorize(Roles = "Admin")]
+        public ActionResult Create(UserModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = ModelMapper.GetUser(model);
+                    userService.AddNewUser(user);
+                    return RedirectToAction("Index");
+                }
+
+                return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
         
-        //
-        // GET: /User/Edit/5
- 
+        [HttpGet]
+        [CECAuthorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                var user = userService.GetUser(id);
+                UserModel model = ModelMapper.GetUserModel(user);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        //
-        // POST: /User/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [CECAuthorize(Roles = "Admin")]
+        public ActionResult Edit(UserModel model)
         {
             try
             {
-                // TODO: Add update logic here
- 
+                var user = ModelMapper.GetUser(model);
+                userService.UpdateUser(user);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
-        //
-        // GET: /User/Delete/5
- 
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult Reset()
         {
+            ViewBag.UserId = (Session[SessionKeys.UserInfo] as UserModel).Id;
             return View();
-        }
-
-        //
-        // POST: /User/Delete/5
+        } 
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Reset(int id, string oldPassword, string newPassword, string confNewPassword)
         {
             try
             {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
+                bool status = userService.ResetPassword(id, oldPassword, newPassword);
+                if (status)
+                {
+                    return RedirectToAction("Manage", "Home");
+                }
+
+                ViewBag.UserId = (Session[SessionKeys.UserInfo] as UserModel).Id;
+                ViewBag.Error = "Password can not be reset. Please make sure the old password is correct.";
+                return View();
             }
             catch
             {
-                return View();
+                throw;
             }
-        }
+        } 
+
+        #endregion
     }
 }

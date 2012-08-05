@@ -6,26 +6,47 @@ using System.Web.Mvc;
 using CECRunningChart.Web.Models.User;
 using CECRunningChart.Services.User;
 using CECRunningChart.Web.Helpers;
+using System.Web.Security;
+using System.Security.Principal;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
     public class HomeController : Controller
     {
+        #region Private Members
+
         private readonly IUserService userService;
-        
+
+        #endregion
+
+        #region Constructor
+
         public HomeController()
         {
             userService = new UserService();
         }
 
+        #endregion
+
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new UserModel());
+            if (Request.IsAuthenticated)
+            {
+                if (Session[SessionKeys.UserInfo] == null)
+                {
+                    //TODO
+                    return View(new LogOnModel());
+                }
+                return RedirectToAction("Manage");
+            }
+
+            return View(new LogOnModel());
         }
 
         [HttpPost]
-        public ActionResult Index(UserModel model)
+        public ActionResult Index(LogOnModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -39,8 +60,25 @@ namespace CECRunningChart.Web.Controllers
                 return View(model);
             }
 
-            Session[SessionKeys.UserInfo] = ModelMapper.GetUserModel(user);
+            // Add logedin user to session
+            var userInfo = ModelMapper.GetUserModel(user);
+            Session[SessionKeys.UserInfo] = userInfo;
+            FormsAuthentication.SetAuthCookie(userInfo.UserName, false);
+
+            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+            {
+                return Redirect(returnUrl);
+            }
+
             return RedirectToAction("Manage", "Home");
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult innerPage()
@@ -52,6 +90,7 @@ namespace CECRunningChart.Web.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Manage()
         {
             return View();

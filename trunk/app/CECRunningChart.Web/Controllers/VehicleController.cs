@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Core;
+using CECRunningChart.Web.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
+    [Authorize]
+    [CECAuthorize(Roles = "Admin")]
     public class VehicleController : Controller
     {
         #region Private Members
