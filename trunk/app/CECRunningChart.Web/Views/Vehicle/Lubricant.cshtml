@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CECRunningChart.Web.Models.Vehicle.LubricantModel>
+@{
+    ViewBag.Title = "Manage Lubricant";
+}
+<h2>
+    Manage Lubricant</h2>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table>
+    <tr>
+        <th>
+            Lubricant Type
+        </th>
+        <th>
+            Lubricant Rate
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LubricantType)
+            </td>
+            <td>
+                @item.LubricantRate.ToString()
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditLubricant", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

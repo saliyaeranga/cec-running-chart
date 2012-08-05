@@ -1,0 +1,42 @@
+﻿@model CECRunningChart.Web.Models.Project.ProjectModel
+@{
+    ViewBag.Title = "Delete Project";
+}
+<h3>
+    Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Delete Project</legend>
+    <div class="display-label">
+        Project Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <div class="display-label">
+        Project Manager</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectManager)
+    </div>
+    <div class="display-label">
+        Project Location</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectLocation)
+    </div>
+    <div class="display-label">
+        Project Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectDescription)
+    </div>
+    <div class="display-label">
+        Is Active Project</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActiveProject)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -36,7 +36,7 @@ namespace CECRunningChart.Web.Controllers
             {
                 if (Session[SessionKeys.UserInfo] == null)
                 {
-                    //TODO
+                    FormsAuthentication.SignOut();
                     return View(new LogOnModel());
                 }
                 return RedirectToAction("Manage");
@@ -46,12 +46,13 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LogOnModel model, string returnUrl)
+        public ActionResult Index(LogOnModel model, string ReturnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+            ReturnUrl = Request.QueryString["ReturnUrl"];
 
             var user = userService.ValidateUser(model.UserName, model.Password);
             if (user == null)
@@ -65,10 +66,10 @@ namespace CECRunningChart.Web.Controllers
             Session[SessionKeys.UserInfo] = userInfo;
             FormsAuthentication.SetAuthCookie(userInfo.UserName, false);
 
-            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+            if (Url.IsLocalUrl(ReturnUrl) && ReturnUrl.Length > 1 && ReturnUrl.StartsWith("/")
+                                    && !ReturnUrl.StartsWith("//") && !ReturnUrl.StartsWith("/\\"))
             {
-                return Redirect(returnUrl);
+                return Redirect(ReturnUrl);
             }
 
             return RedirectToAction("Manage", "Home");

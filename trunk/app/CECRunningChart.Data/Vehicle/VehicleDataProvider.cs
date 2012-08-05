@@ -87,6 +87,76 @@ namespace CECRunningChart.Data.Vehicle
             }
         }
 
+        public DataSet GetAllFuelTypes()
+        {
+            return ExecuteDataSet("proc_GetAllFuelTypes", null);
+        }
+
+        public DataSet GetAllLubricantTypes()
+        {
+            return ExecuteDataSet("proc_GetAllLubricantTypes", null);
+        }
+
+        public DataSet GetFuelType(int id)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("FuelTypeId", id);
+                return ExecuteDataSet("proc_GetFuelTypeById", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet GetLubricantType(int id)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@LubricantTypeId", id);
+                return ExecuteDataSet("proc_GetLubricantTypeById", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool UpdateFuelType(Core.FuelType fuelType)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@FuelTypeId", fuelType.Id);
+                parameters.Add("@NewRate", fuelType.FuelRate);
+                ExecuteNoneQuery("proc_UpdateFuelCost", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool UpdateLubricantType(Core.LubricantType lubricantType)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@LubricantTypeId", lubricantType.Id);
+                parameters.Add("@NewRate", lubricantType.LubricantRate);
+                ExecuteNoneQuery("proc_UpdateLubricantCost", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

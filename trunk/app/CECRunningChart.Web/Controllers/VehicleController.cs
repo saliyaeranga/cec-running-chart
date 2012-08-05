@@ -7,6 +7,7 @@ using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Core;
 using CECRunningChart.Web.Common;
+using CECRunningChart.Web.Helpers;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -143,6 +144,102 @@ namespace CECRunningChart.Web.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Fuel()
+        {
+            try
+            {
+                var fuelList = vehicleService.GetAllFuelTypes();
+                List<FuelModel> model = ModelMapper.GetFuelModelList(fuelList);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditFuel(int id)
+        {
+            try
+            {
+                var fuel = vehicleService.GetFuelType(id);
+                FuelModel model = ModelMapper.GetFuelModel(fuel);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditFuel(FuelModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                var fuel = ModelMapper.GetFuel(model);
+                vehicleService.UpdateFuelType(fuel);
+                return RedirectToAction("Fuel");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Lubricant()
+        {
+            try
+            {
+                var lubricantList = vehicleService.GetAllLubricantTypes();
+                List<LubricantModel> model = ModelMapper.GetLubricantModelList(lubricantList);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditLubricant(int id)
+        {
+            try
+            {
+                var lubricant = vehicleService.GetLubricantType(id);
+                LubricantModel model = ModelMapper.GetLubricantModel(lubricant);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditLubricant(LubricantModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                var lubricant = ModelMapper.GetLubricant(model);
+                vehicleService.UpdateLubricantType(lubricant);
+                return RedirectToAction("Lubricant");
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

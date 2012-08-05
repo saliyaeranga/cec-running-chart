@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CECRunningChart.Data.Project
 {
     public class ProjectDataProvider : BaseDataProvider, IProjectDataProvider
     {
+        #region IProjectDataProvider Members
+
         public bool AddNewProject(Core.Project project)
         {
             try
@@ -15,6 +14,7 @@ namespace CECRunningChart.Data.Project
                 Parameters parameters = new Parameters();
                 parameters.Add("@Name", project.ProjectName);
                 parameters.Add("@Manager", project.ProjectManager);
+                parameters.Add("@Location", project.ProjectLocation);
                 parameters.Add("@Description", project.ProjectDescription);
                 parameters.Add("@IsActive", project.IsActiveProject);
                 ExecuteNoneQuery("proc_AddNewProject", parameters);
@@ -26,7 +26,7 @@ namespace CECRunningChart.Data.Project
             }
         }
 
-        public bool UpdateProject(CECRunningChart.Core.Project project)
+        public bool UpdateProject(Core.Project project)
         {
             try
             {
@@ -34,6 +34,7 @@ namespace CECRunningChart.Data.Project
                 parameters.Add("@ProjectId", project.Id);
                 parameters.Add("@Name", project.ProjectName);
                 parameters.Add("@Manager", project.ProjectManager);
+                parameters.Add("@Location", project.ProjectLocation);
                 parameters.Add("@Description", project.ProjectDescription);
                 parameters.Add("@IsActive", project.IsActiveProject);
                 ExecuteNoneQuery("proc_UpdateProject", parameters);
@@ -50,6 +51,18 @@ namespace CECRunningChart.Data.Project
             try
             {
                 return ExecuteDataSet("proc_GetAllActiveProjects", null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet GetAllProjects()
+        {
+            try
+            {
+                return ExecuteDataSet("proc_GetAllProjects", null);
             }
             catch (Exception)
             {
@@ -77,7 +90,7 @@ namespace CECRunningChart.Data.Project
             {
                 Parameters parameters = new Parameters();
                 parameters.Add("@ProjectId", id);
-                ExecuteNoneQuery("TODO", parameters);
+                ExecuteNoneQuery("proc_DeleteProject", parameters);
                 return true;
             }
             catch (Exception)
@@ -85,5 +98,7 @@ namespace CECRunningChart.Data.Project
                 throw;
             }
         }
+
+        #endregion
     }
 }

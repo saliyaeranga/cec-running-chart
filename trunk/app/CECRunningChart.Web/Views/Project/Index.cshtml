@@ -1,22 +1,43 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Project.ProjectModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Projects";
 }
-
-<h2>Projects</h2>
-@Html.ActionLink("New Project", "create")
+<h2>
+    Manage Projects</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table>
-<tr>
-    <th>Project Name</th>
-    <th>Project Description</th>
-    <th>&nbsp;</th>
-</tr>
-@foreach (var project in Model)
-{
     <tr>
-        <td>@project.ProjectName</td>
-        <td>@project.ProjectDescription</td>
-        <td>@Html.ActionLink("Edit", "edit", "project", new { @id = project.Id }, null)</td>
+        <th>
+            Project Name
+        </th>
+        <th>
+            Project Manager
+        </th>
+        <th>
+            Project Location
+        </th>
+        <th>
+        </th>
     </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectManager)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectLocation)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>

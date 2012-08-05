@@ -26,6 +26,21 @@ namespace CECRunningChart.Web.Helpers
             return pumpStationList.ToList<PumpstationModel>();
         }
 
+        #region Project Mappings
+
+        public static ProjectModel GetProjectModel(Project project)
+        {
+            return new ProjectModel()
+            {
+                Id = project.Id,
+                ProjectName = project.ProjectName,
+                ProjectLocation = project.ProjectLocation,
+                ProjectDescription = project.ProjectDescription,
+                ProjectManager = project.ProjectManager,
+                IsActiveProject = !project.IsActiveProject
+            };
+        }
+
         public static List<ProjectModel> GetProjectModelList(IEnumerable<Project> projects)
         {
             var projectsList = from p in projects
@@ -33,12 +48,28 @@ namespace CECRunningChart.Web.Helpers
                                {
                                    Id = p.Id,
                                    ProjectName = p.ProjectName,
+                                   ProjectLocation = p.ProjectLocation,
                                    ProjectDescription = p.ProjectDescription,
                                    ProjectManager = p.ProjectManager,
                                    IsActiveProject = !p.IsActiveProject
                                };
             return projectsList.ToList<ProjectModel>();
         }
+
+        public static Project GetProject(ProjectModel model)
+        {
+            return new Project()
+            {
+                Id = model.Id,
+                ProjectName = model.ProjectName,
+                ProjectLocation = model.ProjectLocation,
+                ProjectDescription = model.ProjectDescription,
+                ProjectManager = model.ProjectManager,
+                IsActiveProject = !model.IsActiveProject
+            };
+        }
+
+        #endregion
 
         #region Vehicle Mappings
 
@@ -53,6 +84,56 @@ namespace CECRunningChart.Web.Helpers
                                   Description = v.Description
                               };
             return vehicleList.ToList<VehicleModel>();
+        }
+
+        public static FuelModel GetFuelModel(FuelType fuelType)
+        {
+            return new FuelModel()
+            {
+                Id = fuelType.Id,
+                FuelType = fuelType.FuelName,
+                FuelRate = fuelType.FuelRate
+            };
+        }
+
+        public static List<FuelModel> GetFuelModelList(IEnumerable<FuelType> fuelTypes)
+        {
+            return fuelTypes.Select(x => new FuelModel() { Id = x.Id, FuelType = x.FuelName, FuelRate = x.FuelRate }).ToList<FuelModel>();
+        }
+
+        public static FuelType GetFuel(FuelModel model)
+        {
+            return new FuelType()
+            {
+                Id = model.Id,
+                FuelName = model.FuelType,
+                FuelRate = model.FuelRate
+            };
+        }
+
+        public static LubricantModel GetLubricantModel(LubricantType lubricant)
+        {
+            return new LubricantModel()
+            {
+                Id = lubricant.Id,
+                LubricantType = lubricant.LubricantName,
+                LubricantRate = lubricant.LubricantRate
+            };
+        }
+
+        public static List<LubricantModel> GetLubricantModelList(IEnumerable<LubricantType> lubricantType)
+        {
+            return lubricantType.Select(x => new LubricantModel() { Id = x.Id, LubricantType = x.LubricantName, LubricantRate = x.LubricantRate }).ToList<LubricantModel>();
+        }
+
+        public static LubricantType GetLubricant(LubricantModel model)
+        {
+            return new LubricantType()
+            {
+                Id = model.Id,
+                LubricantName = model.LubricantType,
+                LubricantRate = model.LubricantRate
+            };
         }
 
         #endregion

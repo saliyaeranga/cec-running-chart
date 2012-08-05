@@ -13,5 +13,11 @@ namespace CECRunningChart.Data.Vehicle
         bool DeleteVehicle(int id);
         DataSet GetAllVehicles();
         DataSet GetVehicle(int id);
+        DataSet GetAllFuelTypes();
+        DataSet GetAllLubricantTypes();
+        DataSet GetFuelType(int id);
+        DataSet GetLubricantType(int id);
+        bool UpdateFuelType(Core.FuelType fuelType);
+        bool UpdateLubricantType(Core.LubricantType lubricantType);
     }
 }

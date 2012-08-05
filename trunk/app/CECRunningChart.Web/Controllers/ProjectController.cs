@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CECRunningChart.Services.ProjectService;
-using CECRunningChart.Web.Models.Project;
 using CECRunningChart.Core;
+using CECRunningChart.Services.ProjectService;
 using CECRunningChart.Web.Common;
+using CECRunningChart.Web.Helpers;
+using CECRunningChart.Web.Models.Project;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -16,7 +15,7 @@ namespace CECRunningChart.Web.Controllers
     {
         #region Private Members
 
-        private IProjectService projectService;
+        private readonly IProjectService projectService;
 
         #endregion
 
@@ -31,24 +30,19 @@ namespace CECRunningChart.Web.Controllers
 
         #region Public Methods
 
-        //
-        // GET: /Project/
         [HttpGet]
         public ActionResult Index()
         {
-            List<Core.Project> projects = projectService.GetAllActiveProjects();
-            var projectsList = from p in projects
-                               select new ProjectModel
-                               {
-                                   Id = p.Id,
-                                   ProjectName = p.ProjectName,
-                                   ProjectDescription = p.ProjectDescription,
-                                   ProjectManager = p.ProjectManager,
-                                   IsActiveProject = !p.IsActiveProject
-                               };
-            List<ProjectModel> model = projectsList.ToList<ProjectModel>();
-            
-            return View(model);
+            try
+            {
+                var projects = projectService.GetAllActiveProjects();
+                List<ProjectModel> model = ModelMapper.GetProjectModelList(projects);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet]
@@ -61,59 +55,97 @@ namespace CECRunningChart.Web.Controllers
         public ActionResult Create(ProjectModel projectModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(projectModel);
-            }
-            Project project = new Project()
-            {
-                Id = projectModel.Id,
-                ProjectName = projectModel.ProjectName,
-                ProjectDescription = projectModel.ProjectDescription,
-                ProjectManager = projectModel.ProjectManager,
-                IsActiveProject = !projectModel.IsActiveProject
-            };
-            IProjectService projectService = new ProjectService();
-            projectService.AddNewProject(project);
 
-            return RedirectToAction("Index");
+            try
+            {
+                var project = ModelMapper.GetProject(projectModel);
+                projectService.AddNewProject(project);
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            IProjectService projectService = new ProjectService();
-            Core.Project project = projectService.GetProject(id);
-            ProjectModel projectModel = new ProjectModel()
+            try
             {
-                Id = project.Id,
-                ProjectName = project.ProjectName,
-                ProjectDescription = project.ProjectDescription,
-                ProjectManager = project.ProjectManager,
-                IsActiveProject = !project.IsActiveProject
-            };
-
-            return View(projectModel);
+                var project = projectService.GetProject(id);
+                ProjectModel projectModel = ModelMapper.GetProjectModel(project);
+                return View(projectModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPost]
         public ActionResult Edit(ProjectModel projectModel)
         {
             if (!ModelState.IsValid)
+                return View(projectModel);
+
+            try
             {
+                Project project = ModelMapper.GetProject(projectModel);
+                projectService.UpdateProject(project);
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            try
+            {
+                var project = projectService.GetProject(id);
+                ProjectModel projectModel = ModelMapper.GetProjectModel(project);
+                projectModel.IsActiveProject = project.IsActiveProject;
                 return View(projectModel);
             }
-            Project project = new Project()
+            catch (Exception)
             {
-                Id = projectModel.Id,
-                ProjectName = projectModel.ProjectName,
-                ProjectDescription = projectModel.ProjectDescription,
-                ProjectManager = projectModel.ProjectManager,
-                IsActiveProject = !projectModel.IsActiveProject
-            };
-            IProjectService projectService = new ProjectService();
-            projectService.UpdateProject(project);
+                throw;
+            }
+        }
 
-            return RedirectToAction("Index");
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var project = projectService.GetProject(id);
+                ProjectModel projectModel = ModelMapper.GetProjectModel(project);
+                projectModel.IsActiveProject = project.IsActiveProject;
+                return View(projectModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                projectService.DeleteProject(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         #endregion

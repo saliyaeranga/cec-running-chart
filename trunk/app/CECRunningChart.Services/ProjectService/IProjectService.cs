@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using CECRunningChart.Core;
 
 namespace CECRunningChart.Services.ProjectService
@@ -11,6 +8,8 @@ namespace CECRunningChart.Services.ProjectService
         bool AddNewProject(Project project);
         bool UpdateProject(Project project);
         List<Project> GetAllActiveProjects();
+        List<Project> GetAllProjects();
+        bool DeleteProject(int id);
         Project GetProject(int id);
     }
 }

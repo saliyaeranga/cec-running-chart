@@ -1,21 +1,42 @@
 ﻿@model CECRunningChart.Web.Models.Project.ProjectModel
-
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ProjectName").focus();
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
+        $("#projectform").validate({
+            rules: {
+                ProjectName: {
+                    required: true
+                },
+                ProjectManager: {
+                    required: true
+                },
+                ProjectLocation: {
+                    required: true
+                }
+            }
+        });
+
+        $("#projectform").submit(function () {
+            if ($("#projectform").valid()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    });
+</script>
+@using (Html.BeginForm("Edit", "Project", FormMethod.Post, new { @id = "projectform" }))
+{
+    @Html.ValidationSummary(false)
     <fieldset>
-        <legend>ProjectModel</legend>
-
+        <legend>Edit Project</legend>
         @Html.HiddenFor(model => model.Id)
-
         <div class="editor-label">
             @Html.LabelFor(model => model.ProjectName)
         </div>
@@ -23,7 +44,6 @@
             @Html.EditorFor(model => model.ProjectName)
             @Html.ValidationMessageFor(model => model.ProjectName)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.ProjectManager)
         </div>
@@ -31,15 +51,20 @@
             @Html.EditorFor(model => model.ProjectManager)
             @Html.ValidationMessageFor(model => model.ProjectManager)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProjectLocation)
+            @Html.ValidationMessageFor(model => model.ProjectLocation)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ProjectDescription)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectDescription)
+            @Html.TextAreaFor(model => model.ProjectDescription)
             @Html.ValidationMessageFor(model => model.ProjectDescription)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.IsActiveProject)
         </div>
@@ -47,13 +72,11 @@
             @Html.EditorFor(model => model.IsActiveProject)
             @Html.ValidationMessageFor(model => model.IsActiveProject)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

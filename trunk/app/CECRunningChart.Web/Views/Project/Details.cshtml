@@ -1,0 +1,36 @@
+﻿@model CECRunningChart.Web.Models.Project.ProjectModel
+@{
+    ViewBag.Title = "Project Details";
+}
+<fieldset>
+    <legend>Project Details</legend>
+    <div class="display-label">
+        Project Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <div class="display-label">
+        Project Manager</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectManager)
+    </div>
+    <div class="display-label">
+        Project Location</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectLocation)
+    </div>
+    <div class="display-label">
+        Project Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectDescription)
+    </div>
+    <div class="display-label">
+        Is Active Project</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActiveProject)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

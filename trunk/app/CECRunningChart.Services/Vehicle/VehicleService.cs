@@ -50,6 +50,40 @@ namespace CECRunningChart.Services.Vehicle
             return ConversionHelper.ConvertToObject<Core.Vehicle>(vehicleDataSet.Tables[0].Rows[0]);
         }
 
+        public List<Core.FuelType> GetAllFuelTypes()
+        {
+            DataSet fuelDataSet = dataProvider.GetAllFuelTypes();
+            return ConversionHelper.ConvertToList<Core.FuelType>(fuelDataSet);
+        }
+
+        public List<Core.LubricantType> GetAllLubricantTypes()
+        {
+            DataSet lubricantSet = dataProvider.GetAllLubricantTypes();
+            return ConversionHelper.ConvertToList<Core.LubricantType>(lubricantSet);
+        }
+
+        public Core.FuelType GetFuelType(int id)
+        {
+            DataSet fuelType = dataProvider.GetFuelType(id);
+            return ConversionHelper.ConvertToObject<Core.FuelType>(fuelType.Tables[0].Rows[0]);
+        }
+
+        public Core.LubricantType GetLubricantType(int id)
+        {
+            DataSet lubricant = dataProvider.GetLubricantType(id);
+            return ConversionHelper.ConvertToObject<Core.LubricantType>(lubricant.Tables[0].Rows[0]);
+        }
+
+        public bool UpdateFuelType(Core.FuelType fuelType)
+        {
+            return dataProvider.UpdateFuelType(fuelType);
+        }
+
+        public bool UpdateLubricantType(Core.LubricantType lubricantType)
+        {
+            return dataProvider.UpdateLubricantType(lubricantType);
+        }
+
         #endregion
     }
 }

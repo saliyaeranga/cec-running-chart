@@ -4,10 +4,16 @@ namespace CECRunningChart.Services.Vehicle
 {
     public interface IVehicleService
     {
-        bool AddNewVehicle(CECRunningChart.Core.Vehicle vehicle);
-        bool UpdateVehicle(CECRunningChart.Core.Vehicle vehicle);
+        bool AddNewVehicle(Core.Vehicle vehicle);
+        bool UpdateVehicle(Core.Vehicle vehicle);
         bool DeleteVehicle(int id);
-        List<CECRunningChart.Core.Vehicle> GetAllVehicles();
-        CECRunningChart.Core.Vehicle GetVehicle(int id);
+        List<Core.Vehicle> GetAllVehicles();
+        Core.Vehicle GetVehicle(int id);
+        List<Core.FuelType> GetAllFuelTypes();
+        List<Core.LubricantType> GetAllLubricantTypes();
+        Core.FuelType GetFuelType(int id);
+        Core.LubricantType GetLubricantType(int id);
+        bool UpdateFuelType(Core.FuelType fuelType);
+        bool UpdateLubricantType(Core.LubricantType lubricantType);
     }
 }
