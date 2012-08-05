@@ -124,7 +124,7 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult Reset()
         {
-            ViewBag.UserId = 1; //TODO : Authorize and get from session
+            ViewBag.UserId = (Session[SessionKeys.UserInfo] as UserModel).Id;
             return View();
         } 
 
@@ -136,10 +136,10 @@ namespace CECRunningChart.Web.Controllers
                 bool status = userService.ResetPassword(id, oldPassword, newPassword);
                 if (status)
                 {
-                    //return RedirectToAction("Manage", "Home");
-                    return RedirectToAction("Reset");
+                    return RedirectToAction("Manage", "Home");
                 }
-                ViewBag.UserId = 1; //TODO : Authorize and get from session
+
+                ViewBag.UserId = (Session[SessionKeys.UserInfo] as UserModel).Id;
                 ViewBag.Error = "Password can not be reset. Please make sure the old password is correct.";
                 return View();
             }
