@@ -16,8 +16,18 @@ namespace CECRunningChart.Data.Vehicle
             {
                 Parameters parameters = new Parameters();
                 parameters.Add("@VehicleNo", vehicle.VehicleNumber);
-                parameters.Add("@Type", vehicle.VehicleTypeId);
-                parameters.Add("@Description", vehicle.Description);
+                parameters.Add("@CompanyCode", vehicle.VehicleTypeId);
+                parameters.Add("@VehicleTypeId", vehicle.Description);
+                parameters.Add("@Description", vehicle.VehicleNumber);
+                parameters.Add("@DriverName", vehicle.VehicleNumber);
+                parameters.Add("@FuelUsage", vehicle.VehicleNumber);
+                parameters.Add("@FuelTypeId", vehicle.VehicleNumber);
+                parameters.Add("@LubricantTypeId", vehicle.VehicleNumber);
+                parameters.Add("@IsHiredVehicle", vehicle.VehicleNumber);
+                parameters.Add("@HireRate", vehicle.VehicleNumber);
+                parameters.Add("@OwnerName", vehicle.VehicleNumber);
+                parameters.Add("@IsVehicle", vehicle.VehicleNumber);
+                parameters.Add("@Status", vehicle.VehicleNumber);
                 ExecuteNoneQuery("proc_AddNewVehicle", parameters);
                 return true;
             }

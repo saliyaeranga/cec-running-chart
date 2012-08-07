@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace CECRunningChart.Web.Models.Vehicle
 {
@@ -58,6 +60,31 @@ namespace CECRunningChart.Web.Models.Vehicle
         //[MaxLength(100)]
         //public string VehicleType { get; set; }
 
+        public List<FuelModel> AvailableFuel { get; set; }
+        public List<LubricantModel> AvailableLubricants { get; set; }
 
+        public IEnumerable<SelectListItem> GetAvailableFuelOptions()
+        {
+            List<SelectListItem> options = new List<SelectListItem>(AvailableFuel.Count + 1);
+            options.Add(new SelectListItem() { Text = "- Select Fuel Type -", Value = "0", Selected = true });
+            foreach (var item in AvailableFuel)
+            {
+                options.Add(new SelectListItem() { Text = item.FuelType, Value = item.Id.ToString() });
+            }
+
+            return options;
+        }
+
+        public IEnumerable<SelectListItem> GetAvailableLubricantOptions()
+        {
+            List<SelectListItem> options = new List<SelectListItem>(AvailableLubricants.Count + 1);
+            options.Add(new SelectListItem() { Text = "- Select Lubricant Type -", Value = "0", Selected = true });
+            foreach (var item in AvailableLubricants)
+            {
+                options.Add(new SelectListItem() { Text = item.LubricantType, Value = item.Id.ToString() });
+            }
+
+            return options;
+        }
     }
 }

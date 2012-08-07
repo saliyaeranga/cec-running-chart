@@ -127,6 +127,30 @@ namespace CECRunningChart.Web.Helpers
             };
         }
 
+        public static Vehicle GetVehicle(VehicleModel model)
+        {
+            return new Vehicle()
+            {
+                Id = model.Id,
+                VehicleNumber = model.VehicleNumber,
+                CompanyCode = model.CompanyCode,
+                VehicleTypeId = model.VehicleTypeId,
+                VehicleTypeName = model.VehicleTypeName,
+                Description = model.Description,
+                DriverOperatorName = model.DriverOperatorName,
+                FuelUsage = model.FuelUsage,
+                FuelType = model.FuelType,
+                FuelTypeName = model.FuelTypeName,
+                LubricantType = model.LubricantType,
+                LubricantTypeName = model.LubricantTypeName,
+                IsHiredVehicle = model.IsHiredVehicle,
+                HireRate = model.HireRate,
+                OwnerName = model.OwnerName,
+                IsVehicle = model.IsVehicle,
+                Status = model.Status
+            };
+        }
+
         public static FuelModel GetFuelModel(FuelType fuelType)
         {
             return new FuelModel()

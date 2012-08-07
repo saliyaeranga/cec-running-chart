@@ -22,7 +22,7 @@ namespace CECRunningChart.Core
         /// <summary>
         /// Vehicle category id
         /// </summary>
-        [XmlElementAttribute("VehicleType")]
+        [XmlElementAttribute("VehicleTypeId")]
         public int VehicleTypeId { get; set; }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace CECRunningChart.Core
         /// <summary>
         /// Fuel type id
         /// </summary>
-        [XmlElementAttribute("FuelType")]
+        [XmlElementAttribute("FuelTypeId")]
         public int FuelType { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("FuelTypeName")]
         public string FuelTypeName { get; set; }
 
-        [XmlElementAttribute("LubricantType")]
+        [XmlElementAttribute("LubricantTypeId")]
         public int LubricantType { get; set; }
 
         [XmlElementAttribute("LubricantTypeName")]

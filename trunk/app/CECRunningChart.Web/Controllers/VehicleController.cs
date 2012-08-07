@@ -65,21 +65,35 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var model = new VehicleModel();
+            var fuelTypes = vehicleService.GetAllFuelTypes();
+            var lubricantTypes = vehicleService.GetAllLubricantTypes();
+            model.AvailableFuel = ModelMapper.GetFuelModelList(fuelTypes);
+            model.AvailableLubricants = ModelMapper.GetLubricantModelList(lubricantTypes);
+            return View(model);
         } 
 
         [HttpPost]
         public ActionResult Create(VehicleModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                var fuelTypes = vehicleService.GetAllFuelTypes();
+                var lubricantTypes = vehicleService.GetAllLubricantTypes();
+                model.AvailableFuel = ModelMapper.GetFuelModelList(fuelTypes);
+                model.AvailableLubricants = ModelMapper.GetLubricantModelList(lubricantTypes);
+                return View(model);
+            }
+
             try
             {
-                var vehicle = GetVehicleForModel(model);
+                var vehicle = ModelMapper.GetVehicle(model);
                 vehicleService.AddNewVehicle(vehicle);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
  
@@ -102,7 +116,7 @@ namespace CECRunningChart.Web.Controllers
         {
             try
             {
-                var vehicle = GetVehicleForModel(model);
+                var vehicle = ModelMapper.GetVehicle(model);
                 vehicleService.UpdateVehicle(vehicle);
                 return RedirectToAction("Index");
             }
@@ -253,17 +267,17 @@ namespace CECRunningChart.Web.Controllers
             };
         }
 
-        private Vehicle GetVehicleForModel(VehicleModel model)
-        {
-            return new Vehicle()
-            {
-                Id = model.Id,
-                VehicleNumber = model.VehicleNumber,
-                VehicleTypeId = model.VehicleTypeId,
-                Description = model.Description,
-                Status = model.Status
-            };
-        }
+        //private Vehicle GetVehicleForModel(VehicleModel model)
+        //{
+        //    return new Vehicle()
+        //    {
+        //        Id = model.Id,
+        //        VehicleNumber = model.VehicleNumber,
+        //        VehicleTypeId = model.VehicleTypeId,
+        //        Description = model.Description,
+        //        Status = model.Status
+        //    };
+        //}
 
         #endregion
     }
