@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using CECRunningChart.Common;
 using CECRunningChart.Core;
-using CECRunningChart.Web.Models.Pumpstation;
-using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Web.Models.Project;
+using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
-using CECRunningChart.Common;
+using CECRunningChart.Web.Models.Vehicle;
 
 namespace CECRunningChart.Web.Helpers
 {
@@ -90,9 +89,9 @@ namespace CECRunningChart.Web.Helpers
                                   Description = v.Description,
                                   DriverOperatorName = v.DriverOperatorName,
                                   FuelUsage = v.FuelUsage,
-                                  FuelType = v.FuelType,
+                                  FuelTypeId = v.FuelType,
                                   FuelTypeName = v.FuelTypeName,
-                                  LubricantType = v.LubricantType,
+                                  LubricantTypeId = v.LubricantType,
                                   LubricantTypeName = v.LubricantTypeName,
                                   IsHiredVehicle = v.IsHiredVehicle,
                                   HireRate = v.HireRate,
@@ -115,9 +114,9 @@ namespace CECRunningChart.Web.Helpers
                 Description = vehicle.Description,
                 DriverOperatorName = vehicle.DriverOperatorName,
                 FuelUsage = vehicle.FuelUsage,
-                FuelType = vehicle.FuelType,
+                FuelTypeId = vehicle.FuelType,
                 FuelTypeName = vehicle.FuelTypeName,
-                LubricantType = vehicle.LubricantType,
+                LubricantTypeId = vehicle.LubricantType,
                 LubricantTypeName = vehicle.LubricantTypeName,
                 IsHiredVehicle = vehicle.IsHiredVehicle,
                 HireRate = vehicle.HireRate,
@@ -139,9 +138,9 @@ namespace CECRunningChart.Web.Helpers
                 Description = model.Description,
                 DriverOperatorName = model.DriverOperatorName,
                 FuelUsage = model.FuelUsage,
-                FuelType = model.FuelType,
+                FuelType = model.FuelTypeId,
                 FuelTypeName = model.FuelTypeName,
-                LubricantType = model.LubricantType,
+                LubricantType = model.LubricantTypeId,
                 LubricantTypeName = model.LubricantTypeName,
                 IsHiredVehicle = model.IsHiredVehicle,
                 HireRate = model.HireRate,
@@ -199,6 +198,11 @@ namespace CECRunningChart.Web.Helpers
                 LubricantName = model.LubricantType,
                 LubricantRate = model.LubricantRate
             };
+        }
+
+        public static List<VehicleTypeModel> GetVehicleTypeModelList(IEnumerable<VehicleType> vehicleTypes)
+        {
+            return vehicleTypes.Select(x => new VehicleTypeModel() { Id = x.Id, VehicleTypeName = x.VehicleTypeName }).ToList();
         }
 
         #endregion

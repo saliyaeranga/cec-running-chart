@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace CECRunningChart.Data.Vehicle
@@ -16,18 +13,18 @@ namespace CECRunningChart.Data.Vehicle
             {
                 Parameters parameters = new Parameters();
                 parameters.Add("@VehicleNo", vehicle.VehicleNumber);
-                parameters.Add("@CompanyCode", vehicle.VehicleTypeId);
-                parameters.Add("@VehicleTypeId", vehicle.Description);
-                parameters.Add("@Description", vehicle.VehicleNumber);
-                parameters.Add("@DriverName", vehicle.VehicleNumber);
-                parameters.Add("@FuelUsage", vehicle.VehicleNumber);
-                parameters.Add("@FuelTypeId", vehicle.VehicleNumber);
-                parameters.Add("@LubricantTypeId", vehicle.VehicleNumber);
-                parameters.Add("@IsHiredVehicle", vehicle.VehicleNumber);
-                parameters.Add("@HireRate", vehicle.VehicleNumber);
-                parameters.Add("@OwnerName", vehicle.VehicleNumber);
-                parameters.Add("@IsVehicle", vehicle.VehicleNumber);
-                parameters.Add("@Status", vehicle.VehicleNumber);
+                parameters.Add("@CompanyCode", vehicle.CompanyCode);
+                parameters.Add("@VehicleTypeId", vehicle.VehicleTypeId);
+                parameters.Add("@Description", vehicle.Description);
+                parameters.Add("@DriverName", vehicle.DriverOperatorName);
+                parameters.Add("@FuelUsage", vehicle.FuelUsage);
+                parameters.Add("@FuelTypeId", vehicle.FuelType);
+                parameters.Add("@LubricantTypeId", vehicle.LubricantType);
+                parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
+                parameters.Add("@HireRate", vehicle.HireRate);
+                parameters.Add("@OwnerName", vehicle.OwnerName);
+                parameters.Add("@IsVehicle", vehicle.IsVehicle);
+                parameters.Add("@Status", vehicle.Status);
                 ExecuteNoneQuery("proc_AddNewVehicle", parameters);
                 return true;
             }
@@ -44,8 +41,17 @@ namespace CECRunningChart.Data.Vehicle
                 Parameters parameters = new Parameters();
                 parameters.Add("@VehicleId", vehicle.Id);
                 parameters.Add("@VehicleNo", vehicle.VehicleNumber);
-                parameters.Add("@Type", vehicle.VehicleTypeId);
+                parameters.Add("@CompanyCode", vehicle.CompanyCode);
+                parameters.Add("@VehicleTypeId", vehicle.VehicleTypeId);
                 parameters.Add("@Description", vehicle.Description);
+                parameters.Add("@DriverName", vehicle.DriverOperatorName);
+                parameters.Add("@FuelUsage", vehicle.FuelUsage);
+                parameters.Add("@FuelTypeId", vehicle.FuelType);
+                parameters.Add("@LubricantTypeId", vehicle.LubricantType);
+                parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
+                parameters.Add("@HireRate", vehicle.HireRate);
+                parameters.Add("@OwnerName", vehicle.OwnerName);
+                parameters.Add("@IsVehicle", vehicle.IsVehicle);
                 parameters.Add("@Status", vehicle.Status);
                 ExecuteNoneQuery("proc_UpdateVehicle", parameters);
                 return true;
@@ -160,6 +166,25 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@NewRate", lubricantType.LubricantRate);
                 ExecuteNoneQuery("proc_UpdateLubricantCost", parameters);
                 return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet GetAllVehicleTypes()
+        {
+            return ExecuteDataSet("proc_GetAllVehicleTypes", null);
+        }
+
+        public DataSet GetVehicleType(int id)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@VehicleTypeId", id);
+                return ExecuteDataSet("proc_GetVehicleTypeById", parameters);
             }
             catch (Exception)
             {

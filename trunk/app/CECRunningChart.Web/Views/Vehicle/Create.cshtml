@@ -18,28 +18,57 @@
             }
         });
 
-        //        $("#userform").validate({
-        //            rules: {
-        //                FirstName: {
-        //                    required: true
-        //                },
-        //                UserName: {
-        //                    required: true
-        //                }
-        //            }
-        //        });
+        $.validator.addMethod("selectVehicleType", function (value, element) {
+            return value > 0;
+        }, "Please select a vehicle type");
 
-        //        $("#userform").submit(function () {
-        //            if ($("#userform").valid()) {
-        //                return true;
-        //            }
-        //            else {
-        //                return false;
-        //            }
-        //        });
+        $.validator.addMethod("selectFuelType", function (value, element) {
+            return value > 0;
+        }, "Please select a fuel type");
+
+        $.validator.addMethod("selectLubricantType", function (value, element) {
+            return value > 0;
+        }, "Please select a lubricant type");
+
+        $("#vehicleform").validate({
+            rules: {
+                VehicleNumber: {
+                    required: true,
+                    maxlength: 50
+                },
+                CompanyCode: {
+                    required: true,
+                    maxlength: 50
+                },
+                DriverOperatorName: {
+                    required: true,
+                    maxlength: 200
+                },
+                FuelUsage: {
+                    required: true,
+                    number: true
+                },
+                HireRate: {
+                    required: true,
+                    number: true
+                },
+                VehicleTypeId: {
+                    selectVehicleType: true
+                },
+                FuelTypeId: {
+                    selectFuelType: true
+                },
+                LubricantTypeId: {
+                    selectLubricantType: true
+                },
+                OwnerName: {
+                    maxlength: 200
+                }
+            }
+        });
     });
 </script>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new { @id = "vehicleform" }))
 {
     @Html.ValidationSummary(false)
     <fieldset>
@@ -51,6 +80,7 @@
             @Html.EditorFor(model => model.VehicleNumber)
             @Html.ValidationMessageFor(model => model.VehicleNumber)
         </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.CompanyCode)
         </div>
@@ -58,28 +88,13 @@
             @Html.EditorFor(model => model.CompanyCode)
             @Html.ValidationMessageFor(model => model.CompanyCode)
         </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.VehicleTypeId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VehicleTypeId)
-            @Html.ValidationMessageFor(model => model.VehicleTypeId)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.VehicleTypeName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VehicleTypeName)
-            @Html.ValidationMessageFor(model => model.VehicleTypeName)
-        </div>*@
+
         <div class="editor-label">
             Vehicle Type
         </div>
         <div class="editor-field">
-            @*@Html.DropDownList("ddl")*@
-            <select></select>
+            @Html.DropDownList("VehicleTypeId", Model.GetAvailableVehicleTypeOptions())
         </div>
-
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
@@ -88,6 +103,7 @@
             @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
         </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.DriverOperatorName)
         </div>
@@ -95,6 +111,7 @@
             @Html.EditorFor(model => model.DriverOperatorName)
             @Html.ValidationMessageFor(model => model.DriverOperatorName)
         </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.FuelUsage)
         </div>
@@ -102,48 +119,29 @@
             @Html.EditorFor(model => model.FuelUsage)
             @Html.ValidationMessageFor(model => model.FuelUsage)
         </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.FuelType)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FuelType)
-            @Html.ValidationMessageFor(model => model.FuelType)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FuelTypeName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FuelTypeName)
-            @Html.ValidationMessageFor(model => model.FuelTypeName)
-        </div>*@
+
         <div class="editor-label">
             Fuel Type
         </div>
         <div class="editor-field">
-            @Html.DropDownList("FuelType", Model.GetAvailableFuelOptions())
+            @Html.DropDownList("FuelTypeId", Model.GetAvailableFuelOptions())
         </div>
 
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.LubricantType)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LubricantType)
-            @Html.ValidationMessageFor(model => model.LubricantType)
-        </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.LubricantTypeName)
+            Lubricant Type
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.LubricantTypeName)
-            @Html.ValidationMessageFor(model => model.LubricantTypeName)
-        </div>*@
-        <div class="editor-label">
-            Fuel Type
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("LubricantType", Model.GetAvailableLubricantOptions())
+            @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HireRate)
+        </div>
+        <div class="editor-field">
+            @{ string hireRate = Model.HireRate == decimal.Zero ? string.Empty : Model.HireRate.ToString(); }
+            @Html.TextBox("HireRate", hireRate)
+            @Html.ValidationMessageFor(model => model.HireRate)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.IsHiredVehicle)
@@ -152,14 +150,8 @@
             @Html.CheckBoxFor(model => model.IsHiredVehicle, new { @id = "IsHiredVehicle" })
             @Html.ValidationMessageFor(model => model.IsHiredVehicle)
         </div>
-        <div id="HiredVehicle" style="display:none;">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.HireRate)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.HireRate)
-                @Html.ValidationMessageFor(model => model.HireRate)
-            </div>
+
+        <div id="HiredVehicle" style="display: none;">
             <div class="editor-label">
                 @Html.LabelFor(model => model.OwnerName)
             </div>
@@ -168,6 +160,7 @@
                 @Html.ValidationMessageFor(model => model.OwnerName)
             </div>
         </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.IsVehicle)
         </div>
@@ -175,6 +168,7 @@
             @Html.EditorFor(model => model.IsVehicle)
             @Html.ValidationMessageFor(model => model.IsVehicle)
         </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Status)
         </div>
@@ -182,6 +176,7 @@
             @Html.EditorFor(model => model.Status)
             @Html.ValidationMessageFor(model => model.Status)
         </div>
+
         <p>
             <input type="submit" value="Create" />
         </p>

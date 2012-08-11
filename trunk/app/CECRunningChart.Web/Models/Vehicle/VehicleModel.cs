@@ -1,12 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace CECRunningChart.Web.Models.Vehicle
 {
     public class VehicleModel
     {
+        #region Public Members
+
         public int Id { get; set; }
 
         [DisplayName("Vehicle / Machine #")]
@@ -15,8 +17,11 @@ namespace CECRunningChart.Web.Models.Vehicle
         public string VehicleNumber { get; set; }
 
         [DisplayName("Company Code")]
+        [Required(ErrorMessage = "Company Code is required")]
+        [MaxLength(50, ErrorMessage = "Company Code can not have more than 50 characters")]
         public string CompanyCode { get; set; }
 
+        [Required(ErrorMessage = "Vehicle Type is required")]
         public int VehicleTypeId { get; set; }
 
         [DisplayName("Vehicle Type")]
@@ -26,17 +31,22 @@ namespace CECRunningChart.Web.Models.Vehicle
         public string Description { get; set; }
 
         [DisplayName("Driver/Operator Name")]
+        [Required(ErrorMessage = "Driver/Operator Name is required")]
+        [MaxLength(200, ErrorMessage = "Driver/Operator Name can not have more than 200 characters")]
         public string DriverOperatorName { get; set; }
 
         [DisplayName("Fuel Usage")]
-        public string FuelUsage { get; set; }
+        [Required(ErrorMessage = "Fuel Usage is required")]
+        public string FuelUsage { get; set; } //this is int in DB
 
-        public int FuelType { get; set; }
+        [Required(ErrorMessage = "Fuel Type is required")]
+        public int FuelTypeId { get; set; }
 
         [DisplayName("Fuel Type")]
         public string FuelTypeName { get; set; }
 
-        public int LubricantType { get; set; }
+        [Required(ErrorMessage = "Lubricant Type is required")]
+        public int LubricantTypeId { get; set; }
 
         [DisplayName("Lubricant Type")]
         public string LubricantTypeName { get; set; }
@@ -45,9 +55,10 @@ namespace CECRunningChart.Web.Models.Vehicle
         public bool IsHiredVehicle { get; set; }
 
         [DisplayName("Hire Rate")]
-        public decimal HireRate { get; set; }
+        public decimal HireRate { get; set; } //TODO
 
         [DisplayName("Owner Name")]
+        [MaxLength(200, ErrorMessage = "Owner Name can not have more than 200 characters")]
         public string OwnerName { get; set; }
 
         [DisplayName("Is Vehicle")]
@@ -56,12 +67,24 @@ namespace CECRunningChart.Web.Models.Vehicle
         [DisplayName("Is Active Vehicle / Machine")]
         public bool Status { get; set; }
 
-        //[DisplayName("Vehicle / Machine Type")]
-        //[MaxLength(100)]
-        //public string VehicleType { get; set; }
-
+        /// <summary>
+        /// Gets or sets all available fuel types
+        /// </summary>
         public List<FuelModel> AvailableFuel { get; set; }
+
+        /// <summary>
+        /// Gets or sets all available lubricant types
+        /// </summary>
         public List<LubricantModel> AvailableLubricants { get; set; }
+
+        /// <summary>
+        /// Gets or sets all available vehicle types
+        /// </summary>
+        public List<VehicleTypeModel> AvailableVehicleTypes { get; set; }
+
+        #endregion
+
+        #region Public Methods
 
         public IEnumerable<SelectListItem> GetAvailableFuelOptions()
         {
@@ -86,5 +109,19 @@ namespace CECRunningChart.Web.Models.Vehicle
 
             return options;
         }
+
+        public IEnumerable<SelectListItem> GetAvailableVehicleTypeOptions()
+        {
+            List<SelectListItem> options = new List<SelectListItem>(AvailableVehicleTypes.Count + 1);
+            options.Add(new SelectListItem() { Text = "- Select Vehicle Type -", Value = "0", Selected = true });
+            foreach (var item in AvailableVehicleTypes)
+            {
+                options.Add(new SelectListItem() { Text = item.VehicleTypeName, Value = item.Id.ToString() });
+            }
+
+            return options;
+        }
+
+        #endregion
     }
 }

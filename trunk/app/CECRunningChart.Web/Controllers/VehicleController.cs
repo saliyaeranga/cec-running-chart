@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CECRunningChart.Services.Vehicle;
-using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Core;
+using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
+using CECRunningChart.Web.Models.Vehicle;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -65,12 +63,9 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new VehicleModel();
-            var fuelTypes = vehicleService.GetAllFuelTypes();
-            var lubricantTypes = vehicleService.GetAllLubricantTypes();
-            model.AvailableFuel = ModelMapper.GetFuelModelList(fuelTypes);
-            model.AvailableLubricants = ModelMapper.GetLubricantModelList(lubricantTypes);
-            return View(model);
+            var vehicleModel = new VehicleModel();
+            PopulateVehicleModel(vehicleModel);
+            return View(vehicleModel);
         } 
 
         [HttpPost]
@@ -78,10 +73,7 @@ namespace CECRunningChart.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var fuelTypes = vehicleService.GetAllFuelTypes();
-                var lubricantTypes = vehicleService.GetAllLubricantTypes();
-                model.AvailableFuel = ModelMapper.GetFuelModelList(fuelTypes);
-                model.AvailableLubricants = ModelMapper.GetLubricantModelList(lubricantTypes);
+                PopulateVehicleModel(model);
                 return View(model);
             }
 
@@ -93,6 +85,7 @@ namespace CECRunningChart.Web.Controllers
             }
             catch
             {
+                PopulateVehicleModel(model);
                 return View(model);
             }
         }
@@ -102,7 +95,9 @@ namespace CECRunningChart.Web.Controllers
         {
             try
             {
-                VehicleModel model = GetVehicleModelById(id);
+                Vehicle vehicle = vehicleService.GetVehicle(id);
+                VehicleModel model = ModelMapper.GetVehicleModel(vehicle);
+                PopulateVehicleModel(model);
                 return View(model);
             }
             catch (Exception)
@@ -114,6 +109,12 @@ namespace CECRunningChart.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, VehicleModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                PopulateVehicleModel(model);
+                return View(model);
+            }
+
             try
             {
                 var vehicle = ModelMapper.GetVehicle(model);
@@ -122,16 +123,19 @@ namespace CECRunningChart.Web.Controllers
             }
             catch
             {
-                return View();
+                PopulateVehicleModel(model);
+                return View(model);
             }
         }
 
+        /*
         [HttpGet]
         public ActionResult Delete(int id)
         {
             try
             {
-                VehicleModel model = GetVehicleModelById(id);
+                Vehicle vehicle = vehicleService.GetVehicle(id);
+                VehicleModel model = ModelMapper.GetVehicleModel(vehicle);
                 return View(model);
             }
             catch (Exception)
@@ -153,6 +157,7 @@ namespace CECRunningChart.Web.Controllers
                 return View();
             }
         }
+        */
 
         [HttpGet]
         public ActionResult Fuel()
@@ -254,30 +259,16 @@ namespace CECRunningChart.Web.Controllers
 
         #region Private Members
 
-        private VehicleModel GetVehicleModelById(int id)
+        private VehicleModel PopulateVehicleModel(VehicleModel model)
         {
-            Vehicle vehicle = vehicleService.GetVehicle(id);
-            return new VehicleModel()
-            {
-                Id = vehicle.Id,
-                VehicleNumber = vehicle.VehicleNumber,
-                VehicleTypeId = vehicle.VehicleTypeId,
-                Description = vehicle.Description,
-                Status = vehicle.Status
-            };
+            var fuelTypes = vehicleService.GetAllFuelTypes();
+            var lubricantTypes = vehicleService.GetAllLubricantTypes();
+            var vehicleTypes = vehicleService.GetAllVehicleTypes();
+            model.AvailableFuel = ModelMapper.GetFuelModelList(fuelTypes);
+            model.AvailableLubricants = ModelMapper.GetLubricantModelList(lubricantTypes);
+            model.AvailableVehicleTypes = ModelMapper.GetVehicleTypeModelList(vehicleTypes);
+            return model;
         }
-
-        //private Vehicle GetVehicleForModel(VehicleModel model)
-        //{
-        //    return new Vehicle()
-        //    {
-        //        Id = model.Id,
-        //        VehicleNumber = model.VehicleNumber,
-        //        VehicleTypeId = model.VehicleTypeId,
-        //        Description = model.Description,
-        //        Status = model.Status
-        //    };
-        //}
 
         #endregion
     }

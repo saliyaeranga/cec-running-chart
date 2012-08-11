@@ -15,5 +15,7 @@ namespace CECRunningChart.Services.Vehicle
         Core.LubricantType GetLubricantType(int id);
         bool UpdateFuelType(Core.FuelType fuelType);
         bool UpdateLubricantType(Core.LubricantType lubricantType);
+        List<Core.VehicleType> GetAllVehicleTypes();
+        Core.VehicleType GetVehicleType(int id);
     }
 }

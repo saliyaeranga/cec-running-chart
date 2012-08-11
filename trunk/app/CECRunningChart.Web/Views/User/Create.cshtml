@@ -30,7 +30,7 @@
 </script>
 @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @id = "userform" }))
 {
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
     <fieldset>
         <legend>Create New User</legend>
         <div class="editor-label">

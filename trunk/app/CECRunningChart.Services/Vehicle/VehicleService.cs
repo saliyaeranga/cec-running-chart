@@ -84,6 +84,18 @@ namespace CECRunningChart.Services.Vehicle
             return dataProvider.UpdateLubricantType(lubricantType);
         }
 
+        public List<Core.VehicleType> GetAllVehicleTypes()
+        {
+            DataSet vehicleTypeDataSet = dataProvider.GetAllVehicleTypes();
+            return ConversionHelper.ConvertToList<Core.VehicleType>(vehicleTypeDataSet);
+        }
+
+        public Core.VehicleType GetVehicleType(int id)
+        {
+            DataSet vehicleType = dataProvider.GetLubricantType(id);
+            return ConversionHelper.ConvertToObject<Core.VehicleType>(vehicleType.Tables[0].Rows[0]);
+        }
+
         #endregion
     }
 }
