@@ -1,21 +1,14 @@
 ﻿@{
     Layout = "~/Views/Shared/_Inner.cshtml";
 }
+
 @section Header {
     <div class="logo">
         <img src="/Content/images/logo.png" />
     </div>
     <!-- This part'll change -->
-    <div class="companyName">
-        Consulting Engineers & Contractors (Pvt) Ltd
-    </div>
-    <div class="logoutBtndiv">
-        <input class="logoutBtn" type="button" />
-    </div>
-}
-@section MainContent {
-    <div class="innerPgContent">
-        <div class="adminIconPanel displayNone">
+    <div class="topNavBar">
+        <div class="adminTopIcon displayNone">
             <!--if not admin add displayNone Class -->
             <a href="">
                 <img src="/Content/images/manage_vehicles_machines.png" />
@@ -33,7 +26,7 @@
                 <img src="/Content/images/manage_users.png" />
             </a>
         </div>
-        <div class="inspectorIconPanel displayNone">
+        <div class="inspectorTopIcon ">
             <!--if not inspector add displayNone Class -->
             <a href="">
                 <img src="/Content/images/approveRptIcon.png" />
@@ -41,7 +34,7 @@
                 <img src="/Content/images/manageRptIcon.png" />
             </a>
         </div>
-        <div class="operatorIconPanel">
+        <div class="operatorTopIconPanel displayNone">
             <!--if not operator add displayNone Class -->
             <a href="">
                 <img src="/Content/images/addRunningChartIcon.png" />
@@ -50,7 +43,15 @@
             </a>
         </div>
     </div>
-    <div class="footer">
+    <div class="logoutBtndiv">
+        <input class="logoutBtn" type="button" />
+    </div>
+}
+@section MainContent {
+<div class="innerPgContent">
+<!--page Contents gose here -->
+</div>
+<div class="footer">
         <div style="float: left">
             ©Copyrights Received by Consulting Engineers & Contractors (Pvt) Ltd</div>
         <div style="float: right">

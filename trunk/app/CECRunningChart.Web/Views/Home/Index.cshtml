@@ -29,18 +29,7 @@
         <div class="icon">
             <img src="/Content/images/loginIcon.png" />
         </div>
-        @if (ViewBag.InvalidUsernameOrPassword != null && ViewBag.InvalidUsernameOrPassword)
-        {
-            <div class="row">
-                <div class="lable">
-                    &nbsp;
-                </div>
-                <div class="data" style="color:Red;">
-                    &nbsp;Invalid Username or Pssword. Please try again.
-                </div>
-            </div>
-        }
-        @Html.ValidationSummary(false)
+        
         <div class="row">
             <div class="lable">
                 User Name
@@ -58,6 +47,15 @@
             </div>
         </div>
         <div class="row">
+        <div class="errorMsg">
+        @if (ViewBag.InvalidUsernameOrPassword != null && ViewBag.InvalidUsernameOrPassword)
+        {
+            <div  style="color:Red; float:left;">
+                    &nbsp;Invalid Username or Pssword. Please try again.
+            </div>
+        }
+         @Html.ValidationSummary(false)
+         </div>
             <div class="btn"> <input type="submit" name="Login" value=""/> </div>
         </div>
     </div>

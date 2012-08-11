@@ -63,8 +63,13 @@
 .logBox .icon
 {
     width:120px;
-    height:158px;
+    height:148px;
     margin:0 auto;
+}
+.logBox .icon img
+{
+    width:120px;
+    height:148px;
 }
 .logBox .row
 {
@@ -110,4 +115,9 @@
     zoom: 1;
 	filter: alpha(opacity=90);
 	opacity: 0.9;
+}
+.errorMsg
+{
+    float:left;
+    color:Red;
 }

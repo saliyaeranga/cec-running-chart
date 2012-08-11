@@ -92,6 +92,10 @@
   <ItemGroup>
     <Content Include="Content\css\logIn.css" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\viewPastRptIcon.png" />
+    <Content Include="Content\images\addRunningChartIcon.png" />
+    <Content Include="Content\images\manageRptIcon.png" />
+    <Content Include="Content\images\approveRptIcon.png" />
     <Content Include="Content\images\innerBg.png" />
     <Content Include="Content\images\logboxBg.png" />
     <Content Include="Content\images\loginBg.png" />
@@ -99,6 +103,13 @@
     <Content Include="Content\images\loginIcon.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logoutBtn.png" />
+    <Content Include="Content\images\manage_fuelprices.png" />
+    <Content Include="Content\images\manage_lubricants.png" />
+    <Content Include="Content\images\manage_projects.png" />
+    <Content Include="Content\images\manage_pump_stations.png" />
+    <Content Include="Content\images\manage_reports.png" />
+    <Content Include="Content\images\manage_users.png" />
+    <Content Include="Content\images\manage_vehicles_machines.png" />
     <Content Include="Content\scripts\jquery-1.7.2.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -283,6 +294,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Vehicle\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\subInnerPage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

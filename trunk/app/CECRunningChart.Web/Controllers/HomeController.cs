@@ -86,6 +86,10 @@ namespace CECRunningChart.Web.Controllers
         {
             return View();
         }
+        public ActionResult subInnerPage()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             return View();

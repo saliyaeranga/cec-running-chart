@@ -13,6 +13,10 @@
     width: 97%;
     margin: 0 20px;
 }
+.displayNone
+{
+    display:none !important;
+}
 .logo, .companyName
 {
     float: left;
@@ -40,6 +44,7 @@
 {
     Width:97%;
     height:100%;
+    float:left;
     min-height:535px;
     padding:10px;
     clear:both;
@@ -62,3 +67,43 @@
     cursor:pointer;
     margin-right:20px;
 }
+.innerPgContent
+{
+    float:left;
+    min-height:450px;
+    width:100%;
+}
+.footer
+{
+    float:left;
+    clear:both;
+    width:100%;
+    font-size: 12px;
+    padding-top: 60px;
+}
+.adminIconPanel, .inspectorIconPanel, .operatorIconPanel
+{
+    max-width:900px;
+    width:100%;
+    margin:50px auto;
+    display:block;
+}
+/*Top navigation styles*/
+.topNavBar
+{
+    float:left;
+    margin-top: 8px;
+    height:91px;
+    background-image: url('/Content/images/topNavBg.png');
+}
+.topNavBar .adminTopIcon, .topNavBar .inspectorTopIcon, .topNavBar .operatorTopIconPanel
+{
+    float:left;
+}
+.topNavBar .adminTopIcon img, .topNavBar .inspectorTopIcon img, .topNavBar .operatorTopIconPanel img
+{
+    float:left;
+    width:88px;
+    height:87px;;
+}
+/*Top navigation styles Ends*/
