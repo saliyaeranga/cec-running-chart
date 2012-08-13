@@ -1,7 +1,81 @@
-﻿@{
+﻿@*@{
     ViewBag.Title = "Manage";
 }
 
 <h2>Manage</h2>
 @{ var user = Session[CECRunningChart.Web.Helpers.SessionKeys.UserInfo] as CECRunningChart.Web.Models.User.UserModel;}
-Hello @user.UserName
+Hello @user.UserName*@
+
+@{
+    Layout = "~/Views/Shared/_Inner.cshtml";
+}
+@section Header {
+    <div class="logo">
+        <img src="/Content/images/logo.png" />
+    </div>
+    <div class="companyName">
+        Consulting Engineers & Contractors (Pvt) Ltd
+    </div>
+    <div class="logoutBtndiv">
+        @*<input class="logoutBtn" type="button" />*@
+        <a href="@Url.Action("LogOff", "Home")" class="logoutBtn">
+            <img src="/Content/images/logoutBtn.png" alt="Log Off" />
+        </a>
+    </div>
+}
+@section MainContent {
+    <div class="innerPgContent">
+        @if (ViewBag.UserRole == CECRunningChart.Common.UserRole.Admin)
+        {
+            <div class="adminIconPanel">
+                <a href="@Url.Action("Index", "Vehicle")">
+                    <img src="/Content/images/manage_vehicles_machines.png" alt="Manage Vehicles" />
+                </a>
+                <a href="@Url.Action("Index", "Pumpstation")">
+                    <img src="/Content/images/manage_pump_stations.png" alt="Manage Vehicles" />
+                </a>
+                <a href="@Url.Action("Fuel", "Vehicle")">
+                    <img src="/Content/images/manage_fuelprices.png" alt="Manage Fuel Price" />
+                </a>
+                <a href="@Url.Action("Lubricant", "Vehicle")">
+                    <img src="/Content/images/manage_lubricants.png" alt="Manage Lubricant Price" />
+                </a>
+                <a href="@Url.Action("Index", "Project")">
+                    <img src="/Content/images/manage_projects.png" alt="Manage Projects" />
+                </a>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="/Content/images/manage_reports.png" alt="Manage Vehicles" />
+                </a>
+                <a href="@Url.Action("Index", "User")">
+                    <img src="/Content/images/manage_users.png" alt="Manage Users" />
+                </a>
+            </div>
+        }
+        else if (ViewBag.UserRole == CECRunningChart.Common.UserRole.RunningChartInspector)
+        {
+            <div class="inspectorIconPanel">
+                <a href="">
+                    <img src="/Content/images/approveRptIcon.png" />
+                </a><a href="">
+                    <img src="/Content/images/manageRptIcon.png" />
+                </a>
+            </div>
+        }
+        else if (ViewBag.UserRole == CECRunningChart.Common.UserRole.RunningChartOperator)
+        {
+            <div class="operatorIconPanel">
+                <a href="">
+                    <img src="/Content/images/addRunningChartIcon.png" />
+                </a><a href="">
+                    <img src="/Content/images/viewPastRptIcon.png" />
+                </a>
+            </div>
+        }        
+    </div>
+    <div class="footer">
+        <div style="float: left">
+            ©Copyrights Received by Consulting Engineers & Contractors (Pvt) Ltd</div>
+        <div style="float: right">
+            Powerd by Creative and Quality Solutions</div>
+    </div>
+}

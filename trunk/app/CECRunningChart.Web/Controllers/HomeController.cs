@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using CECRunningChart.Web.Models.User;
+﻿using System.Web.Mvc;
+using System.Web.Security;
 using CECRunningChart.Services.User;
 using CECRunningChart.Web.Helpers;
-using System.Web.Security;
-using System.Security.Principal;
-using CECRunningChart.Web.Common;
+using CECRunningChart.Web.Models.User;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -28,6 +22,8 @@ namespace CECRunningChart.Web.Controllers
         }
 
         #endregion
+
+        #region Public Methods
 
         [HttpGet]
         public ActionResult Index()
@@ -77,28 +73,32 @@ namespace CECRunningChart.Web.Controllers
 
         public ActionResult LogOff()
         {
+            Session[SessionKeys.UserInfo] = null;
             FormsAuthentication.SignOut();
-
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult innerPage()
-        {
-            return View();
-        }
-        public ActionResult subInnerPage()
-        {
-            return View();
-        }
-        public ActionResult About()
-        {
-            return View();
-        }
+        //TODO: Remove methods and views
+        //public ActionResult innerPage()
+        //{
+        //    return View();
+        //}
+        //public ActionResult subInnerPage()
+        //{
+        //    return View();
+        //}
+        //public ActionResult About()
+        //{
+        //    return View();
+        //}
 
         [Authorize]
         public ActionResult Manage()
         {
+            ViewBag.UserRole = (Session[SessionKeys.UserInfo] as UserModel).Role;
             return View();
         }
+
+        #endregion
     }
 }
