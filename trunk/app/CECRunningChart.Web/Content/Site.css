@@ -76,11 +76,11 @@ h5, h6 {
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page {
+/*.page {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 header, #header {
     position: relative;
@@ -107,9 +107,8 @@ header h1, #header h1 {
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
 }
-
-footer, 
-#footer {
+ 
+/*#footer {
     background-color: #fff;
     color: #999;
     padding: 10px 0;
@@ -120,7 +119,7 @@ footer,
     border-radius: 0 0 4px 4px;
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
-}
+}*/
 
 /* TAB MENU   
 ----------------------------------------------------------*/
