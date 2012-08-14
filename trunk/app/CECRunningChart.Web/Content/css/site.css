@@ -60,7 +60,7 @@
     border:none;
     margin:0px;
     padding:0px;
-    background-image: url('/Content/images/logoutBtn.png');
+    /* background-image: url('/Content/images/logoutBtn.png'); */
     width:184px;
     height:40px;
     margin-top: 57px;
