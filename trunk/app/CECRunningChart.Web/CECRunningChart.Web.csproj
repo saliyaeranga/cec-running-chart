@@ -92,6 +92,7 @@
   <ItemGroup>
     <Content Include="Content\css\logIn.css" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\topNavBg.png" />
     <Content Include="Content\images\viewPastRptIcon.png" />
     <Content Include="Content\images\addRunningChartIcon.png" />
     <Content Include="Content\images\manageRptIcon.png" />
