@@ -4,9 +4,9 @@
 }
 <h2>
     Manage Fuel</h2>
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+<p>
+    @Html.ActionLink("Create New", "newfuel", "vehicle")
+</p>
 <table>
     <tr>
         <th>
@@ -28,7 +28,7 @@
                 @item.FuelRate.ToString()
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditFuel", new { id = item.Id })
+                @Html.ActionLink("Edit", "editfuel", new { id = item.Id })
             </td>
         </tr>
     }

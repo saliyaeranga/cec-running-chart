@@ -96,6 +96,16 @@ namespace CECRunningChart.Services.Vehicle
             return ConversionHelper.ConvertToObject<Core.VehicleType>(vehicleType.Tables[0].Rows[0]);
         }
 
+        public bool AddNewLubricantType(CECRunningChart.Core.LubricantType lubricantType)
+        {
+            return dataProvider.AddNewLubricantType(lubricantType);
+        }
+
+        public bool AddNewFuelType(CECRunningChart.Core.FuelType fuelType)
+        {
+            return dataProvider.AddNewFuelType(fuelType);
+        }
+
         #endregion
     }
 }

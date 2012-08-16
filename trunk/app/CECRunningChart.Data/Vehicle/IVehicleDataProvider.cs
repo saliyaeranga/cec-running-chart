@@ -21,5 +21,7 @@ namespace CECRunningChart.Data.Vehicle
         bool UpdateLubricantType(Core.LubricantType lubricantType);
         DataSet GetAllVehicleTypes();
         DataSet GetVehicleType(int id);
+        bool AddNewLubricantType(CECRunningChart.Core.LubricantType lubricantType);
+        bool AddNewFuelType(CECRunningChart.Core.FuelType fuelType);
     }
 }

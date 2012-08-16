@@ -10,6 +10,8 @@ namespace CECRunningChart.Web.Models.Vehicle
         public int Id { get; set; }
 
         [DisplayName("Fuel Type")]
+        [Required(ErrorMessage = "Fuel name is required.")]
+        [MaxLength(200, ErrorMessage = "Fuel name can not have more than 200 characters")]
         public string FuelType { get; set; }
 
         [DisplayName("Rate")]

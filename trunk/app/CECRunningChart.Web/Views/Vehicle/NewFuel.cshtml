@@ -1,0 +1,57 @@
+﻿@model CECRunningChart.Web.Models.Vehicle.FuelModel
+
+@{
+    ViewBag.Title = "Create Fuel";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#FuelType").focus();
+
+        $("#newfuelform").validate({
+            rules: {
+                FuelType: {
+                    required: true,
+                    maxlength: 200
+                },
+                FuelRate: {
+                    required: true,
+                    number: true
+                }
+            }
+        });
+    });
+</script>
+@using (Html.BeginForm("newfuel", "vehicle", FormMethod.Post, new { @id = "newfuelform" }))
+{
+    @Html.ValidationSummary(false)
+    <fieldset>
+        <legend>Create Fuel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FuelType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FuelType)
+            @Html.ValidationMessageFor(model => model.FuelType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FuelRate)
+        </div>
+        <div class="editor-field">
+            @{ string fuelRate = Model.FuelRate == decimal.Zero ? string.Empty : Model.FuelRate.ToString(); }
+            @Html.TextBox("FuelRate", fuelRate)
+            @Html.ValidationMessageFor(model => model.FuelRate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "fuel")
+</div>

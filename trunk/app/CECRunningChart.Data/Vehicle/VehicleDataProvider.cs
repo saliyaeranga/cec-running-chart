@@ -192,6 +192,39 @@ namespace CECRunningChart.Data.Vehicle
             }
         }
 
+        public bool AddNewLubricantType(CECRunningChart.Core.LubricantType lubricantType)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@LubricantType", lubricantType.LubricantName);
+                parameters.Add("@Rate", lubricantType.LubricantRate);
+                ExecuteNoneQuery("proc_AddNewLubricantType", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool AddNewFuelType(CECRunningChart.Core.FuelType fuelType)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@FuelName", fuelType.FuelName);
+                parameters.Add("@Rate", fuelType.FuelRate);
+                ExecuteNoneQuery("proc_AddNewFuelType", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
         #endregion
     }
 }

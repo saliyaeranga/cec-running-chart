@@ -175,6 +175,32 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult NewFuel()
+        {
+            return View(new FuelModel());
+        }
+
+        [HttpPost]
+        public ActionResult NewFuel(FuelModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var fuelType = ModelMapper.GetFuel(model);
+                vehicleService.AddNewFuelType(fuelType);
+                return RedirectToAction("Fuel");
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
         public ActionResult EditFuel(int id)
         {
             try
@@ -219,6 +245,32 @@ namespace CECRunningChart.Web.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult NewLubricant()
+        {
+            return View(new LubricantModel());
+        }
+
+        [HttpPost]
+        public ActionResult NewLubricant(LubricantModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var lubricant = ModelMapper.GetLubricant(model);
+                vehicleService.AddNewLubricantType(lubricant);
+                return RedirectToAction("Lubricant");
+            }
+            catch
+            {
+                return View(model);
             }
         }
 
