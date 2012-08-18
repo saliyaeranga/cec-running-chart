@@ -7,27 +7,29 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table class="vehicleTbl">
     <tr>
-        <th>
+        <th class="tblModel">
             Vehicle #
         </th>
-        <th>
+        <th class="tblModel">
             Company Code
         </th>
-        <th>
+        <th class="tblModel">
             Vehicle / Machine Type
         </th>
-        <th>
+        <th class="tblModel">
             Driver / Operator Name
         </th>
-        <th>
+        <th class="tblModel">
+        </th>
+        <th class="tblModel">
         </th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="mainColum">
                 @Html.DisplayFor(modelItem => item.VehicleNumber)
             </td>
             <td>
@@ -41,7 +43,10 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+               
+            </td>
+            <td>
+                 @Html.ActionLink("Details", "Details", new { id = item.Id })
             </td>
         </tr>
     }

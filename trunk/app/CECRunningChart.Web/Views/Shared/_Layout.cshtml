@@ -8,75 +8,71 @@
     <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
 </head>
 <body>
-    <div class="page">
-        <div id="header" class="header">
-            <div class="logo">
-                <a href="@Url.Action("Manage", "Home")" class="logoutBtn">
-                    <img src="/Content/images/logo.png" alt="Home" />
-                </a>
-            </div>
-            <!-- This part'll change -->
-            <div class="topNavBar">
-                @{ var userRole = (Session[CECRunningChart.Web.Helpers.SessionKeys.UserInfo] as CECRunningChart.Web.Models.User.UserModel).Role; }
-                @if (userRole == CECRunningChart.Common.UserRole.Admin)
-                {
-                    <div class="adminTopIcon">
-                        <a href="@Url.Action("Index", "Vehicle")">
-                            <img src="/Content/images/manage_vehicles_machines.png" alt="Manage Vehicles" />
-                        </a>
-                        <a href="@Url.Action("Index", "Pumpstation")">
-                            <img src="/Content/images/manage_pump_stations.png" alt="Manage Vehicles" />
-                        </a>
-                        <a href="@Url.Action("Fuel", "Vehicle")">
-                            <img src="/Content/images/manage_fuelprices.png" alt="Manage Fuel Price" />
-                        </a>
-                        <a href="@Url.Action("Lubricant", "Vehicle")">
-                            <img src="/Content/images/manage_lubricants.png" alt="Manage Lubricant Price" />
-                        </a>
-                        <a href="@Url.Action("Index", "Project")">
-                            <img src="/Content/images/manage_projects.png" alt="Manage Projects" />
-                        </a>
-                        <a href="@Url.Action("Index", "Home")">
-                            <img src="/Content/images/manage_reports.png" alt="Manage Vehicles" />
-                        </a>
-                        <a href="@Url.Action("Index", "User")">
-                            <img src="/Content/images/manage_users.png" alt="Manage Users" />
-                        </a>
-                    </div>
-                }
-                else if (userRole == CECRunningChart.Common.UserRole.RunningChartInspector)
-                {
-                    <div class="inspectorTopIcon">
-                        <a href="">
-                            <img src="/Content/images/approveRptIcon.png" />
-                        </a><a href="">
-                            <img src="/Content/images/manageRptIcon.png" />
-                        </a>
-                    </div>
-                }
-                else if (userRole == CECRunningChart.Common.UserRole.RunningChartOperator)
-                {
-                    <div class="operatorTopIconPanel">
-                        <a href="">
-                            <img src="/Content/images/addRunningChartIcon.png" />
-                        </a><a href="">
-                            <img src="/Content/images/viewPastRptIcon.png" />
-                        </a>
-                    </div>
-                }
-            </div>
-            <div class="logoutBtndiv">
-                <a href="@Url.Action("LogOff", "Home")" class="logoutBtn">
-                    <img src="/Content/images/logoutBtn.png" alt="Log Off" />
-                </a>
-            </div>
+    <div id="header" class="header">
+        <div class="logo">
+            <a href="@Url.Action("Manage", "Home")" class="logoutBtn">
+                <img src="/Content/images/logo.png" alt="Home" />
+            </a>
         </div>
-        <div id="mainbody" class="mainContent">
-            @RenderBody()
+        <!-- This part'll change -->
+        <div class="topNavBar">
+            @{ var userRole = (Session[CECRunningChart.Web.Helpers.SessionKeys.UserInfo] as CECRunningChart.Web.Models.User.UserModel).Role; }
+            @if (userRole == CECRunningChart.Common.UserRole.Admin)
+            {
+                <div class="adminTopIcon">
+                    <a href="@Url.Action("Index", "Vehicle")">
+                        <img src="/Content/images/manage_vehicles_machines.png" alt="Manage Vehicles" />
+                    </a><a href="@Url.Action("Index", "Pumpstation")">
+                        <img src="/Content/images/manage_pump_stations.png" alt="Manage Vehicles" />
+                    </a><a href="@Url.Action("Fuel", "Vehicle")">
+                        <img src="/Content/images/manage_fuelprices.png" alt="Manage Fuel Price" />
+                    </a><a href="@Url.Action("Lubricant", "Vehicle")">
+                        <img src="/Content/images/manage_lubricants.png" alt="Manage Lubricant Price" />
+                    </a><a href="@Url.Action("Index", "Project")">
+                        <img src="/Content/images/manage_projects.png" alt="Manage Projects" />
+                    </a><a href="@Url.Action("Index", "Home")">
+                        <img src="/Content/images/manage_reports.png" alt="Manage Vehicles" />
+                    </a><a href="@Url.Action("Index", "User")">
+                        <img src="/Content/images/manage_users.png" alt="Manage Users" />
+                    </a>
+                </div>
+            }
+            else if (userRole == CECRunningChart.Common.UserRole.RunningChartInspector)
+            {
+                <div class="inspectorTopIcon">
+                    <a href="">
+                        <img src="/Content/images/approveRptIcon.png" />
+                    </a><a href="">
+                        <img src="/Content/images/manageRptIcon.png" />
+                    </a>
+                </div>
+            }
+            else if (userRole == CECRunningChart.Common.UserRole.RunningChartOperator)
+            {
+                <div class="operatorTopIconPanel">
+                    <a href="">
+                        <img src="/Content/images/addRunningChartIcon.png" />
+                    </a><a href="">
+                        <img src="/Content/images/viewPastRptIcon.png" />
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="logoutBtndiv">
+            <a href="@Url.Action("LogOff", "Home")" class="logoutBtn">
+                <img src="/Content/images/logoutBtn.png" alt="Log Off" />
+            </a>
+        </div>
+    </div>
+    <div id="mainbody" class="mainContent">
+        <div class="innerPgContent">
+        @RenderBody()
         </div>
         <div id="footer" class="footer">
-            <div style="float: left">©Copyrights Received by Consulting Engineers & Contractors (Pvt) Ltd</div>
-            <div style="float: right">Powerd by Creative and Quality Solutions</div>
+            <div style="float: left">
+                ©Copyrights Received by Consulting Engineers & Contractors (Pvt) Ltd</div>
+            <div style="float: right">
+                Powerd by Creative and Quality Solutions</div>
         </div>
     </div>
 </body>
