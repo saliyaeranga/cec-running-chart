@@ -28,25 +28,25 @@ Hello @user.UserName*@
         @if (ViewBag.UserRole == CECRunningChart.Common.UserRole.Admin)
         {
             <div class="adminIconPanel">
-                <a href="@Url.Action("Index", "Vehicle")">
+                <a href="@Url.Action("index", "vehicle")">
                     <img src="/Content/images/manage_vehicles_machines.png" alt="Manage Vehicles" />
                 </a>
-                <a href="@Url.Action("Index", "Pumpstation")">
+                <a href="@Url.Action("index", "pumpstation")">
                     <img src="/Content/images/manage_pump_stations.png" alt="Manage Vehicles" />
                 </a>
-                <a href="@Url.Action("Fuel", "Vehicle")">
+                <a href="@Url.Action("fuel", "vehicle")">
                     <img src="/Content/images/manage_fuelprices.png" alt="Manage Fuel Price" />
                 </a>
-                <a href="@Url.Action("Lubricant", "Vehicle")">
+                <a href="@Url.Action("lubricant", "vehicle")">
                     <img src="/Content/images/manage_lubricants.png" alt="Manage Lubricant Price" />
                 </a>
-                <a href="@Url.Action("Index", "Project")">
+                <a href="@Url.Action("index", "project")">
                     <img src="/Content/images/manage_projects.png" alt="Manage Projects" />
                 </a>
-                <a href="@Url.Action("Index", "Home")">
+                <a href="@Url.Action("index", "report")">
                     <img src="/Content/images/manage_reports.png" alt="Manage Vehicles" />
                 </a>
-                <a href="@Url.Action("Index", "User")">
+                <a href="@Url.Action("index", "user")">
                     <img src="/Content/images/manage_users.png" alt="Manage Users" />
                 </a>
             </div>
