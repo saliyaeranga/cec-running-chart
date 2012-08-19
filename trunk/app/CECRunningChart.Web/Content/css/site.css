@@ -107,3 +107,38 @@
     height:87px;;
 }
 /*Top navigation styles Ends*/
+/*manage vehicle page styles*/
+.tblModel
+{
+    padding: 3px 20px;
+}
+.vehicleTbl td
+{
+    font-size:12px;
+}
+
+.mainColum
+{
+    background-color:#F4ECE8;
+    font-weight:bold;
+}
+.row
+{
+    float:left;
+    clear:both;
+}
+.wrapper
+{
+    float:left;
+    margin-right:40px;
+}
+.discripton input[type='text']
+{
+    
+}
+.wrapper select
+{
+    padding:0px 0px 0px 3px;
+    height:25px;
+}
+/*manage vehicle page styles End*/
