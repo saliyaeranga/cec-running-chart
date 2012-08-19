@@ -9,5 +9,6 @@ namespace CECRunningChart.Services.ReportService
     public interface IReportService
     {
         List<FuelConsumptionReport> GetFuelConsumptionReport(DateTime startDate, DateTime endDate);
+        List<HiredVehicleFuelReport> GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate);
     }
 }

@@ -9,5 +9,6 @@ namespace CECRunningChart.Data.Report
     public interface IReportDataProvider
     {
         DataSet GetFuelConsumptionReport(DateTime startDate, DateTime endDate);
+        DataSet GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate);
     }
 }

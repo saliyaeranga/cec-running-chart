@@ -21,5 +21,11 @@ namespace CECRunningChart.Services.ReportService
             var reportData = reportDataProvider.GetFuelConsumptionReport(startDate, endDate);
             return ConversionHelper.ConvertToList<FuelConsumptionReport>(reportData);
         }
+
+        public List<HiredVehicleFuelReport> GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate)
+        {
+            var reportData = reportDataProvider.GetHiredVehicleFuelReport(startDate, endDate);
+            return ConversionHelper.ConvertToList<HiredVehicleFuelReport>(reportData);
+        }
     }
 }

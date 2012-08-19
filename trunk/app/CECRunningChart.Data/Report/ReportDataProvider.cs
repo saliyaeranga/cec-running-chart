@@ -25,6 +25,21 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@StartDate", startDate);
+                parameters.Add("@EndDate", endDate);
+                return ExecuteDataSet("proc_RptHiredVehicleFuelReport", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

@@ -368,6 +368,22 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<FuelConsumptionReportModel>();
         }
 
+        public static List<HiredVehicleFuelReportModel> GetHiredVehicleFuelReportList(List<HiredVehicleFuelReport> report)
+        {
+            var reportModel = from r in report
+                              select new HiredVehicleFuelReportModel
+                              {
+                                  VehicleId = r.VehicleId,
+                                  VehicleNumber = r.VehicleNumber,
+                                  IsVehicle = r.IsVehicle,
+                                  DriverOperatorName = r.DriverOperatorName,
+                                  OwnerName = r.OwnerName,
+                                  KmHrDone = r.KmHrDone,
+                                  FuelDrawn = r.FuelDrawn
+                              };
+            return reportModel.ToList<HiredVehicleFuelReportModel>();
+        }
+
         #endregion
     }
 }

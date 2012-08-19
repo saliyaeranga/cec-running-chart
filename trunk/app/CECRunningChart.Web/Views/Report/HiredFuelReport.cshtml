@@ -1,7 +1,7 @@
-﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.FuelConsumptionReportModel>
+﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.HiredVehicleFuelReportModel>
 
 @{
-    ViewBag.Title = "Fuel Consumption Report";
+    ViewBag.Title = "Fuel Report – Hired Vehicle / Machine";
 }
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
@@ -14,10 +14,10 @@
         });
     });
 </script>
-<h2>Fuel Consumption Report</h2>
+<h2>Fuel Report – Hired Vehicle / Machine</h2>
 <p>
     @Html.ActionLink("Back to Reports", "index")
-    @Html.ActionLink("Back to Fuel Consumption Report", "fuelconsumption")
+    @Html.ActionLink("Back to Fuel Report – Hired Vehicle / Machine", "hiredfuelreport")
 </p>
 @if (Model == null)
 {
@@ -41,20 +41,20 @@ else
             <th>
                 Vehicle/Machine No
             </th>
+            @*<th>
+                IsVehicle
+            </th>*@
             <th>
                 Driver/Operator Name
+            </th>
+            <th>
+                Owner’s Name
             </th>
             <th>
                 Km/Hour Done
             </th>
             <th>
-                Total Fuel Used
-            </th>
-            <th>
-                Rate
-            </th>
-            <th>
-                Actual
+                Fuel Drawn
             </th>
         </tr>
 
@@ -67,23 +67,22 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.VehicleNumber)
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IsVehicle)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.DriverOperatorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.KmHrDone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalFuelUsage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleRate) Km/L
-            </td>
-            <td>
-                @item.ActualRate.ToString("N") Km/L
+                @Html.DisplayFor(modelItem => item.FuelDrawn)
             </td>
         </tr>
     }
-
     </table>
 }

@@ -42,6 +42,22 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult HiredFuelReport()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HiredFuelReport(DateTime startDate, DateTime endDate)
+        {
+            var report = reportService.GetHiredVehicleFuelReport(startDate, endDate);
+            var model = ModelMapper.GetHiredVehicleFuelReportList(report);
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            return View(model);
+        }
+
         //
         // GET: /Report/Details/5
 
