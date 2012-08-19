@@ -20,19 +20,25 @@
             @if (userRole == CECRunningChart.Common.UserRole.Admin)
             {
                 <div class="adminTopIcon">
-                    <a href="@Url.Action("Index", "Vehicle")">
+                    <a href="@Url.Action("index", "vehicle")">
                         <img src="/Content/images/manage_vehicles_machines.png" alt="Manage Vehicles" />
-                    </a><a href="@Url.Action("Index", "Pumpstation")">
+                    </a>
+                    <a href="@Url.Action("index", "pumpstation")">
                         <img src="/Content/images/manage_pump_stations.png" alt="Manage Vehicles" />
-                    </a><a href="@Url.Action("Fuel", "Vehicle")">
+                    </a>
+                    <a href="@Url.Action("Fuel", "vehicle")">
                         <img src="/Content/images/manage_fuelprices.png" alt="Manage Fuel Price" />
-                    </a><a href="@Url.Action("Lubricant", "Vehicle")">
+                    </a>
+                    <a href="@Url.Action("Lubricant", "vehicle")">
                         <img src="/Content/images/manage_lubricants.png" alt="Manage Lubricant Price" />
-                    </a><a href="@Url.Action("Index", "Project")">
+                    </a>
+                    <a href="@Url.Action("index", "project")">
                         <img src="/Content/images/manage_projects.png" alt="Manage Projects" />
-                    </a><a href="@Url.Action("Index", "Home")">
+                    </a>
+                    <a href="@Url.Action("index", "report")">
                         <img src="/Content/images/manage_reports.png" alt="Manage Vehicles" />
-                    </a><a href="@Url.Action("Index", "User")">
+                    </a>
+                    <a href="@Url.Action("index", "user")">
                         <img src="/Content/images/manage_users.png" alt="Manage Users" />
                     </a>
                 </div>

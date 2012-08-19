@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using CECRunningChart.Web.Models.Vehicle;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 using CECRunningChart.Web.Models.Project;
 using CECRunningChart.Web.Models.Pumpstation;
+using CECRunningChart.Web.Models.Vehicle;
 
 namespace CECRunningChart.Web.Models.Runningchart
 {
     public class RunningchartModel
     {
+        #region Public Properties
+
         public int RunningchartId { get; set; }
         public string BillNumber { get; set; }
         public DateTime BillDate { get; set; }
         public string DriverName { get; set; }
-
-        //TODO: Remove
-        ///// <summary>
-        ///// Gets or sets the selected vehicle number for this running chart
-        ///// </summary>
-        //public string SelectedVehicleNo { get; set; }
-
         public int FuelLeftBegningOfDay { get; set; }
-
         public int FuelLeftEndOfDay { get; set; }
-
         public int FuelUsageOfDay { get; set; }
-
         public string DailyNote { get; set; }
+        public DateTime DayStartime { get; set; }
+        public DateTime DayEndTime { get; set; }
+        public int EnteredBy { get; set; }
+        public bool IsApproved { get; set; }
+        public int ApprovedBy { get; set; }
 
         /// <summary>
         /// Gets or sets the available projects
@@ -64,6 +61,10 @@ namespace CECRunningChart.Web.Models.Runningchart
         /// Gets or sets the chart items selected by the user
         /// </summary>
         public List<ChartItemModel> SelectedChartItems { get; set; }
+
+        #endregion
+
+        #region Public Methods
 
         public IEnumerable<SelectListItem> GetProjectOptions(int selectedProjectId)
         {
@@ -114,5 +115,7 @@ namespace CECRunningChart.Web.Models.Runningchart
 
             return options.Concat(vehicles.ToList());
         }
+
+        #endregion
     }
 }

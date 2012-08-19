@@ -38,6 +38,21 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("DailyNote")]
         public string DailyNote { get; set; }
 
+        [XmlElementAttribute("DayStartime")]
+        public DateTime DayStartime { get; set; }
+
+        [XmlElementAttribute("DayEndTime")]
+        public DateTime DayEndTime { get; set; }
+
+        [XmlElementAttribute("EnteredBy")]
+        public int EnteredBy { get; set; }
+
+        [XmlElementAttribute("IsApproved")]
+        public bool IsApproved { get; set; }
+
+        [XmlElementAttribute("ApprovedBy")]
+        public int ApprovedBy { get; set; }
+
         ///// <summary>
         ///// Indicates whether the associated vehicle is a vehicle or a machine.
         ///// true if it is a vehicle, false if it is a machine.
@@ -49,7 +64,7 @@ namespace CECRunningChart.Core
         //[XmlElementAttribute("VehicleNumber")]
         //public string VehicleNumber { get; set; }
 
-        public int RunningchartOperatorId { get; set; } //TODO: Add this to DB
+
         //TODO: Add Runningchart modification history table
 
         //[XmlElementAttribute("Id")]

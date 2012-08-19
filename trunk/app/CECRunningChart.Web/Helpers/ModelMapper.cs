@@ -223,23 +223,35 @@ namespace CECRunningChart.Web.Helpers
                 FuelLeftEnd = model.FuelLeftEndOfDay,
                 FuelUsageOfDay = model.FuelUsageOfDay,
                 DailyNote = model.DailyNote,
+                IsApproved = model.IsApproved,
+                ApprovedBy = model.ApprovedBy,
+                EnteredBy = model.EnteredBy,
                 RunningchartDetails = new List<RunningchartDetails>(),
                 RunningchartPumpstation = new List<RunningchartPumpstation>()
             };
 
+            var startTimePart = Convert.ToDateTime(model.DayStartime);
+            var endTimePart = Convert.ToDateTime(model.DayEndTime);
+            DateTime startTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day,
+                startTimePart.Hour, startTimePart.Minute, startTimePart.Second);
+            DateTime endTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day,
+                endTimePart.Hour, endTimePart.Minute, endTimePart.Second);
+            runningChart.DayStartime = startTime;
+            runningChart.DayEndTime = endTime;
+
             foreach (var item in model.SelectedChartItems)
             {
-                var startTimePart = Convert.ToDateTime(item.StartTime);
-                var endTimePart = Convert.ToDateTime(item.EndTime);
-                DateTime startTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day, 
+                var startProjTimePart = Convert.ToDateTime(item.StartTime);
+                var endProjTimePart = Convert.ToDateTime(item.EndTime);
+                DateTime startProjTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day,
                     startTimePart.Hour, startTimePart.Minute, startTimePart.Second);
-                DateTime endTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day, 
+                DateTime endProjTime = new DateTime(model.BillDate.Year, model.BillDate.Month, model.BillDate.Day,
                     endTimePart.Hour, endTimePart.Minute, endTimePart.Second);
 
                 runningChart.RunningchartDetails.Add(new RunningchartDetails()
                 {
-                    StartTime = startTime,
-                    EndTime = endTime,
+                    StartTime = startProjTime,
+                    EndTime = endProjTime,
                     TimeDifference = item.TimeDifference,
                     StartMeter = item.StartMeter,
                     EndMeter = item.EndMeter,
@@ -278,7 +290,12 @@ namespace CECRunningChart.Web.Helpers
                             FuelLeftBegningOfDay = c.FuelLeftBegning,
                             FuelLeftEndOfDay = c.FuelLeftEnd,
                             FuelUsageOfDay = c.FuelUsageOfDay,
-                            DailyNote = c.DailyNote
+                            DailyNote = c.DailyNote,
+                            DayStartime = c.DayStartime,
+                            DayEndTime = c.DayEndTime,
+                            IsApproved = c.IsApproved,
+                            ApprovedBy = c.ApprovedBy,
+                            EnteredBy = c.EnteredBy,
                         };
 
             return model.ToList<RunningchartModel>();

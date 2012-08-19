@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CECRunningChart.Web.Models.Runningchart;
-using CECRunningChart.Services.Pumpstation;
-using CECRunningChart.Web.Helpers;
-using CECRunningChart.Services.Vehicle;
-using CECRunningChart.Services.ProjectService;
-using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Core;
+using CECRunningChart.Services.ProjectService;
+using CECRunningChart.Services.Pumpstation;
 using CECRunningChart.Services.Runningchart;
-using CECRunningChart.Web.Common;
+using CECRunningChart.Services.Vehicle;
+using CECRunningChart.Web.Helpers;
+using CECRunningChart.Web.Models.Runningchart;
+using CECRunningChart.Web.Models.User;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -62,7 +59,7 @@ namespace CECRunningChart.Web.Controllers
             {
                 IVehicleService vehicleServcie = new VehicleService();
                 Runningchart runningChart = ModelMapper.GetRunningchartFromRunningchartModel(model);
-                runningChart.VehicleRate = 10; //todo: vehicleServcie.GetVehicle(model.SelectedVehicleId).FuelUsage;
+                runningChart.EnteredBy = (Session[SessionKeys.UserInfo] as UserModel).Id; // Set DEO
                 int chartId = runningchartService.AddRunningchart(runningChart);
                 ViewBag.LastChartId = chartId;
 

@@ -53,12 +53,17 @@
                     @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId" })
                     @foreach (var vehicle in Model.Vehicles)
                     {
-                        //var d = string.Concat("IsVehicle", vehicle.Id.ToString());
                         <input type="hidden" id="@string.Concat("IsVehicle", vehicle.Id.ToString())" value="@vehicle.IsVehicle" />
                     }
                 </td>
                 <td>Fuel Left Begning of the Day</td>
                 <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" /> L</td>
+            </tr>
+            <tr>
+                <td>Day Start Time</td>
+                <td><input type="text" id="DayStartime" name="DayStartime" class="timepick" value="" /></td>
+                <td>Day End Time</td>
+                <td><input type="text" id="DayEndTime" name="DayEndTime" class="timepick" value="" /></td>
             </tr>
         </table>
     </div>

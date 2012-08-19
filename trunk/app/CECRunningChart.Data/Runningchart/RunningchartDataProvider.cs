@@ -83,11 +83,17 @@ namespace CECRunningChart.Data.Runningchart
             parameters.Add("@BillDate", runningChart.BillDate);
             parameters.Add("@DriverName", runningChart.DriverName);
             parameters.Add("@VehicleId", runningChart.VehicleId);
-            parameters.Add("@VehicleRate", runningChart.VehicleRate);
+            //parameters.Add("@VehicleRate", runningChart.VehicleRate); Will be added inside sp
             parameters.Add("@FuelLeftBegning", runningChart.FuelLeftBegning);
             parameters.Add("@FuelLeftEnd", runningChart.FuelLeftEnd);
             parameters.Add("@FuelUsageOfDay", runningChart.FuelUsageOfDay);
-            parameters.Add("@DailyNote", runningChart.DailyNote);
+            if (string.IsNullOrWhiteSpace(runningChart.DailyNote))
+                parameters.Add("@DailyNote", DBNull.Value);
+            else
+                parameters.Add("@DailyNote", runningChart.DailyNote);
+            parameters.Add("@DayStartime", runningChart.DayStartime);
+            parameters.Add("@DayEndTime", runningChart.DayEndTime);
+            parameters.Add("@EnteredBy", runningChart.EnteredBy);
             parameters.Add("@RunningchartId", 0, System.Data.ParameterDirection.Output);
         }
 
@@ -118,7 +124,8 @@ namespace CECRunningChart.Data.Runningchart
         {
             try
             {
-                return ExecuteDataSet("proc_GetLatestRunningcharts", null);
+                //return ExecuteDataSet("proc_GetLatestRunningcharts", null);
+                return ExecuteDataSet("proc_GetNoneApprovedRunningcharts", null);
             }
             catch (Exception)
             {
