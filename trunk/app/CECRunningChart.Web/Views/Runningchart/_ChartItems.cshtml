@@ -2,8 +2,15 @@
 
 <script type="text/javascript">
     function PopulateChartRows(isAdding, isRemoving, removingId) {
+        var selectedVehicle = $("#SelectedVehicleId").val();
+        if (parseInt(selectedVehicle) <= 0) {
+            alert("Please Select the Vehicle First!");
+            return;
+        }
+
         var formParameters = new Object();
         formParameters.isAddingNewItem = isAdding;
+        formParameters.isVehicle = $("#IsVehicle" + selectedVehicle).val();
 
         var itemCount = $("#ChartItemsCount").val();
         for (var index = 0; index < itemCount; index++) {
@@ -33,15 +40,18 @@
 
     }
 </script>
-@{ int itemCount = 0; }
+@{ 
+    int itemCount = 0;
+    string meterText = Model.isVehicle ? "Meter" : "Hour";
+}
 <table>
     <tr>
         <td>Start Time</td>
         <td>End Time</td>
         <td>Time Difference</td>
-        <td>Start Meter</td>
-        <td>End Meter</td>
-        <td>Meter Difference</td>
+        <td>Start @meterText</td>
+        <td>End @meterText</td>
+        <td>@meterText Difference</td>
         <td>Project Name</td>
         <td>Project Manager</td>
         <td>&nbsp;</td>

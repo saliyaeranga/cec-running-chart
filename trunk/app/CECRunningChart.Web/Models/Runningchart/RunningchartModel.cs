@@ -15,10 +15,11 @@ namespace CECRunningChart.Web.Models.Runningchart
         public DateTime BillDate { get; set; }
         public string DriverName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the selected vehicle number for this running chart
-        /// </summary>
-        public string SelectedVehicleNo { get; set; }
+        //TODO: Remove
+        ///// <summary>
+        ///// Gets or sets the selected vehicle number for this running chart
+        ///// </summary>
+        //public string SelectedVehicleNo { get; set; }
 
         public int FuelLeftBegningOfDay { get; set; }
 
@@ -47,6 +48,12 @@ namespace CECRunningChart.Web.Models.Runningchart
         /// Gets or sets the vehicle id selected by the user
         /// </summary>
         public int SelectedVehicleId { get; set; }
+
+        /// <summary>
+        /// Indicates whether the selected vehicle is a vehicle or a machine.
+        /// true if it is a vehicle, false if it is a machine
+        /// </summary>
+        public bool isVehicle { get; set; }
 
         /// <summary>
         /// Gets or sets the pumpstations selected by the user

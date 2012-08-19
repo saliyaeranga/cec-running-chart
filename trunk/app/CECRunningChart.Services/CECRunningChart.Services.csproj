@@ -46,6 +46,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pumpstation\IPumpstationService.cs" />
     <Compile Include="Pumpstation\PumpstationService.cs" />
+    <Compile Include="ReportService\IReportService.cs" />
+    <Compile Include="ReportService\ReportService.cs" />
     <Compile Include="Runningchart\IRunningchartService.cs" />
     <Compile Include="Runningchart\RunningchartService.cs" />
     <Compile Include="User\IUserService.cs" />

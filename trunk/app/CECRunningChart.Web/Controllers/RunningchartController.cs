@@ -108,7 +108,7 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult PoulateChartItems(bool isAddingNewItem)
+        public ActionResult PoulateChartItems(bool isAddingNewItem, bool isVehicle)
         {
             RunningchartModel model = new RunningchartModel();
             List<ChartItemModel> existingChartItems = new List<ChartItemModel>();
@@ -117,6 +117,7 @@ namespace CECRunningChart.Web.Controllers
             IProjectService projectService = new ProjectService();
             model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
             model.SelectedChartItems = new List<ChartItemModel>();
+            model.isVehicle = isVehicle;
 
             // Add existing chart items
             foreach (var item in existingChartItems)

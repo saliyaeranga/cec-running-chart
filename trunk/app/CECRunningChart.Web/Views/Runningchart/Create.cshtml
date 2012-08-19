@@ -9,7 +9,8 @@
         width: 110px;
     }
 </style>
-<link rel="stylesheet" href="@Url.Content("~/Content/themes/base/jquery.ui.timepicker.css")" type="text/css" /><script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<link rel="stylesheet" href="@Url.Content("~/Content/themes/base/jquery.ui.timepicker.css")" type="text/css" />
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.timepicker.js")" type="text/javascript"></script>
@@ -50,6 +51,11 @@
                 <td>Vehicle #</td>
                 <td>
                     @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId" })
+                    @foreach (var vehicle in Model.Vehicles)
+                    {
+                        //var d = string.Concat("IsVehicle", vehicle.Id.ToString());
+                        <input type="hidden" id="@string.Concat("IsVehicle", vehicle.Id.ToString())" value="@vehicle.IsVehicle" />
+                    }
                 </td>
                 <td>Fuel Left Begning of the Day</td>
                 <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" /> L</td>

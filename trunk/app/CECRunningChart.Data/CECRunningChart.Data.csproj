@@ -51,6 +51,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pumpstation\IPumpstationDataProvider.cs" />
     <Compile Include="Pumpstation\PumpstationDataProvider.cs" />
+    <Compile Include="Report\IReportDataProvider.cs" />
+    <Compile Include="Report\ReportDataProvider.cs" />
     <Compile Include="Runningchart\IRunningchartDataProvider.cs" />
     <Compile Include="Runningchart\RunningchartDataProvider.cs" />
     <Compile Include="User\IUserDataProvider.cs" />

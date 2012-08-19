@@ -8,6 +8,7 @@ using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
 using CECRunningChart.Web.Models.Vehicle;
+using CECRunningChart.Web.Models.Reports;
 
 namespace CECRunningChart.Web.Helpers
 {
@@ -272,8 +273,8 @@ namespace CECRunningChart.Web.Helpers
                             BillNumber = c.BillNumber,
                             BillDate = c.BillDate,
                             DriverName = c.DriverName,
-                            SelectedVehicleId = c.VehicleId, 
-                            SelectedVehicleNo = c.VehicleNumber,
+                            SelectedVehicleId = c.VehicleId,
+                            //SelectedVehicleNo = c.VehicleNumber, //TODO: Remove
                             FuelLeftBegningOfDay = c.FuelLeftBegning,
                             FuelLeftEndOfDay = c.FuelLeftEnd,
                             FuelUsageOfDay = c.FuelUsageOfDay,
@@ -344,6 +345,27 @@ namespace CECRunningChart.Web.Helpers
                 RoleId = (int)model.Role,
                 DateAdded = model.DateAdded
             };
+        }
+
+        #endregion
+
+        #region Report Mappings
+
+        public static List<FuelConsumptionReportModel> GetFuelConsumptionReportList(List<FuelConsumptionReport> report)
+        {
+            var reportModel = from r in report
+                              select new FuelConsumptionReportModel
+                              {
+                                  VehicleId = r.VehicleId,
+                                  VehicleNumber = r.VehicleNumber,
+                                  IsVehicle = r.IsVehicle,
+                                  DriverOperatorName = r.DriverOperatorName,
+                                  KmHrDone = r.KmHrDone,
+                                  TotalFuelUsage = r.TotalFuelUsage,
+                                  VehicleRate = r.VehicleRate,
+                                  ActualRate = r.ActualRate
+                              };
+            return reportModel.ToList<FuelConsumptionReportModel>();
         }
 
         #endregion

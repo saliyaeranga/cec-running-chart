@@ -22,7 +22,14 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@LubricantTypeId", vehicle.LubricantType);
                 parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
                 parameters.Add("@HireRate", vehicle.HireRate);
-                parameters.Add("@OwnerName", vehicle.OwnerName);
+                if (string.IsNullOrWhiteSpace(vehicle.OwnerName))
+	            {
+                    parameters.Add("@OwnerName", DBNull.Value);
+                }
+                else
+                {
+                    parameters.Add("@OwnerName", vehicle.OwnerName);
+                }
                 parameters.Add("@IsVehicle", vehicle.IsVehicle);
                 parameters.Add("@Status", vehicle.Status);
                 ExecuteNoneQuery("proc_AddNewVehicle", parameters);

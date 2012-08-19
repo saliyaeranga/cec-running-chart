@@ -38,8 +38,16 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("DailyNote")]
         public string DailyNote { get; set; }
 
-        [XmlElementAttribute("VehicleNumber")]
-        public string VehicleNumber { get; set; }
+        ///// <summary>
+        ///// Indicates whether the associated vehicle is a vehicle or a machine.
+        ///// true if it is a vehicle, false if it is a machine.
+        ///// </summary>
+        //[XmlElementAttribute("IsVehicle")]
+        //public bool IsVehicle { get; set; }
+
+        //TODO: Remove
+        //[XmlElementAttribute("VehicleNumber")]
+        //public string VehicleNumber { get; set; }
 
         public int RunningchartOperatorId { get; set; } //TODO: Add this to DB
         //TODO: Add Runningchart modification history table
