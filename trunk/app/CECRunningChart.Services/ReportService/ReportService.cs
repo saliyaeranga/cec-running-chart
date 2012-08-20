@@ -27,5 +27,11 @@ namespace CECRunningChart.Services.ReportService
             var reportData = reportDataProvider.GetHiredVehicleFuelReport(startDate, endDate);
             return ConversionHelper.ConvertToList<HiredVehicleFuelReport>(reportData);
         }
+
+        public List<DriverOperatorTimeSheet> GetDriverTimeSheetReport(string driverName)
+        {
+            var reportData = reportDataProvider.GetDriverTimeSheetReport(driverName);
+            return ConversionHelper.ConvertToList<DriverOperatorTimeSheet>(reportData);
+        }
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DriverOperatorTimeSheet.cs" />
     <Compile Include="FuelConsumptionReport.cs" />
     <Compile Include="FuelType.cs" />
     <Compile Include="HiredVehicleFuelReport.cs" />

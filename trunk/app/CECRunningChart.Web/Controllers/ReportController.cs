@@ -58,6 +58,22 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult DriverTimeSheet()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DriverTimeSheet(string driverName)
+        {
+            var report = reportService.GetDriverTimeSheetReport(driverName);
+            var model = ModelMapper.GetDriverOperatorTimeSheetModelList(report);
+            ViewBag.DriverOperatorName = driverName;
+            return View(model);
+        }
+
+
         //
         // GET: /Report/Details/5
 

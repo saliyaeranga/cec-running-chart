@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.DriverOperatorTimeSheetModel>
+
+@{
+    ViewBag.Title = "Driver / Operator Time Sheet";
+}
+
+<h2>Driver / Operator Time Sheet</h2>
+<p>
+    @Html.ActionLink("Back to Reports", "index")
+    @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
+</p>
+@if (Model == null)
+{
+    using (Html.BeginForm())
+    {
+        <input type="text" id="driverName" name="driverName" /><br />
+        <input type="submit" value="Generate Report" />
+    }
+}
+else
+{
+    <p>
+        Driver / Operator Name : @ViewBag.DriverOperatorName
+    </p>
+    <table>
+        <tr>
+            @*<th>
+                RunningchartId
+            </th>
+            <th>
+                DriverOperatorName
+            </th>*@
+            <th>
+                Date
+            </th>
+            <th>
+                Vehicle/Machine No
+            </th>
+            @*<th>
+                IsVehicle
+            </th>*@
+            <th>
+                In Time
+            </th>
+            <th>
+                Out Time
+            </th>
+            <th>
+                Work Done
+            </th>
+            <th>
+                OT Hour
+            </th>
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.RunningchartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverOperatorName)
+            </td>*@
+            <td>
+                @item.BillDate.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleNumber)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IsVehicle)
+            </td>*@
+            <td>
+                @item.InTime.ToString("t")
+            </td>
+            <td>
+                @item.OutTime.ToString("t")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDone)
+            </td>
+            <td>
+                @{ 
+                    string otHours = item.OTHours.ToString();
+                    string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
+                }
+                @displayOTHours
+            </td>
+        </tr>
+    }
+    </table>
+}

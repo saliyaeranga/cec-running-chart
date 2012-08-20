@@ -401,6 +401,24 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<HiredVehicleFuelReportModel>();
         }
 
+        public static List<DriverOperatorTimeSheetModel> GetDriverOperatorTimeSheetModelList(List<DriverOperatorTimeSheet> report)
+        {
+            var reportModel = from r in report
+                              select new DriverOperatorTimeSheetModel
+                              {
+                                  RunningchartId = r.RunningchartId,
+                                  DriverOperatorName = r.DriverOperatorName,
+                                  BillDate = r.BillDate,
+                                  VehicleNumber = r.VehicleNumber,
+                                  IsVehicle = r.IsVehicle,
+                                  InTime = r.InTime,
+                                  OutTime = r.OutTime,
+                                  WorkDone = r.WorkDone,
+                                  OTHours = r.OTHours
+                              };
+            return reportModel.ToList<DriverOperatorTimeSheetModel>();
+        }
+
         #endregion
     }
 }

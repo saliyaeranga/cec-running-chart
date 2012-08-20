@@ -40,6 +40,21 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetDriverTimeSheetReport(string driverName)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@DriverOperatorName", driverName);
+                return ExecuteDataSet("proc_RptDriverOperatorTimeSheet", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         #endregion
     }
 }
