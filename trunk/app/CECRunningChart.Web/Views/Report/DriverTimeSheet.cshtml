@@ -23,71 +23,49 @@ else
         Driver / Operator Name : @ViewBag.DriverOperatorName
     </p>
     <table>
-        <tr>
-            @*<th>
-                RunningchartId
-            </th>
-            <th>
-                DriverOperatorName
-            </th>*@
-            <th>
-                Date
-            </th>
-            <th>
-                Vehicle/Machine No
-            </th>
-            @*<th>
-                IsVehicle
-            </th>*@
-            <th>
-                In Time
-            </th>
-            <th>
-                Out Time
-            </th>
-            <th>
-                Work Done
-            </th>
-            <th>
-                OT Hour
-            </th>
-        </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.RunningchartId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DriverOperatorName)
-            </td>*@
-            <td>
-                @item.BillDate.ToString("d")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleNumber)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.IsVehicle)
-            </td>*@
-            <td>
-                @item.InTime.ToString("t")
-            </td>
-            <td>
-                @item.OutTime.ToString("t")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkDone)
-            </td>
-            <td>
-                @{ 
-                    string otHours = item.OTHours.ToString();
-                    string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
-                }
-                @displayOTHours
-            </td>
-        </tr>
-    }
-    </table>
+            <tr>
+                <th rowspan="2">Date</th>
+                <th rowspan="2">Vehicle/Machine No</th>
+                <th rowspan="2">In Time</th>
+                <th rowspan="2">Out Time</th>
+                <th colspan="2">Work Done</th>
+                <th rowspan="2">OT Hour</th>
+            </tr>
+            <tr>
+                <td>Km</td>
+                <td>Hour</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                var workDoneKm = item.IsVehicle ? item.WorkDone.ToString() : string.Empty;
+                var workDoneHr = item.IsVehicle ? string.Empty : item.WorkDone.ToString();
+                <tr>
+                    <td>
+                        @item.BillDate.ToString("d")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleNumber)
+                    </td>
+                    <td>
+                        @item.InTime.ToString("t")
+                    </td>
+                    <td>
+                        @item.OutTime.ToString("t")
+                    </td>
+                    <td>
+                        @workDoneKm
+                    </td>
+                    <td>
+                        @workDoneHr
+                    </td>
+                    <td>
+                        @{ 
+                            string otHours = item.OTHours.ToString();
+                            string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
+                        }
+                        @displayOTHours
+                    </td>
+                </tr>
+            }
+        </table>
 }

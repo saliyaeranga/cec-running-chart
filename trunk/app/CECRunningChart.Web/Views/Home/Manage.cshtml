@@ -49,6 +49,10 @@ Hello @user.UserName*@
                 <a href="@Url.Action("index", "user")">
                     <img src="/Content/images/manage_users.png" alt="Manage Users" />
                 </a>
+                <a href="@Url.Action("index", "runningchart")">
+                    @*TODO: Add a suitable image for running chart*@
+                    <img src="/Content/images/addRunningChartIcon.png" alt="Manage Users" />
+                </a>
             </div>
         }
         else if (ViewBag.UserRole == CECRunningChart.Common.UserRole.RunningChartInspector)
