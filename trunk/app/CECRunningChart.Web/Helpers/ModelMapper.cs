@@ -263,28 +263,34 @@ namespace CECRunningChart.Web.Helpers
                 });
             }
 
-            foreach (var item in model.SelectedPumpstations)
+            if (model.SelectedPumpstations != null && model.SelectedPumpstations.Count > 0)
             {
-                if (item.SelectedPumpstationId > 0 && item.PumpAmount > 0)
+                foreach (var item in model.SelectedPumpstations)
                 {
-                    runningChart.RunningchartPumpstation.Add(new RunningchartPumpstation()
+                    if (item.SelectedPumpstationId > 0 && item.PumpAmount > 0)
                     {
-                        PumpstationId = item.SelectedPumpstationId,
-                        Amount = item.PumpAmount
-                    });
+                        runningChart.RunningchartPumpstation.Add(new RunningchartPumpstation()
+                        {
+                            PumpstationId = item.SelectedPumpstationId,
+                            Amount = item.PumpAmount
+                        });
+                    }
                 }
             }
 
-            foreach (var item in model.SelectedLubricants)
+            if (model.SelectedLubricants != null && model.SelectedLubricants.Count > 0)
             {
-                if (item.SelectedPumpstationId > 0 && item.SelectedLubricantTypeId > 0 && item.PumpAmount > 0)
+                foreach (var item in model.SelectedLubricants)
                 {
-                    runningChart.RunningchartLubricants.Add(new RunningchartLubricant()
+                    if (item.SelectedPumpstationId > 0 && item.SelectedLubricantTypeId > 0 && item.PumpAmount > 0)
                     {
-                        PumpstationId = item.SelectedPumpstationId,
-                        LubricantTypeId = item.SelectedLubricantTypeId,
-                        Amount = item.PumpAmount
-                    });
+                        runningChart.RunningchartLubricants.Add(new RunningchartLubricant()
+                        {
+                            PumpstationId = item.SelectedPumpstationId,
+                            LubricantTypeId = item.SelectedLubricantTypeId,
+                            Amount = item.PumpAmount
+                        });
+                    }
                 }
             }
 
