@@ -87,7 +87,7 @@
     <fieldset>
         <legend>Create New Vehicle</legend>
         <div class="row">
-            <div class="wrapper" style="width:100px;">
+            <div class="wrapper" style="width: 100px;">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.IsVehicle)
                 </div>
@@ -124,13 +124,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="wrapper" style="width:100px;">
+            <div class="wrapper" style="width: 100px;">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.IsHiredVehicle)
                 </div>
                 <div class="editor-field">
                     @Html.CheckBoxFor(model => model.IsHiredVehicle, new { @id = "IsHiredVehicle" })
                     @Html.ValidationMessageFor(model => model.IsHiredVehicle)
+                </div>
+            </div>
+            <div id="HiredVehicle" style="display: none;" class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OwnerName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.OwnerName)
+                    @Html.ValidationMessageFor(model => model.OwnerName)
                 </div>
             </div>
             <div class="wrapper">
@@ -145,80 +154,68 @@
             </div>
             <div class="wrapper">
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.Description)
+                    @Html.LabelFor(model => model.DriverOperatorName)
                 </div>
-                <div class="editor-field discripton">
-                    @Html.EditorFor(model => model.Description)
-                    @Html.ValidationMessageFor(model => model.Description)
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DriverOperatorName)
+                    @Html.ValidationMessageFor(model => model.DriverOperatorName)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Fuel Type
+                </div>
+                <div class="editor-field fuelType">
+                    @Html.DropDownList("FuelTypeId", Model.GetAvailableFuelOptions())
                 </div>
             </div>
             <div class="wrapper">
-            </div>
-        </div>
-        <div class="row">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.DriverOperatorName)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.DriverOperatorName)
-                @Html.ValidationMessageFor(model => model.DriverOperatorName)
-            </div>
-        </div>
-        <div class="row">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.FuelUsage)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.FuelUsage)
-                @Html.ValidationMessageFor(model => model.FuelUsage)
-            </div>
-        </div>
-        <div class="row">
-            <div class="editor-label">
-                Fuel Type
-            </div>
-            <div class="editor-field">
-                @Html.DropDownList("FuelTypeId", Model.GetAvailableFuelOptions())
-            </div>
-        </div>
-        <div class="row">
-            <div class="editor-label">
-                Lubricant Type
-            </div>
-            <div class="editor-field">
-                @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
-            </div>
-        </div>
-        <div class="row">
-        </div>
-        <div class="row">
-            
-        </div>
-        <div class="row">
-            <div id="HiredVehicle" style="display: none;">
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.OwnerName)
+                    @Html.LabelFor(model => model.FuelUsage)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.OwnerName)
-                    @Html.ValidationMessageFor(model => model.OwnerName)
+                    @Html.EditorFor(model => model.FuelUsage)
+                    @Html.ValidationMessageFor(model => model.FuelUsage)
                 </div>
             </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Status)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Status)
-                @Html.ValidationMessageFor(model => model.Status)
+            <div class="wrapper">
+                <div class="editor-label">
+                    Lubricant Type
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
+                </div>
             </div>
         </div>
         <div class="row">
-            <p>
-                <input type="submit" value="Create" />
-            </p>
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="editor-field discripton">
+                    @Html.TextAreaFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Status)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Status)
+                    @Html.ValidationMessageFor(model => model.Status)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input class="createBtn" type="submit" value="Create" />
         </div>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Index")
 </div>

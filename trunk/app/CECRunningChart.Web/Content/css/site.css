@@ -137,13 +137,88 @@
     float:left;
     margin-right:40px;
 }
-.discripton input[type='text']
+.wrapper textarea
 {
-    
+    width: 580px;
 }
 .wrapper select
 {
     padding:0px 0px 0px 3px;
     height:25px;
 }
+.fuelType
+{
+    width:100px;
+}
+.fuelType select
+{
+    width:95px;
+}
+.createBtn
+{
+    background-color: #1A881A;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
 /*manage vehicle page styles End*/
+/*styles for commen inner pages */
+.inrPgHeadding
+{
+    float:left;
+    clear:both;
+}
+.inrPgHeadding h2
+{
+    float:left;
+    color:#474B4D;
+    font-family: arial;
+    font-size: 20px;
+}
+.createNewRow
+{
+    float:left;
+    clear:both;
+}
+.createNewRow a, .createNewRow a:hover 
+{
+    background-color: #1A881A;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.tblContainer
+{
+    float:left;
+    clear:both;
+    width:100%;
+    margin-top:20px;
+}
+.bckBtn
+{
+    float:left;
+    clear:both;
+}
+.bckBtn a, .bckBtn a:hover
+{
+    background-color: #35A0AF;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/*styles for commen inner pages End*/
