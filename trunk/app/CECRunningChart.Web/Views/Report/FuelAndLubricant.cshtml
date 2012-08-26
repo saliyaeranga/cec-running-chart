@@ -109,6 +109,28 @@ else
         </tr>
         @foreach (var item in Model)
         {
+            string fuelType = string.Empty;
+            string fuelQty = string.Empty;
+            string fuelRate = string.Empty;
+            string fuelAmt = string.Empty;
+            string lubType = string.Empty;
+            string lubQty = string.Empty;
+            string lubRate = string.Empty;
+            string lubAmt = string.Empty;
+            if (item.FuelQty > 0)
+            {
+                fuelType = item.FuelType;
+                fuelQty = item.FuelQty.ToString();
+                fuelRate = item.FuelRate.ToString();
+                fuelAmt = (item.FuelQty * item.FuelRate).ToString();
+            }
+            if (item.LubricantQty > 0)
+            {
+                lubType = item.LubricantType;
+                lubQty = item.LubricantQty.ToString();
+                lubRate = item.LubricantRate.ToString();
+                lubAmt = (item.LubricantQty * item.LubricantRate).ToString();
+            }
             <tr>
                 <td>
                     @item.BillDate.ToString("d")
@@ -133,30 +155,28 @@ else
                     @Html.DisplayFor(modelItem => item.RunningchartId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FuelType)
+                    @fuelType
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FuelQty)
+                    @fuelQty
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FuelRate)
+                    @fuelRate
                 </td>
                 <td>
-                    @{ var fuelAmt = item.FuelQty * item.FuelRate; }
                     @fuelAmt
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LubricantType)
+                    @lubType
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LubricantQty)
+                    @lubQty
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LubricantRate)
+                    @lubRate
                 </td>
                 <td>
-                    @{ var lubriAmt = item.LubricantQty * item.LubricantRate; }
-                    @lubriAmt
+                    @lubAmt
                 </td>
             </tr>
         }
