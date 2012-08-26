@@ -20,7 +20,6 @@
         $.ajaxSetup({ cache: false });
         $.post('@Url.Action("PoulatePumpstationItems", "Runningchart")', formParameters, function (data) {
             document.getElementById("PumpStationInfo").innerHTML = data;
-            //            setDatePickers();
         });
     }
 </script>
@@ -42,8 +41,6 @@
             var amount = pumpstation.PumpAmount == 0 ? string.Empty : pumpstation.PumpAmount.ToString();
             <tr>
                 <td>
-                    @*<input type="hidden" name="@string.Concat("SelectedPumpstations[", index, "].PumpstationId")" value="@pumpstation.PumpstationId" />
-                    <input type="text" name="@string.Concat("SelectedPumpstations[", index, "].PumpStationName")" value="@pumpstation.PumpStationName" />*@
                     @Html.DropDownList(pumpstationId, Model.GetPumpstationOptions(pumpstation.SelectedPumpstationId), new { @id = pumpstationId, @class = "todo" })
                 </td>
                 <td><input type="text" id="@amountId" name="@amountId" value="@amount" /></td>
