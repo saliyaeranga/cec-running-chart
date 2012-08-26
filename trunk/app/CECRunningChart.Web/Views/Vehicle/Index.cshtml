@@ -2,12 +2,14 @@
 @{
     ViewBag.Title = "Manage Vehicles & Machines";
 }
-<h2>
-    Manage Vehicles & Machines</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="vehicleTbl">
+<div class="inrPgHeadding">
+    <h2>Manage Vehicles & Machines</h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("Create", "vehicle")">Add New Vehicle / Machines</a>
+</div>
+<div class="tblContainer">
+<table class="tblFont">
     <tr>
         <th class="tblModel">
             Vehicle #
@@ -51,3 +53,4 @@
         </tr>
     }
 </table>
+</div>

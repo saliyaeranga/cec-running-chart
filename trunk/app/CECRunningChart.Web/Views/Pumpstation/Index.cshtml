@@ -2,35 +2,48 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>
-    Manage Pumpstations</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Manage Pumpstations
+    </h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("Create", "Pumpstation")">Add New Pumpstation</a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            Pumpstation Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+</p>*@
+<div class="tblContainer">
+    <table class="tblFont">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PumpStationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
+            <th class="tblModel">
+                Pumpstation Name
+            </th>
+            <th class="tblModel">
+                Description
+            </th>
+            <th class="tblModel">
+            </th>
+            <th class="tblModel">
+            </th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="mainColum">
+                    @Html.DisplayFor(modelItem => item.PumpStationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

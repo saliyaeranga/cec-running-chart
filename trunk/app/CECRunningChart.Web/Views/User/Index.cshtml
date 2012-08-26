@@ -1,49 +1,56 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.User.UserModel>
-
 @{
     ViewBag.Title = "Manage Users";
 }
-
-<h2>Manage Users</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Manage Users
+    </h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("Create", "User")">Add New User</a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+</p>*@
+<div class="tblContainer">
+<table class="tblFont">
     <tr>
-        <th>
+        <th class="tblModel">
             Username
         </th>
-        <th>
+        <th class="tblModel">
             NIC Number
         </th>
-        <th>
+        <th class="tblModel">
             Role
         </th>
-        <th>
+        <th class="tblModel">
             Is Active User
         </th>
-        <th></th>
+        <th class="tblModel">
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NICNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActiveUser)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="mainColum">
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NICNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActiveUser)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
+</div>

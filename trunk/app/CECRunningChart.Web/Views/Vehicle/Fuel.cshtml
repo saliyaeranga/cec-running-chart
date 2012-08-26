@@ -2,26 +2,33 @@
 @{
     ViewBag.Title = "Manage Fuel";
 }
-<h2>
-    Manage Fuel</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Manage Fuel
+    </h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("NewFuel", "vehicle")">Add New Fuel</a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "newfuel", "vehicle")
-</p>
-<table>
+</p>*@
+<div class="tblContainer">
+<table class="tblFont">
     <tr>
-        <th>
+        <th class="tblModel">
             Fuel Type
         </th>
-        <th>
+        <th class="tblModel">
             Fuel Rate
         </th>
-        <th>
+        <th class="tblModel">
         </th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="mainColum">
                 @Html.DisplayFor(modelItem => item.FuelType)
             </td>
             <td>
@@ -33,3 +40,4 @@
         </tr>
     }
 </table>
+</div>

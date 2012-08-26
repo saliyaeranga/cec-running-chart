@@ -2,29 +2,36 @@
 @{
     ViewBag.Title = "Manage Projects";
 }
-<h2>
-    Manage Projects</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Manage Projects
+    </h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("Create", "Project")">Add New Project</a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+</p>*@
+<div class="tblContainer">
+<table class="tblFont">
     <tr>
-        <th>
+        <th class="tblModel">
             Project Name
         </th>
-        <th>
+        <th class="tblModel">
             Project Manager
         </th>
-        <th>
+        <th class="tblModel">
             Project Location
         </th>
-        <th>
+        <th class="tblModel">
         </th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="mainColum">
                 @Html.DisplayFor(modelItem => item.ProjectName)
             </td>
             <td>
@@ -41,3 +48,4 @@
         </tr>
     }
 </table>
+</div>
