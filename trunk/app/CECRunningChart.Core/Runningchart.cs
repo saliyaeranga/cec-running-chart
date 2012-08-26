@@ -81,5 +81,6 @@ namespace CECRunningChart.Core
 
         public List<RunningchartDetails> RunningchartDetails { get; set; }
         public List<RunningchartPumpstation> RunningchartPumpstation { get; set; }
+        public List<RunningchartLubricant> RunningchartLubricants { get; set; }
     }
 }

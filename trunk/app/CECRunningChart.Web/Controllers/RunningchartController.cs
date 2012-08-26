@@ -56,9 +56,9 @@ namespace CECRunningChart.Web.Controllers
         [HttpPost]
         public ActionResult Create(RunningchartModel model)
         {
+            IVehicleService vehicleServcie = new VehicleService();
             try
             {
-                IVehicleService vehicleServcie = new VehicleService();
                 Runningchart runningChart = ModelMapper.GetRunningchartFromRunningchartModel(model);
                 runningChart.EnteredBy = (Session[SessionKeys.UserInfo] as UserModel).Id; // Set DEO
                 int chartId = runningchartService.AddRunningchart(runningChart);
@@ -68,7 +68,10 @@ namespace CECRunningChart.Web.Controllers
             }
             catch
             {
-                return View();
+                model.RunningchartId = runningchartService.GetNextRunningchartId();
+                model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
+                model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+                return View(model);
             }
         }
 
