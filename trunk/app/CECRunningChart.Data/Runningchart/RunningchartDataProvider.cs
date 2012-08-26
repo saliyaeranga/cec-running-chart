@@ -27,13 +27,13 @@ namespace CECRunningChart.Data.Runningchart
             int runningchartId = 0;
             try
             {
-                // Add details to dbo.Runningchart table
+                // 1. Add details to dbo.Runningchart table
                 Parameters chartParameters = new Parameters();
                 AddRunningChartParameters(runningChart, chartParameters);
                 var output = ExecuteNoneQueryWithOutputParams("proc_AddRunningChart", chartParameters);
                 runningchartId = Convert.ToInt32(output["@RunningchartId"]);
 
-                // Add details to dbo.RunningchartDetails table
+                // 2. Add details to dbo.RunningchartDetails table
                 Parameters chartDetailsParameters;
                 foreach (var detail in runningChart.RunningchartDetails)
                 {
@@ -43,7 +43,7 @@ namespace CECRunningChart.Data.Runningchart
                     ExecuteNoneQuery("proc_AddRunningchartDetails", chartDetailsParameters);
                 }
 
-                // Add details to dbo.RunningchartDetails table
+                // 3. Add details to dbo.RunningchartPumpstation table
                 Parameters chartPumpstationParameters;
                 foreach (var pumpstation in runningChart.RunningchartPumpstation)
                 {
@@ -51,6 +51,16 @@ namespace CECRunningChart.Data.Runningchart
                     chartPumpstationParameters = new Parameters();
                     AddRunningchartPumpstationParams(pumpstation, chartPumpstationParameters);
                     ExecuteNoneQuery("proc_AddRunningchartPumpstation", chartPumpstationParameters);
+                }
+
+                // 4. Add details to dbo.RunningchartLubricants table
+                Parameters chartLubricantParameters;
+                foreach (var lubricant in runningChart.RunningchartLubricants)
+                {
+                    lubricant.RunningchartId = runningchartId;
+                    chartLubricantParameters = new Parameters();
+                    AddRunningchartLubricantParams(lubricant, chartLubricantParameters);
+                    ExecuteNoneQuery("proc_AddRunningchartLubricant", chartLubricantParameters);
                 }
 
                 return runningchartId;
@@ -61,7 +71,7 @@ namespace CECRunningChart.Data.Runningchart
                 {
                     Parameters cleanupParameters = new Parameters();
                     cleanupParameters.Add("@RunningchartId", runningchartId);
-                    ExecuteNoneQuery("proc_AddRunningchartDetails", cleanupParameters);
+                    ExecuteNoneQuery("proc_CleanupRunningchartRecords", cleanupParameters);
                 }
                 throw;
             }
@@ -115,6 +125,14 @@ namespace CECRunningChart.Data.Runningchart
             parameters.Add("@RunningchartId", pumpstation.RunningchartId);
             parameters.Add("@PumpstationId", pumpstation.PumpstationId);
             parameters.Add("@Amount", pumpstation.Amount);
+        }
+
+        private void AddRunningchartLubricantParams(RunningchartLubricant lubricant, Parameters parameters)
+        {
+            parameters.Add("@RunningchartId", lubricant.RunningchartId);
+            parameters.Add("@PumpstationId", lubricant.PumpstationId);
+            parameters.Add("@LubricantTypeId", lubricant.LubricantTypeId);
+            parameters.Add("@Amount", lubricant.Amount);
         }
 
         #endregion

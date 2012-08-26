@@ -54,6 +54,10 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetFuelAndLubricantReport(DateTime startDate, DateTime endDate, int pumpstationId)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

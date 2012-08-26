@@ -74,6 +74,26 @@ namespace CECRunningChart.Web.Controllers
         }
 
 
+
+
+        [HttpGet]
+        public ActionResult FuelAndLubricant()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FuelAndLubricant(DateTime startDate, DateTime endDate, int pumpstationId)
+        {
+            //var report = reportService.GetDriverTimeSheetReport(driverName);
+            //var model = ModelMapper.GetDriverOperatorTimeSheetModelList(report);
+            //ViewBag.DriverOperatorName = driverName;
+            //return View(model);
+            return View();
+        }
+
+
+
         //
         // GET: /Report/Details/5
 

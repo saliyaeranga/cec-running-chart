@@ -227,7 +227,8 @@ namespace CECRunningChart.Web.Helpers
                 ApprovedBy = model.ApprovedBy,
                 EnteredBy = model.EnteredBy,
                 RunningchartDetails = new List<RunningchartDetails>(),
-                RunningchartPumpstation = new List<RunningchartPumpstation>()
+                RunningchartPumpstation = new List<RunningchartPumpstation>(),
+                RunningchartLubricants = new List<RunningchartLubricant>()
             };
 
             var startTimePart = Convert.ToDateTime(model.DayStartime);
@@ -263,11 +264,27 @@ namespace CECRunningChart.Web.Helpers
 
             foreach (var item in model.SelectedPumpstations)
             {
-                runningChart.RunningchartPumpstation.Add(new RunningchartPumpstation()
+                if (item.SelectedPumpstationId > 0 && item.PumpAmount > 0)
                 {
-                    PumpstationId = item.SelectedPumpstationId,
-                    Amount = item.PumpAmount
-                });
+                    runningChart.RunningchartPumpstation.Add(new RunningchartPumpstation()
+                    {
+                        PumpstationId = item.SelectedPumpstationId,
+                        Amount = item.PumpAmount
+                    });
+                }
+            }
+
+            foreach (var item in model.SelectedLubricants)
+            {
+                if (item.SelectedPumpstationId > 0 && item.SelectedLubricantTypeId > 0 && item.PumpAmount > 0)
+                {
+                    runningChart.RunningchartLubricants.Add(new RunningchartLubricant()
+                    {
+                        PumpstationId = item.SelectedPumpstationId,
+                        LubricantTypeId = item.SelectedLubricantTypeId,
+                        Amount = item.PumpAmount
+                    });
+                }
             }
 
             return runningChart;

@@ -51,6 +51,7 @@
     <Compile Include="PumpStation.cs" />
     <Compile Include="Runningchart.cs" />
     <Compile Include="RunningchartDetails.cs" />
+    <Compile Include="RunningchartLubricant.cs" />
     <Compile Include="RunningchartPumpstation.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserRole.cs" />

@@ -58,6 +58,16 @@ namespace CECRunningChart.Web.Models.Runningchart
         public List<ChartPumpstationItemModel> SelectedPumpstations { get; set; }
 
         /// <summary>
+        /// Gets or sets the lubricants selected by the user
+        /// </summary>
+        public List<ChartLubricantItemModel> SelectedLubricants { get; set; }
+
+        /// <summary>
+        /// Gets or sets the available lubricant types
+        /// </summary>
+        public List<LubricantModel> Lubricants { get; set; }
+
+        /// <summary>
         /// Gets or sets the chart items selected by the user
         /// </summary>
         public List<ChartItemModel> SelectedChartItems { get; set; }
@@ -98,6 +108,23 @@ namespace CECRunningChart.Web.Models.Runningchart
                                };
 
             return options.Concat(pumpstations.ToList());
+        }
+
+        public IEnumerable<SelectListItem> GetLubricantOptions(int selectedLubricantId)
+        {
+            List<SelectListItem> options = new List<SelectListItem>(Pumpstations.Count + 1)
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = selectedLubricantId == 0}
+            };
+            var lubricants = from l in Lubricants
+                               select new SelectListItem
+                               {
+                                   Text = l.LubricantType,
+                                   Value = l.Id.ToString(),
+                                   Selected = l.Id == selectedLubricantId
+                               };
+
+            return options.Concat(lubricants.ToList());
         }
 
         public IEnumerable<SelectListItem> GetVehicleOptions()
