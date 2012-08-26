@@ -23,6 +23,9 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("VehicleId")]
         public int VehicleId { get; set; }
 
+        /// <summary>
+        /// Fuel usage of the vehicle
+        /// </summary>
         [XmlElementAttribute("VehicleRate")]
         public int VehicleRate { get; set; }
 
@@ -52,6 +55,12 @@ namespace CECRunningChart.Core
 
         [XmlElementAttribute("ApprovedBy")]
         public int ApprovedBy { get; set; }
+
+        /// <summary>
+        /// Fuel rate of the vehicle
+        /// </summary>
+        [XmlElementAttribute("FuelRate")]
+        public decimal FuelRate { get; set; }
 
         ///// <summary>
         ///// Indicates whether the associated vehicle is a vehicle or a machine.
