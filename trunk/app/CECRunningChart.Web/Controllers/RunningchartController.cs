@@ -48,7 +48,8 @@ namespace CECRunningChart.Web.Controllers
             model.BillDate = DateTime.Now;
             model.RunningchartId = runningchartService.GetNextRunningchartId();
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
-            
+            model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+
             return View(model);
         } 
 
@@ -102,6 +103,42 @@ namespace CECRunningChart.Web.Controllers
             }
 
             return PartialView("_Pumpstations", model);
+        }
+
+        [HttpPost]
+        public ActionResult PoulateLubricantItems(bool isAddingNewItem)
+        {
+            IVehicleService vehicleServcie = new VehicleService();
+            RunningchartModel model = new RunningchartModel();
+            List<ChartLubricantItemModel> existingLubricantItems = new List<ChartLubricantItemModel>();
+            UpdateModel<List<ChartLubricantItemModel>>(existingLubricantItems);
+
+            IPumpstationService pumpstationService = new PumpstationService();
+            model.Pumpstations = ModelMapper.GetPumpStationModelList(pumpstationService.GetAllPumpstations());
+            model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+            model.SelectedLubricants = new List<ChartLubricantItemModel>();
+
+            // Add existing chart items
+            foreach (var item in existingLubricantItems)
+            {
+                if (!item.IsRemoving)
+                {
+                    model.SelectedLubricants.Add(item);
+                }
+            }
+
+            // Add new chart item
+            if (isAddingNewItem)
+            {
+                model.SelectedLubricants.Add(new ChartLubricantItemModel()
+                {
+                    SelectedPumpstationId = 0,
+                    SelectedLubricantTypeId = 0,
+                    PumpAmount = 0
+                });
+            }
+
+            return PartialView("_Lubricants", model);
         }
 
         [HttpPost]

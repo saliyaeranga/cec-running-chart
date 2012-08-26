@@ -69,7 +69,11 @@
     </div>
     <br />
     <div id="PumpStationInfo">
-        @Html.Partial("_Pumpstations", Model.SelectedPumpstations)
+        @Html.Partial("_Pumpstations", Model)
+    </div>
+    <br />
+    <div id="LubricantInfo">
+        @Html.Partial("_Lubricants", Model)
     </div>
     <br />
     <div id="ChartItems">

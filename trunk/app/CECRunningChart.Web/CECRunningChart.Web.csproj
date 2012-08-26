@@ -82,6 +82,7 @@
     <Compile Include="Models\Reports\FuelConsumptionReportModel.cs" />
     <Compile Include="Models\Reports\HiredVehicleFuelReportModel.cs" />
     <Compile Include="Models\Runningchart\ChartItemModel.cs" />
+    <Compile Include="Models\Runningchart\ChartLubricantItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartPumpstationItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartPumpstationModel.cs" />
     <Compile Include="Models\Runningchart\RunningchartModel.cs" />
@@ -322,6 +323,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\DriverTimeSheet.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Runningchart\_Lubricants.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
