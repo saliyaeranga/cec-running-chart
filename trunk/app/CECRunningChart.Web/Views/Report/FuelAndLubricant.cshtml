@@ -5,6 +5,7 @@
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".dateselect").datepicker({
@@ -15,6 +16,31 @@
         $("#pumpstationId").change(function () {
             $("#pumpstationName").val($("option:selected", this).text());
         });
+
+        $.validator.addMethod("selectPumpstation", function (value, element) {
+            return value > 0;
+        }, "*");
+
+        $("#fuelandlubricantform").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                pumpstationId: {
+                    selectPumpstation: true
+                }
+            },
+            messages: {
+                startDate: "*",
+                endDate: "*",
+                pumpstationId: "*"
+            }
+        });
     });
 </script>
 <h2>
@@ -24,7 +50,7 @@
 </p>
 @if (Model == null)
 {
-    using (Html.BeginForm())
+    using (Html.BeginForm("fuelandlubricant", "report", FormMethod.Post, new { @id = "fuelandlubricantform" }))
     {
         var pumpstations = ViewBag.PumpStations as List<CECRunningChart.Web.Models.Pumpstation.PumpstationModel>;
         <table>
