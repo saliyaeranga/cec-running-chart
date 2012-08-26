@@ -117,7 +117,7 @@
     padding: 3px 20px;
     text-align: center;
 }
-.vehicleTbl td
+.tblFont td
 {
     font-size:12px;
 }
@@ -126,6 +126,7 @@
 {
     background-color:#F4ECE8;
     font-weight:bold;
+    text-align:center;
 }
 .row
 {
@@ -165,6 +166,7 @@
     text-decoration: none;
     cursor: pointer;
     margin-top: 10px;
+    width: 100px;
 }
 /*manage vehicle page styles End*/
 /*styles for commen inner pages */
@@ -220,5 +222,11 @@
     text-decoration: none;
     cursor: pointer;
     margin-top: 10px;
+}
+.displayStyles
+{
+    float: left;
+    width: 110px;
+    color: #4C5BAC;
 }
 /*styles for commen inner pages End*/

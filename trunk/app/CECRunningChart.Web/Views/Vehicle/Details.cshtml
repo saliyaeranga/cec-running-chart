@@ -1,78 +1,117 @@
 ﻿@model CECRunningChart.Web.Models.Vehicle.VehicleModel
-
 @{
     ViewBag.Title = "Vehicle Details";
 }
-
 <fieldset>
     <legend>Vehicle Details</legend>
-
-    <div class="display-label">Vehicle Number</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.VehicleNumber)
+    <div class="row">
+        <div class="wrapper" style="width: 110px;">
+            <div class="display-label">
+                Is Vehicle
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.IsVehicle)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Vehicle / Machine #</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.VehicleNumber)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Company Code</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.CompanyCode)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Vehicle/Machine Type</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.VehicleTypeName)
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">Company Code</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CompanyCode)
+    <div class="row">
+        <div class="wrapper" style="width: 110px;">
+            <div class="display-label">
+                Is Hired Vehicle</div>
+            <div class="display-field ">
+                @Html.DisplayFor(model => model.IsHiredVehicle)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Owner Name</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.OwnerName)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Hire Rate</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.HireRate)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Driver / Operator Name</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.DriverOperatorName)
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">Vehicle Type</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.VehicleTypeName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Fuel Type</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.FuelTypeName)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Fuel Usage</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.FuelUsage)
+            </div>
+        </div>
+        <div class="wrapper" style="width: 206px;">
+            <div class="display-label">
+                Lubricant Type</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.LubricantTypeName)
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">Description</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Description</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">Driver / Operator Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DriverOperatorName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Is Vehicle</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.IsVehicle)
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">Fuel Usage</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FuelUsage)
-    </div>
-
-    <div class="display-label">Fuel Type</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FuelTypeName)
-    </div>
-
-    <div class="display-label">Lubricant Type</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LubricantTypeName)
-    </div>
-
-    <div class="display-label">Is Hired Vehicle</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsHiredVehicle)
-    </div>
-
-    <div class="display-label">Hire Rate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.HireRate)
-    </div>
-
-    <div class="display-label">Owner Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OwnerName)
-    </div>
-
-    <div class="display-label">Is Vehicle</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsVehicle)
-    </div>
-
-@*    <div class="display-label">Status</div>
+    
+    @*    <div class="display-label">Status</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Status)
     </div>*@
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="bckBtn">
+   @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) &#8901; @Html.ActionLink("Back to List", "Index")
+</div>

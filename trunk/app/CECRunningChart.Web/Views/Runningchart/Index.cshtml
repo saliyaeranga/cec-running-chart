@@ -1,29 +1,34 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Runningchart.RunningchartModel>
-
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Index
+    </h2>
+</div>
+<div class="createNewRow">
+    <a href="@Url.Action("create", "Runningchart")">Add New Running Chart</a>
+</div>
+@*<p>
     @Html.ActionLink("Create New", "create")
-</p>
-<table>
+</p>*@
+<div class="tblContainer">
+<table class="tblFont">
     <tr>
-        <th>
+        <th class="tblModel">
             Runningchart Id
         </th>
-        <th>
+        <th class="tblModel">
             Bill Number
         </th>
-        <th>
+        <th class="tblModel">
             Bill Date
         </th>
-        <th>
+        <th class="tblModel">
             Driver Name
         </th>
-        <th>
+        <th class="tblModel">
             Vehicle #
         </th>
         @*<th>
@@ -41,28 +46,29 @@
         <th>
             SelectedVehicleId
         </th>*@
-        <th></th>
+        <th class="tblModel">
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RunningchartId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BillNumber)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.BillDate)*@
-            @item.BillDate.ToString("d")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DriverName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SelectedVehicleId)
-        </td>
-        @*<td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="mainColum">
+                @Html.DisplayFor(modelItem => item.RunningchartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillNumber)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.BillDate)*@
+                @item.BillDate.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SelectedVehicleId)
+            </td>
+            @*<td>
             @Html.DisplayFor(modelItem => item.FuelLeftBegningOfDay)
         </td>
         <td>
@@ -77,12 +83,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.SelectedVehicleId)
         </td>*@
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.RunningchartId }) |*@
-            @*@Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
-        </td>
-    </tr>
-}
-
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.RunningchartId }) |*@ @*@Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
+            </td>
+        </tr>
+    }
 </table>
+</div>

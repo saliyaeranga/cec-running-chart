@@ -1,9 +1,7 @@
 ﻿@model CECRunningChart.Web.Models.Vehicle.VehicleModel
-
 @{
     ViewBag.Title = "Edit Vehicle";
 }
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -70,125 +68,143 @@
         });
     });
 </script>
-
 @using (Html.BeginForm("Edit", "Vehicle", FormMethod.Post, new { @id = "vehicleeditform" }))
 {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Edit Vehicle</legend>
-
         @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.VehicleNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VehicleNumber)
-            @Html.ValidationMessageFor(model => model.VehicleNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CompanyCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyCode)
-            @Html.ValidationMessageFor(model => model.CompanyCode)
-        </div>
-
-        <div class="editor-label">
-            Vehicle Type
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("VehicleTypeId", Model.GetAvailableVehicleTypeOptions())
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DriverOperatorName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DriverOperatorName)
-            @Html.ValidationMessageFor(model => model.DriverOperatorName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FuelUsage)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FuelUsage)
-            @Html.ValidationMessageFor(model => model.FuelUsage)
-        </div>
-
-        <div class="editor-label">
-            Fuel Type
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("FuelTypeId", Model.GetAvailableFuelOptions())
-        </div>
-
-        <div class="editor-label">
-            Lubricant Type
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.HireRate)
-        </div>
-        <div class="editor-field">
-            @{ string hireRate = Model.HireRate == decimal.Zero ? string.Empty : Model.HireRate.ToString(); }
-            @Html.TextBox("HireRate", hireRate)
-            @Html.ValidationMessageFor(model => model.HireRate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.IsHiredVehicle)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IsHiredVehicle)
-            @Html.ValidationMessageFor(model => model.IsHiredVehicle)
-        </div>
-
-        @{ string ownerStyle = string.IsNullOrWhiteSpace(Model.OwnerName) ? "display: none;" : "display: block;";}
-        <div id="HiredVehicle" style="@ownerStyle">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.OwnerName)
+        <div class="row">
+            <div class="wrapper" style="width: 100px;">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsVehicle)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsVehicle)
+                    @Html.ValidationMessageFor(model => model.IsVehicle)
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.OwnerName)
-                @Html.ValidationMessageFor(model => model.OwnerName)
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.VehicleNumber)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.VehicleNumber)
+                    @Html.ValidationMessageFor(model => model.VehicleNumber)
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyCode)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CompanyCode)
+                    @Html.ValidationMessageFor(model => model.CompanyCode)
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    Vehicle/Machine Type
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("VehicleTypeId", Model.GetAvailableVehicleTypeOptions())
+                </div>
             </div>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.IsVehicle)
+        <div class="row">
+            <div class="wrapper" style="width: 100px;">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsHiredVehicle)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsHiredVehicle)
+                    @Html.ValidationMessageFor(model => model.IsHiredVehicle)
+                </div>
+            </div>
+            @{ string ownerStyle = string.IsNullOrWhiteSpace(Model.OwnerName) ? "display: none;" : "display: block;";}
+            <div id="HiredVehicle" style="@ownerStyle" class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OwnerName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.OwnerName)
+                    @Html.ValidationMessageFor(model => model.OwnerName)
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HireRate)
+                </div>
+                <div class="editor-field">
+                    @{ string hireRate = Model.HireRate == decimal.Zero ? string.Empty : Model.HireRate.ToString(); }
+                    @Html.TextBox("HireRate", hireRate)
+                    @Html.ValidationMessageFor(model => model.HireRate)
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DriverOperatorName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DriverOperatorName)
+                    @Html.ValidationMessageFor(model => model.DriverOperatorName)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IsVehicle)
-            @Html.ValidationMessageFor(model => model.IsVehicle)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Fuel Type
+                </div>
+                <div class="editor-field fuelType">
+                    @Html.DropDownList("FuelTypeId", Model.GetAvailableFuelOptions())
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FuelUsage)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FuelUsage)
+                    @Html.ValidationMessageFor(model => model.FuelUsage)
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="editor-label">
+                    Lubricant Type
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
+                </div>
+            </div>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Status)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Status)
-            @Html.ValidationMessageFor(model => model.Status)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Status)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Status)
+                    @Html.ValidationMessageFor(model => model.Status)
+                </div>
+            </div>
         </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <div class="row">
+            <input class="createBtn" type="submit" value="Save" />
+        </div>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Index")
 </div>
