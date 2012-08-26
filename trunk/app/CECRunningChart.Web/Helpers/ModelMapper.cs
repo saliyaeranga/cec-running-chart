@@ -9,6 +9,7 @@ using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
 using CECRunningChart.Web.Models.Vehicle;
 using CECRunningChart.Web.Models.Reports;
+using System.Web.Mvc;
 
 namespace CECRunningChart.Web.Helpers
 {
@@ -436,6 +437,45 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<DriverOperatorTimeSheetModel>();
         }
 
+        public static List<FuelAndLubricantReportModel> GetFuelAndLubricantReportModelList(List<FuelAndLubricantReport> report)
+        {
+            var reportModel = from r in report
+                              select new FuelAndLubricantReportModel
+                              {
+                                  RunningchartId = r.RunningchartId,
+                                  BillDate = r.BillDate,
+                                  VehicleId = r.VehicleId,
+                                  VehicleNumber = r.VehicleNumber,
+                                  IsVehicle = r.IsVehicle,
+                                  DriverOperatorName = r.DriverOperatorName,
+                                  IsHiredVehicle = r.IsHiredVehicle,
+                                  FuelType = r.FuelType,
+                                  FuelQty = r.FuelQty,
+                                  FuelRate = r.FuelRate,
+                                  LubricantType = r.LubricantType,
+                                  LubricantQty = r.LubricantQty,
+                                  LubricantRate = r.LubricantRate
+                              };
+            return reportModel.ToList<FuelAndLubricantReportModel>();
+        }
+
+        public static IEnumerable<SelectListItem> GetPumpstationOptions(List<PumpstationModel> pumpstationsList)
+        {
+            List<SelectListItem> options = new List<SelectListItem>(pumpstationsList.Count + 1)
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = true }
+            };
+            var pumpstations = from p in pumpstationsList
+                               select new SelectListItem
+                               {
+                                   Text = p.PumpStationName,
+                                   Value = p.Id.ToString()
+                               };
+
+            return options.Concat(pumpstations.ToList());
+        }
+
         #endregion
+
     }
 }

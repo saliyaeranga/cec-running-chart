@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DriverOperatorTimeSheet.cs" />
+    <Compile Include="FuelAndLubricantReport.cs" />
     <Compile Include="FuelConsumptionReport.cs" />
     <Compile Include="FuelType.cs" />
     <Compile Include="HiredVehicleFuelReport.cs" />

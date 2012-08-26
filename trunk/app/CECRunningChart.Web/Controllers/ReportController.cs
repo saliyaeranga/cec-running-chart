@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Services.ReportService;
 using CECRunningChart.Web.Helpers;
+using CECRunningChart.Services.Vehicle;
+using CECRunningChart.Services.Pumpstation;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -79,17 +81,20 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult FuelAndLubricant()
         {
+            IPumpstationService pumpstationService = new PumpstationService();
+            ViewBag.PumpStations = ModelMapper.GetPumpStationModelList(pumpstationService.GetAllPumpstations());
             return View();
         }
 
         [HttpPost]
-        public ActionResult FuelAndLubricant(DateTime startDate, DateTime endDate, int pumpstationId)
+        public ActionResult FuelAndLubricant(DateTime startDate, DateTime endDate, int pumpstationId, string pumpstationName)
         {
-            //var report = reportService.GetDriverTimeSheetReport(driverName);
-            //var model = ModelMapper.GetDriverOperatorTimeSheetModelList(report);
-            //ViewBag.DriverOperatorName = driverName;
-            //return View(model);
-            return View();
+            var report = reportService.GetFuelAndLubricantReport(startDate, endDate, pumpstationId);
+            var model = ModelMapper.GetFuelAndLubricantReportModelList(report);
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            ViewBag.Pumpstation = pumpstationName;
+            return View(model);
         }
 
 
