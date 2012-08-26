@@ -8,7 +8,8 @@
         var itemCount = document.getElementById("PumpstationsCount").value;
         for (var i = 0; i < itemCount; i++) {
             formParameters["[" + i + "].SelectedPumpstationId"] = document.getElementById("SelectedPumpstations[" + i + "].SelectedPumpstationId").value;
-            formParameters["[" + i + "].PumpAmount"] = document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value;
+            var amt = document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value;
+            formParameters["[" + i + "].PumpAmount"] = amt != "" ? amt : "0";
 
             // Is removing this item
             if (isRemoving == true && i == removingId) {

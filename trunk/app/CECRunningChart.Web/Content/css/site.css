@@ -88,6 +88,10 @@
     margin:50px auto;
     display:block;
 }
+.adminIconPanel a, .inspectorIconPanel a, .operatorIconPanel a
+{
+    text-decoration:none;
+}
 /*Top navigation styles*/
 .topNavBar
 {
@@ -111,6 +115,7 @@
 .tblModel
 {
     padding: 3px 20px;
+    text-align: center;
 }
 .vehicleTbl td
 {
