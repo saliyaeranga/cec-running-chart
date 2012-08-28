@@ -8,24 +8,32 @@
     <fieldset>
         <legend>Edit Lubricant</legend>
         @Html.HiddenFor(model => model.Id)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LubricantType)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LubricantType)
+                </div>
+                <div class="editor-field">
+                    @Model.LubricantType
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Model.LubricantType
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LubricantRate)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LubricantRate)
+                    @Html.ValidationMessageFor(model => model.LubricantRate)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LubricantRate)
+        <div class="row">
+            <input class="createBtn" type="submit" value="Save" />
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LubricantRate)
-            @Html.ValidationMessageFor(model => model.LubricantRate)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Lubricant")
 </div>

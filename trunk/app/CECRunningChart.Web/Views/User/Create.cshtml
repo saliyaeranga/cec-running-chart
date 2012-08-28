@@ -33,58 +33,86 @@
     @Html.ValidationSummary(false)
     <fieldset>
         <legend>Create New User</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FirstName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FirstName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LastName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LastName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UserName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Password)
+                </div>
+                <div class="editor-field">
+                    DEFAULT PASSWORD
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NICNumber)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NICNumber)
+                    @Html.ValidationMessageFor(model => model.NICNumber)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserName)
-            @Html.ValidationMessageFor(model => model.UserName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Role
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("Role", Model.GetUserRoleOptions(), new { @id = "Role", @class = "todo" })
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsActiveUser)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsActiveUser)
+                    @Html.ValidationMessageFor(model => model.IsActiveUser)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            DEFAULT PASSWORD
+        <div class="row">
+            <input class="createBtn" type="submit" value="Create" />
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.NICNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.NICNumber)
-            @Html.ValidationMessageFor(model => model.NICNumber)
-        </div>
-        <div class="editor-label">
-            Role
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("Role", Model.GetUserRoleOptions(), new { @id = "Role", @class = "todo" })
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.IsActiveUser)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IsActiveUser)
-            @Html.ValidationMessageFor(model => model.IsActiveUser)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Index")
 </div>

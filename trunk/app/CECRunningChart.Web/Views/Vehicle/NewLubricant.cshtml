@@ -1,9 +1,7 @@
 ﻿@model CECRunningChart.Web.Models.Vehicle.LubricantModel
-
 @{
     ViewBag.Title = "Create Lubricant";
 }
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -28,30 +26,34 @@
     @Html.ValidationSummary(false)
     <fieldset>
         <legend>Create Lubricant</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LubricantType)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LubricantType)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LubricantType)
+                    @Html.ValidationMessageFor(model => model.LubricantType)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LubricantType)
-            @Html.ValidationMessageFor(model => model.LubricantType)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LubricantRate)
+                </div>
+                <div class="editor-field">
+                    @{ string lubricantRate = Model.LubricantRate == decimal.Zero ? string.Empty : Model.LubricantRate.ToString(); }
+                    @Html.TextBox("LubricantRate", lubricantRate)
+                    @Html.ValidationMessageFor(model => model.LubricantRate)
+                </div>
+            </div>
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LubricantRate)
+        <div class="row">
+            <input class="createBtn" type="submit" value="Create" />
         </div>
-        <div class="editor-field">
-            @{ string lubricantRate = Model.LubricantRate == decimal.Zero ? string.Empty : Model.LubricantRate.ToString(); }
-            @Html.TextBox("LubricantRate", lubricantRate)
-            @Html.ValidationMessageFor(model => model.LubricantRate)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }
-
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "lubricant")
 </div>

@@ -4,18 +4,25 @@
 }
 <fieldset>
     <legend>Pumpstation Details</legend>
-    <div class="display-label">
-        Pumpstation Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PumpStationName)
+    <div class="row">
+        <div class="wrapper" style="width: 110px;">
+            <div class="display-label">
+                Pumpstation Name</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PumpStationName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Description</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+    <div class="row">
+        <div class="wrapper" style="width: 110px;">
+            <div class="display-label">
+                Description</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="bckBtn">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) &#8901; @Html.ActionLink("Back to List", "Index") 
+</div>

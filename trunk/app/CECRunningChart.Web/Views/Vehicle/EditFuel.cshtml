@@ -8,24 +8,32 @@
     <fieldset>
         <legend>Edit Fuel</legend>
         @Html.HiddenFor(model => model.Id)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FuelType)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FuelType)
+                </div>
+                <div class="editor-field">
+                    @Model.FuelType
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Model.FuelType
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FuelRate)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FuelRate)
+                    @Html.ValidationMessageFor(model => model.FuelRate)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FuelRate)
+        <div class="row">
+            <input class="createBtn" type="submit" value="Save" />
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FuelRate)
-            @Html.ValidationMessageFor(model => model.FuelRate)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Fuel")
 </div>
