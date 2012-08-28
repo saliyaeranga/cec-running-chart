@@ -1,26 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CECRunningChart.Web.Common;
-using CECRunningChart.Services.ReportService;
-using CECRunningChart.Web.Helpers;
-using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Services.Pumpstation;
+using CECRunningChart.Services.ReportService;
+using CECRunningChart.Web.Common;
+using CECRunningChart.Web.Helpers;
 
 namespace CECRunningChart.Web.Controllers
 {
-    //[Authorize]
-    //[CECAuthorize(Roles = "Admin")]
+    [Authorize]
+    [CECAuthorize(Roles = "Admin")]
     public class ReportController : Controller
     {
+        #region Private Members
+
         private readonly IReportService reportService;
+
+        #endregion
+
+        #region Constructor
 
         public ReportController()
         {
             reportService = new ReportService();
         }
+
+        #endregion
+
+        #region Public Methods
 
         [HttpGet]
         public ActionResult Index()
@@ -75,9 +81,6 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
-
-
-
         [HttpGet]
         public ActionResult FuelAndLubricant()
         {
@@ -97,92 +100,22 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
-
-
-        //
-        // GET: /Report/Details/5
-
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult VehicleMachineRegister()
         {
             return View();
         }
-
-        //
-        // GET: /Report/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /Report/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult VehicleMachineRegister(DateTime startDate, DateTime endDate)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /Report/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
+            var report = reportService.GetVehicleMachineRegisterReport(startDate, endDate);
+            var model = ModelMapper.GetVehicleMachineRegisterModelList(report);
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            return View(model);
         }
 
-        //
-        // POST: /Report/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Report/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Report/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        #endregion
     }
 }

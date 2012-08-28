@@ -465,6 +465,20 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<FuelAndLubricantReportModel>();
         }
 
+        public static List<VehicleMachineRegisterModel> GetVehicleMachineRegisterModelList(List<VehicleMachineRegister> report)
+        {
+            var reportModel = from r in report
+                              select new VehicleMachineRegisterModel
+                              {
+                                  VehicleId = r.VehicleId,
+                                  VehicleNumber = r.VehicleNumber,
+                                  CompanyCode = r.CompanyCode,
+                                  VehicleType = r.VehicleType,
+                                  VehicleLocation = r.VehicleLocation
+                              };
+            return reportModel.ToList<VehicleMachineRegisterModel>();
+        }
+
         public static IEnumerable<SelectListItem> GetPumpstationOptions(List<PumpstationModel> pumpstationsList)
         {
             List<SelectListItem> options = new List<SelectListItem>(pumpstationsList.Count + 1)

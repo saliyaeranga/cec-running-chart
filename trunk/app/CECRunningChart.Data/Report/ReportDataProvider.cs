@@ -70,6 +70,21 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetVehicleMachineRegisterReport(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@StartDate", startDate);
+                parameters.Add("@EndDate", endDate);
+                return ExecuteDataSet("proc_RptVehicleMachineRegisterReport", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

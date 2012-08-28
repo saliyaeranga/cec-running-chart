@@ -40,5 +40,11 @@ namespace CECRunningChart.Services.ReportService
             return ConversionHelper.ConvertToList<FuelAndLubricantReport>(reportData);
         }
 
+        public List<VehicleMachineRegister> GetVehicleMachineRegisterReport(DateTime startDate, DateTime endDate)
+        {
+            var reportData = reportDataProvider.GetVehicleMachineRegisterReport(startDate, endDate);
+            return ConversionHelper.ConvertToList<VehicleMachineRegister>(reportData);
+        }
+
     }
 }

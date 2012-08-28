@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.VehicleMachineRegisterModel>
+
+@{
+    ViewBag.Title = "Vehicle Machine Register Report";
+}
+
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".dateselect").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#vehiclemachineregisterform").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                },
+            },
+            messages: {
+                startDate: "*",
+                endDate: "*"
+            }
+        });
+    });
+</script>
+<h2>Vehicle Machine Register Report</h2>
+<p>
+    @Html.ActionLink("Back to Reports", "index")
+</p>
+@if (Model == null)
+{
+    using (Html.BeginForm("vehiclemachineregister", "report", FormMethod.Post, new { @id = "vehiclemachineregisterform" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    Start Date
+                </td>
+                <td>
+                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    End Date
+                </td>
+                <td>
+                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <input type="submit" value="Generate Report" />
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    int count = 1;
+    <p>
+        @Html.ActionLink("Back to Vehicle Machine Register Report", "vehiclemachineregister")
+    </p>
+    <p>
+        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
+    </p>
+    <table>
+        <tr>
+            <th>
+                No
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Veh/Machine Reg. No
+            </th>
+            <th>
+                Company Code
+            </th>
+            <th>
+                Location as at End of the Period
+            </th>
+        </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleLocation)
+            </td>
+        </tr>
+           count++;
+    }
+    </table>
+}
