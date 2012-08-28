@@ -1,0 +1,169 @@
+﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.HireBillReportModel>
+
+@{
+    ViewBag.Title = "Hire Bill Report";
+}
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".dateselect").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#projectId").change(function () {
+            $("#projectName").val($("option:selected", this).text());
+        });
+
+        $.validator.addMethod("selectProject", function (value, element) {
+            return value > 0;
+        }, "*");
+
+        $("#hirebillform").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                projectId: {
+                    selectProject: true
+                }
+            },
+            messages: {
+                startDate: "*",
+                endDate: "*",
+                projectId: "*"
+            }
+        });
+    });
+</script>
+<h2>
+    Hire Bill Report</h2>
+<p>
+    @Html.ActionLink("Back to Reports", "index")
+</p>
+@if (Model == null)
+{
+    using (Html.BeginForm("hirebill", "report", FormMethod.Post, new { @id = "hirebillform" }))
+    {
+        var projects = ViewBag.Projects as List<CECRunningChart.Web.Models.Project.ProjectModel>;
+        <table>
+            <tr>
+                <td>
+                    Start Date
+                </td>
+                <td>
+                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    End Date
+                </td>
+                <td>
+                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Project
+                </td>
+                <td>@Html.DropDownList("projectId", CECRunningChart.Web.Helpers.ModelMapper.GetProjectOptions(projects), new { @id = "projectId", @class = "todo" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                    <input type="hidden" id="projectName" name="projectName" value="" />
+                </td>
+                <td>
+                    <input type="submit" value="Generate Report" />
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    <p>
+        @Html.ActionLink("Back to Hire Bill Report", "hirebill")
+    </p>
+    <p>
+        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
+        Project : @ViewBag.ProjectName
+    </p>
+    <table>
+        <tr>
+            <td rowspan="2">
+                Date</td>
+            <td rowspan="2">
+                Vehicle/Machine No</td>
+            <td rowspan="2">
+                Company Code</td>
+            <td colspan="2">
+                Work Done</td>
+            <td colspan="2">
+                Rate</td>
+            <td rowspan="2">
+                Amount</td>
+        </tr>
+        <tr>
+            <td>
+                Km</td>
+            <td>
+                Hour</td>
+            <td>
+                Km</td>
+            <td>
+                Hour</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.BillDate.ToString("d")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyCode)
+                </td>
+                <td>
+                    @if (item.IsVehicle)
+                    {
+                        <text>@item.KmHrDone</text>
+                    }
+                </td>
+                <td>
+                    @if (!item.IsVehicle)
+                    {
+                        <text>@item.KmHrDone</text>
+                    }
+                </td>
+                <td>
+                    @if (item.IsVehicle)
+                    {
+                        <text>@item.VehicleRate</text>
+                    }
+                </td>
+                <td>
+                    @if (!item.IsVehicle)
+                    {
+                        <text>@item.VehicleRate</text>
+                    }
+                </td>
+                <td>
+                    @item.Amount
+                </td>
+            </tr>
+        }
+    </table>
+}

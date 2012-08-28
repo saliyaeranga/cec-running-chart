@@ -46,5 +46,10 @@ namespace CECRunningChart.Services.ReportService
             return ConversionHelper.ConvertToList<VehicleMachineRegister>(reportData);
         }
 
+        public List<HireBillReport> GetHireBillReport(DateTime startDate, DateTime endDate, int projectId)
+        {
+            var reportData = reportDataProvider.GetHireBillReport(startDate, endDate, projectId);
+            return ConversionHelper.ConvertToList<HireBillReport>(reportData);
+        }
     }
 }

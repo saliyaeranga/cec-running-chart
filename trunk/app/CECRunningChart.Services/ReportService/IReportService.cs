@@ -13,5 +13,6 @@ namespace CECRunningChart.Services.ReportService
         List<DriverOperatorTimeSheet> GetDriverTimeSheetReport(string driverName);
         List<FuelAndLubricantReport> GetFuelAndLubricantReport(DateTime startDate, DateTime endDate, int pumpstationId);
         List<VehicleMachineRegister> GetVehicleMachineRegisterReport(DateTime startDate, DateTime endDate);
+        List<HireBillReport> GetHireBillReport(DateTime startDate, DateTime endDate, int projectId);
     }
 }

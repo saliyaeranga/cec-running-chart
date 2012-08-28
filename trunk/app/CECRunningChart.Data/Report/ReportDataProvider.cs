@@ -85,6 +85,22 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetHireBillReport(DateTime startDate, DateTime endDate, int projectId)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@StartDate", startDate);
+                parameters.Add("@EndDate", endDate);
+                parameters.Add("@ProjectId", projectId);
+                return ExecuteDataSet("proc_RptHireBillReport", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

@@ -479,6 +479,23 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<VehicleMachineRegisterModel>();
         }
 
+        public static List<HireBillReportModel> GetHireBillReportModelList(List<HireBillReport> report)
+        {
+            var reportModel = from r in report
+                              select new HireBillReportModel
+                              {
+                                  RunningchartId = r.RunningchartId,
+                                  BillDate = r.BillDate,
+                                  VehicleNumber = r.VehicleNumber,
+                                  CompanyCode = r.CompanyCode,
+                                  VehicleRate = r.VehicleRate,
+                                  IsVehicle = r.IsVehicle,
+                                  KmHrDone = r.KmHrDone,
+                                  Amount = r.Amount
+                              };
+            return reportModel.ToList<HireBillReportModel>();
+        }
+
         public static IEnumerable<SelectListItem> GetPumpstationOptions(List<PumpstationModel> pumpstationsList)
         {
             List<SelectListItem> options = new List<SelectListItem>(pumpstationsList.Count + 1)
@@ -493,6 +510,22 @@ namespace CECRunningChart.Web.Helpers
                                };
 
             return options.Concat(pumpstations.ToList());
+        }
+
+        public static IEnumerable<SelectListItem> GetProjectOptions(List<ProjectModel> projectsList)
+        {
+            List<SelectListItem> options = new List<SelectListItem>(projectsList.Count + 1)
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = true }
+            };
+            var projects = from p in projectsList
+                               select new SelectListItem
+                               {
+                                   Text = p.ProjectName,
+                                   Value = p.Id.ToString()
+                               };
+
+            return options.Concat(projects.ToList());
         }
 
         #endregion

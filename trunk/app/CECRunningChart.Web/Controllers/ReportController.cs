@@ -4,6 +4,7 @@ using CECRunningChart.Services.Pumpstation;
 using CECRunningChart.Services.ReportService;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
+using CECRunningChart.Services.ProjectService;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -113,6 +114,25 @@ namespace CECRunningChart.Web.Controllers
             var model = ModelMapper.GetVehicleMachineRegisterModelList(report);
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult HireBill()
+        {
+            IProjectService projectService = new ProjectService();
+            ViewBag.Projects = ModelMapper.GetProjectModelList(projectService.GetAllProjects());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HireBill(DateTime startDate, DateTime endDate, int projectId, string projectName)
+        {
+            var report = reportService.GetHireBillReport(startDate, endDate, projectId);
+            var model = ModelMapper.GetHireBillReportModelList(report);
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            ViewBag.ProjectName = projectName;
             return View(model);
         }
 
