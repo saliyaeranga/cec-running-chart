@@ -30,25 +30,33 @@
     @Html.ValidationSummary(false)
     <fieldset>
         <legend>Create New Pumpstation</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PumpStationName)
+        <div class="row">
+            <div class="wrapper" style="width: 250px;">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PumpStationName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PumpStationName, new { @maxlength = "200" })
+                    @Html.ValidationMessageFor(model => model.PumpStationName)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.PumpStationName, new { @maxlength = "200" })
-            @Html.ValidationMessageFor(model => model.PumpStationName)
+        <div class="row">
+            <div class="wrappernew" style="width: 250px;">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
+        <div class="row">
+            <input class="createBtn" type="submit" value="Create" />
         </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Index")
 </div>

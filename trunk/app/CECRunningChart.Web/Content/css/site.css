@@ -229,4 +229,9 @@
     width: 110px;
     color: #4C5BAC;
 }
+/*manage vehicle page styles*/
+.wrappernew textarea
+{
+    width: 200px;
+}
 /*styles for commen inner pages End*/
