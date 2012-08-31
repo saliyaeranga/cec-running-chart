@@ -11,4 +11,14 @@ namespace CECRunningChart.Common
         [StringValueAttribute("Running Chart Inspector")]
         RunningChartInspector = 3
     }
+
+    public enum RentalType
+    {
+        [StringValueAttribute("Company")]
+        Company = 1,
+        [StringValueAttribute("Company Hired")]
+        CompanyHired,
+        [StringValueAttribute("Hired")]
+        Hired
+    }
 }

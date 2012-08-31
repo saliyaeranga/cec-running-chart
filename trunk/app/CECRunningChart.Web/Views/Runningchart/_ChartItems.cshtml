@@ -21,7 +21,8 @@
             formParameters["[" + index + "].EndMeter"] = document.getElementById("SelectedChartItems[" + index + "].EndMeter").value;
             formParameters["[" + index + "].MeterDifference"] = document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value;
             formParameters["[" + index + "].SelectedProjectId"] = document.getElementById("SelectedChartItems["+ index+ "].SelectedProjectId").value;
-            formParameters["[" + index + "].SelectedProjectManager"] = document.getElementById("SelectedChartItems["+ index+ "].SelectedProjectManager").value;
+            formParameters["[" + index + "].SelectedProjectManager"] = document.getElementById("SelectedChartItems[" + index + "].SelectedProjectManager").value;
+            formParameters["[" + index + "].SelectedRentalTypeId"] = document.getElementById("SelectedChartItems[" + index + "].SelectedRentalTypeId").value;
 
             // Is removing this item
             if (isRemoving == true && index == removingId) {
@@ -54,6 +55,7 @@
         <td>@meterText Difference</td>
         <td>Project Name</td>
         <td>Project Manager</td>
+        <td>Rental Type</td>
         <td>&nbsp;</td>
     </tr>
     @if (Model.SelectedChartItems != null && Model.SelectedChartItems.Count > 0)
@@ -70,6 +72,7 @@
             string endMeterId = string.Concat("SelectedChartItems[", index, "].EndMeter");
             string meterDiffId = string.Concat("SelectedChartItems[", index, "].MeterDifference");
             string selectedProjectId = string.Concat("SelectedChartItems[", index, "].SelectedProjectId");
+            string selectedRentalTypeId = string.Concat("SelectedChartItems[", index, "].SelectedRentalTypeId");
             string selectedProjectManagerId = string.Concat("SelectedChartItems[", index, "].SelectedProjectManager");
             
             <tr>
@@ -83,6 +86,9 @@
                     @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
                 </td>
                 <td><input type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" /></td>
+                <td>
+                    @Html.DropDownList(selectedRentalTypeId, Model.GetRentalTypeOptions(item.SelectedRentalTypeId), new { @id = selectedRentalTypeId, @class = "todo" })
+                </td>
                 <td><input type="button" value="Remove" onclick="PopulateChartRows(false, true, @index);" /></td>
             </tr>
             index++;
@@ -90,6 +96,7 @@
     }
     <tr>
         <td><input type="button" value="Add" onclick="PopulateChartRows(true, false, 0);" /></td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>

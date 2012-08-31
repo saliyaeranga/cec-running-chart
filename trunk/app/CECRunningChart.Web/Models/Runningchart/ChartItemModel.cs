@@ -15,9 +15,9 @@ namespace CECRunningChart.Web.Models.Runningchart
         public string EndMeter { get; set; }
         public string MeterDifference { get; set; } //todo: datatype
         public int SelectedProjectId { get; set; }
+        public int SelectedRentalTypeId { get; set; }
         public string SelectedProjectManager { get; set; }
         public List<ProjectModel> Vehicles { get; set; } // To populate Projects dropdown
-
         public bool IsRemoving { get; set; }
     }
 }

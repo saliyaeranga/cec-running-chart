@@ -9,6 +9,7 @@ using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
+using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -153,6 +154,13 @@ namespace CECRunningChart.Web.Controllers
 
             IProjectService projectService = new ProjectService();
             model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
+            model.VehicleRentalTypes = new List<VehicleRentalTypeModel>()
+            {
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Company, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Company) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.CompanyHired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.CompanyHired) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Hired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Hired) }
+            }; // Not worth to do a DB call since this is very static
+
             model.SelectedChartItems = new List<ChartItemModel>();
             model.isVehicle = isVehicle;
 
@@ -180,6 +188,7 @@ namespace CECRunningChart.Web.Controllers
                 {
                     newChartItem.SelectedProjectId = existingChartItems[0].SelectedProjectId;
                     newChartItem.SelectedProjectManager = existingChartItems[0].SelectedProjectManager;
+                    newChartItem.SelectedRentalTypeId = existingChartItems[0].SelectedRentalTypeId;
                 }
 
                 model.SelectedChartItems.Add(newChartItem);
