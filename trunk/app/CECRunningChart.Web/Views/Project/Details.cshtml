@@ -4,33 +4,54 @@
 }
 <fieldset>
     <legend>Project Details</legend>
-    <div class="display-label">
-        Project Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Name
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Manager</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectManager)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Manager</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectManager)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Location</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectLocation)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Location</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectLocation)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Description</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectDescription)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Description</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectDescription)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Is Active Project</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsActiveProject)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Is Active Project</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.IsActiveProject)
+            </div>
+        </div>
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="bckBtn">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) &#8901; @Html.ActionLink("Back to List", "Index")
+    
+</div>

@@ -4,43 +4,70 @@
 }
 <fieldset>
     <legend>User Details</legend>
-    <div class="display-label">
-        First Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                First Name</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.FirstName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Last Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Last Name</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.LastName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        User Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                User Name</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.UserName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        NIC #</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NICNumber)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                NIC #</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.NICNumber)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Role</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RoleName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Role</div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.RoleName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Is Active User</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsActiveUser)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Is Active User</div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.IsActiveUser)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Date Added</div>
-    <div class="display-field">
-        @Model.DateAdded.ToString("d")
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Date Added</div>
+            <div class="display-field displayStyles">
+                @Model.DateAdded.ToString("d")
+            </div>
+        </div>
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="bckBtn">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) &#8901; @Html.ActionLink("Back to List", "Index")
+</div>

@@ -6,37 +6,71 @@
     Are you sure you want to delete this?</h3>
 <fieldset>
     <legend>Delete Project</legend>
-    <div class="display-label">
-        Project Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectName)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Name
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectName)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Manager</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectManager)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Manager
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectManager)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Location</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectLocation)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Location
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectLocation)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Project Description</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProjectDescription)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Project Description
+            </div>
+            <div class="display-field displayStyles">
+                @Html.DisplayFor(model => model.ProjectDescription)
+            </div>
+        </div>
     </div>
-    <div class="display-label">
-        Is Active Project</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.IsActiveProject)
+    <div class="row">
+        <div class="wrapper">
+            <div class="display-label">
+                Is Active Project
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.IsActiveProject)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="wrapper">
+            @using (Html.BeginForm())
+            {
+    
+                <div class="belBtn">
+                    <input type="submit" value="Delete" />
+                </div>
+        
+        
+   
+            }
+        </div>
     </div>
 </fieldset>
-@using (Html.BeginForm())
-{
-    <p>
-        <input type="submit" value="Delete" />
-        |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+<div class="bckBtn">
+    @Html.ActionLink("Back to List", "Index")
+</div>

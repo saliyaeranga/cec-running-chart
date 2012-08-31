@@ -37,46 +37,66 @@
     <fieldset>
         <legend>Edit Project</legend>
         @Html.HiddenFor(model => model.Id)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProjectName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ProjectName)
+                    @Html.ValidationMessageFor(model => model.ProjectName)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectName)
-            @Html.ValidationMessageFor(model => model.ProjectName)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProjectManager)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ProjectManager)
+                    @Html.ValidationMessageFor(model => model.ProjectManager)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectManager)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProjectLocation)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ProjectLocation)
+                    @Html.ValidationMessageFor(model => model.ProjectLocation)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectManager)
-            @Html.ValidationMessageFor(model => model.ProjectManager)
+        <div class="row">
+            <div class="wrappernew">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProjectDescription)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.ProjectDescription)
+                    @Html.ValidationMessageFor(model => model.ProjectDescription)
+                </div>
+            </div>
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectLocation)
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsActiveProject)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsActiveProject)
+                    @Html.ValidationMessageFor(model => model.IsActiveProject)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectLocation)
-            @Html.ValidationMessageFor(model => model.ProjectLocation)
+        <div class="row">
+            <input class="createBtn" type="submit" value="Save" />
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProjectDescription)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.ProjectDescription)
-            @Html.ValidationMessageFor(model => model.ProjectDescription)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.IsActiveProject)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IsActiveProject)
-            @Html.ValidationMessageFor(model => model.IsActiveProject)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 }
-<div>
+<div class="bckBtn">
     @Html.ActionLink("Back to List", "Index")
 </div>
