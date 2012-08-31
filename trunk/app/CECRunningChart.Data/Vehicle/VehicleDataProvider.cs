@@ -22,7 +22,7 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@DriverName", vehicle.DriverOperatorName);
                 parameters.Add("@FuelUsage", vehicle.FuelUsage);
                 parameters.Add("@FuelTypeId", vehicle.FuelType);
-                parameters.Add("@LubricantTypeId", vehicle.LubricantType);
+                //parameters.Add("@LubricantTypeId", vehicle.LubricantType);
                 parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
                 parameters.Add("@HireRate", vehicle.HireRate);
                 if (string.IsNullOrWhiteSpace(vehicle.OwnerName))
@@ -56,7 +56,7 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@DriverName", vehicle.DriverOperatorName);
                 parameters.Add("@FuelUsage", vehicle.FuelUsage);
                 parameters.Add("@FuelTypeId", vehicle.FuelType);
-                parameters.Add("@LubricantTypeId", vehicle.LubricantType);
+                //parameters.Add("@LubricantTypeId", vehicle.LubricantType);
                 parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
                 parameters.Add("@HireRate", vehicle.HireRate);
                 if (string.IsNullOrWhiteSpace(vehicle.OwnerName))

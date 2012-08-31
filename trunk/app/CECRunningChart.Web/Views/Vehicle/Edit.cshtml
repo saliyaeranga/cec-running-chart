@@ -66,9 +66,9 @@
                 FuelTypeId: {
                     selectFuelType: true
                 },
-                LubricantTypeId: {
-                    selectLubricantType: true
-                },
+//                LubricantTypeId: {
+//                    selectLubricantType: true
+//                },
                 OwnerName: {
                     maxlength: 200,
                     enterOwnerName: true
@@ -82,7 +82,7 @@
                 HireRate: "*",
                 VehicleTypeId: "*",
                 FuelTypeId: "*",
-                LubricantTypeId: "*",
+//                LubricantTypeId: "*",
                 OwnerName: "*"
             }
         });
@@ -204,14 +204,14 @@
                     @Html.ValidationMessageFor(model => model.FuelUsage)
                 </div>
             </div>
-            <div class="wrapper">
+            @*<div class="wrapper">
                 <div class="editor-label">
                     Lubricant Type
                 </div>
                 <div class="editor-field">
                     @Html.DropDownList("LubricantTypeId", Model.GetAvailableLubricantOptions())
                 </div>
-            </div>
+            </div>*@
         </div>
         <div class="row">
             <div class="wrapper">
