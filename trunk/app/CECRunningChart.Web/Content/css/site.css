@@ -229,6 +229,23 @@
     width: 110px;
     color: #4C5BAC;
 }
+.belBtn
+{
+    float:left;    
+}
+.belBtn input[type="submit"]
+{
+    background-color: #DD1A12;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100px;
+}
 /*manage vehicle page styles*/
 .wrappernew textarea
 {

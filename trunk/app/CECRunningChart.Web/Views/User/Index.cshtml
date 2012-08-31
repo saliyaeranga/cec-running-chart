@@ -14,43 +14,47 @@
     @Html.ActionLink("Create New", "Create")
 </p>*@
 <div class="tblContainer">
-<table class="tblFont">
-    <tr>
-        <th class="tblModel">
-            Username
-        </th>
-        <th class="tblModel">
-            NIC Number
-        </th>
-        <th class="tblModel">
-            Role
-        </th>
-        <th class="tblModel">
-            Is Active User
-        </th>
-        <th class="tblModel">
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+    <table class="tblFont">
         <tr>
-            <td class="mainColum">
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NICNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActiveUser)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
+            <th class="tblModel">
+                Username
+            </th>
+            <th class="tblModel">
+                NIC Number
+            </th>
+            <th class="tblModel">
+                Role
+            </th>
+            <th class="tblModel">
+                Is Active User
+            </th>
+            <th class="tblModel">
+            </th>
+            <th class="tblModel">
+            </th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="mainColum">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NICNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActiveUser)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
 </div>
