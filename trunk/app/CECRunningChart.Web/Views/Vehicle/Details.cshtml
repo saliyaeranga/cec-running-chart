@@ -7,10 +7,11 @@
     <div class="row">
         <div class="wrapper" style="width: 110px;">
             <div class="display-label">
-                Is Vehicle
+                Vehicle / Machine
             </div>
             <div class="display-field displayStyles">
-                @Html.DisplayFor(model => model.IsVehicle)
+                @{ string vehicleOrMachine = Model.IsVehicle ? "Vehicle" : "Machine"; }
+                @vehicleOrMachine
             </div>
         </div>
         <div class="wrapper" style="width: 206px;">
@@ -43,13 +44,16 @@
                 @Html.DisplayFor(model => model.IsHiredVehicle)
             </div>
         </div>
-        <div class="wrapper" style="width: 206px;">
-            <div class="display-label">
-                Owner Name</div>
-            <div class="display-field displayStyles">
-                @Html.DisplayFor(model => model.OwnerName)
+        @if (Model.IsHiredVehicle)
+        {
+            <div class="wrapper" style="width: 206px;">
+                <div class="display-label">
+                    Owner Name</div>
+                <div class="display-field displayStyles">
+                    @Html.DisplayFor(model => model.OwnerName)
+                </div>
             </div>
-        </div>
+        }
         <div class="wrapper" style="width: 206px;">
             <div class="display-label">
                 Hire Rate</div>

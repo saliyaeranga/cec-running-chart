@@ -37,7 +37,7 @@ namespace CECRunningChart.Web.Models.Vehicle
 
         [DisplayName("Fuel Usage")]
         [Required(ErrorMessage = "Fuel Usage is required")]
-        public string FuelUsage { get; set; } //this is int in DB
+        public float FuelUsage { get; set; }
 
         [Required(ErrorMessage = "Fuel Type is required")]
         public int FuelTypeId { get; set; }
@@ -61,8 +61,10 @@ namespace CECRunningChart.Web.Models.Vehicle
         [MaxLength(200, ErrorMessage = "Owner Name can not have more than 200 characters")]
         public string OwnerName { get; set; }
 
-        [DisplayName("Is Vehicle")]
+        [DisplayName("Vehicle / Machine")]
         public bool IsVehicle { get; set; }
+
+        public int VehicleOrMachine { get; set; }
 
         [DisplayName("Is Active Vehicle / Machine")]
         public bool Status { get; set; }

@@ -13,7 +13,6 @@
             }
             else {
                 $("#HiredVehicle").hide("slow");
-                $("#HireRate").val("");
                 $("#OwnerName").val("");
             }
         });
@@ -80,7 +79,22 @@
                     @Html.LabelFor(model => model.IsVehicle)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.IsVehicle)
+                    @{
+                        if (Model.IsVehicle)
+                        {
+                            <select data-val="true" data-val-number="The field VehicleOrMachine must be a number." data-val-required="The VehicleOrMachine field is required." id="VehicleOrMachine" name="VehicleOrMachine" class="valid">
+                                <option selected="selected" value="1">Vehicle</option>
+                                <option value="0">Machine</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select data-val="true" data-val-number="The field VehicleOrMachine must be a number." data-val-required="The VehicleOrMachine field is required." id="VehicleOrMachine" name="VehicleOrMachine" class="valid">
+                                <option value="1">Vehicle</option>
+                                <option selected="selected" value="0">Machine</option>
+                            </select>
+                        }
+                      }
                     @Html.ValidationMessageFor(model => model.IsVehicle)
                 </div>
             </div>

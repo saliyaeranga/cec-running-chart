@@ -15,7 +15,10 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@VehicleNo", vehicle.VehicleNumber);
                 parameters.Add("@CompanyCode", vehicle.CompanyCode);
                 parameters.Add("@VehicleTypeId", vehicle.VehicleTypeId);
-                parameters.Add("@Description", vehicle.Description);
+                if (string.IsNullOrWhiteSpace(vehicle.Description))
+                    parameters.Add("@Description", DBNull.Value);
+                else
+                    parameters.Add("@Description", vehicle.Description);
                 parameters.Add("@DriverName", vehicle.DriverOperatorName);
                 parameters.Add("@FuelUsage", vehicle.FuelUsage);
                 parameters.Add("@FuelTypeId", vehicle.FuelType);
@@ -23,13 +26,9 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
                 parameters.Add("@HireRate", vehicle.HireRate);
                 if (string.IsNullOrWhiteSpace(vehicle.OwnerName))
-	            {
                     parameters.Add("@OwnerName", DBNull.Value);
-                }
                 else
-                {
                     parameters.Add("@OwnerName", vehicle.OwnerName);
-                }
                 parameters.Add("@IsVehicle", vehicle.IsVehicle);
                 parameters.Add("@Status", vehicle.Status);
                 ExecuteNoneQuery("proc_AddNewVehicle", parameters);
@@ -50,14 +49,20 @@ namespace CECRunningChart.Data.Vehicle
                 parameters.Add("@VehicleNo", vehicle.VehicleNumber);
                 parameters.Add("@CompanyCode", vehicle.CompanyCode);
                 parameters.Add("@VehicleTypeId", vehicle.VehicleTypeId);
-                parameters.Add("@Description", vehicle.Description);
+                if (string.IsNullOrWhiteSpace(vehicle.Description))
+                    parameters.Add("@Description", DBNull.Value);
+                else
+                    parameters.Add("@Description", vehicle.Description);
                 parameters.Add("@DriverName", vehicle.DriverOperatorName);
                 parameters.Add("@FuelUsage", vehicle.FuelUsage);
                 parameters.Add("@FuelTypeId", vehicle.FuelType);
                 parameters.Add("@LubricantTypeId", vehicle.LubricantType);
                 parameters.Add("@IsHiredVehicle", vehicle.IsHiredVehicle);
                 parameters.Add("@HireRate", vehicle.HireRate);
-                parameters.Add("@OwnerName", vehicle.OwnerName);
+                if (string.IsNullOrWhiteSpace(vehicle.OwnerName))
+                    parameters.Add("@OwnerName", DBNull.Value);
+                else
+                    parameters.Add("@OwnerName", vehicle.OwnerName);
                 parameters.Add("@IsVehicle", vehicle.IsVehicle);
                 parameters.Add("@Status", vehicle.Status);
                 ExecuteNoneQuery("proc_UpdateVehicle", parameters);

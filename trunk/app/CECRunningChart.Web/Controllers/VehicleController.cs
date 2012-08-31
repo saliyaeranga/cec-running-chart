@@ -65,6 +65,7 @@ namespace CECRunningChart.Web.Controllers
         {
             var vehicleModel = new VehicleModel();
             PopulateVehicleModel(vehicleModel);
+            vehicleModel.Status = true;
             return View(vehicleModel);
         } 
 
@@ -80,6 +81,7 @@ namespace CECRunningChart.Web.Controllers
             try
             {
                 var vehicle = ModelMapper.GetVehicle(model);
+                vehicle.IsVehicle = Convert.ToBoolean(model.VehicleOrMachine);
                 vehicleService.AddNewVehicle(vehicle);
                 return RedirectToAction("Index");
             }
@@ -118,6 +120,7 @@ namespace CECRunningChart.Web.Controllers
             try
             {
                 var vehicle = ModelMapper.GetVehicle(model);
+                vehicle.IsVehicle = Convert.ToBoolean(model.VehicleOrMachine);
                 vehicleService.UpdateVehicle(vehicle);
                 return RedirectToAction("Index");
             }

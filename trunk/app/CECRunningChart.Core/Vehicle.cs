@@ -52,7 +52,7 @@ namespace CECRunningChart.Core
         /// Current rate (Km/L or Hrs/L) of the vehicle/machine
         /// </summary>
         [XmlElementAttribute("FuelUsage")]
-        public string FuelUsage { get; set; }
+        public float FuelUsage { get; set; }
 
         /// <summary>
         /// Fuel type id
