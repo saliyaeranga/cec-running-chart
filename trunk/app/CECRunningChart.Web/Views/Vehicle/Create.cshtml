@@ -30,6 +30,15 @@
             return value > 0;
         }, "Please select a lubricant type");
 
+        $.validator.addMethod("enterOwnerName", function (value, element) {
+            if (!$('#IsHiredVehicle').is(':checked')) {
+                return true;
+            }
+            else {
+                return value != "";
+            }
+        }, "*");
+
         $("#vehicleform").validate({
             rules: {
                 VehicleNumber: {
@@ -62,7 +71,8 @@
                     selectLubricantType: true
                 },
                 OwnerName: {
-                    maxlength: 200
+                    maxlength: 200,
+                    enterOwnerName: true
                 }
             },
             messages: {
@@ -73,7 +83,8 @@
                 HireRate: "*",
                 VehicleTypeId: "*",
                 FuelTypeId: "*",
-                LubricantTypeId: "*"
+                LubricantTypeId: "*",
+                OwnerName: "*"
             }
         });
     });

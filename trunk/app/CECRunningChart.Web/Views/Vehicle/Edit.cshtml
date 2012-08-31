@@ -19,15 +19,24 @@
 
         $.validator.addMethod("selectVehicleType", function (value, element) {
             return value > 0;
-        }, "Please select a vehicle type");
+        }, "*");
 
         $.validator.addMethod("selectFuelType", function (value, element) {
             return value > 0;
-        }, "Please select a fuel type");
+        }, "*");
 
         $.validator.addMethod("selectLubricantType", function (value, element) {
             return value > 0;
-        }, "Please select a lubricant type");
+        }, "*");
+
+        $.validator.addMethod("enterOwnerName", function (value, element) {
+            if (!$('#IsHiredVehicle').is(':checked')) {
+                return true;
+            }
+            else {
+                return value != "";
+            }
+        }, "*");
 
         $("#vehicleeditform").validate({
             rules: {
@@ -61,8 +70,20 @@
                     selectLubricantType: true
                 },
                 OwnerName: {
-                    maxlength: 200
+                    maxlength: 200,
+                    enterOwnerName: true
                 }
+            },
+            messages: {
+                VehicleNumber: "*",
+                CompanyCode: "*",
+                DriverOperatorName: "*",
+                FuelUsage: "*",
+                HireRate: "*",
+                VehicleTypeId: "*",
+                FuelTypeId: "*",
+                LubricantTypeId: "*",
+                OwnerName: "*"
             }
         });
     });
