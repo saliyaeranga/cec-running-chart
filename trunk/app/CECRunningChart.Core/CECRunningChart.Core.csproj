@@ -59,6 +59,7 @@
     <Compile Include="UserRole.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleMachineRegister.cs" />
+    <Compile Include="VehicleRentalType.cs" />
     <Compile Include="VehicleType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -74,6 +74,17 @@ namespace CECRunningChart.Web.Helpers
             };
         }
 
+        public static List<VehicleRentalTypeModel> GetVehicleRentalTypeModelList(IEnumerable<VehicleRentalType> types)
+        {
+            var projectsList = from t in types
+                               select new VehicleRentalTypeModel
+                               {
+                                   Id = t.Id,
+                                   RentalTypeName = t.RentalTypeName
+                               };
+            return projectsList.ToList<VehicleRentalTypeModel>();
+        }
+
         #endregion
 
         #region Vehicle Mappings
@@ -259,7 +270,8 @@ namespace CECRunningChart.Web.Helpers
                     EndMeter = item.EndMeter,
                     MeterDifference = item.MeterDifference,
                     ProjectId = item.SelectedProjectId,
-                    ProjectManagerName = item.SelectedProjectManager
+                    ProjectManagerName = item.SelectedProjectManager,
+                    RentalTypeId = item.SelectedRentalTypeId
                 });
             }
 

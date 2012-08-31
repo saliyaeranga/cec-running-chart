@@ -136,6 +136,25 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult HireBillPrivate()
+        {
+            IProjectService projectService = new ProjectService();
+            ViewBag.Projects = ModelMapper.GetProjectModelList(projectService.GetAllProjects());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult HireBillPrivate(DateTime startDate, DateTime endDate, int projectId, string projectName)
+        {
+            var report = reportService.GetHireBillReport(startDate, endDate, projectId);
+            var model = ModelMapper.GetHireBillReportModelList(report);
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            ViewBag.ProjectName = projectName;
+            return View(model);
+        }
+
         #endregion
     }
 }

@@ -37,5 +37,8 @@ namespace CECRunningChart.Core
 
         [XmlElementAttribute("ProjectManagerName")]
         public string ProjectManagerName { get; set; }
+
+        [XmlElementAttribute("RentalTypeId")]
+        public int RentalTypeId { get; set; }
     }
 }

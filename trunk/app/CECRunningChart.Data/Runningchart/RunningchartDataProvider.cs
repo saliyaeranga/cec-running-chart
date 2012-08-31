@@ -118,6 +118,7 @@ namespace CECRunningChart.Data.Runningchart
             parameters.Add("@MeterDifference", runningchartDetails.MeterDifference);
             parameters.Add("@ProjectId", runningchartDetails.ProjectId);
             parameters.Add("@ProjectManagerName", runningchartDetails.ProjectManagerName);
+            parameters.Add("@RentalTypeId", runningchartDetails.RentalTypeId);
         }
 
         private void AddRunningchartPumpstationParams(RunningchartPumpstation pumpstation, Parameters parameters)

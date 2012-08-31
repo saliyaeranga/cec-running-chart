@@ -89,6 +89,7 @@
     <Compile Include="Models\Runningchart\ChartPumpstationItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartPumpstationModel.cs" />
     <Compile Include="Models\Runningchart\RunningchartModel.cs" />
+    <Compile Include="Models\Runningchart\VehicleRentalTypeModel.cs" />
     <Compile Include="Models\User\LogOnModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\Vehicle\FuelModel.cs" />

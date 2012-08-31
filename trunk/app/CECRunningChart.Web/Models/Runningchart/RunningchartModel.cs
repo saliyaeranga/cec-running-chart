@@ -72,6 +72,11 @@ namespace CECRunningChart.Web.Models.Runningchart
         /// </summary>
         public List<ChartItemModel> SelectedChartItems { get; set; }
 
+        /// <summary>
+        /// Gets or sets the available vehicle rental types
+        /// </summary>
+        public List<VehicleRentalTypeModel> VehicleRentalTypes { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -141,6 +146,23 @@ namespace CECRunningChart.Web.Models.Runningchart
                                };
 
             return options.Concat(vehicles.ToList());
+        }
+
+        public IEnumerable<SelectListItem> GetRentalTypeOptions(int selectedRentalTypeId)
+        {
+            List<SelectListItem> options = new List<SelectListItem>(Projects.Count + 1)
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = selectedRentalTypeId == 0}
+            };
+            var rentals = from r in VehicleRentalTypes
+                           select new SelectListItem
+                           {
+                               Text = r.RentalTypeName,
+                               Value = r.Id.ToString(),
+                               Selected = r.Id == selectedRentalTypeId
+                           };
+
+            return options.Concat(rentals.ToList());
         }
 
         #endregion
