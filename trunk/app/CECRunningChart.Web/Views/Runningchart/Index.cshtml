@@ -10,6 +10,12 @@
 <div class="createNewRow">
     <a href="@Url.Action("create", "runningchart")">Add New Running Chart</a>
 </div>
+@if (ViewBag.LastChartId != null)
+{
+    <div id="LastChartId" class="todo">
+        Last Running Chart Id : @ViewBag.LastChartId
+    </div>
+}
 <div class="tblContainer">
 <table class="tblFont">
     <tr>
