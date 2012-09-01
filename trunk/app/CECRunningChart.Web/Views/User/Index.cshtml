@@ -8,11 +8,8 @@
     </h2>
 </div>
 <div class="createNewRow">
-    <a href="@Url.Action("Create", "User")">Add New User</a>
+    <a href="@Url.Action("create", "user")">Add New User</a>
 </div>
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
 <div class="tblContainer">
     <table class="tblFont">
         <tr>
@@ -49,10 +46,10 @@
                     @Html.DisplayFor(modelItem => item.IsActiveUser)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                    @Html.ActionLink("Edit", "edit", new { id = item.Id }) 
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Details", "details", new { id = item.Id })
                 </td>
             </tr>
         }

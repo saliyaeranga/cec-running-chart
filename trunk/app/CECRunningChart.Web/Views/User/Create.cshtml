@@ -14,21 +14,24 @@
                 },
                 UserName: {
                     required: true
+                },
+                Password: {
+                    required: true
                 }
-            }
-        });
-
-        $("#userform").submit(function () {
-            if ($("#userform").valid()) {
-                return true;
-            }
-            else {
-                return false;
+            },
+            messages: {
+                FirstName: " *",
+                UserName: " *",
+                Password: " *"
             }
         });
     });
 </script>
-@using (Html.BeginForm("Create", "User", FormMethod.Post, new { @id = "userform" }))
+<div class="bckBtn">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<br /><br />
+@using (Html.BeginForm("create", "user", FormMethod.Post, new { @id = "userform" }))
 {
     @Html.ValidationSummary(false)
     <fieldset>
@@ -72,7 +75,8 @@
                     @Html.LabelFor(model => model.Password)
                 </div>
                 <div class="editor-field">
-                    DEFAULT PASSWORD
+                    <input class="text-box single-line valid" id="Password" name="Password" type="password" />
+                    @Html.ValidationMessageFor(model => model.Password)
                 </div>
             </div>
         </div>
@@ -113,6 +117,3 @@
         </div>
     </fieldset>
 }
-<div class="bckBtn">
-    @Html.ActionLink("Back to List", "Index")
-</div>

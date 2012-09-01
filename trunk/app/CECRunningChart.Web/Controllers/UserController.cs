@@ -136,7 +136,7 @@ namespace CECRunningChart.Web.Controllers
                 bool status = userService.ResetPassword(id, oldPassword, newPassword);
                 if (status)
                 {
-                    return RedirectToAction("Manage", "Home");
+                    return RedirectToAction("manage", "home");
                 }
 
                 ViewBag.UserId = (Session[SessionKeys.UserInfo] as UserModel).Id;

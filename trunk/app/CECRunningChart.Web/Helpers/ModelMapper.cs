@@ -392,6 +392,7 @@ namespace CECRunningChart.Web.Helpers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.UserName,
+                Password = model.Password,
                 NICNumber = model.NICNumber,
                 IsActiveUser = model.IsActiveUser,
                 RoleName = model.RoleName,
