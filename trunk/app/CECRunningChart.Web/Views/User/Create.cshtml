@@ -17,12 +17,17 @@
                 },
                 Password: {
                     required: true
+                },
+                confNewPassword: {
+                    required: true,
+                    equalTo: "#Password"
                 }
             },
             messages: {
                 FirstName: " *",
                 UserName: " *",
-                Password: " *"
+                Password: " *",
+                confNewPassword: " Password doesn't match"
             }
         });
     });
@@ -77,6 +82,16 @@
                 <div class="editor-field">
                     <input class="text-box single-line valid" id="Password" name="Password" type="password" />
                     @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Confirm Password
+                </div>
+                <div class="editor-field">
+                    <input type="password" id="confNewPassword" name="confNewPassword" maxlength="20" />
                 </div>
             </div>
         </div>
