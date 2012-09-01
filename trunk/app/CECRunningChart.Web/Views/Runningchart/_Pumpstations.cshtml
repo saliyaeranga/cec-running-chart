@@ -42,8 +42,12 @@
             <tr>
                 <td>
                     @Html.DropDownList(pumpstationId, Model.GetPumpstationOptions(pumpstation.SelectedPumpstationId), new { @id = pumpstationId, @class = "todo" })
+                    <label id="@string.Concat("PumpstationPumpstationError", index)" style="display: none; color: Red;"> *</label>
                 </td>
-                <td><input type="text" id="@amountId" name="@amountId" value="@amount" /></td>
+                <td>
+                    <input type="text" id="@amountId" name="@amountId" value="@amount" />
+                    <label id="@string.Concat("PumpstationQtyError", index)" style="display: none; color: Red;"> *</label>
+                </td>
                 <td><input type="button" value="Remove" onclick="PopulatePumpstationRows(false, true, @index);" /></td>
             </tr>
             index++;

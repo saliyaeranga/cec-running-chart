@@ -82,19 +82,45 @@
             string selectedProjectManagerId = string.Concat("SelectedChartItems[", index, "].SelectedProjectManager");
             string idleHourText = item.IdleHours == 0 ? string.Empty : item.IdleHours.ToString();
             <tr>
-                <td><input type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" /></td>
-                <td><input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick" onblur="calculateTimeDiff();" /></td>
-                <td><input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" /></td>
-                <td><input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" maxlength="10" /></td>
-                <td><input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" maxlength="10" /></td>
-                <td><input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" /></td>
-                <td><input type="text" id="@idleHoursId" name="@idleHoursId" value="@idleHourText" maxlength="10" /></td>
+                <td>
+                    <input type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" />
+                    <label id="@string.Concat("ChartItemStartTimeError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick" onblur="calculateTimeDiff();" />
+                    <label id="@string.Concat("ChartItemEndTimeError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" />
+                    <label id="@string.Concat("ChartItemTimeDiffError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" maxlength="10" />
+                    <label id="@string.Concat("ChartItemStartMeterError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" maxlength="10" />
+                    <label id="@string.Concat("ChartItemEndMeterError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" />
+                    <label id="@string.Concat("ChartItemMeterDiffError", index)" style="display: none; color: Red;"> *</label>
+                </td>
+                <td>
+                    <input type="text" id="@idleHoursId" name="@idleHoursId" value="@idleHourText" maxlength="10" />
+                    <label id="@string.Concat("ChartItemIdleHrsError", index)" style="display: none; color: Red;"> *</label>
+                </td>
                 <td>
                     @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
+                    <label id="@string.Concat("ChartItemProjectError", index)" style="display: none; color: Red;"> *</label>
                 </td>
-                <td><input type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" /></td>
+                <td>
+                    <input type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" />
+                    <label id="@string.Concat("ChartItemProjectMgrError", index)" style="display: none; color: Red;"> *</label>
+                </td>
                 <td>
                     @Html.DropDownList(selectedRentalTypeId, Model.GetRentalTypeOptions(item.SelectedRentalTypeId), new { @id = selectedRentalTypeId, @class = "todo" })
+                    <label id="@string.Concat("ChartItemRentleError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td><input type="button" value="Remove" onclick="PopulateChartRows(false, true, @index);" /></td>
             </tr>

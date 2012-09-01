@@ -1,5 +1,5 @@
 ﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
-           
+
 <script type="text/javascript">
     function PopulateLubricantstationRows(isAdding, isRemoving, removingId) {
         var formParameters = new Object();
@@ -20,7 +20,9 @@
 
         $.ajaxSetup({ cache: false });
         $.post('@Url.Action("PoulateLubricantItems", "Runningchart")', formParameters, function (data) {
+            //setTimeout("applyLubricantValidations();", 3000);
             document.getElementById("LubricantInfo").innerHTML = data;
+//            applyLubricantValidations();
         });
     }
 </script>
@@ -45,11 +47,16 @@
             <tr>
                 <td>
                     @Html.DropDownList(pumpstationId, Model.GetPumpstationOptions(lubricant.SelectedPumpstationId), new { @id = pumpstationId, @class = "todo" })
+                    <label id="@string.Concat("LubricantPumpstationError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
                     @Html.DropDownList(lubricantTypeId, Model.GetLubricantOptions(lubricant.SelectedLubricantTypeId), new { @id = lubricantTypeId, @class = "todo" })
+                    <label id="@string.Concat("LubricantLubricantError", index)" style="display: none; color: Red;"> *</label>
                 </td>
-                <td><input type="text" id="@amountId" name="@amountId" value="@amount" /></td>
+                <td>
+                    <input type="text" id="@amountId" name="@amountId" value="@amount" />
+                    <label id="@string.Concat("LubricantQuantityError", index)" for="@amountId" style="display: none; color: Red; "> *</label>
+                </td>
                 <td><input type="button" value="Remove" onclick="PopulateLubricantstationRows(false, true, @index);" /></td>
             </tr>
             index++;

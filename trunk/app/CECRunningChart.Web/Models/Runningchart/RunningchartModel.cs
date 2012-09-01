@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using CECRunningChart.Web.Models.Project;
 using CECRunningChart.Web.Models.Pumpstation;
 using CECRunningChart.Web.Models.Vehicle;
+using System.ComponentModel.DataAnnotations;
 
 namespace CECRunningChart.Web.Models.Runningchart
 {
@@ -13,12 +14,25 @@ namespace CECRunningChart.Web.Models.Runningchart
         #region Public Properties
 
         public int RunningchartId { get; set; }
+
+        [Required(ErrorMessage = "Bill number required")]
         public string BillNumber { get; set; }
+
+        [Required(ErrorMessage = "Bill date required")]
         public DateTime BillDate { get; set; }
+
+        [Required(ErrorMessage = "Driver name required")]
         public string DriverName { get; set; }
+
+        [Required(ErrorMessage = "Fuel quantity required")]
         public int FuelLeftBegningOfDay { get; set; }
+
+        [Required(ErrorMessage = "Fuel quantity required")]
         public int FuelLeftEndOfDay { get; set; }
+
+        [Required(ErrorMessage = "Fuel quantity required")]
         public int FuelUsageOfDay { get; set; }
+
         public string DailyNote { get; set; }
         public DateTime DayStartime { get; set; }
         public DateTime DayEndTime { get; set; }
@@ -44,6 +58,7 @@ namespace CECRunningChart.Web.Models.Runningchart
         /// <summary>
         /// Gets or sets the vehicle id selected by the user
         /// </summary>
+        [Required(ErrorMessage = "Please select vehicle id")]
         public int SelectedVehicleId { get; set; }
 
         /// <summary>
