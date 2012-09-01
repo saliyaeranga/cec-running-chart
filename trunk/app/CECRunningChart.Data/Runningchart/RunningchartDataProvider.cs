@@ -77,13 +77,32 @@ namespace CECRunningChart.Data.Runningchart
             }
         }
 
-        //public DataSet GetLatestRunningCharts(int runningchartId)
-        //{
-        //    //Parameters chartParameters = new Parameters();
-        //    //chartParameters.Add("@RunningchartId", runningchartId);
-        //    //return ExecuteDataSet("proc_GetRunningchartById", chartParameters);
-        //    return ExecuteDataSet("proc_GetLatestRunningcharts", null);
-        //}
+        public DataSet GetNoneApprovedRunningCharts()
+        {
+            try
+            {
+                //return ExecuteDataSet("proc_GetLatestRunningcharts", null);
+                return ExecuteDataSet("proc_GetNoneApprovedRunningcharts", null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet GetOperatorNoneApprovedRunningcharts(int operatorUserId)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@UserId", operatorUserId);
+                return ExecuteDataSet("proc_GetOperatorNoneApprovedRunningcharts", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         #region Private Methods
 
@@ -119,6 +138,11 @@ namespace CECRunningChart.Data.Runningchart
             parameters.Add("@ProjectId", runningchartDetails.ProjectId);
             parameters.Add("@ProjectManagerName", runningchartDetails.ProjectManagerName);
             parameters.Add("@RentalTypeId", runningchartDetails.RentalTypeId);
+
+            if (runningchartDetails.IdleHours > 0)
+                parameters.Add("@IdleHours", runningchartDetails.IdleHours);
+            else
+                parameters.Add("@IdleHours", DBNull.Value);
         }
 
         private void AddRunningchartPumpstationParams(RunningchartPumpstation pumpstation, Parameters parameters)
@@ -137,19 +161,5 @@ namespace CECRunningChart.Data.Runningchart
         }
 
         #endregion
-
-
-        public DataSet GetLatestRunningCharts()
-        {
-            try
-            {
-                //return ExecuteDataSet("proc_GetLatestRunningcharts", null);
-                return ExecuteDataSet("proc_GetNoneApprovedRunningcharts", null);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
     }
 }

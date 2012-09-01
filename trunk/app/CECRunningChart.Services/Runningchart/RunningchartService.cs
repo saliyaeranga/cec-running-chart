@@ -25,10 +25,17 @@ namespace CECRunningChart.Services.Runningchart
             return dataProvider.AddRunningchart(runningChart);
         }
 
-        public List<Core.Runningchart> GetLatestRunningCharts()
+        public List<Core.Runningchart> GetNonePaarovedRunningCharts()
         {
-            var chartData = dataProvider.GetLatestRunningCharts();
+            var chartData = dataProvider.GetNoneApprovedRunningCharts();
             return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
         }
+
+        public List<Core.Runningchart> GetOperatorNoneApprovedRunningcharts(int operatorUserId)
+        {
+            var chartData = dataProvider.GetOperatorNoneApprovedRunningcharts(operatorUserId);
+            return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
+        }
+
     }
 }

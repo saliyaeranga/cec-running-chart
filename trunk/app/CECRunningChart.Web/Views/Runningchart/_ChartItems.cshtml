@@ -20,6 +20,10 @@
             formParameters["[" + index + "].StartMeter"] = document.getElementById("SelectedChartItems["+ index+ "].StartMeter").value;
             formParameters["[" + index + "].EndMeter"] = document.getElementById("SelectedChartItems[" + index + "].EndMeter").value;
             formParameters["[" + index + "].MeterDifference"] = document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value;
+
+            var pumpAmount = document.getElementById("SelectedChartItems[" + index + "].IdleHours").value;
+            formParameters["[" + index + "].IdleHours"] = pumpAmount == "" ? "0" : pumpAmount;
+
             formParameters["[" + index + "].SelectedProjectId"] = document.getElementById("SelectedChartItems["+ index+ "].SelectedProjectId").value;
             formParameters["[" + index + "].SelectedProjectManager"] = document.getElementById("SelectedChartItems[" + index + "].SelectedProjectManager").value;
             formParameters["[" + index + "].SelectedRentalTypeId"] = document.getElementById("SelectedChartItems[" + index + "].SelectedRentalTypeId").value;
@@ -53,6 +57,7 @@
         <td>Start @meterText</td>
         <td>End @meterText</td>
         <td>@meterText Difference</td>
+        <td>Idle Hours</td>
         <td>Project Name</td>
         <td>Project Manager</td>
         <td>Rental Type</td>
@@ -71,10 +76,11 @@
             string startMeterId = string.Concat("SelectedChartItems[", index, "].StartMeter");
             string endMeterId = string.Concat("SelectedChartItems[", index, "].EndMeter");
             string meterDiffId = string.Concat("SelectedChartItems[", index, "].MeterDifference");
+            string idleHoursId = string.Concat("SelectedChartItems[", index, "].IdleHours");
             string selectedProjectId = string.Concat("SelectedChartItems[", index, "].SelectedProjectId");
             string selectedRentalTypeId = string.Concat("SelectedChartItems[", index, "].SelectedRentalTypeId");
             string selectedProjectManagerId = string.Concat("SelectedChartItems[", index, "].SelectedProjectManager");
-            
+            string idleHourText = item.IdleHours == 0 ? string.Empty : item.IdleHours.ToString();
             <tr>
                 <td><input type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" /></td>
                 <td><input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick" onblur="calculateTimeDiff();" /></td>
@@ -82,6 +88,7 @@
                 <td><input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" maxlength="10" /></td>
                 <td><input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" maxlength="10" /></td>
                 <td><input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" /></td>
+                <td><input type="text" id="@idleHoursId" name="@idleHoursId" value="@idleHourText" maxlength="10" /></td>
                 <td>
                     @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
                 </td>
@@ -96,6 +103,7 @@
     }
     <tr>
         <td><input type="button" value="Add" onclick="PopulateChartRows(true, false, 0);" /></td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>

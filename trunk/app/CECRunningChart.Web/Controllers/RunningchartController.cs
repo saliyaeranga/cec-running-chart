@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using CECRunningChart.Common;
 using CECRunningChart.Core;
 using CECRunningChart.Services.ProjectService;
 using CECRunningChart.Services.Pumpstation;
@@ -9,34 +10,61 @@ using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
-using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
     [Authorize]
     public class RunningchartController : Controller
     {
-        IRunningchartService runningchartService;
+        #region Private Members
+
+        private readonly IRunningchartService runningchartService;
+
+        #endregion
+
+        #region Constructor
 
         public RunningchartController()
         {
             runningchartService = new RunningchartService();
         }
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            var laterstCharts = runningchartService.GetLatestRunningCharts();
-            var model = ModelMapper.GetRunningchartModel(laterstCharts);
+        #endregion
 
+        [HttpGet]
+        public ActionResult Index(int? lastChartId)
+        {
+            IVehicleService vehicleServcie = new VehicleService();
+            List<Runningchart> runningCharts = new List<Runningchart>();
+            var user = Session[SessionKeys.UserInfo] as UserModel;
+
+            if (user.Role == UserRole.Admin)
+            {
+                runningCharts = runningchartService.GetNonePaarovedRunningCharts();
+            }
+            else if (user.Role == UserRole.RunningChartInspector)
+            {
+                //TODO
+            }
+            else if (user.Role == UserRole.RunningChartOperator)
+            {
+                runningCharts = runningchartService.GetOperatorNoneApprovedRunningcharts(user.Id);
+            }
+
+            if (lastChartId.HasValue)
+            {
+                ViewBag.LastChartId = lastChartId.Value;
+            }
+
+            var model = ModelMapper.GetRunningchartModel(runningCharts);
+            ViewBag.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             return View(model);
         }
 
-        //
-        // GET: /Runningchart/Details/5
-
+        [HttpGet]
         public ActionResult Details(int id)
         {
+
             return View();
         }
 
@@ -63,9 +91,9 @@ namespace CECRunningChart.Web.Controllers
                 Runningchart runningChart = ModelMapper.GetRunningchartFromRunningchartModel(model);
                 runningChart.EnteredBy = (Session[SessionKeys.UserInfo] as UserModel).Id; // Set DEO
                 int chartId = runningchartService.AddRunningchart(runningChart);
-                ViewBag.LastChartId = chartId;
+                //ViewBag.LastChartId = chartId;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("index", new { lastChartId = chartId });
             }
             catch
             {

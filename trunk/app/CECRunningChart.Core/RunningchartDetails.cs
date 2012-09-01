@@ -40,5 +40,8 @@ namespace CECRunningChart.Core
 
         [XmlElementAttribute("RentalTypeId")]
         public int RentalTypeId { get; set; }
+
+        [XmlElementAttribute("IdleHours")]
+        public float IdleHours { get; set; }
     }
 }

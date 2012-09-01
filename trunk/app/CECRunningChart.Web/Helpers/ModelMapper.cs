@@ -269,6 +269,7 @@ namespace CECRunningChart.Web.Helpers
                     StartMeter = item.StartMeter,
                     EndMeter = item.EndMeter,
                     MeterDifference = item.MeterDifference,
+                    IdleHours = item.IdleHours,
                     ProjectId = item.SelectedProjectId,
                     ProjectManagerName = item.SelectedProjectManager,
                     RentalTypeId = item.SelectedRentalTypeId

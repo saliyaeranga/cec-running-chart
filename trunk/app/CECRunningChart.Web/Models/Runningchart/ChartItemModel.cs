@@ -11,6 +11,7 @@ namespace CECRunningChart.Web.Models.Runningchart
         public string StartMeter { get; set; }
         public string EndMeter { get; set; }
         public string MeterDifference { get; set; } //todo: datatype
+        public float IdleHours { get; set; }
         public int SelectedProjectId { get; set; }
         public int SelectedRentalTypeId { get; set; }
         public string SelectedProjectManager { get; set; }

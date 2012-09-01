@@ -10,6 +10,7 @@ namespace CECRunningChart.Data.Runningchart
     {
         int GetNextRunningchartId();
         int AddRunningchart(Core.Runningchart runningChart);
-        DataSet GetLatestRunningCharts();
+        DataSet GetNoneApprovedRunningCharts();
+        DataSet GetOperatorNoneApprovedRunningcharts(int operatorUserId);
     }
 }

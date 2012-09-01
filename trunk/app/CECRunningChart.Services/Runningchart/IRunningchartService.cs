@@ -9,6 +9,7 @@ namespace CECRunningChart.Services.Runningchart
     {
         int GetNextRunningchartId();
         int AddRunningchart(Core.Runningchart runningChart);
-        List<Core.Runningchart> GetLatestRunningCharts();
+        List<Core.Runningchart> GetNonePaarovedRunningCharts();
+        List<Core.Runningchart> GetOperatorNoneApprovedRunningcharts(int operatorUserId);
     }
 }

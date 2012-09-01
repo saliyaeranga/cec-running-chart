@@ -8,11 +8,8 @@
     </h2>
 </div>
 <div class="createNewRow">
-    <a href="@Url.Action("create", "Runningchart")">Add New Running Chart</a>
+    <a href="@Url.Action("create", "runningchart")">Add New Running Chart</a>
 </div>
-@*<p>
-    @Html.ActionLink("Create New", "create")
-</p>*@
 <div class="tblContainer">
 <table class="tblFont">
     <tr>
@@ -31,24 +28,10 @@
         <th class="tblModel">
             Vehicle #
         </th>
-        @*<th>
-            FuelLeftBegningOfDay
-        </th>
-        <th>
-            FuelLeftEndOfDay
-        </th>
-        <th>
-            FuelUsageOfDay
-        </th>
-        <th>
-            DailyNote
-        </th>
-        <th>
-            SelectedVehicleId
-        </th>*@
         <th class="tblModel">
         </th>
     </tr>
+    @{ var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>; }
     @foreach (var item in Model)
     {
         <tr>
@@ -59,30 +42,14 @@
                 @Html.DisplayFor(modelItem => item.BillNumber)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.BillDate)*@
                 @item.BillDate.ToString("d")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DriverName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SelectedVehicleId)
+                @vehicles.Where(x => x.Id == item.SelectedVehicleId).Single().VehicleNumber
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.FuelLeftBegningOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelLeftEndOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelUsageOfDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DailyNote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SelectedVehicleId)
-        </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.RunningchartId }) |*@ @*@Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
