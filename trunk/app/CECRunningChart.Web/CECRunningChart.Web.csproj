@@ -81,6 +81,8 @@
     <Compile Include="Models\Reports\DriverOperatorTimeSheetModel.cs" />
     <Compile Include="Models\Reports\FuelAndLubricantReportModel.cs" />
     <Compile Include="Models\Reports\FuelConsumptionReportModel.cs" />
+    <Compile Include="Models\Reports\HireBillPrivateModel.cs" />
+    <Compile Include="Models\Reports\HireBillPrivateReportModel.cs" />
     <Compile Include="Models\Reports\HireBillReportModel.cs" />
     <Compile Include="Models\Reports\HiredVehicleFuelReportModel.cs" />
     <Compile Include="Models\Reports\VehicleMachineRegisterModel.cs" />
@@ -339,6 +341,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\HireBill.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\HireBillPrivate.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

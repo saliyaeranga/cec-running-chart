@@ -45,6 +45,10 @@
     <Compile Include="FuelAndLubricantReport.cs" />
     <Compile Include="FuelConsumptionReport.cs" />
     <Compile Include="FuelType.cs" />
+    <Compile Include="HireBillPrivateReport.cs" />
+    <Compile Include="HireBillPrivateReportDetails.cs" />
+    <Compile Include="HireBillPrivateReportLubricant.cs" />
+    <Compile Include="HireBillPrivateReportPumpstation.cs" />
     <Compile Include="HireBillReport.cs" />
     <Compile Include="HiredVehicleFuelReport.cs" />
     <Compile Include="LubricantType.cs" />

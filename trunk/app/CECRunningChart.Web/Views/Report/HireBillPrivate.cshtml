@@ -1,0 +1,268 @@
+﻿@model CECRunningChart.Web.Models.Reports.HireBillPrivateReportModel
+
+@{
+    ViewBag.Title = "Hire Bill (Private) Report";
+}
+
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".dateselect").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $.validator.addMethod("selectProject", function (value, element) {
+            return value > 0;
+        }, "*");
+
+        $("#hirebillprivateform").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                vehicleNo: {
+                    selectProject: true
+                }
+            },
+            messages: {
+                startDate: "*",
+                endDate: "*",
+                vehicleNo: "*"
+            }
+        });
+    });
+</script>
+<h2>
+    Hire Bill (Private) Report</h2>
+<p>
+    @Html.ActionLink("Back to Reports", "index")
+</p>
+@if (Model == null)
+{
+    using (Html.BeginForm("hirebillprivate", "report", FormMethod.Post, new { @id = "hirebillprivateform" }))
+    {
+        var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>;
+        <table>
+            <tr>
+                <td>Start Date</td>
+                <td><input type="text" id="startDate" name="startDate" class="dateselect" /></td>
+            </tr>
+            <tr>
+                <td>End Date</td>
+                <td><input type="text" id="endDate" name="endDate" class="dateselect" /></td>
+            </tr>
+            <tr>
+                <td>Vehicle/Machine No</td>
+                <td>
+                    @Html.DropDownList("vehicleNo", CECRunningChart.Web.Helpers.ModelMapper.GetVehicleOptions(vehicles), new { @id = "vehicleNo", @class = "todo" })
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Generate Report" /></td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    bool isVehicle = Convert.ToBoolean(ViewBag.IsVehicle);
+    string measure = isVehicle ? "Rs/Km" : "Rs/Hr";
+    <p>
+        @Html.ActionLink("Back to Hire Bill (Private) Report", "hirebillprivate")
+    </p>
+    <p>
+        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
+        Vehicle/Machine No : @ViewBag.VehicleNumber <br />
+        Owner : @ViewBag.OwnerName <br />
+        Rate : @ViewBag.HireRate&nbsp;@measure<br />
+    </p>
+    <table>
+        <tr>
+            <td rowspan="2" style="text-align: center">
+                DRC No</td>
+            <td rowspan="2" style="text-align: center">
+                Date</td>
+            <td rowspan="2" style="text-align: center">
+                Project Location</td>
+            <td colspan="2" style="text-align: center">
+                Work Done</td>
+            <td rowspan="2" style="text-align: center">
+                Amount</td>
+            <td colspan="4" style="text-align: center">
+                Fuel Used</td>
+            <td colspan="5" style="text-align: center">
+                Lubricant</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                Km</td>
+            <td style="text-align: center">
+                Hour</td>
+            <td style="text-align: center">
+                Pump Station</td>
+            <td class="style2">
+                Qty</td>
+            <td class="style2">
+                Rate</td>
+            <td class="style2">
+                Amount</td>
+            <td style="text-align: center">
+                Pump Station</td>
+            <td style="text-align: center">
+                Lubricant Type</td>
+            <td class="style2">
+                Qty</td>
+            <td class="style2">
+                Rate</td>
+            <td class="style2">
+                Amount</td>
+        </tr>
+        @{
+            var runningChartIds = Model.RunningChartIds;
+            decimal totalWorkDone = decimal.Zero;
+            decimal totalWorkAmount = decimal.Zero;
+            decimal totalFuelQty = decimal.Zero;
+            decimal totalFuelAmount = decimal.Zero;
+            decimal totalLubricantQty = decimal.Zero;
+            decimal totalLubricantAmount = decimal.Zero;
+                                 
+            foreach (var chart in runningChartIds)
+            {
+                var details = Model.HireBillPrivateReportDetails.Where(x => x.RunningchartId == chart.Key);
+                var fuel = Model.HireBillPrivateReportFuel.Where(x => x.RunningchartId == chart.Key);
+                var lubricant = Model.HireBillPrivateReportLubricants.Where(x => x.RunningchartId == chart.Key);
+
+                var detailsCount = details.Count();
+                var fuelCount = fuel.Count();
+                var lubriCount = lubricant.Count();
+                var maxCountForChart = new int[] { detailsCount, fuelCount, lubriCount }.Max();
+
+                var detailsArray = details.ToArray();
+                var fuelArray = fuel.ToArray();
+                var lubricantArray = lubricant.ToArray();
+
+                for (int i = 0; i < maxCountForChart; i++)
+                {
+                    string[] dataValues = new string[15];
+                    string chariId = string.Empty;
+                    string billDate = string.Empty;
+                    // Runningchart
+                    if (i == 0)
+                    {
+                        dataValues[0] = chart.Key.ToString(); // DRC No
+                        dataValues[1] = chart.Value.ToString("d"); // Date
+                    }
+                    // Runningchart details
+                    if (i < detailsArray.Length)
+                    {
+                        dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
+                        dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
+                        dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
+                        var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
+                        dataValues[5] = amt.ToString("N"); // Amount
+                        totalWorkDone += detailsArray[i].KmHrDone;
+                        totalWorkAmount += amt;
+                    }
+                    // Runningchart fuel
+                    if (i < fuelArray.Length)
+                    {
+                        dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
+                        dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
+                        dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
+                        var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
+                        dataValues[9] = amt.ToString("N"); // Amount
+                        totalFuelQty += fuelArray[i].Amount;
+                        totalFuelAmount += amt;
+                    }
+                    // Runningchart lubricant
+                    if (i < lubricantArray.Length)
+                    {
+                        dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
+                        dataValues[11] = lubricantArray[i].PumpstationName; // Lubricant Type
+                        dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
+                        dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
+                        var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
+                        dataValues[14] = amt.ToString("N"); // Amount
+                        totalLubricantQty += lubricantArray[i].Amount;
+                        totalLubricantAmount += amt;
+                    }
+                    <tr>
+                        <td>@dataValues[0]</td>
+                        <td>@dataValues[1]</td>
+
+                        <td>@dataValues[2]</td>
+                        <td>@dataValues[3]</td>
+                        <td>@dataValues[4]</td>
+                        <td>@dataValues[5]</td>
+
+                        <td>@dataValues[6]</td>
+                        <td>@dataValues[7]</td>
+                        <td>@dataValues[8]</td>
+                        <td>@dataValues[9]</td>
+
+                        <td>@dataValues[10]</td>
+                        <td>@dataValues[11]</td>
+                        <td>@dataValues[12]</td>
+                        <td>@dataValues[13]</td>
+                        <td>@dataValues[14]</td>
+                    </tr>
+                    }
+                }
+        }
+        <tr>
+            <td colspan="3" style="text-align: center">TOTAL</td>
+            
+            <td>@if (isVehicle) { <text>@totalWorkDone.ToString("N")</text>} &nbsp;</td>
+            <td>@if (!isVehicle) { <text>@totalWorkDone.ToString("N")</text>}&nbsp;</td>
+            <td>@totalWorkAmount.ToString("N")</td>
+
+            <td>&nbsp;</td>
+            <td>@totalFuelQty.ToString("N")</td>
+            <td>&nbsp;</td>
+            <td>@totalFuelAmount.ToString("N")</td>
+
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>@totalLubricantQty.ToString("N")</td>
+            <td>&nbsp;</td>
+            <td>@totalLubricantAmount.ToString("N")</td>
+        </tr>
+    </table>
+    <br />
+    <table class="style1">
+        <tr>
+            <td>Total Hire Bill</td>
+            <td>@totalWorkAmount.ToString("N")</td>
+        </tr>
+        <tr>
+            <td>Total Fuel</td>
+            <td>@totalFuelAmount.ToString("N")</td>
+        </tr>
+        <tr>
+            <td>Total Lubricant</td>
+            <td>@totalLubricantAmount.ToString("N")</td>
+        </tr>
+        <tr>
+            <td>Other Deduction</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Total Deduction</td>
+            <td>@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ToString("N")</td>
+        </tr>
+        <tr>
+            <td>Total Bill Amount</td>
+            <td>@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ToString("N")</td>
+        </tr>
+    </table>
+}

@@ -236,6 +236,17 @@ namespace CECRunningChart.Data.Vehicle
             }
         }
 
+        public DataSet GetAllHiredVehicles()
+        {
+            try
+            {
+                return ExecuteDataSet("proc_GetAllHiredVehicles", null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         #endregion
     }

@@ -101,6 +101,27 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetHireBillPrivateReport(DateTime startDate, DateTime endDate, int vehicleId, 
+            out DataSet pumpStationDataSet, out DataSet lubricantsDataSet)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@StartDate", startDate);
+                parameters.Add("@EndDate", endDate);
+                parameters.Add("@VehicleId", vehicleId);
+
+                var detailsDataSet = ExecuteDataSet("dbo.proc_RptHireBillPrivateReport", parameters);
+                pumpStationDataSet = ExecuteDataSet("dbo.proc_RptHireBillPrivateReportPumpstations", parameters);
+                lubricantsDataSet = ExecuteDataSet("dbo.proc_RptHireBillPrivateReportLubricants", parameters);
+                return detailsDataSet;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

@@ -5,6 +5,7 @@ using CECRunningChart.Services.ReportService;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Services.ProjectService;
+using CECRunningChart.Services.Vehicle;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -139,20 +140,27 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult HireBillPrivate()
         {
-            IProjectService projectService = new ProjectService();
-            ViewBag.Projects = ModelMapper.GetProjectModelList(projectService.GetAllProjects());
+            IVehicleService vehicleService = new VehicleService();
+            ViewBag.Vehicles = ModelMapper.GetVehicleModelList(vehicleService.GetAllHiredVehicles());
             return View();
         }
 
         [HttpPost]
-        public ActionResult HireBillPrivate(DateTime startDate, DateTime endDate, int projectId, string projectName)
+        public ActionResult HireBillPrivate(DateTime startDate, DateTime endDate, int vehicleNo)
         {
-            var report = reportService.GetHireBillReport(startDate, endDate, projectId);
-            var model = ModelMapper.GetHireBillReportModelList(report);
+            IVehicleService vehicleService = new VehicleService();
+            var vehicle = vehicleService.GetVehicle(vehicleNo);
+            var reporthp = reportService.GetHireBillPrivateReport(startDate, endDate, vehicleNo);
+            var modelhp = ModelMapper.GetHireBillPrivateReportModelList(reporthp);
+
+            ViewBag.IsVehicle = vehicle.IsVehicle;
+            ViewBag.OwnerName = vehicle.OwnerName;
+            ViewBag.HireRate = vehicle.HireRate.ToString("N");
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
-            ViewBag.ProjectName = projectName;
-            return View(model);
+            ViewBag.VehicleNumber = vehicle.VehicleNumber;
+
+            return View(modelhp);
         }
 
         #endregion

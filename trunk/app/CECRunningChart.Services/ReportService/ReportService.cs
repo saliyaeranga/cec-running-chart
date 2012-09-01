@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CECRunningChart.Core;
 using CECRunningChart.Data.Report;
+using System.Data;
 
 namespace CECRunningChart.Services.ReportService
 {
@@ -51,5 +52,27 @@ namespace CECRunningChart.Services.ReportService
             var reportData = reportDataProvider.GetHireBillReport(startDate, endDate, projectId);
             return ConversionHelper.ConvertToList<HireBillReport>(reportData);
         }
+
+        public HireBillPrivateReport GetHireBillPrivateReport(DateTime startDate, DateTime endDate, int vehicleId)
+        {
+            DataSet pumpStationDataSet;
+            DataSet lubricantsDataSet;
+            DataSet detailsDataSet = reportDataProvider.GetHireBillPrivateReport(startDate, endDate, vehicleId,
+                out pumpStationDataSet, out lubricantsDataSet);
+
+            var detailList = ConversionHelper.ConvertToList<HireBillPrivateReportDetails>(detailsDataSet);
+            var lubricantList = ConversionHelper.ConvertToList<HireBillPrivateReportLubricant>(lubricantsDataSet);
+            var pumpStationList = ConversionHelper.ConvertToList<HireBillPrivateReportPumpstation>(pumpStationDataSet);
+
+            HireBillPrivateReport reportData = new HireBillPrivateReport()
+            {
+                HireBillPrivateReportDetails = detailList,
+                HireBillPrivateReportLubricants = lubricantList,
+                HireBillPrivateReportPumpstations = pumpStationList
+            };
+
+            return reportData;
+        }
+
     }
 }

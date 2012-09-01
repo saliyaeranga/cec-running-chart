@@ -508,6 +508,64 @@ namespace CECRunningChart.Web.Helpers
             return reportModel.ToList<HireBillReportModel>();
         }
 
+        public static HireBillPrivateReportModel GetHireBillPrivateReportModelList(HireBillPrivateReport report)
+        {
+            HireBillPrivateReportModel model = new HireBillPrivateReportModel()
+            {
+                HireBillPrivateReportDetails = new List<HireBillPrivateReportDetailsModel>(),
+                HireBillPrivateReportFuel = new List<HireBillPrivateReportPumpstationModel>(),
+                HireBillPrivateReportLubricants = new List<HireBillPrivateReportLubricantModel>()
+            };
+
+            foreach (var item in report.HireBillPrivateReportDetails)
+            {
+                model.HireBillPrivateReportDetails.Add(new HireBillPrivateReportDetailsModel()
+                {
+                    RunningchartId = item.Id,
+                    BillDate = item.BillDate,
+                    ProjectLocation = item.ProjectLocation,
+                    FuelUsageOfDay = item.FuelUsageOfDay,
+                    KmHrDone = item.KmHrDone,
+                    HireAmount = item.HireAmount,
+                    VehicleRate = item.VehicleRate
+                });
+            }
+
+            foreach (var item in report.HireBillPrivateReportPumpstations)
+            {
+                model.HireBillPrivateReportFuel.Add(new HireBillPrivateReportPumpstationModel()
+                {
+                    Id = item.Id,
+                    RunningchartId = item.RunningchartId,
+                    BillDate = item.BillDate,
+                    VehicleId = item.VehicleId,
+                    Amount = item.Amount,
+                    FuelRate = item.FuelRate,
+                    PumpstationId = item.PumpstationId,
+                    PumpstationName = item.PumpstationName
+                });
+            }
+
+            foreach (var item in report.HireBillPrivateReportLubricants)
+            {
+                model.HireBillPrivateReportLubricants.Add(new HireBillPrivateReportLubricantModel()
+                {
+                    Id = item.Id,
+                    RunningchartId = item.RunningchartId,
+                    BillDate = item.BillDate,
+                    VehicleId = item.VehicleId,
+                    Amount = item.Amount,
+                    LubricantTypeId = item.LubricantTypeId,
+                    LubricantType = item.LubricantType,
+                    LubricantRate = item.LubricantRate,
+                    PumpstationId = item.PumpstationId,
+                    PumpstationName = item.PumpstationName
+                });
+            }
+
+            return model;
+        }
+
         public static IEnumerable<SelectListItem> GetPumpstationOptions(List<PumpstationModel> pumpstationsList)
         {
             List<SelectListItem> options = new List<SelectListItem>(pumpstationsList.Count + 1)
@@ -536,6 +594,22 @@ namespace CECRunningChart.Web.Helpers
                                    Text = p.ProjectName,
                                    Value = p.Id.ToString()
                                };
+
+            return options.Concat(projects.ToList());
+        }
+
+        public static IEnumerable<SelectListItem> GetVehicleOptions(List<VehicleModel> vehicleList)
+        {
+            List<SelectListItem> options = new List<SelectListItem>(vehicleList.Count + 1)
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = true }
+            };
+            var projects = from v in vehicleList
+                           select new SelectListItem
+                           {
+                               Text = v.VehicleNumber,
+                               Value = v.Id.ToString()
+                           };
 
             return options.Concat(projects.ToList());
         }

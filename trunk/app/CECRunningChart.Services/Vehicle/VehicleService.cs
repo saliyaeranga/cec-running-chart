@@ -106,6 +106,12 @@ namespace CECRunningChart.Services.Vehicle
             return dataProvider.AddNewFuelType(fuelType);
         }
 
+        public List<Core.Vehicle> GetAllHiredVehicles()
+        {
+            DataSet vehicleDataSet = dataProvider.GetAllHiredVehicles();
+            return ConversionHelper.ConvertToList<Core.Vehicle>(vehicleDataSet);
+        }
+
         #endregion
     }
 }
