@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.FuelConsumptionReportModel>
-
 @{
     ViewBag.Title = "Fuel Consumption Report";
 }
@@ -14,76 +13,103 @@
         });
     });
 </script>
-<h2>Fuel Consumption Report</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Fuel Consumption Report</h2>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-    @Html.ActionLink("Back to Fuel Consumption Report", "fuelconsumption")
-</p>
-@if (Model == null)
-{
-    using (Html.BeginForm())
+    @if (Model != null)
     {
-        <input type="text" id="startDate" name="startDate" class="dateselect" /><br />
-        <input type="text" id="endDate" name="endDate" class="dateselect" /><br />
-        <input type="submit" value="Generate Report" />
+        @Html.ActionLink("Back to Fuel Consumption Report", "fuelconsumption")
     }
-}
-else
-{
-    <p>
-        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
-    </p>
-    <table>
-        <tr>
-            @*<th>
+</div>
+<div class="tblContainer">
+    @if (Model == null)
+    {
+        using (Html.BeginForm())
+        {
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report Start Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="startDate" name="startDate" class="dateselect" /><br />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report End Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="endDate" name="endDate" class="dateselect" /><br />
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <input  class="genRptBtn" type="submit" value="Generate Report" />
+        </div>
+        }
+    }
+    else
+    {
+        <p>
+            Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
+        </p>
+        <table class="tblFont">
+            <tr>
+                @*<th>
                 VehicleId
             </th>*@
-            <th>
-                Vehicle/Machine No
-            </th>
-            <th>
-                Driver/Operator Name
-            </th>
-            <th>
-                Km/Hour Done
-            </th>
-            <th>
-                Total Fuel Used
-            </th>
-            <th>
-                Rate
-            </th>
-            <th>
-                Actual
-            </th>
-        </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
+                <th class="tblModel">
+                    Vehicle/Machine No
+                </th>
+                <th class="tblModel">
+                    Driver/Operator Name
+                </th>
+                <th class="tblModel">
+                    Km/Hour Done
+                </th>
+                <th class="tblModel">
+                    Total Fuel Used
+                </th>
+                <th class="tblModel">
+                    Rate
+                </th>
+                <th class="tblModel">
+                    Actual
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
                 @Html.DisplayFor(modelItem => item.VehicleId)
             </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DriverOperatorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KmHrDone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalFuelUsage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleRate) Km/L
-            </td>
-            <td>
-                @item.ActualRate.ToString("N") Km/L
-            </td>
-        </tr>
+                    <td class="mainColum">
+                        @Html.DisplayFor(modelItem => item.VehicleNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriverOperatorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KmHrDone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalFuelUsage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleRate) Km/L
+                    </td>
+                    <td>
+                        @item.ActualRate.ToString("N") Km/L
+                    </td>
+                </tr>
+            }
+        </table>
     }
-
-    </table>
-}
+</div>

@@ -168,6 +168,20 @@
     margin-top: 10px;
     width: 100px;
 }
+.genRptBtn
+{
+    background-color: #C9CF27;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 150px;
+    text-align:center;
+}
 /*manage vehicle page styles End*/
 /*styles for commen inner pages */
 .inrPgHeadding
@@ -245,6 +259,25 @@
     cursor: pointer;
     margin-top: 10px;
     width: 100px;
+}
+.createRpt
+{
+    float:left;
+    clear:both;
+    margin-top:15px;
+}
+.createRpt a, .createRpt a:hover {
+    background-color: #1A881A;
+    padding: 5px 10px;
+    border: 2px solid #999;
+    color: white;
+    font-size: 12px !important;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    float:left;
+    width: 232px;
+    text-align: center;
 }
 /*manage vehicle page styles*/
 .wrappernew textarea

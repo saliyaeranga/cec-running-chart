@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.HiredVehicleFuelReportModel>
-
 @{
     ViewBag.Title = "Fuel Report – Hired Vehicle / Machine";
 }
@@ -14,18 +13,45 @@
         });
     });
 </script>
-<h2>Fuel Report – Hired Vehicle / Machine</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Fuel Report – Hired Vehicle / Machine</h2>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-    @Html.ActionLink("Back to Fuel Report – Hired Vehicle / Machine", "hiredfuelreport")
-</p>
+    @if (Model != null)
+    {
+        @Html.ActionLink("Back to Fuel Report – Hired Vehicle / Machine", "hiredfuelreport")
+    }
+</div>
+<div class="tblContainer">
 @if (Model == null)
 {
     using (Html.BeginForm())
     {
-        <input type="text" id="startDate" name="startDate" class="dateselect" /><br />
-        <input type="text" id="endDate" name="endDate" class="dateselect" /><br />
-        <input type="submit" value="Generate Report" />
+    <div class="row">
+        <div class="wrapper">
+            <div class="editor-label">
+                Report Start Date:
+            </div>
+            <div class="editor-field">
+                <input type="text" id="startDate" name="startDate" class="dateselect" /><br />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report End Date:
+                </div>
+                <div class="editor-field">
+    <input type="text" id="endDate" name="endDate" class="dateselect" /><br />
+    </div>
+            </div>
+        </div>
+    <div class="row">
+    <input class="genRptBtn" type="submit" value="Generate Report" />
+    </div>
     }
 }
 else
@@ -33,56 +59,56 @@ else
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
     </p>
-    <table>
+    <table class="tblFont">
         <tr>
             @*<th>
                 VehicleId
             </th>*@
-            <th>
+            <th class="tblModel">
                 Vehicle/Machine No
             </th>
             @*<th>
                 IsVehicle
             </th>*@
-            <th>
+            <th class="tblModel">
                 Driver/Operator Name
             </th>
-            <th>
+            <th class="tblModel">
                 Owner’s Name
             </th>
-            <th>
+            <th class="tblModel">
                 Km/Hour Done
             </th>
-            <th>
+            <th class="tblModel">
                 Fuel Drawn
             </th>
         </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
                 @Html.DisplayFor(modelItem => item.VehicleId)
             </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleNumber)
-            </td>
-            @*<td>
+                <td class="mainColum">
+                    @Html.DisplayFor(modelItem => item.VehicleNumber)
+                </td>
+                @*<td>
                 @Html.DisplayFor(modelItem => item.IsVehicle)
             </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.DriverOperatorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OwnerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KmHrDone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuelDrawn)
-            </td>
-        </tr>
-    }
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriverOperatorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KmHrDone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FuelDrawn)
+                </td>
+            </tr>
+        }
     </table>
 }
+</div>

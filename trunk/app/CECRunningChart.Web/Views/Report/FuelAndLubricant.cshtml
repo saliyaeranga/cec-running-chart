@@ -43,168 +43,192 @@
         });
     });
 </script>
-<h2>
-    Fuel & Lubricant Report</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>
+        Fuel & Lubricant Report
+    </h2>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-</p>
-@if (Model == null)
-{
-    using (Html.BeginForm("fuelandlubricant", "report", FormMethod.Post, new { @id = "fuelandlubricantform" }))
+    @if (Model != null)
     {
-        var pumpstations = ViewBag.PumpStations as List<CECRunningChart.Web.Models.Pumpstation.PumpstationModel>;
+        @Html.ActionLink("Back to Fuel & Lubricant Report", "fuelandlubricant")
+    }
+</div>
+<div class="tblContainer">
+    @if (Model == null)
+    {
+        using (Html.BeginForm("fuelandlubricant", "report", FormMethod.Post, new { @id = "fuelandlubricantform" }))
+        {
+            var pumpstations = ViewBag.PumpStations as List<CECRunningChart.Web.Models.Pumpstation.PumpstationModel>;
+        
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report Start Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report End Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Pump Station:
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("pumpstationId", CECRunningChart.Web.Helpers.ModelMapper.GetPumpstationOptions(pumpstations), new { @id = "pumpstationId", @class = "todo" })
+                </div>
+                <input type="hidden" id="pumpstationName" name="pumpstationName" value="" />
+            </div>
+        </div>
+        <div class="row">
+            <input class="genRptBtn" type="submit" value="Generate Report" />
+        </div>              
+        }
+    }
+    else
+    {
+    
+        <p>
+            Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
+            <br />
+            Pump Station : @ViewBag.Pumpstation
+        </p>
         <table>
             <tr>
-                <td>
-                    Start Date
+                <td rowspan="2">
+                    Date
                 </td>
-                <td>
-                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                <td rowspan="2">
+                    Vehicle/Machine No
+                </td>
+                <td rowspan="2">
+                    Driver/Op Name
+                </td>
+                <td rowspan="2">
+                    Company/Hire
+                </td>
+                <td rowspan="2">
+                    DRC No
+                </td>
+                <td colspan="4" style="text-align: center">
+                    Fuel
+                </td>
+                <td colspan="4" style="text-align: center">
+                    Lubricant
                 </td>
             </tr>
             <tr>
                 <td>
-                    End Date
+                    Type
                 </td>
                 <td>
-                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                    Qty
+                </td>
+                <td>
+                    Rate
+                </td>
+                <td>
+                    Amount
+                </td>
+                <td>
+                    Type
+                </td>
+                <td>
+                    Qty
+                </td>
+                <td>
+                    Rate
+                </td>
+                <td>
+                    Amount
                 </td>
             </tr>
-            <tr>
-                <td>
-                    Pump Station
-                </td>
-                <td>@Html.DropDownList("pumpstationId", CECRunningChart.Web.Helpers.ModelMapper.GetPumpstationOptions(pumpstations), new { @id = "pumpstationId", @class = "todo" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                    <input type="hidden" id="pumpstationName" name="pumpstationName" value="" />
-                </td>
-                <td>
-                    <input type="submit" value="Generate Report" />
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                string fuelType = string.Empty;
+                string fuelQty = string.Empty;
+                string fuelRate = string.Empty;
+                string fuelAmt = string.Empty;
+                string lubType = string.Empty;
+                string lubQty = string.Empty;
+                string lubRate = string.Empty;
+                string lubAmt = string.Empty;
+                if (item.FuelQty > 0)
+                {
+                    fuelType = item.FuelType;
+                    fuelQty = item.FuelQty.ToString();
+                    fuelRate = item.FuelRate.ToString();
+                    fuelAmt = (item.FuelQty * item.FuelRate).ToString();
+                }
+                if (item.LubricantQty > 0)
+                {
+                    lubType = item.LubricantType;
+                    lubQty = item.LubricantQty.ToString();
+                    lubRate = item.LubricantRate.ToString();
+                    lubAmt = (item.LubricantQty * item.LubricantRate).ToString();
+                }
+                <tr>
+                    <td>
+                        @item.BillDate.ToString("d")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriverOperatorName)
+                    </td>
+                    <td>
+                        @if (item.IsHiredVehicle)
+                        {
+                            <text>YES</text>
+                        }
+                        else
+                        {
+                            <text>NO</text>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RunningchartId)
+                    </td>
+                    <td>
+                        @fuelType
+                    </td>
+                    <td>
+                        @fuelQty
+                    </td>
+                    <td>
+                        @fuelRate
+                    </td>
+                    <td>
+                        @fuelAmt
+                    </td>
+                    <td>
+                        @lubType
+                    </td>
+                    <td>
+                        @lubQty
+                    </td>
+                    <td>
+                        @lubRate
+                    </td>
+                    <td>
+                        @lubAmt
+                    </td>
+                </tr>
+            }
         </table>
     }
-}
-else
-{
-    <p>
-        @Html.ActionLink("Back to Fuel & Lubricant Report", "fuelandlubricant")
-    </p>
-    <p>
-        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
-        Pump Station : @ViewBag.Pumpstation
-    </p>
-    <table>
-        <tr>
-            <td rowspan="2">
-                Date</td>
-            <td rowspan="2">
-                Vehicle/Machine No</td>
-            <td rowspan="2">
-                Driver/Op Name</td>
-            <td rowspan="2">
-                Company/Hire</td>
-            <td rowspan="2">
-                DRC No</td>
-            <td colspan="4" style="text-align: center">
-                Fuel</td>
-            <td colspan="4" style="text-align: center">
-                Lubricant</td>
-        </tr>
-        <tr>
-            <td>
-                Type</td>
-            <td>
-                Qty</td>
-            <td>
-                Rate</td>
-            <td>
-                Amount</td>
-            <td>
-                Type</td>
-            <td>
-                Qty</td>
-            <td>
-                Rate</td>
-            <td>
-                Amount</td>
-        </tr>
-        @foreach (var item in Model)
-        {
-            string fuelType = string.Empty;
-            string fuelQty = string.Empty;
-            string fuelRate = string.Empty;
-            string fuelAmt = string.Empty;
-            string lubType = string.Empty;
-            string lubQty = string.Empty;
-            string lubRate = string.Empty;
-            string lubAmt = string.Empty;
-            if (item.FuelQty > 0)
-            {
-                fuelType = item.FuelType;
-                fuelQty = item.FuelQty.ToString();
-                fuelRate = item.FuelRate.ToString();
-                fuelAmt = (item.FuelQty * item.FuelRate).ToString();
-            }
-            if (item.LubricantQty > 0)
-            {
-                lubType = item.LubricantType;
-                lubQty = item.LubricantQty.ToString();
-                lubRate = item.LubricantRate.ToString();
-                lubAmt = (item.LubricantQty * item.LubricantRate).ToString();
-            }
-            <tr>
-                <td>
-                    @item.BillDate.ToString("d")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VehicleNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DriverOperatorName)
-                </td>
-                <td>
-                    @if (item.IsHiredVehicle)
-                    {
-                        <text>YES</text>
-                    }
-                    else
-                    {
-                        <text>NO</text>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RunningchartId)
-                </td>
-                <td>
-                    @fuelType
-                </td>
-                <td>
-                    @fuelQty
-                </td>
-                <td>
-                    @fuelRate
-                </td>
-                <td>
-                    @fuelAmt
-                </td>
-                <td>
-                    @lubType
-                </td>
-                <td>
-                    @lubQty
-                </td>
-                <td>
-                    @lubRate
-                </td>
-                <td>
-                    @lubAmt
-                </td>
-            </tr>
-        }
-    </table>
-}
+</div>
