@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CECRunningChart.Core;
 
 namespace CECRunningChart.Services.ReportService
 {
     public interface IReportService
     {
+        #region Service Members
+
         List<FuelConsumptionReport> GetFuelConsumptionReport(DateTime startDate, DateTime endDate);
         List<HiredVehicleFuelReport> GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate);
         List<DriverOperatorTimeSheet> GetDriverTimeSheetReport(string driverName);
@@ -16,5 +16,6 @@ namespace CECRunningChart.Services.ReportService
         List<HireBillReport> GetHireBillReport(DateTime startDate, DateTime endDate, int projectId);
         HireBillPrivateReport GetHireBillPrivateReport(DateTime startDate, DateTime endDate, int vehicleId);
 
+        #endregion
     }
 }

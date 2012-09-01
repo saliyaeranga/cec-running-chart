@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace CECRunningChart.Web.Models.Reports
 {
     public class HireBillPrivateReportModel
     {
-        public int RunningchartId { get; set; }
-        public DateTime BillDate { get; set; }
+        #region Public Members
 
         public List<HireBillPrivateReportDetailsModel> HireBillPrivateReportDetails { get; set; }
         public List<HireBillPrivateReportLubricantModel> HireBillPrivateReportLubricants { get; set; }
@@ -34,39 +32,28 @@ namespace CECRunningChart.Web.Models.Reports
             }
         }
 
-        /*
-        public string BillDate { get; set; }
-        public string ProjectLocation { get; set; }
-        public string RunningchartId { get; set; }
-        public string WorkDone { get; set; }
-        public string HireAmount { get; set; }
-
-        public string FuelPumpStation { get; set; }
-        public string FuelQty { get; set; }
-        public string FuelRate { get; set; }
-        public string FuelAmount { get; set; }
-
-        public string LubricantPumpStation { get; set; }
-        public string LubricantQty { get; set; }
-        public string LubricantRate { get; set; }
-        public string LubricantAmount { get; set; }
-         * 
-        */
+        #endregion
     }
 
     public class HireBillPrivateReportDetailsModel
     {
+        #region Public Members
+
         public int RunningchartId { get; set; }
         public DateTime BillDate { get; set; }
         public string ProjectLocation { get; set; }
         public int VehicleRate { get; set; }
-        public decimal FuelUsageOfDay { get; set; } //todo: float
+        public decimal FuelUsageOfDay { get; set; }
         public decimal KmHrDone { get; set; }
         public decimal HireAmount { get; set; }
+
+        #endregion
     }
 
     public class HireBillPrivateReportLubricantModel
     {
+        #region Public Members
+
         public int Id { get; set; }
         public int RunningchartId { get; set; }
         public int PumpstationId { get; set; }
@@ -77,10 +64,14 @@ namespace CECRunningChart.Web.Models.Reports
         public DateTime BillDate { get; set; }
         public string PumpstationName { get; set; }
         public string LubricantType { get; set; }
+
+        #endregion
     }
 
     public class HireBillPrivateReportPumpstationModel
     {
+        #region Public Members
+
         public int Id { get; set; }
         public int RunningchartId { get; set; }
         public int PumpstationId { get; set; }
@@ -89,5 +80,7 @@ namespace CECRunningChart.Web.Models.Reports
         public DateTime BillDate { get; set; }
         public string PumpstationName { get; set; }
         public decimal FuelRate { get; set; }
+
+        #endregion
     }
 }

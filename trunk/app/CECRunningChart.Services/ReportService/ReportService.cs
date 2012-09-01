@@ -1,21 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using CECRunningChart.Core;
 using CECRunningChart.Data.Report;
-using System.Data;
 
 namespace CECRunningChart.Services.ReportService
 {
     public class ReportService : IReportService
     {
+        #region Private Members
+
         private readonly IReportDataProvider reportDataProvider;
+
+        #endregion
+
+        #region Constructor
 
         public ReportService()
         {
             reportDataProvider = new ReportDataProvider();
         }
+
+        #endregion
+
+        #region Public Methods
 
         public List<FuelConsumptionReport> GetFuelConsumptionReport(DateTime startDate, DateTime endDate)
         {
@@ -74,5 +82,6 @@ namespace CECRunningChart.Services.ReportService
             return reportData;
         }
 
+        #endregion
     }
 }

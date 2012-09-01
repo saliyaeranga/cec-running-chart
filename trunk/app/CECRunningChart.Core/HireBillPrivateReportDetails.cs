@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace CECRunningChart.Core
 {
     public class HireBillPrivateReportDetails
     {
+        #region Public Members
+
         [XmlElementAttribute("Id")]
         public int Id { get; set; }
 
@@ -21,12 +20,14 @@ namespace CECRunningChart.Core
         public int VehicleRate { get; set; }
 
         [XmlElementAttribute("FuelUsageOfDay")]
-        public decimal FuelUsageOfDay { get; set; } //todo: float
+        public decimal FuelUsageOfDay { get; set; }
 
         [XmlElementAttribute("KmHrDone")]
         public decimal KmHrDone { get; set; }
 
         [XmlElementAttribute("HireAmount")]
         public decimal HireAmount { get; set; }
+
+        #endregion
     }
 }
