@@ -35,7 +35,7 @@ namespace CECRunningChart.Web.Controllers
                     FormsAuthentication.SignOut();
                     return View(new LogOnModel());
                 }
-                return RedirectToAction("Manage");
+                return RedirectToAction("manage");
             }
 
             return View(new LogOnModel());
@@ -68,7 +68,7 @@ namespace CECRunningChart.Web.Controllers
                 return Redirect(ReturnUrl);
             }
 
-            return RedirectToAction("Manage", "Home");
+            return RedirectToAction("manage", "home");
         }
 
         public ActionResult LogOff()
@@ -77,20 +77,6 @@ namespace CECRunningChart.Web.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-        //TODO: Remove methods and views
-        //public ActionResult innerPage()
-        //{
-        //    return View();
-        //}
-        //public ActionResult subInnerPage()
-        //{
-        //    return View();
-        //}
-        //public ActionResult About()
-        //{
-        //    return View();
-        //}
 
         [Authorize]
         public ActionResult Manage()
