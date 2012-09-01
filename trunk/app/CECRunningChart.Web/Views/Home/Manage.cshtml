@@ -8,17 +8,17 @@ Hello @user.UserName*@
 
 @{
     Layout = "~/Views/Shared/_Inner.cshtml";
+    ViewBag.Title = "CEC Running Chart - Home";
 }
 @section Header {
     <div class="logo">
-        <img src="/Content/images/logo.png" />
+        <img src="/Content/images/logo.png" alt="Consulting Engineers & Contractors (Pvt) Ltd" />
     </div>
     <div class="companyName">
         Consulting Engineers & Contractors (Pvt) Ltd
     </div>
     <div class="logoutBtndiv">
-        @*<input class="logoutBtn" type="button" />*@
-        <a href="@Url.Action("LogOff", "Home")" class="logoutBtn">
+        <a href="@Url.Action("logoff", "home")" class="logoutBtn">
             <img src="/Content/images/logoutBtn.png" alt="Log Off" />
         </a>
     </div>
@@ -64,9 +64,9 @@ Hello @user.UserName*@
         {
             <div class="inspectorIconPanel">
                 <a href="">
-                    <img src="/Content/images/approveRptIcon.png" />
+                    <img src="/Content/images/approveRptIcon.png" alt="" />
                 </a><a href="">
-                    <img src="/Content/images/manageRptIcon.png" />
+                    <img src="/Content/images/manageRptIcon.png" alt="" />
                 </a>
             </div>
         }
@@ -74,9 +74,9 @@ Hello @user.UserName*@
         {
             <div class="operatorIconPanel">
                 <a href="">
-                    <img src="/Content/images/addRunningChartIcon.png" />
+                    <img src="/Content/images/addRunningChartIcon.png" alt="" />
                 </a><a href="">
-                    <img src="/Content/images/viewPastRptIcon.png" />
+                    <img src="/Content/images/viewPastRptIcon.png" alt="" />
                 </a>
             </div>
         }        
