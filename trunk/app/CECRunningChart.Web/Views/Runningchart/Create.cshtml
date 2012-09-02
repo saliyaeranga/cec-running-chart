@@ -27,6 +27,14 @@
         setTimePickers();
         applyRunningchartValidations();
 
+        $("#SelectedVehicleId").change(function () {
+            var selectedVehicle = $("#SelectedVehicleId").val();
+            var isVehicle = $("#IsVehicle" + selectedVehicle).val();
+            if (isVehicle) {
+                applyTimePickersToMeter();
+            }
+        });
+
         $("#runningchartform").submit(function () {
             var isValid = $("#runningchartform").valid();
             var isLubValid = isLubricantsValid();

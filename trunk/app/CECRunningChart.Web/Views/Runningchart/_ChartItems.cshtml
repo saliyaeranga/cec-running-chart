@@ -2,7 +2,7 @@
 
 @{ 
     int itemCount = 0;
-    string meterText = Model.isVehicle ? "Meter" : "Hour";
+    string meterText = "Meter/Hour";
 }
 <table>
     <tr>
@@ -50,11 +50,11 @@
                     <label id="@string.Concat("ChartItemTimeDiffError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" maxlength="10" />
+                    <input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" class="timemeasure" maxlength="10" />
                     <label id="@string.Concat("ChartItemStartMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" class="meterdiff" row="@index" maxlength="10" />
+                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" class="meterdiff timemeasure" row="@index" maxlength="10" />
                     <label id="@string.Concat("ChartItemEndMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
