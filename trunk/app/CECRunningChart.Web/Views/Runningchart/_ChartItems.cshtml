@@ -42,11 +42,11 @@
                     <label id="@string.Concat("ChartItemStartTimeError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick" onblur="calculateTimeDiff();" />
+                    <input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick calcdiff" row="@index" />
                     <label id="@string.Concat("ChartItemEndTimeError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" />
+                    <input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" readonly="readonly" />
                     <label id="@string.Concat("ChartItemTimeDiffError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
@@ -54,11 +54,11 @@
                     <label id="@string.Concat("ChartItemStartMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" maxlength="10" />
+                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" class="meterdiff" row="@index" maxlength="10" />
                     <label id="@string.Concat("ChartItemEndMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" />
+                    <input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" readonly="readonly" />
                     <label id="@string.Concat("ChartItemMeterDiffError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
