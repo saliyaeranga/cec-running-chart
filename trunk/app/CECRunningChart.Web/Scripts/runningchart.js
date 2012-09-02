@@ -194,6 +194,7 @@ function PopulateChartRows(isAdding, isRemoving, removingId) {
     var selectedVehicle = $("#SelectedVehicleId").val();
     if (parseInt(selectedVehicle) <= 0) {
         alert("Please Select the Vehicle First!");
+        $("#SelectedVehicleId").focus();
         return;
     }
 
@@ -227,6 +228,7 @@ function PopulateChartRows(isAdding, isRemoving, removingId) {
     $.post('/Runningchart/PoulateChartItems', formParameters, function (data) {
         document.getElementById("ChartItems").innerHTML = data;
         setTimePickers();
+        setCalculators();
     });
 }
 
@@ -273,4 +275,38 @@ function PopulatePumpstationRows(isAdding, isRemoving, removingId) {
     $.post('/Runningchart/PoulatePumpstationItems', formParameters, function (data) {
         document.getElementById("PumpStationInfo").innerHTML = data;
     });
+}
+
+function setCalculators() {
+    $(".calcdiff").change(function () {
+        var index = $(this).attr("row");
+        calculateTimeDiff(index);
+    });
+    $(".meterdiff").change(function () {
+        var index = $(this).attr("row");
+        calculateMetrDiff(index);
+    });
+}
+
+function calculateTimeDiff(index) {
+    var startTime = $.trim(document.getElementById("SelectedChartItems[" + index + "].StartTime").value);
+    var endTime = $.trim(document.getElementById("SelectedChartItems[" + index + "].EndTime").value);
+    var date = $.trim($("#BillDate").val());
+
+    if (startTime == "" || endTime == "" || date == "") {
+        return;
+    }
+
+    var startDate = new Date(date + ' ' + startTime);
+    var endDate = new Date(date + ' ' + endTime);
+    var dateDiff = ((endDate - startDate) / 60000) / 60;
+    document.getElementById("SelectedChartItems[" + index + "].TimeDifference").value = dateDiff.toFixed(2);
+}
+
+function calculateMetrDiff(index) {
+    var startMeter = $.trim(document.getElementById("SelectedChartItems[" + index + "].StartMeter").value);
+    var endMeter = $.trim(document.getElementById("SelectedChartItems[" + index + "].EndMeter").value);
+
+    var meterDiff = parseFloat(endMeter) - parseFloat(startMeter);
+    document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = meterDiff.toFixed(2);
 }
