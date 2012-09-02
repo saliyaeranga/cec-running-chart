@@ -1,28 +1,5 @@
 ﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
            
-<script type="text/javascript">
-    function PopulatePumpstationRows(isAdding, isRemoving, removingId) {
-        var formParameters = new Object();
-        formParameters.isAddingNewItem = isAdding;
-
-        var itemCount = document.getElementById("PumpstationsCount").value;
-        for (var i = 0; i < itemCount; i++) {
-            formParameters["[" + i + "].SelectedPumpstationId"] = document.getElementById("SelectedPumpstations[" + i + "].SelectedPumpstationId").value;
-            var pumpAmount = document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value;
-            formParameters["[" + i + "].PumpAmount"] = pumpAmount != "" ? pumpAmount : "0";
-
-            // Is removing this item
-            if (isRemoving == true && i == removingId) {
-                formParameters["[" + i + "].IsRemoving"] = true;
-            }
-        }
-
-        $.ajaxSetup({ cache: false });
-        $.post('@Url.Action("PoulatePumpstationItems", "Runningchart")', formParameters, function (data) {
-            document.getElementById("PumpStationInfo").innerHTML = data;
-        });
-    }
-</script>
 @{ int itemCount = 0; }
 <table>
     <tr>

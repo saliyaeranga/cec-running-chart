@@ -1,31 +1,5 @@
 ﻿@model CECRunningChart.Web.Models.Runningchart.RunningchartModel
 
-<script type="text/javascript">
-    function PopulateLubricantstationRows(isAdding, isRemoving, removingId) {
-        var formParameters = new Object();
-        formParameters.isAddingNewItem = isAdding;
-
-        var itemCount = document.getElementById("LubricantstationsCount").value;
-        for (var i = 0; i < itemCount; i++) {
-            formParameters["[" + i + "].SelectedPumpstationId"] = document.getElementById("SelectedLubricants[" + i + "].SelectedPumpstationId").value;
-            formParameters["[" + i + "].SelectedLubricantTypeId"] = document.getElementById("SelectedLubricants[" + i + "].SelectedLubricantTypeId").value;
-            var pumpAmount = document.getElementById("SelectedLubricants[" + i + "].PumpAmount").value;
-            formParameters["[" + i + "].PumpAmount"] = pumpAmount != "" ? pumpAmount : "0";
-
-            // Is removing this item
-            if (isRemoving == true && i == removingId) {
-                formParameters["[" + i + "].IsRemoving"] = true;
-            }
-        }
-
-        $.ajaxSetup({ cache: false });
-        $.post('@Url.Action("PoulateLubricantItems", "Runningchart")', formParameters, function (data) {
-            //setTimeout("applyLubricantValidations();", 3000);
-            document.getElementById("LubricantInfo").innerHTML = data;
-//            applyLubricantValidations();
-        });
-    }
-</script>
 @{ int lubItemCount = 0; }
 <table>
     <tr>

@@ -15,6 +15,7 @@
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.timepicker.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/runningchart.js")" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -24,10 +25,7 @@
         });
 
         setTimePickers();
-
-        $.validator.addMethod("selectVehicleId", function (value, element) {
-            return value > 0;
-        }, " *");
+        applyRunningchartValidations();
 
         $("#runningchartform").submit(function () {
             var isValid = $("#runningchartform").valid();
@@ -36,64 +34,6 @@
             var isItemsValid = isChartDetailsValid();
 
             return isValid || isLubValid || isPumpValid || isItemsValid;
-        });
-
-        $("#runningchartform").validate({
-            rules: {
-                BillNumber: {
-                    required: true,
-                    maxlength: 10
-                },
-                BillDate: {
-                    required: true
-                },
-                DriverName: {
-                    required: true,
-                    maxlength: 200
-                },
-                SelectedVehicleId: {
-                    required: true,
-                    selectVehicleId: true
-                },
-                DayStartime: {
-                    required: true
-                },
-                DayEndTime: {
-                    required: true
-                },
-                FuelLeftBegningOfDay: {
-                    required: true,
-                    number: true
-                },
-                FuelLeftEndOfDay: {
-                    required: true,
-                    number: true
-                },
-                FuelUsageOfDay: {
-                    required: true,
-                    number: true
-                }
-            },
-            messages: {
-                BillNumber: " *",
-                BillDate: " *",
-                DriverName: " *",
-                SelectedVehicleId: " *",
-                DayStartime: " *",
-                DayEndTime: " *",
-                FuelLeftBegningOfDay: {
-                    required: " *",
-                    number: " Please enter a valid number"
-                },
-                FuelLeftEndOfDay: {
-                    required: " *",
-                    number: " Please enter a valid number"
-                },
-                FuelUsageOfDay: {
-                    required: " *",
-                    number: " Please enter a valid number"
-                }
-            }
         });
 
         $("#FuelLeftEndOfDay").keyup(function () {
@@ -114,133 +54,6 @@
             $("#FuelUsageOfDay").val(fuelUsage);
         });
     });
-
-    function setTimePickers() {
-        $('.timepick').timepicker({
-            showPeriod: true,
-            showLeadingZero: true
-        });
-    }
-
-    function isLubricantsValid() {
-        var isValid = true;
-        var lubriCount = $("#LubricantstationsCount").val();
-        for (var i = 0; i < lubriCount; i++) {
-            document.getElementById("LubricantPumpstationError" + i).style.display = "none";
-            document.getElementById("LubricantLubricantError" + i).style.display = "none";
-            document.getElementById("LubricantQuantityError" + i).style.display = "none";
-
-            var pumpIndex = document.getElementById("SelectedLubricants[" + i + "].SelectedPumpstationId").selectedIndex;
-            var libriIndex = document.getElementById("SelectedLubricants[" + i + "].SelectedLubricantTypeId").selectedIndex;
-            var pumpQty = document.getElementById("SelectedLubricants[" + i + "].PumpAmount").value;
-
-            if (pumpIndex <= 0) {
-                isValid = false;
-                document.getElementById("LubricantPumpstationError" + i).style.display = "block";
-            }
-            if (libriIndex <= 0) {
-                isValid = false;
-                document.getElementById("LubricantLubricantError" + i).style.display = "block";
-            }
-            if ($.trim(pumpQty) == "") {
-                isValid = false;
-                document.getElementById("LubricantQuantityError" + i).style.display = "block";
-            }
-        }
-        return isValid;
-    }
-
-    function isPumpstationsValid() {
-        var isValid = true;
-        var pumpstationCount = $("#PumpstationsCount").val();
-        for (var i = 0; i < pumpstationCount; i++) {
-            document.getElementById("PumpstationPumpstationError" + i).style.display = "none";
-            document.getElementById("PumpstationQtyError" + i).style.display = "none";
-
-            var pumpIndex = document.getElementById("SelectedPumpstations[" + i + "].SelectedPumpstationId").selectedIndex;
-            var pumpQty = document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value;
-
-            if (pumpIndex <= 0) {
-                isValid = false;
-                document.getElementById("PumpstationPumpstationError" + i).style.display = "block";
-            }
-            if ($.trim(pumpQty) == "") {
-                isValid = false;
-                document.getElementById("PumpstationQtyError" + i).style.display = "block";
-            }
-        }
-        return isValid;
-    }
-
-    function isChartDetailsValid() {
-        var isValid = true;
-        var itemCount = $("#ChartItemsCount").val();
-        for (var i = 0; i < itemCount; i++) {
-            document.getElementById("ChartItemStartTimeError" + i).style.display = "none";
-            document.getElementById("ChartItemEndTimeError" + i).style.display = "none";
-            document.getElementById("ChartItemTimeDiffError" + i).style.display = "none";
-            document.getElementById("ChartItemStartMeterError" + i).style.display = "none";
-            document.getElementById("ChartItemEndMeterError" + i).style.display = "none";
-            document.getElementById("ChartItemMeterDiffError" + i).style.display = "none";
-            document.getElementById("ChartItemIdleHrsError" + i).style.display = "none";
-            document.getElementById("ChartItemProjectError" + i).style.display = "none";
-            document.getElementById("ChartItemProjectMgrError" + i).style.display = "none";
-            document.getElementById("ChartItemRentleError" + i).style.display = "none";
-
-            var startTime = document.getElementById("SelectedChartItems[" + i + "].StartTime").value;
-            var endTime = document.getElementById("SelectedChartItems[" + i + "].EndTime").value;
-            var timeDifference = document.getElementById("SelectedChartItems[" + i + "].TimeDifference").value;
-            var startMeter = document.getElementById("SelectedChartItems[" + i + "].StartMeter").value;
-            var endMeter = document.getElementById("SelectedChartItems[" + i + "].EndMeter").value;
-            var meterDifference = document.getElementById("SelectedChartItems[" + i + "].MeterDifference").value;
-            var idleHours = document.getElementById("SelectedChartItems[" + i + "].IdleHours").value;
-            var selectedProjectId = document.getElementById("SelectedChartItems[" + i + "].SelectedProjectId").selectedIndex;
-            var selectedRentalTypeId = document.getElementById("SelectedChartItems[" + i + "].SelectedRentalTypeId").selectedIndex;
-            var pm = document.getElementById("SelectedChartItems[" + i + "].SelectedProjectManager").value;
-
-            if ($.trim(startTime) == "") {
-                isValid = false;
-                document.getElementById("ChartItemStartTimeError" + i).style.display = "block";
-            }
-            if ($.trim(endTime) == "") {
-                isValid = false;
-                document.getElementById("ChartItemEndTimeError" + i).style.display = "block";
-            }
-            if ($.trim(timeDifference) == "") {
-                isValid = false;
-                document.getElementById("ChartItemTimeDiffError" + i).style.display = "block";
-            }
-            if ($.trim(startMeter) == "") {
-                isValid = false;
-                document.getElementById("ChartItemStartMeterError" + i).style.display = "block";
-            }
-            if ($.trim(endMeter) == "") {
-                isValid = false;
-                document.getElementById("ChartItemEndMeterError" + i).style.display = "block";
-            }
-            if ($.trim(meterDifference) == "") {
-                isValid = false;
-                document.getElementById("ChartItemMeterDiffError" + i).style.display = "block";
-            }
-            if ($.trim(idleHours) == "") {
-                isValid = false;
-                document.getElementById("ChartItemIdleHrsError" + i).style.display = "block";
-            }
-            if ($.trim(pm) == "") {
-                isValid = false;
-                document.getElementById("ChartItemProjectMgrError" + i).style.display = "block";
-            }
-            if (selectedProjectId <= 0) {
-                isValid = false;
-                document.getElementById("ChartItemProjectError" + i).style.display = "block";
-            }
-            if (selectedRentalTypeId <= 0) {
-                isValid = false;
-                document.getElementById("ChartItemRentleError" + i).style.display = "block";
-            }
-        }
-        return isValid;
-    }
 </script>
 
 @using (Html.BeginForm("create", "runningchart", FormMethod.Post, new { @id = "runningchartform"}))
@@ -249,8 +62,6 @@
     <div id="BasicInfo">
         <table>
             <tr>
-                @*<td>Running Chart #</td>
-                <td><input type="text" id="RunningchartId" name="RunningchartId" value="@Model.RunningchartId" /></td>*@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>Bill Number</td>
@@ -300,12 +111,10 @@
             <tr>
                 <td>Fuel Left End of the Day</td>
                 <td>Fuel Usage of the Day</td>
-                @*<td>&nbsp;</td>*@
             </tr>
             <tr>
                 <td><input type="text" id="FuelLeftEndOfDay" name="FuelLeftEndOfDay" /></td>
                 <td><input type="text" id="FuelUsageOfDay" name="FuelUsageOfDay" /></td>
-                @*<td><input type="button" value="Calculate Values" /></td>*@
             </tr>
         </table>
         <table>
