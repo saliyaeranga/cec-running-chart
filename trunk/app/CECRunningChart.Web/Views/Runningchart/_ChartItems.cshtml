@@ -6,16 +6,16 @@
 }
 <table>
     <tr>
-        <td>Start Time</td>
-        <td>End Time</td>
-        <td>Time Difference</td>
-        <td>Start @meterText</td>
-        <td>End @meterText</td>
-        <td>@meterText Difference</td>
-        <td>Idle Hours</td>
-        <td>Project Name</td>
+        <td style="width:85px;">Start Time</td>
+        <td style="width:85px;">End Time</td>
+        <td style="width:85px;">Time Difference</td>
+        <td style="width:115px;">Start @meterText</td>
+        <td style="width:115px;">End @meterText</td>
+        <td style="width:115px;">@meterText Difference</td>
+        <td style="width:85px;">Idle Hours</td>
+        <td style="width:159px;">Project Name</td>
         <td>Project Manager</td>
-        <td>Rental Type</td>
+        <td style="width:159px;">Rental Type</td>
         <td>&nbsp;</td>
     </tr>
     @if (Model.SelectedChartItems != null && Model.SelectedChartItems.Count > 0)
@@ -38,42 +38,42 @@
             string idleHourText = item.IdleHours == 0 ? string.Empty : item.IdleHours.ToString();
             <tr>
                 <td>
-                    <input type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" />
+                    <input style="width:70px;" type="text" id="@startTimeId" name="@startTimeId" value="@item.StartTime" maxlength="10" class="timepick" />
                     <label id="@string.Concat("ChartItemStartTimeError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick calcdiff" row="@index" />
+                    <input style="width:70px;" type="text" id="@endTimeId" name="@endTimeId" value="@item.EndTime" maxlength="10" class="timepick calcdiff" row="@index" />
                     <label id="@string.Concat("ChartItemEndTimeError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" readonly="readonly" />
+                    <input style="width:70px;" type="text" id="@timeDiffId" name="@timeDiffId" value="@item.TimeDifference" maxlength="10" readonly="readonly" />
                     <label id="@string.Concat("ChartItemTimeDiffError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" class="timemeasure" maxlength="10" />
+                    <input style="width:100px;" type="text" id="@startMeterId" name="@startMeterId" value="@item.StartMeter" class="timemeasure" maxlength="10" />
                     <label id="@string.Concat("ChartItemStartMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" class="meterdiff timemeasure" row="@index" maxlength="10" />
+                    <input style="width:100px;" type="text" id="@endMeterId" name="@endMeterId" value="@item.EndMeter" class="meterdiff timemeasure" row="@index" maxlength="10" />
                     <label id="@string.Concat("ChartItemEndMeterError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" readonly="readonly" />
+                    <input style="width:100px;" type="text" id="@meterDiffId" name="@meterDiffId" value="@item.MeterDifference" maxlength="10" readonly="readonly" />
                     <label id="@string.Concat("ChartItemMeterDiffError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@idleHoursId" name="@idleHoursId" value="@idleHourText" maxlength="10" />
+                    <input style="width:70px;" type="text" id="@idleHoursId" name="@idleHoursId" value="@idleHourText" maxlength="10" />
                     <label id="@string.Concat("ChartItemIdleHrsError", index)" style="display: none; color: Red;"> *</label>
                 </td>
-                <td>
+                <td class="selectDesign">
                     @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
                     <label id="@string.Concat("ChartItemProjectError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
-                    <input type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" />
+                    <input style="width:90px;" type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" />
                     <label id="@string.Concat("ChartItemProjectMgrError", index)" style="display: none; color: Red;"> *</label>
                 </td>
-                <td>
+                <td class="selectDesign">
                     @Html.DropDownList(selectedRentalTypeId, Model.GetRentalTypeOptions(item.SelectedRentalTypeId), new { @id = selectedRentalTypeId, @class = "todo" })
                     <label id="@string.Concat("ChartItemRentleError", index)" style="display: none; color: Red;"> *</label>
                 </td>
