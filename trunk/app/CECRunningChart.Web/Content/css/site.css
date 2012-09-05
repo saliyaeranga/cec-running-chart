@@ -284,4 +284,10 @@
 {
     width: 200px;
 }
+.runningChrtSub
+{
+    font-size: 14px;
+    text-decoration:underline;
+    color:#585858;
+}
 /*styles for commen inner pages End*/
