@@ -164,7 +164,7 @@
     }
     </div>
     <br />
-    if (ViewBag.Mode != null && !string.Equals(ViewBag.Mode, "create"))
+    if (ViewBag.Mode != null && string.Equals(ViewBag.Mode, "create"))
     {
         <div id="Authorization">
             <input type="submit" value="Send to Approve" />
