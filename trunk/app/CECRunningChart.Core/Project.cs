@@ -10,10 +10,10 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("ProjectName")]
         public string ProjectName { get; set; }
 
-        [XmlElementAttribute("ProjectLocation")]
+        [XmlElementAttribute("ProjectManager")]
         public string ProjectManager { get; set; }
 
-        [XmlElementAttribute("ProjectManager")]
+        [XmlElementAttribute("ProjectLocation")]
         public string ProjectLocation { get; set; }
 
         [XmlElementAttribute("ProjectDescription")]

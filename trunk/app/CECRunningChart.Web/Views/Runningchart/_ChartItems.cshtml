@@ -66,10 +66,11 @@
                     <label id="@string.Concat("ChartItemIdleHrsError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td class="selectDesign">
-                    @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "todo" })
+                    @Html.DropDownList(selectedProjectId, Model.GetProjectOptions(item.SelectedProjectId), new { @id = selectedProjectId, @class = "cecprojects", @row = index })
                     <label id="@string.Concat("ChartItemProjectError", index)" style="display: none; color: Red;"> *</label>
                 </td>
                 <td>
+                    @*TODO : Add PM to a Dropdown*@
                     <input style="width:90px;" type="text" id="@selectedProjectManagerId" name="@selectedProjectManagerId" value="@item.SelectedProjectManager" maxlength="200" />
                     <label id="@string.Concat("ChartItemProjectMgrError", index)" style="display: none; color: Red;"> *</label>
                 </td>

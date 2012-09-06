@@ -229,6 +229,7 @@ function PopulateChartRows(isAdding, isRemoving, removingId) {
         document.getElementById("ChartItems").innerHTML = data;
         setTimePickers();
         setCalculators();
+        setProjectManagerFiller();
         if (formParameters.isVehicle == "False") {
             applyTimePickersToMeter();
         }
@@ -334,4 +335,13 @@ function calculateMetrDiff(index) {
         var dateDiff = ((endDate - startDate) / 60000) / 60;
         document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = dateDiff.toFixed(2);
     }
+}
+
+function setProjectManagerFiller() {
+    $(".cecprojects").change(function () {
+        var selectedProj = $(this).val();
+        var projMgr = selectedProj > 0 ? $("#ProjectManager" + selectedProj).val() : "";
+        var index = $(this).attr("row");
+        document.getElementById("SelectedChartItems[" + index + "].SelectedProjectManager").value = projMgr;
+    });
 }

@@ -104,6 +104,38 @@ namespace CECRunningChart.Data.Runningchart
             }
         }
 
+        public DataSet GetRunningChart(int chartId)
+        {
+            try
+            {
+                DataSet chartDs = new DataSet();
+                Parameters parameters = new Parameters();
+                parameters.Add("@RunningChartId", chartId);
+
+                var chartMaster = ExecuteDataSet("proc_GetRunningchartById", parameters);
+                var chartDetails = ExecuteDataSet("proc_GetRunningChartDetails", parameters);
+                var chartLubricants = ExecuteDataSet("proc_GetRunningChartLubricants", parameters);
+                var chartFuel = ExecuteDataSet("proc_GetRunningChartPumpstations", parameters);
+
+                chartMaster.Tables[0].TableName = "Runningchart";
+                chartDetails.Tables[0].TableName = "RunningchartDetails";
+                chartLubricants.Tables[0].TableName = "RunningchartLubricants";
+                chartFuel.Tables[0].TableName = "RunningchartPumpstation";
+                
+                chartDs.Tables.Add(chartMaster.Tables[0].Copy());
+                chartDs.Tables.Add(chartDetails.Tables[0].Copy());
+                chartDs.Tables.Add(chartLubricants.Tables[0].Copy());
+                chartDs.Tables.Add(chartFuel.Tables[0].Copy());
+
+                return chartDs;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         #region Private Methods
 
         private void AddRunningChartParameters(Core.Runningchart runningChart, Parameters parameters)

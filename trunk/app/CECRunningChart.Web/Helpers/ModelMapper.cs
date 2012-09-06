@@ -310,7 +310,7 @@ namespace CECRunningChart.Web.Helpers
             return runningChart;
         }
 
-        public static List<RunningchartModel> GetRunningchartModel(List<Runningchart> runningCharts)
+        public static List<RunningchartModel> GetRunningchartModelList(List<Runningchart> runningCharts)
         {
             if (runningCharts == null || runningCharts.Count < 0)
                 return null;
@@ -336,6 +336,78 @@ namespace CECRunningChart.Web.Helpers
                         };
 
             return model.ToList<RunningchartModel>();
+        }
+
+        public static RunningchartModel GetRunningchartModel(Runningchart runningChart)
+        {
+            RunningchartModel model = new RunningchartModel()
+            {
+                RunningchartId = runningChart.Id,
+                BillNumber = runningChart.BillNumber,
+                BillDate = runningChart.BillDate,
+                DriverName = runningChart.DriverName,
+                SelectedVehicleId = runningChart.VehicleId,
+                //SelectedVehicleNo = c.VehicleNumber, //TODO: Remove
+                FuelLeftBegningOfDay = runningChart.FuelLeftBegning,
+                FuelLeftEndOfDay = runningChart.FuelLeftEnd,
+                FuelUsageOfDay = runningChart.FuelUsageOfDay,
+                DailyNote = runningChart.DailyNote,
+                DayStartime = runningChart.DayStartime,
+                DayEndTime = runningChart.DayEndTime,
+                IsApproved = runningChart.IsApproved,
+                ApprovedBy = runningChart.ApprovedBy,
+                EnteredBy = runningChart.EnteredBy,
+                SelectedChartItems = GetChartItemModelList(runningChart.RunningchartDetails),
+                SelectedPumpstations = GetChartPumpstationItemModelList(runningChart.RunningchartPumpstation),
+                SelectedLubricants = GetChartLubricantItemModelList(runningChart.RunningchartLubricants),
+            };
+
+            return model;
+        }
+
+        private static List<ChartItemModel> GetChartItemModelList(List<RunningchartDetails> runningchartDetails)
+        {
+            var details = from d in runningchartDetails
+                          select new ChartItemModel()
+                          {
+                              StartTime = d.StartTime.ToShortTimeString(),
+                              EndTime = d.EndTime.ToShortTimeString(),
+                              TimeDifference = d.TimeDifference,
+                              StartMeter = d.StartMeter,
+                              EndMeter = d.EndMeter,
+                              MeterDifference = d.MeterDifference,
+                              IdleHours = d.IdleHours,
+                              SelectedProjectId = d.ProjectId,
+                              SelectedProjectManager = d.ProjectManagerName,
+                              SelectedRentalTypeId = d.RentalTypeId
+                          };
+
+            return details.ToList<ChartItemModel>();
+        }
+
+        private static List<ChartPumpstationItemModel> GetChartPumpstationItemModelList(List<RunningchartPumpstation> runningchartPumps)
+        {
+            var pumpstations = from item in runningchartPumps
+                               select new ChartPumpstationItemModel()
+                               {
+                                   SelectedPumpstationId = item.PumpstationId,
+                                   PumpAmount = item.Amount
+                               };
+
+            return pumpstations.ToList<ChartPumpstationItemModel>();
+        }
+
+        private static List<ChartLubricantItemModel> GetChartLubricantItemModelList(List<RunningchartLubricant> runningchartLubricant)
+        {
+            var pumpstations = from item in runningchartLubricant
+                               select new ChartLubricantItemModel()
+                               {
+                                   SelectedPumpstationId = item.PumpstationId,
+                                   SelectedLubricantTypeId = item.LubricantTypeId,
+                                   PumpAmount = item.Amount
+                               };
+
+            return pumpstations.ToList<ChartLubricantItemModel>();
         }
 
         #endregion

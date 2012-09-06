@@ -37,5 +37,18 @@ namespace CECRunningChart.Services.Runningchart
             return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
         }
 
+        public Core.Runningchart GetRunningChart(int chartId)
+        {
+            Core.Runningchart runningchart = new Core.Runningchart();
+            var runningChartDs = dataProvider.GetRunningChart(chartId);
+
+            runningchart = ConversionHelper.ConvertToObject<Core.Runningchart>(runningChartDs.Tables["Runningchart"].Rows[0]);
+            runningchart.RunningchartDetails = ConversionHelper.ConvertToList<Core.RunningchartDetails>(runningChartDs.Tables["RunningchartDetails"]);
+            runningchart.RunningchartLubricants = ConversionHelper.ConvertToList<Core.RunningchartLubricant>(runningChartDs.Tables["RunningchartLubricants"]);
+            runningchart.RunningchartPumpstation = ConversionHelper.ConvertToList<Core.RunningchartPumpstation>(runningChartDs.Tables["RunningchartPumpstation"]);
+
+            return runningchart;
+        }
+
     }
 }

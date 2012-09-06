@@ -57,7 +57,7 @@
                 @vehicles.Where(x => x.Id == item.SelectedVehicleId).Single().VehicleNumber
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.RunningchartId }) |*@ @*@Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
+                @Html.ActionLink("Edit", "edit", new { id = item.RunningchartId }) @*| @Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
             </td>
         </tr>

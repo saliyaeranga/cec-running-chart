@@ -12,5 +12,6 @@ namespace CECRunningChart.Data.Runningchart
         int AddRunningchart(Core.Runningchart runningChart);
         DataSet GetNoneApprovedRunningCharts();
         DataSet GetOperatorNoneApprovedRunningcharts(int operatorUserId);
+        DataSet GetRunningChart(int chartId);
     }
 }

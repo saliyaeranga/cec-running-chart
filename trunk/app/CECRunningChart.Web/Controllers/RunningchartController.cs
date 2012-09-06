@@ -56,7 +56,7 @@ namespace CECRunningChart.Web.Controllers
                 ViewBag.LastChartId = lastChartId.Value;
             }
 
-            var model = ModelMapper.GetRunningchartModel(runningCharts);
+            var model = ModelMapper.GetRunningchartModelList(runningCharts);
             ViewBag.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             return View(model);
         }
@@ -72,20 +72,22 @@ namespace CECRunningChart.Web.Controllers
         public ActionResult Create()
         {
             IVehicleService vehicleServcie = new VehicleService();
+            IProjectService projectService = new ProjectService();
 
             RunningchartModel model = new RunningchartModel();
             model.BillDate = DateTime.Now;
             model.RunningchartId = runningchartService.GetNextRunningchartId();
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+            model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
 
+            ViewBag.Mode = "create";
             return View(model);
         } 
 
         [HttpPost]
         public ActionResult Create(RunningchartModel model)
         {
-            IVehicleService vehicleServcie = new VehicleService();
             try
             {
                 Runningchart runningChart = ModelMapper.GetRunningchartFromRunningchartModel(model);
@@ -97,9 +99,14 @@ namespace CECRunningChart.Web.Controllers
             }
             catch
             {
+                IVehicleService vehicleServcie = new VehicleService();
+                IProjectService projectService = new ProjectService();
+
                 model.RunningchartId = runningchartService.GetNextRunningchartId();
                 model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
                 model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+                model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
+
                 return View(model);
             }
         }
@@ -230,7 +237,26 @@ namespace CECRunningChart.Web.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            IVehicleService vehicleServcie = new VehicleService();
+            IProjectService projectService = new ProjectService();
+            IPumpstationService pumpstationService = new PumpstationService();
+
+            var chart = runningchartService.GetRunningChart(id);
+            var model = ModelMapper.GetRunningchartModel(chart);
+            model.RunningchartId = runningchartService.GetNextRunningchartId();
+            model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
+            model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+            model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
+            model.Pumpstations = ModelMapper.GetPumpStationModelList(pumpstationService.GetAllPumpstations());
+            model.VehicleRentalTypes = new List<VehicleRentalTypeModel>()
+            {
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Company, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Company) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.CompanyHired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.CompanyHired) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Hired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Hired) }
+            }; // Not worth to do a DB call since this is very static
+
+            //ViewBag.Mode = "edit";
+            return View("Create", model);
         }
 
         //

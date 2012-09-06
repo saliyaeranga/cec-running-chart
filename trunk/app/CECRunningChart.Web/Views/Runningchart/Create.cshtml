@@ -42,6 +42,7 @@
             if (isVehicle) {
                 applyTimePickersToMeter();
             }
+            $("#DriverName").val($("#DriverName" + selectedVehicle).val());
         });
 
         $("#runningchartform").submit(function () {
@@ -75,6 +76,11 @@
 
 @using (Html.BeginForm("create", "runningchart", FormMethod.Post, new { @id = "runningchartform"}))
 {
+    string fuelLeftBegningOfDay = Model.FuelLeftBegningOfDay > 0 ? Model.FuelLeftBegningOfDay.ToString() : string.Empty;
+    string dayStart = Model.DayStartime.Equals(DateTime.MinValue) ? string.Empty : Model.DayStartime.ToShortTimeString();
+    string dayEnd = Model.DayEndTime.Equals(DateTime.MinValue) ? string.Empty : Model.DayEndTime.ToShortTimeString();
+    string fuelLeft = Model.FuelLeftEndOfDay > 0 ? Model.FuelLeftEndOfDay.ToString() : string.Empty;
+    string fuelUsage = Model.FuelUsageOfDay > 0 ? Model.FuelUsageOfDay.ToString() : string.Empty;
     <h2>New Running Chart</h2>
     <div id="BasicInfo">
         <table>
@@ -82,13 +88,13 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>Bill Number</td>
-                <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" /></td>
+                <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" value="@Model.BillNumber" /></td>
             </tr>
             <tr>
                 <td>Date</td>
                 <td><input type="text" id="BillDate" name="BillDate" value="@Model.BillDate.ToString("d")" /></td>
-                <td>Driver Name</td>
-                <td><input type="text" id="DriverName" name="DriverName" maxlength="200" /></td>
+                <td>Fuel Left Begning of the Day</td>
+                <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" value="@fuelLeftBegningOfDay" /></td>
             </tr>
             <tr>
                 <td>Vehicle #</td>
@@ -97,16 +103,18 @@
                     @foreach (var vehicle in Model.Vehicles)
                     {
                         <input type="hidden" id="@string.Concat("IsVehicle", vehicle.Id.ToString())" value="@vehicle.IsVehicle" />
+                        <input type="hidden" id="@string.Concat("DriverName", vehicle.Id.ToString())" value="@vehicle.DriverOperatorName" />
+                        <input type="hidden" id="@string.Concat("VehicleRate", vehicle.Id.ToString())" value="@vehicle.FuelUsage" />
                     }
                 </td>
-                <td>Fuel Left Begning of the Day</td>
-                <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" /> L</td>
+                <td>Driver Name</td>
+                <td><input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" /></td>
             </tr>
             <tr>
                 <td>Day Start Time</td>
-                <td><input type="text" id="DayStartime" name="DayStartime" class="timepick" value="" /></td>
+                <td><input type="text" id="DayStartime" name="DayStartime" class="timepick" value="@dayStart" /></td>
                 <td>Day End Time</td>
-                <td><input type="text" id="DayEndTime" name="DayEndTime" class="timepick" value="" /></td>
+                <td><input type="text" id="DayEndTime" name="DayEndTime" class="timepick" value="@dayEnd" /></td>
             </tr>
         </table>
     </div>
@@ -133,8 +141,8 @@
                 <td>Fuel Usage of the Day</td>
             </tr>
             <tr>
-                <td><input type="text" id="FuelLeftEndOfDay" name="FuelLeftEndOfDay" /></td>
-                <td><input type="text" id="FuelUsageOfDay" name="FuelUsageOfDay" readonly="readonly" /></td>
+                <td><input type="text" id="FuelLeftEndOfDay" name="FuelLeftEndOfDay" value="@fuelLeft" /></td>
+                <td><input type="text" id="FuelUsageOfDay" name="FuelUsageOfDay" value="@fuelUsage" readonly="readonly" /></td>
             </tr>
         </table>
         <table>
@@ -142,12 +150,24 @@
                 <td>Daily Note</td>
             </tr>
             <tr>
-                <td><textarea rows="5" cols="27" id="DailyNote" name="DailyNote"></textarea></td>
+                <td><textarea rows="5" cols="27" id="DailyNote" name="DailyNote">@Model.DailyNote</textarea></td>
             </tr>
         </table>
     </div>
-    <br />
-    <div id="Authorization">
-        <input type="submit" value="Send to Approve" />
+    <div style="display:none;">
+    @if (Model.Projects != null)
+    {
+        foreach (var project in Model.Projects)
+        {
+            <input type="hidden" id="@string.Concat("ProjectManager", project.Id)" value="@project.ProjectManager" />
+        }
+    }
     </div>
+    <br />
+    if (ViewBag.Mode != null && !string.Equals(ViewBag.Mode, "create"))
+    {
+        <div id="Authorization">
+            <input type="submit" value="Send to Approve" />
+        </div>
+    }
 }

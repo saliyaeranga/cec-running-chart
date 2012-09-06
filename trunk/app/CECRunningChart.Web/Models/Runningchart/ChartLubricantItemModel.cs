@@ -9,7 +9,7 @@ namespace CECRunningChart.Web.Models.Runningchart
     {
         public int SelectedPumpstationId { get; set; }
         public int SelectedLubricantTypeId { get; set; }
-        public int PumpAmount { get; set; }
+        public decimal PumpAmount { get; set; }
         public bool IsRemoving { get; set; }
     }
 }

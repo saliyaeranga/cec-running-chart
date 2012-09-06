@@ -165,7 +165,7 @@ namespace CECRunningChart.Web.Models.Runningchart
 
         public IEnumerable<SelectListItem> GetRentalTypeOptions(int selectedRentalTypeId)
         {
-            List<SelectListItem> options = new List<SelectListItem>(Projects.Count + 1)
+            List<SelectListItem> options = new List<SelectListItem>(VehicleRentalTypes.Count + 1)
             {
                 new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = selectedRentalTypeId == 0}
             };

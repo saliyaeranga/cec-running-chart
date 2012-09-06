@@ -11,5 +11,6 @@ namespace CECRunningChart.Services.Runningchart
         int AddRunningchart(Core.Runningchart runningChart);
         List<Core.Runningchart> GetNonePaarovedRunningCharts();
         List<Core.Runningchart> GetOperatorNoneApprovedRunningcharts(int operatorUserId);
+        Core.Runningchart GetRunningChart(int chartId);
     }
 }

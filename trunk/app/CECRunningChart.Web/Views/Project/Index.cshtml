@@ -36,13 +36,13 @@
         {
             <tr>
                 <td class="mainColum">
-                    @Html.DisplayFor(modelItem => item.ProjectName)
+                    @item.ProjectName
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProjectManager)
+                    @item.ProjectManager
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProjectLocation)
+                    @item.ProjectLocation
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
