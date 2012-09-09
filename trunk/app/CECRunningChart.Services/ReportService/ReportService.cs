@@ -82,6 +82,17 @@ namespace CECRunningChart.Services.ReportService
             return reportData;
         }
 
+        public List<string> GetDriverNames()
+        {
+            var data = reportDataProvider.GetDriverNames();
+            List<string> names = new List<string>(data.Tables[0].Rows.Count);
+            foreach (DataRow row in data.Tables[0].Rows)
+            {
+                names.Add(row[0].ToString());
+            }
+            return names;
+        }
+
         #endregion
     }
 }

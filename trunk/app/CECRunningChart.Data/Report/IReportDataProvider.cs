@@ -11,6 +11,7 @@ namespace CECRunningChart.Data.Report
         DataSet GetFuelConsumptionReport(DateTime startDate, DateTime endDate);
         DataSet GetHiredVehicleFuelReport(DateTime startDate, DateTime endDate);
         DataSet GetDriverTimeSheetReport(string driverName);
+        DataSet GetDriverNames();
         DataSet GetFuelAndLubricantReport(DateTime startDate, DateTime endDate, int pumpstationId);
         DataSet GetVehicleMachineRegisterReport(DateTime startDate, DateTime endDate);
         DataSet GetHireBillReport(DateTime startDate, DateTime endDate, int projectId);

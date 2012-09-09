@@ -119,6 +119,11 @@ namespace CECRunningChart.Data.Report
             }
         }
 
+        public DataSet GetDriverNames()
+        {
+            return ExecuteDataSet("dbo.proc_GetDriverNames", null);
+        }
+
         #endregion
     }
 }

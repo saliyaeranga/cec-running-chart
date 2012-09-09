@@ -11,9 +11,11 @@
 </p>
 @if (Model == null)
 {
+    var drivers = ViewBag.DriverNames as List<string>;
+    var options = drivers.Select(x => new SelectListItem(){ Text = x, Value = x }).ToList<SelectListItem>();
     using (Html.BeginForm())
     {
-        <input type="text" id="driverName" name="driverName" /><br />
+        @Html.DropDownList("driverName", options)<br />
         <input type="submit" value="Generate Report" />
     }
 }

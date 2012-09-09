@@ -71,6 +71,8 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult DriverTimeSheet()
         {
+            var drivers = reportService.GetDriverNames();
+            ViewBag.DriverNames = drivers;
             return View();
         }
 
