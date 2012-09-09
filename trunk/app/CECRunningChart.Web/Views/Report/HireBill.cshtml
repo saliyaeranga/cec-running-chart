@@ -20,7 +20,7 @@
 
         $.validator.addMethod("selectProject", function (value, element) {
             return value > 0;
-        }, "*");
+        }, " *");
 
         $("#hirebillform").validate({
             rules: {
@@ -37,9 +37,9 @@
                 }
             },
             messages: {
-                startDate: "*",
-                endDate: "*",
-                projectId: "*"
+                startDate: " *",
+                endDate: " *",
+                projectId: " *"
             }
         });
     });

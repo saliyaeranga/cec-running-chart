@@ -17,7 +17,7 @@
 
         $.validator.addMethod("selectProject", function (value, element) {
             return value > 0;
-        }, "*");
+        }, " *");
 
         $("#hirebillprivateform").validate({
             rules: {
@@ -34,9 +34,9 @@
                 }
             },
             messages: {
-                startDate: "*",
-                endDate: "*",
-                vehicleNo: "*"
+                startDate: " *",
+                endDate: " *",
+                vehicleNo: " *"
             }
         });
     });

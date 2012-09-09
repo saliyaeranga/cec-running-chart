@@ -19,7 +19,7 @@
 
         $.validator.addMethod("selectPumpstation", function (value, element) {
             return value > 0;
-        }, "*");
+        }, " *");
 
         $("#fuelandlubricantform").validate({
             rules: {
@@ -36,9 +36,9 @@
                 }
             },
             messages: {
-                startDate: "*",
-                endDate: "*",
-                pumpstationId: "*"
+                startDate: " *",
+                endDate: " *",
+                pumpstationId: " *"
             }
         });
     });

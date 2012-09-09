@@ -3,17 +3,34 @@
 @{
     ViewBag.Title = "Driver / Operator Time Sheet";
 }
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validator.addMethod("selectDriverName", function (value, element) {
+            return value != "- SELECT -";
+        }, " *");
 
+        $("#drivertimesheetform").validate({
+            rules: {
+                driverName: {
+                    selectDriverName: true
+                }
+            },
+            messages: {
+                driverName: " *"
+            }
+        });
+    });
+</script>
 <h2>Driver / Operator Time Sheet</h2>
 <p>
     @Html.ActionLink("Back to Reports", "index")
-    @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
 </p>
 @if (Model == null)
 {
     var drivers = ViewBag.DriverNames as List<string>;
     var options = drivers.Select(x => new SelectListItem(){ Text = x, Value = x }).ToList<SelectListItem>();
-    using (Html.BeginForm())
+    using (Html.BeginForm("drivertimesheet", "report", FormMethod.Post, new { @id = "drivertimesheetform" }))
     {
         @Html.DropDownList("driverName", options)<br />
         <input type="submit" value="Generate Report" />
@@ -21,6 +38,9 @@
 }
 else
 {
+    <p>
+        @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
+    </p>
     <p>
         Driver / Operator Name : @ViewBag.DriverOperatorName
     </p>
@@ -62,8 +82,8 @@ else
                     </td>
                     <td>
                         @{ 
-                            string otHours = item.OTHours.ToString();
-                            string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
+                   string otHours = item.OTHours.ToString();
+                   string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
                         }
                         @displayOTHours
                     </td>

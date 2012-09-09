@@ -85,7 +85,10 @@ namespace CECRunningChart.Services.ReportService
         public List<string> GetDriverNames()
         {
             var data = reportDataProvider.GetDriverNames();
-            List<string> names = new List<string>(data.Tables[0].Rows.Count);
+            List<string> names = new List<string>(data.Tables[0].Rows.Count + 1)
+            {
+                "- SELECT -"
+            };
             foreach (DataRow row in data.Tables[0].Rows)
             {
                 names.Add(row[0].ToString());

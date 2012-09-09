@@ -5,11 +5,29 @@
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".dateselect").datepicker({
             changeMonth: true,
             changeYear: true
+        });
+
+        $("#fuelconsumptionform").validate({
+            rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                }
+            },
+            messages: {
+                startDate: " *",
+                endDate: " *"
+            }
         });
     });
 </script>
@@ -27,7 +45,7 @@
 <div class="tblContainer">
     @if (Model == null)
     {
-        using (Html.BeginForm())
+        using (Html.BeginForm("fuelconsumption", "report", FormMethod.Post, new { @id = "fuelconsumptionform" }))
         {
         <div class="row">
             <div class="wrapper">
@@ -49,7 +67,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="row">
             <input  class="genRptBtn" type="submit" value="Generate Report" />
         </div>
