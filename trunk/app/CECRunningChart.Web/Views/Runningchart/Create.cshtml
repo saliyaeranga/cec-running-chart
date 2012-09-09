@@ -35,6 +35,7 @@
 
         setTimePickers();
         applyRunningchartValidations();
+        setProjectManagerFiller();
 
         $("#SelectedVehicleId").change(function () {
             var selectedVehicle = $("#SelectedVehicleId").val();
@@ -53,29 +54,12 @@
 
             return isValid || isLubValid || isPumpValid || isItemsValid;
         });
-
-        $("#FuelLeftEndOfDay").keyup(function () {
-            var fuelLeftBOD = $.trim($("#FuelLeftBegningOfDay").val());
-            var fuelLeftEOD = $.trim($(this).val());
-            if (fuelLeftBOD == "" || fuelLeftEOD == "") {
-                return;
-            }
-
-            var pumpstationCount = $("#PumpstationsCount").val();
-            var pumpQty = 0;
-            for (var i = 0; i < pumpstationCount; i++) {
-                var qty = parseFloat(document.getElementById("SelectedPumpstations[" + i + "].PumpAmount").value);
-                pumpQty += qty;
-            }
-
-            var fuelUsage = (parseFloat(fuelLeftBOD) + pumpQty) - parseFloat(fuelLeftEOD);
-            $("#FuelUsageOfDay").val(fuelUsage);
-        });
     });
 </script>
 
 @using (Html.BeginForm("create", "runningchart", FormMethod.Post, new { @id = "runningchartform"}))
 {
+    bool editRunningchart = Model.RunningchartId > 0;
     string fuelLeftBegningOfDay = Model.FuelLeftBegningOfDay > 0 ? Model.FuelLeftBegningOfDay.ToString() : string.Empty;
     string dayStart = Model.DayStartime.Equals(DateTime.MinValue) ? string.Empty : Model.DayStartime.ToShortTimeString();
     string dayEnd = Model.DayEndTime.Equals(DateTime.MinValue) ? string.Empty : Model.DayEndTime.ToShortTimeString();
@@ -85,8 +69,20 @@
     <div id="BasicInfo">
         <table>
             <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    @if (editRunningchart)
+                    {
+                        <text>Running Chart Id</text>
+                    }
+                    &nbsp;
+                </td>
+                <td>
+                    @if (editRunningchart)
+                    {
+                        <text>@Model.RunningchartId</text>
+                    }
+                    &nbsp;
+                </td>
                 <td>Bill Number</td>
                 <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" value="@Model.BillNumber" /></td>
             </tr>
@@ -99,7 +95,14 @@
             <tr>
                 <td>Vehicle #</td>
                 <td>
-                    @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId" })
+                    @if (editRunningchart)
+                    {
+                        @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.DropDownList("SelectedVehicleId", Model.GetVehicleOptions(), new { @id = "SelectedVehicleId" })
+                    }
                     @foreach (var vehicle in Model.Vehicles)
                     {
                         <input type="hidden" id="@string.Concat("IsVehicle", vehicle.Id.ToString())" value="@vehicle.IsVehicle" />
@@ -108,7 +111,16 @@
                     }
                 </td>
                 <td>Driver Name</td>
-                <td><input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" /></td>
+                <td>
+                    @if (editRunningchart)
+                    {
+                        <input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" readonly="readonly" />
+                    }
+                    else
+                    {
+                        <input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" />
+                    }
+                </td>
             </tr>
             <tr>
                 <td>Day Start Time</td>
@@ -117,6 +129,7 @@
                 <td><input type="text" id="DayEndTime" name="DayEndTime" class="timepick" value="@dayEnd" /></td>
             </tr>
         </table>
+        <input type="hidden" id="RunningchartId" name="RunningchartId" value="@Model.RunningchartId" />
     </div>
     <br />
     <h2 class="runningChrtSub">Daily Fuel Re-filling Details</h2>

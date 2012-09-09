@@ -76,7 +76,7 @@ namespace CECRunningChart.Web.Controllers
 
             RunningchartModel model = new RunningchartModel();
             model.BillDate = DateTime.Now;
-            model.RunningchartId = runningchartService.GetNextRunningchartId();
+            //model.RunningchartId = runningchartService.GetNextRunningchartId();
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
             model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());

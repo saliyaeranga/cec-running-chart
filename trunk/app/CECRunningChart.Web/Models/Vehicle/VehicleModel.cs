@@ -35,7 +35,7 @@ namespace CECRunningChart.Web.Models.Vehicle
         [MaxLength(200, ErrorMessage = "Driver/Operator Name can not have more than 200 characters")]
         public string DriverOperatorName { get; set; }
 
-        [DisplayName("Fuel Usage")]
+        [DisplayName("Fuel Usage (Km/L)")]
         [Required(ErrorMessage = "Fuel Usage is required")]
         public float FuelUsage { get; set; }
 

@@ -296,6 +296,7 @@ function setCalculators() {
     $(".meterdiff").change(function () {
         var index = $(this).attr("row");
         calculateMetrDiff(index);
+        calculateFuelLeftEndOfTheDay();
     });
 }
 
@@ -344,4 +345,26 @@ function setProjectManagerFiller() {
         var index = $(this).attr("row");
         document.getElementById("SelectedChartItems[" + index + "].SelectedProjectManager").value = projMgr;
     });
+}
+
+function calculateFuelLeftEndOfTheDay() {
+    var selectedVehicle = $("#SelectedVehicleId").val();
+    var vehicleUsagePerLeter = $("#VehicleRate" + selectedVehicle).val();
+    var fuelLeftBOD = parseFloat($.trim($("#FuelLeftBegningOfDay").val()));
+    var pumpQty = 0;
+    var totalUsage = 0;
+    $(".pumpqty").each(function () {
+        var qty = $(this).val();
+        pumpQty += parseFloat($.trim(qty));
+    });
+    $(".meterdiffvalue").each(function () {
+        var usage = $(this).val();
+        totalUsage += parseFloat($.trim(usage));
+    });
+
+    var totalFuel = fuelLeftBOD + pumpQty;
+    var fuelUsageOfDay = (totalUsage / vehicleUsagePerLeter).toFixed(2);
+    var fuelLeftEndOfDay = (totalFuel - fuelUsageOfDay).toFixed(2);
+    $("#FuelLeftEndOfDay").val(fuelLeftEndOfDay);
+    $("#FuelUsageOfDay").val(fuelUsageOfDay);
 }
