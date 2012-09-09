@@ -43,11 +43,15 @@
 
         $("#SelectedVehicleId").change(function () {
             var selectedVehicle = $("#SelectedVehicleId").val();
-            var isVehicle = $("#IsVehicle" + selectedVehicle).val();
-            if (isVehicle) {
-                applyTimePickersToMeter();
-            }
-            $("#DriverName").val($("#DriverName" + selectedVehicle).val());
+            $.ajaxSetup({ cache: false });
+            $.get('/Runningchart/FuelLeftBegningOfDay', { vehicleId : selectedVehicle}, function (data) {
+                var isVehicle = $("#IsVehicle" + selectedVehicle).val();
+                if (isVehicle) {
+                    applyTimePickersToMeter();
+                }
+                $("#FuelLeftBegningOfDay").val(data.FuelLeftBegningOfDay);
+                $("#DriverName").val($("#DriverName" + selectedVehicle).val());
+            });
         });
 
         $("#runningchartform").submit(function () {

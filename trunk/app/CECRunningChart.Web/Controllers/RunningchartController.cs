@@ -271,6 +271,13 @@ namespace CECRunningChart.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult FuelLeftBegningOfDay(int vehicleId)
+        {
+            decimal fuelLeft = runningchartService.GetFuelLeftBegningOfDay(vehicleId);
+            return Json(new { FuelLeftBegningOfDay = fuelLeft }, JsonRequestBehavior.AllowGet);
+        }
+
         ////
         //// GET: /Runningchart/Delete/5
  

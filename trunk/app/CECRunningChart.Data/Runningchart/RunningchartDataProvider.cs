@@ -152,6 +152,21 @@ namespace CECRunningChart.Data.Runningchart
             }
         }
 
+        public DataSet GetFuelLeftBegningOfDay(int vehicleId)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@VehicleId", vehicleId);
+                return ExecuteDataSet("proc_FuelLeftBegningOfDay", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+
         #region Private Methods
 
         private void AddRunningChartParameters(Core.Runningchart runningChart, Parameters parameters)

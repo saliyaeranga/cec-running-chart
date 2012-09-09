@@ -54,5 +54,18 @@ namespace CECRunningChart.Services.Runningchart
         {
             dataProvider.ApproveRunningChart(runningChartId, approvedBy, DateTime.Now);
         }
+
+        public decimal GetFuelLeftBegningOfDay(int vehicleId)
+        {
+            var data = dataProvider.GetFuelLeftBegningOfDay(vehicleId);
+            decimal fuelLeft = decimal.Zero;
+            if (data.Tables.Count > 0 && data.Tables[0].Rows.Count > 0)
+            {
+                var chartInfo = ConversionHelper.ConvertToObject<Core.Runningchart>(data.Tables[0].Rows[0]);
+                fuelLeft = chartInfo.FuelLeftEnd;                
+            }
+            return fuelLeft;
+        }
+
     }
 }
