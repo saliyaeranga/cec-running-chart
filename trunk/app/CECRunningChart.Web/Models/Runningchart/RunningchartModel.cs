@@ -25,13 +25,13 @@ namespace CECRunningChart.Web.Models.Runningchart
         public string DriverName { get; set; }
 
         [Required(ErrorMessage = "Fuel quantity required")]
-        public int FuelLeftBegningOfDay { get; set; }
+        public decimal FuelLeftBegningOfDay { get; set; }
 
         [Required(ErrorMessage = "Fuel quantity required")]
-        public int FuelLeftEndOfDay { get; set; }
+        public decimal FuelLeftEndOfDay { get; set; }
 
         [Required(ErrorMessage = "Fuel quantity required")]
-        public int FuelUsageOfDay { get; set; }
+        public decimal FuelUsageOfDay { get; set; }
 
         public string DailyNote { get; set; }
         public DateTime DayStartime { get; set; }

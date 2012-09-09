@@ -30,13 +30,13 @@ namespace CECRunningChart.Core
         public int VehicleRate { get; set; }
 
         [XmlElementAttribute("FuelLeftBegning")]
-        public int FuelLeftBegning { get; set; }
+        public decimal FuelLeftBegning { get; set; }
 
         [XmlElementAttribute("FuelLeftEnd")]
-        public int FuelLeftEnd { get; set; }
+        public decimal FuelLeftEnd { get; set; }
 
         [XmlElementAttribute("FuelUsageOfDay")]
-        public int FuelUsageOfDay { get; set; }
+        public decimal FuelUsageOfDay { get; set; }
 
         [XmlElementAttribute("DailyNote")]
         public string DailyNote { get; set; }
@@ -56,28 +56,16 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("ApprovedBy")]
         public int ApprovedBy { get; set; }
 
+        [XmlElementAttribute("ApprovedDate")]
+        public DateTime ApprovedDate { get; set; }
+
         /// <summary>
         /// Fuel rate of the vehicle
         /// </summary>
         [XmlElementAttribute("FuelRate")]
         public decimal FuelRate { get; set; }
 
-        ///// <summary>
-        ///// Indicates whether the associated vehicle is a vehicle or a machine.
-        ///// true if it is a vehicle, false if it is a machine.
-        ///// </summary>
-        //[XmlElementAttribute("IsVehicle")]
-        //public bool IsVehicle { get; set; }
-
-        //TODO: Remove
-        //[XmlElementAttribute("VehicleNumber")]
-        //public string VehicleNumber { get; set; }
-
-
         //TODO: Add Runningchart modification history table
-
-        //[XmlElementAttribute("Id")]
-        //public string DayEndVehicleLocation { get; set; } // Where is the vehicle at the end of the day - Project.Location
 
         public List<RunningchartDetails> RunningchartDetails { get; set; }
         public List<RunningchartPumpstation> RunningchartPumpstation { get; set; }

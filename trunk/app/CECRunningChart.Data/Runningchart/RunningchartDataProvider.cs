@@ -135,6 +135,22 @@ namespace CECRunningChart.Data.Runningchart
             }
         }
 
+        public void ApproveRunningChart(int runningChartId, int approvedBy, DateTime approvedDate)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@RunningchartId", runningChartId);
+                parameters.Add("@ApprovedBy", approvedBy);
+                parameters.Add("@ApprovedDate", approvedDate);
+
+                ExecuteNoneQuery("proc_ApproveRunningChart", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         #region Private Methods
 

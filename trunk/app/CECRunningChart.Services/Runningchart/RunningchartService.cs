@@ -50,5 +50,9 @@ namespace CECRunningChart.Services.Runningchart
             return runningchart;
         }
 
+        public void ApproveRunningChart(int runningChartId, int approvedBy)
+        {
+            dataProvider.ApproveRunningChart(runningChartId, approvedBy, DateTime.Now);
+        }
     }
 }

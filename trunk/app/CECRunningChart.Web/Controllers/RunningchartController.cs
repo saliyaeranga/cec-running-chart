@@ -44,7 +44,8 @@ namespace CECRunningChart.Web.Controllers
             }
             else if (user.Role == UserRole.RunningChartInspector)
             {
-                //TODO
+                //TODO : Limit running charts by a criteria like inspector projects
+                runningCharts = runningchartService.GetNonePaarovedRunningCharts();
             }
             else if (user.Role == UserRole.RunningChartOperator)
             {
@@ -232,10 +233,8 @@ namespace CECRunningChart.Web.Controllers
             return PartialView("_ChartItems", model);
         }
         
-        //
-        // GET: /Runningchart/Edit/5
- 
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Approve(int id)
         {
             IVehicleService vehicleServcie = new VehicleService();
             IProjectService projectService = new ProjectService();
@@ -243,7 +242,6 @@ namespace CECRunningChart.Web.Controllers
 
             var chart = runningchartService.GetRunningChart(id);
             var model = ModelMapper.GetRunningchartModel(chart);
-            model.RunningchartId = runningchartService.GetNextRunningchartId();
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
             model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
@@ -255,25 +253,21 @@ namespace CECRunningChart.Web.Controllers
                 new VehicleRentalTypeModel() { Id = (int)RentalType.Hired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Hired) }
             }; // Not worth to do a DB call since this is very static
 
-            //ViewBag.Mode = "edit";
             return View("Create", model);
         }
 
-        //
-        // POST: /Runningchart/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Approve(RunningchartModel model)
         {
             try
             {
-                // TODO: Add update logic here
- 
+                var user = Session[SessionKeys.UserInfo] as UserModel;
+                runningchartService.ApproveRunningChart(model.RunningchartId, user.Id);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                throw;
             }
         }
 

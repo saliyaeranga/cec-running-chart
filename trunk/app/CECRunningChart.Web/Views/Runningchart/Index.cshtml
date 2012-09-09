@@ -37,7 +37,10 @@
         <th class="tblModel">
         </th>
     </tr>
-    @{ var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>; }
+    @{ 
+        var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>;
+        var user = Session[CECRunningChart.Web.Helpers.SessionKeys.UserInfo] as CECRunningChart.Web.Models.User.UserModel;
+    }
     @foreach (var item in Model)
     {
         <tr>
@@ -57,8 +60,11 @@
                 @vehicles.Where(x => x.Id == item.SelectedVehicleId).Single().VehicleNumber
             </td>
             <td>
-                @Html.ActionLink("Edit", "edit", new { id = item.RunningchartId }) @*| @Html.ActionLink("Details", "Details", new { id = item.RunningchartId })*@
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.RunningchartId })*@
+                @if (user.Role == CECRunningChart.Common.UserRole.RunningChartInspector || user.Role == CECRunningChart.Common.UserRole.Admin)
+                {
+                    @Html.ActionLink("Approve", "approve", new { id = item.RunningchartId })
+                }
+                &nbsp;
             </td>
         </tr>
     }
