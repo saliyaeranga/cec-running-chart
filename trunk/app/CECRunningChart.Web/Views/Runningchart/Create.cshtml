@@ -73,7 +73,9 @@
         }
     });
 </script>
-
+<div>
+    @Html.ActionLink("Back to Running Charts", "index")
+</div>
 @using (Html.BeginForm(submitAction, "runningchart", FormMethod.Post, new { @id = "runningchartform" }))
 {
     string fuelLeftBegningOfDay = Model.FuelLeftBegningOfDay > 0 ? Model.FuelLeftBegningOfDay.ToString() : string.Empty;
@@ -100,14 +102,10 @@
                     }
                     &nbsp;
                 </td>
-                <td>Bill Number</td>
-                <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" value="@Model.BillNumber" /></td>
-            </tr>
-            <tr>
                 <td>Date</td>
                 <td><input type="text" id="BillDate" name="BillDate" value="@Model.BillDate.ToString("d")" /></td>
-                <td>Fuel Left Begning of the Day</td>
-                <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" value="@fuelLeftBegningOfDay" /></td>
+                <td>Bill Number</td>
+                <td><input type="text" id="BillNumber" name="BillNumber" maxlength="10" value="@Model.BillNumber" /></td>
             </tr>
             <tr>
                 <td>Vehicle #</td>
@@ -129,21 +127,18 @@
                 </td>
                 <td>Driver Name</td>
                 <td>
-                    @if (editRunningchart)
-                    {
-                        <input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" readonly="readonly" />
-                    }
-                    else
-                    {
-                        <input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" />
-                    }
+                    <input type="text" id="DriverName" name="DriverName" maxlength="200" value="@Model.DriverName" readonly="readonly" />
                 </td>
+                <td>Fuel Left Begning of the Day</td>
+                <td><input type="text" id="FuelLeftBegningOfDay" name="FuelLeftBegningOfDay" value="@fuelLeftBegningOfDay" readonly="readonly" /></td>
             </tr>
             <tr>
                 <td>Day Start Time</td>
                 <td><input type="text" id="DayStartime" name="DayStartime" class="timepick" value="@dayStart" /></td>
                 <td>Day End Time</td>
                 <td><input type="text" id="DayEndTime" name="DayEndTime" class="timepick" value="@dayEnd" /></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
         <input type="hidden" id="RunningchartId" name="RunningchartId" value="@Model.RunningchartId" />

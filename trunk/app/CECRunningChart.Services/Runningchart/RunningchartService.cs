@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CECRunningChart.Data.Runningchart;
 
 namespace CECRunningChart.Services.Runningchart
 {
     public class RunningchartService : IRunningchartService
     {
+        #region Private Members
+
         private IRunningchartDataProvider dataProvider;
+
+        #endregion
+
+        #region Constructor
 
         public RunningchartService()
         {
             dataProvider = new RunningchartDataProvider();
         }
+
+        #endregion
 
         public int GetNextRunningchartId()
         {
@@ -22,6 +28,7 @@ namespace CECRunningChart.Services.Runningchart
 
         public int AddRunningchart(Core.Runningchart runningChart)
         {
+            // TODO: Process fuel consumption data
             return dataProvider.AddRunningchart(runningChart);
         }
 

@@ -31,6 +31,8 @@ namespace CECRunningChart.Web.Controllers
 
         #endregion
 
+        #region Public Methods
+
         [HttpGet]
         public ActionResult Index(int? lastChartId)
         {
@@ -63,13 +65,6 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
-        {
-
-            return View();
-        }
-
-        [HttpGet]
         public ActionResult Create()
         {
             IVehicleService vehicleServcie = new VehicleService();
@@ -77,7 +72,6 @@ namespace CECRunningChart.Web.Controllers
 
             RunningchartModel model = new RunningchartModel();
             model.BillDate = DateTime.Now;
-            //model.RunningchartId = runningchartService.GetNextRunningchartId();
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
             model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
             model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
@@ -94,8 +88,6 @@ namespace CECRunningChart.Web.Controllers
                 Runningchart runningChart = ModelMapper.GetRunningchartFromRunningchartModel(model);
                 runningChart.EnteredBy = (Session[SessionKeys.UserInfo] as UserModel).Id; // Set DEO
                 int chartId = runningchartService.AddRunningchart(runningChart);
-                //ViewBag.LastChartId = chartId;
-
                 return RedirectToAction("index", new { lastChartId = chartId });
             }
             catch
@@ -278,30 +270,6 @@ namespace CECRunningChart.Web.Controllers
             return Json(new { FuelLeftBegningOfDay = fuelLeft }, JsonRequestBehavior.AllowGet);
         }
 
-        ////
-        //// GET: /Runningchart/Delete/5
- 
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// POST: /Runningchart/Delete/5
-
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
- 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        #endregion
     }
 }
