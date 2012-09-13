@@ -231,9 +231,9 @@ function PopulateChartRows(isAdding, isRemoving, removingId) {
         setCalculators();
         setProjectManagerFiller();
         setFuelCalculations();
-        if (formParameters.isVehicle == "False") {
-            applyTimePickersToMeter();
-        }
+//        if (formParameters.isVehicle == "False") {
+//            applyTimePickersToMeter();
+//        }
     });
 }
 

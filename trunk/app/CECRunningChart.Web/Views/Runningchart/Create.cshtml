@@ -45,10 +45,10 @@
             var selectedVehicle = $("#SelectedVehicleId").val();
             $.ajaxSetup({ cache: false });
             $.get('/Runningchart/FuelLeftBegningOfDay', { vehicleId : selectedVehicle}, function (data) {
-                var isVehicle = $("#IsVehicle" + selectedVehicle).val();
-                if (isVehicle) {
-                    applyTimePickersToMeter();
-                }
+//                var isVehicle = $("#IsVehicle" + selectedVehicle).val();
+//                if (isVehicle) {
+//                    applyTimePickersToMeter();
+//                }
                 $("#FuelLeftBegningOfDay").val(data.FuelLeftBegningOfDay);
                 $("#DriverName").val($("#DriverName" + selectedVehicle).val());
             });
