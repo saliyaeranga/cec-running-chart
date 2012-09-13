@@ -324,19 +324,21 @@ function calculateMetrDiff(index) {
         return;
     }
 
-    var selectedVehicle = $("#SelectedVehicleId").val();
-    var isVehicle = $("#IsVehicle" + selectedVehicle).val();
-    if (isVehicle == "True") {
-        var meterDiff = parseFloat(endMeter) - parseFloat(startMeter);
-        document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = meterDiff.toFixed(2);
-    }
-    else {
-        var date = $.trim($("#BillDate").val());
-        var startDate = new Date(date + ' ' + startMeter);
-        var endDate = new Date(date + ' ' + endMeter);
-        var dateDiff = ((endDate - startDate) / 60000) / 60;
-        document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = dateDiff.toFixed(2);
-    }
+    var meterDiff = parseFloat(endMeter) - parseFloat(startMeter);
+    document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = meterDiff.toFixed(2);
+//    var selectedVehicle = $("#SelectedVehicleId").val();
+//    var isVehicle = $("#IsVehicle" + selectedVehicle).val();
+//    if (isVehicle == "True") {
+//        var meterDiff = parseFloat(endMeter) - parseFloat(startMeter);
+//        document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = meterDiff.toFixed(2);
+//    }
+//    else {
+//        var date = $.trim($("#BillDate").val());
+//        var startDate = new Date(date + ' ' + startMeter);
+//        var endDate = new Date(date + ' ' + endMeter);
+//        var dateDiff = ((endDate - startDate) / 60000) / 60;
+//        document.getElementById("SelectedChartItems[" + index + "].MeterDifference").value = dateDiff.toFixed(2);
+//    }
 }
 
 function setProjectManagerFiller() {
