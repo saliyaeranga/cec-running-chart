@@ -6,6 +6,9 @@ using CECRunningChart.Services.ReportService;
 using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
+using System.Data;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -166,5 +169,19 @@ namespace CECRunningChart.Web.Controllers
         }
 
         #endregion
+
+        [Authorize]
+        public ActionResult Test()
+        {
+            //DataTable dataTable = new DataTable("testTable");
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/TestReport.rpt");
+            reportClass.Load();
+
+            //reportClass.Database.Tables["testTable"].SetDataSource(dataTable);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
     }
 }
