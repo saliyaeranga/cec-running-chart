@@ -33,73 +33,77 @@
         });
     });
 </script>
+<div class="inrPgHeadding">
 <h2>Vehicle Machine Register Report</h2>
-<p>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-</p>
+    @if (Model != null)
+    {
+        @Html.ActionLink("Back to Vehicle Machine Register Report", "vehiclemachineregister")
+    }
+</div>
+<div class="tblContainer">
 @if (Model == null)
 {
     using (Html.BeginForm("vehiclemachineregister", "report", FormMethod.Post, new { @id = "vehiclemachineregisterform" }))
     {
-        <table>
-            <tr>
-                <td>
+        
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
                     Start Date
-                </td>
-                <td>
+                </div>
+                <div class="editor-field">
                     <input type="text" id="startDate" name="startDate" class="dateselect" />
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
                     End Date
-                </td>
-                <td>
+                </div>
+                <div class="editor-field">
                     <input type="text" id="endDate" name="endDate" class="dateselect" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    <input type="submit" value="Generate Report" />
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input class="genRptBtn" type="submit" value="Generate Report" />
+        </div>
+       
     }
 }
 else
 {
     int count = 1;
-    <p>
-        @Html.ActionLink("Back to Vehicle Machine Register Report", "vehiclemachineregister")
-    </p>
+    
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
     </p>
-    <table>
+    <table class="tblFont">
         <tr>
-            <th>
+            <th class="tblModel">
                 No
             </th>
-            <th>
+            <th class="tblModel">
                 Type
             </th>
-            <th>
+            <th class="tblModel">
                 Veh/Machine Reg. No
             </th>
-            <th>
+            <th class="tblModel">
                 Company Code
             </th>
-            <th>
+            <th class="tblModel">
                 Location as at End of the Period
             </th>
         </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="mainColum">
                 @count
             </td>
             <td>
@@ -119,3 +123,4 @@ else
     }
     </table>
 }
+</div>

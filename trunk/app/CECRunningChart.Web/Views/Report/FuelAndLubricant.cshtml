@@ -106,53 +106,53 @@
             <br />
             Pump Station : @ViewBag.Pumpstation
         </p>
-        <table>
+        <table class="tblFont">
             <tr>
-                <td rowspan="2">
+                <td rowspan="2" class="tblModel">
                     Date
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" class="tblModel">
                     Vehicle/Machine No
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" class="tblModel">
                     Driver/Op Name
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" class="tblModel">
                     Company/Hire
                 </td>
-                <td rowspan="2">
+                <td rowspan="2" class="tblModel">
                     DRC No
                 </td>
-                <td colspan="4" style="text-align: center">
+                <td colspan="4" style="text-align: center" class="tblModel">
                     Fuel
                 </td>
-                <td colspan="4" style="text-align: center">
+                <td colspan="4" style="text-align: center" class="tblModel">
                     Lubricant
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="tblsubModel">
                     Type
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Qty
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Rate
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Amount
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Type
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Qty
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Rate
                 </td>
-                <td>
+                <td class="tblsubModel">
                     Amount
                 </td>
             </tr>
@@ -181,7 +181,7 @@
                     lubAmt = (item.LubricantQty * item.LubricantRate).ToString();
                 }
                 <tr>
-                    <td>
+                    <td class="mainColum">
                         @item.BillDate.ToString("d")
                     </td>
                     <td>
