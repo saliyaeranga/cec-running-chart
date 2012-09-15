@@ -351,13 +351,13 @@ function setProjectManagerFiller() {
 }
 
 function setFuelCalculations() {
-    $(".idlehrs").keyup(function () {
-        var selectedVehicle = $("#SelectedVehicleId").val();
-        var isVehicle = $("#IsVehicle" + selectedVehicle).val();
-        if (isVehicle == "False") {
-            calculateFuelLeftEndOfTheDay();
-        }
-    });
+//    $(".idlehrs").keyup(function () {
+//        var selectedVehicle = $("#SelectedVehicleId").val();
+//        var isVehicle = $("#IsVehicle" + selectedVehicle).val();
+//        if (isVehicle == "False") {
+//            calculateFuelLeftEndOfTheDay();
+//        }
+//    });
 }
 
 function calculateFuelLeftEndOfTheDay() {
@@ -377,16 +377,16 @@ function calculateFuelLeftEndOfTheDay() {
         totalUsage += parseFloat($.trim(usage));
     });
 
-    if (isVehicle == "False") {
-        var totalIdleHrs = 0;
-        $(".idlehrs").each(function () {
-            var hr = $(this).val();
-            if (hr != "") {
-                totalIdleHrs += parseFloat($.trim(hr));
-            }
-        });
-        totalUsage = totalUsage - totalIdleHrs;
-    }
+//    if (isVehicle == "False") {
+//        var totalIdleHrs = 0;
+//        $(".idlehrs").each(function () {
+//            var hr = $(this).val();
+//            if (hr != "") {
+//                totalIdleHrs += parseFloat($.trim(hr));
+//            }
+//        });
+//        totalUsage = totalUsage - totalIdleHrs;
+//    }
 
     var totalFuel = fuelLeftBOD + pumpQty;
     var fuelUsageOfDay = (totalUsage / vehicleUsagePerLeter).toFixed(2);
