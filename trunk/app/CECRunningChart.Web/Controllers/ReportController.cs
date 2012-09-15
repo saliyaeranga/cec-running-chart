@@ -39,6 +39,8 @@ namespace CECRunningChart.Web.Controllers
             return View();
         }
 
+        #region Fuel Consumption Report
+
         [HttpGet]
         public ActionResult FuelConsumption()
         {
@@ -54,6 +56,10 @@ namespace CECRunningChart.Web.Controllers
             ViewBag.EndDate = endDate;
             return View(model);
         }
+
+        #endregion
+
+        #region Hired Fuel Report
 
         [HttpGet]
         public ActionResult HiredFuelReport()
@@ -71,6 +77,10 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region Driver Operator Time Sheet Report
+
         [HttpGet]
         public ActionResult DriverTimeSheet()
         {
@@ -87,6 +97,10 @@ namespace CECRunningChart.Web.Controllers
             ViewBag.DriverOperatorName = driverName;
             return View(model);
         }
+
+        #endregion
+
+        #region Fuel And Lubricant Report
 
         [HttpGet]
         public ActionResult FuelAndLubricant()
@@ -107,6 +121,10 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        #endregion
+
+        #region Vehicle Machine Register Report
+
         [HttpGet]
         public ActionResult VehicleMachineRegister()
         {
@@ -122,6 +140,10 @@ namespace CECRunningChart.Web.Controllers
             ViewBag.EndDate = endDate;
             return View(model);
         }
+
+        #endregion
+
+        #region Hire Bill Report
 
         [HttpGet]
         public ActionResult HireBill()
@@ -141,6 +163,10 @@ namespace CECRunningChart.Web.Controllers
             ViewBag.ProjectName = projectName;
             return View(model);
         }
+
+        #endregion
+
+        #region Hire Bill Private Report
 
         [HttpGet]
         public ActionResult HireBillPrivate()
@@ -167,6 +193,8 @@ namespace CECRunningChart.Web.Controllers
 
             return View(modelhp);
         }
+
+        #endregion
 
         #endregion
 

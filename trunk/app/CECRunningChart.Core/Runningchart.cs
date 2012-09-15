@@ -24,10 +24,25 @@ namespace CECRunningChart.Core
         public int VehicleId { get; set; }
 
         /// <summary>
-        /// Fuel usage of the vehicle
+        /// Fuel usage/consumption of the vehicle (i.e : L\KM)
+        /// eg. 5 leters per Km
         /// </summary>
         [XmlElementAttribute("VehicleRate")]
-        public int VehicleRate { get; set; }
+        public decimal VehicleRate { get; set; }
+
+        /// <summary>
+        /// Hire rate of the vehicle (i.e : Rs/Km or Rs/Hr)
+        /// eg. 100 ruppies per km or 100 ruppies per hour
+        /// </summary>
+        [XmlElementAttribute("VehicleHireRate")]
+        public decimal VehicleHireRate { get; set; }
+
+        /// <summary>
+        /// Fuel rate of the vehicle (i.e Rs/L)
+        /// eg. 150 ruppies per petral leter
+        /// </summary>
+        [XmlElementAttribute("FuelRate")]
+        public decimal FuelRate { get; set; }
 
         [XmlElementAttribute("FuelLeftBegning")]
         public decimal FuelLeftBegning { get; set; }
@@ -58,12 +73,6 @@ namespace CECRunningChart.Core
 
         [XmlElementAttribute("ApprovedDate")]
         public DateTime ApprovedDate { get; set; }
-
-        /// <summary>
-        /// Fuel rate of the vehicle
-        /// </summary>
-        [XmlElementAttribute("FuelRate")]
-        public decimal FuelRate { get; set; }
 
         //TODO: Add Runningchart modification history table
 
