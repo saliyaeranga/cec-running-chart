@@ -41,161 +41,179 @@
         });
     });
 </script>
-<h2>
-    Hire Bill (Private) Report</h2>
-<p>
+<div class="inrPgHeadding">
+<h2>Hire Bill (Private) Report</h2>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-</p>
+    @if (Model != null)
+    {
+        @Html.ActionLink("Back to Hire Bill (Private) Report", "hirebillprivate")
+    }
+</div>
+<div class="tblContainer">
 @if (Model == null)
 {
     using (Html.BeginForm("hirebillprivate", "report", FormMethod.Post, new { @id = "hirebillprivateform" }))
     {
         var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>;
-        <table>
-            <tr>
-                <td>Start Date</td>
-                <td><input type="text" id="startDate" name="startDate" class="dateselect" /></td>
-            </tr>
-            <tr>
-                <td>End Date</td>
-                <td><input type="text" id="endDate" name="endDate" class="dateselect" /></td>
-            </tr>
-            <tr>
-                <td>Vehicle/Machine No</td>
-                <td>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Start Date
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    End Date
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Vehicle/Machine No
+                </div>
+                <div class="editor-field">
                     @Html.DropDownList("vehicleNo", CECRunningChart.Web.Helpers.ModelMapper.GetVehicleOptions(vehicles), new { @id = "vehicleNo", @class = "todo" })
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit" value="Generate Report" /></td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input class="genRptBtn" type="submit" value="Generate Report" />
+        </div>
+       
     }
 }
 else
 {
     bool isVehicle = Convert.ToBoolean(ViewBag.IsVehicle);
     string measure = isVehicle ? "Rs/Km" : "Rs/Hr";
-    <p>
-        @Html.ActionLink("Back to Hire Bill (Private) Report", "hirebillprivate")
-    </p>
+
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Vehicle/Machine No : @ViewBag.VehicleNumber <br />
         Owner : @ViewBag.OwnerName <br />
         Rate : @ViewBag.HireRate&nbsp;@measure<br />
     </p>
-    <table>
+    <table class="tblFont">
         <tr>
-            <td rowspan="2" style="text-align: center">
+            <td rowspan="2" style="text-align: center" class="tblModel">
                 DRC No</td>
-            <td rowspan="2" style="text-align: center">
+            <td rowspan="2" style="text-align: center" class="tblModel">
                 Date</td>
-            <td rowspan="2" style="text-align: center">
+            <td rowspan="2" style="text-align: center" class="tblModel">
                 Project Location</td>
-            <td colspan="2" style="text-align: center">
+            <td colspan="2" style="text-align: center" class="tblModel">
                 Work Done</td>
-            <td rowspan="2" style="text-align: center">
+            <td rowspan="2" style="text-align: center" class="tblModel">
                 Amount</td>
-            <td colspan="4" style="text-align: center">
+            <td colspan="4" style="text-align: center" class="tblModel">
                 Fuel Used</td>
-            <td colspan="5" style="text-align: center">
+            <td colspan="5" style="text-align: center" class="tblModel">
                 Lubricant</td>
         </tr>
         <tr>
-            <td style="text-align: center">
+            <td style="text-align: center" class="tblsubModel">
                 Km</td>
-            <td style="text-align: center">
+            <td style="text-align: center" class="tblsubModel">
                 Hour</td>
-            <td style="text-align: center">
+            <td style="text-align: center" class="tblsubModel">
                 Pump Station</td>
-            <td>
+            <td class="tblsubModel">
                 Qty</td>
-            <td>
+            <td class="tblsubModel">
                 Rate</td>
-            <td>
+            <td class="tblsubModel">
                 Amount</td>
-            <td style="text-align: center">
+            <td style="text-align: center" class="tblsubModel">
                 Pump Station</td>
-            <td style="text-align: center">
+            <td style="text-align: center" class="tblsubModel">
                 Lubricant Type</td>
-            <td>
+            <td class="tblsubModel">
                 Qty</td>
-            <td>
+            <td class="tblsubModel">
                 Rate</td>
-            <td>
+            <td class="tblsubModel">
                 Amount</td>
         </tr>
         @{
-            var runningChartIds = Model.RunningChartIds;
-            decimal totalWorkDone = decimal.Zero;
-            decimal totalWorkAmount = decimal.Zero;
-            decimal totalFuelQty = decimal.Zero;
-            decimal totalFuelAmount = decimal.Zero;
-            decimal totalLubricantQty = decimal.Zero;
-            decimal totalLubricantAmount = decimal.Zero;
-                                 
-            foreach (var chart in runningChartIds)
-            {
-                var details = Model.HireBillPrivateReportDetails.Where(x => x.RunningchartId == chart.Key);
-                var fuel = Model.HireBillPrivateReportFuel.Where(x => x.RunningchartId == chart.Key);
-                var lubricant = Model.HireBillPrivateReportLubricants.Where(x => x.RunningchartId == chart.Key);
+                                 var runningChartIds = Model.RunningChartIds;
+                                 decimal totalWorkDone = decimal.Zero;
+                                 decimal totalWorkAmount = decimal.Zero;
+                                 decimal totalFuelQty = decimal.Zero;
+                                 decimal totalFuelAmount = decimal.Zero;
+                                 decimal totalLubricantQty = decimal.Zero;
+                                 decimal totalLubricantAmount = decimal.Zero;
 
-                var detailsCount = details.Count();
-                var fuelCount = fuel.Count();
-                var lubriCount = lubricant.Count();
-                var maxCountForChart = new int[] { detailsCount, fuelCount, lubriCount }.Max();
+                                 foreach (var chart in runningChartIds)
+                                 {
+                                     var details = Model.HireBillPrivateReportDetails.Where(x => x.RunningchartId == chart.Key);
+                                     var fuel = Model.HireBillPrivateReportFuel.Where(x => x.RunningchartId == chart.Key);
+                                     var lubricant = Model.HireBillPrivateReportLubricants.Where(x => x.RunningchartId == chart.Key);
 
-                var detailsArray = details.ToArray();
-                var fuelArray = fuel.ToArray();
-                var lubricantArray = lubricant.ToArray();
+                                     var detailsCount = details.Count();
+                                     var fuelCount = fuel.Count();
+                                     var lubriCount = lubricant.Count();
+                                     var maxCountForChart = new int[] { detailsCount, fuelCount, lubriCount }.Max();
 
-                for (int i = 0; i < maxCountForChart; i++)
-                {
-                    string[] dataValues = new string[15];
-                    string chariId = string.Empty;
-                    string billDate = string.Empty;
-                    // Runningchart
-                    if (i == 0)
-                    {
-                        dataValues[0] = chart.Key.ToString(); // DRC No
-                        dataValues[1] = chart.Value.ToString("d"); // Date
-                    }
-                    // Runningchart details
-                    if (i < detailsArray.Length)
-                    {
-                        dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
-                        dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
-                        dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
-                        var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
-                        dataValues[5] = amt.ToString("N"); // Amount
-                        totalWorkDone += detailsArray[i].KmHrDone;
-                        totalWorkAmount += amt;
-                    }
-                    // Runningchart fuel
-                    if (i < fuelArray.Length)
-                    {
-                        dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
-                        dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
-                        dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
-                        var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
-                        dataValues[9] = amt.ToString("N"); // Amount
-                        totalFuelQty += fuelArray[i].Amount;
-                        totalFuelAmount += amt;
-                    }
-                    // Runningchart lubricant
-                    if (i < lubricantArray.Length)
-                    {
-                        dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
-                        dataValues[11] = lubricantArray[i].PumpstationName; // Lubricant Type
-                        dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
-                        dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
-                        var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
-                        dataValues[14] = amt.ToString("N"); // Amount
-                        totalLubricantQty += lubricantArray[i].Amount;
-                        totalLubricantAmount += amt;
-                    }
+                                     var detailsArray = details.ToArray();
+                                     var fuelArray = fuel.ToArray();
+                                     var lubricantArray = lubricant.ToArray();
+
+                                     for (int i = 0; i < maxCountForChart; i++)
+                                     {
+                                         string[] dataValues = new string[15];
+                                         string chariId = string.Empty;
+                                         string billDate = string.Empty;
+                                         // Runningchart
+                                         if (i == 0)
+                                         {
+                                             dataValues[0] = chart.Key.ToString(); // DRC No
+                                             dataValues[1] = chart.Value.ToString("d"); // Date
+                                         }
+                                         // Runningchart details
+                                         if (i < detailsArray.Length)
+                                         {
+                                             dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
+                                             dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
+                                             dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
+                                             var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
+                                             dataValues[5] = amt.ToString("N"); // Amount
+                                             totalWorkDone += detailsArray[i].KmHrDone;
+                                             totalWorkAmount += amt;
+                                         }
+                                         // Runningchart fuel
+                                         if (i < fuelArray.Length)
+                                         {
+                                             dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
+                                             dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
+                                             dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
+                                             var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
+                                             dataValues[9] = amt.ToString("N"); // Amount
+                                             totalFuelQty += fuelArray[i].Amount;
+                                             totalFuelAmount += amt;
+                                         }
+                                         // Runningchart lubricant
+                                         if (i < lubricantArray.Length)
+                                         {
+                                             dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
+                                             dataValues[11] = lubricantArray[i].PumpstationName; // Lubricant Type
+                                             dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
+                                             dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
+                                             var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
+                                             dataValues[14] = amt.ToString("N"); // Amount
+                                             totalLubricantQty += lubricantArray[i].Amount;
+                                             totalLubricantAmount += amt;
+                                         }
                     <tr>
                         <td>@dataValues[0]</td>
                         <td>@dataValues[1]</td>
@@ -216,14 +234,16 @@ else
                         <td>@dataValues[13]</td>
                         <td>@dataValues[14]</td>
                     </tr>
-                    }
-                }
+                                     }
+                                 }
         }
         <tr>
             <td colspan="3" style="text-align: center">TOTAL</td>
             
-            <td>@if (isVehicle) { <text>@totalWorkDone.ToString("N")</text>} &nbsp;</td>
-            <td>@if (!isVehicle) { <text>@totalWorkDone.ToString("N")</text>}&nbsp;</td>
+            <td>@if (isVehicle)
+                { <text>@totalWorkDone.ToString("N")</text>} &nbsp;</td>
+            <td>@if (!isVehicle)
+                { <text>@totalWorkDone.ToString("N")</text>}&nbsp;</td>
             <td>@totalWorkAmount.ToString("N")</td>
 
             <td>&nbsp;</td>
@@ -266,3 +286,4 @@ else
         </tr>
     </table>
 }
+</div>

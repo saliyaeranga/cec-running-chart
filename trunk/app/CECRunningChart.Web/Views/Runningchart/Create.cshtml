@@ -17,7 +17,8 @@
     }
    .mainContent
     {
-        width:1309px;
+        min-width:1309px;
+        width:97%;
     }
 </style>
 <link rel="stylesheet" href="@Url.Content("~/Content/themes/base/jquery.ui.timepicker.css")" type="text/css" />
@@ -73,9 +74,7 @@
         }
     });
 </script>
-<div>
-    @Html.ActionLink("Back to Running Charts", "index")
-</div>
+
 @using (Html.BeginForm(submitAction, "runningchart", FormMethod.Post, new { @id = "runningchartform" }))
 {
     string fuelLeftBegningOfDay = Model.FuelLeftBegningOfDay > 0 ? Model.FuelLeftBegningOfDay.ToString() : string.Empty;
@@ -84,6 +83,7 @@
     string fuelLeft = Model.FuelLeftEndOfDay > 0 ? Model.FuelLeftEndOfDay.ToString() : string.Empty;
     string fuelUsage = Model.FuelUsageOfDay > 0 ? Model.FuelUsageOfDay.ToString() : string.Empty;
     string submitText = editRunningchart ? "Approve" : "Send to Approve";
+    <fieldset>
     <h2>New Running Chart</h2>
     <div id="BasicInfo">
         <table>
@@ -194,6 +194,10 @@
     </div>
     <br />
     <div id="Authorization">
-        <input type="submit" value="@submitText" />
+        <input class="createBtn" type="submit" value="@submitText" />
     </div>
+     </fieldset>
 }
+<div class="bckBtn">
+    @Html.ActionLink("Back to Running Charts", "index")
+</div>

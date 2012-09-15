@@ -44,90 +44,97 @@
         });
     });
 </script>
-<h2>
-    Hire Bill Report</h2>
-<p>
+<div class="inrPgHeadding">
+    <h2>Hire Bill Report</h2>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-</p>
+    @if (Model != null)
+    { 
+        @Html.ActionLink("Back to Hire Bill Report", "hirebill")
+    }
+</div>
+<div class="tblContainer">
 @if (Model == null)
 {
     using (Html.BeginForm("hirebill", "report", FormMethod.Post, new { @id = "hirebillform" }))
     {
         var projects = ViewBag.Projects as List<CECRunningChart.Web.Models.Project.ProjectModel>;
-        <table>
-            <tr>
-                <td>
-                    Start Date
-                </td>
-                <td>
+        
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                     Start Date
+                 </div>
+                <div class="editor-field">
                     <input type="text" id="startDate" name="startDate" class="dateselect" />
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
                     End Date
-                </td>
-                <td>
+                </div>
+                <div class="editor-field">
                     <input type="text" id="endDate" name="endDate" class="dateselect" />
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
                     Project
-                </td>
-                <td>@Html.DropDownList("projectId", CECRunningChart.Web.Helpers.ModelMapper.GetProjectOptions(projects), new { @id = "projectId", @class = "todo" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
+                    </div>
+                <div class="editor-field">
+                     @Html.DropDownList("projectId", CECRunningChart.Web.Helpers.ModelMapper.GetProjectOptions(projects), new { @id = "projectId", @class = "todo" })
+                        &nbsp;
                     <input type="hidden" id="projectName" name="projectName" value="" />
-                </td>
-                <td>
-                    <input type="submit" value="Generate Report" />
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <input  class="genRptBtn" type="submit" value="Generate Report" />
+        </div>
+      
     }
 }
 else
 {
-    <p>
-        @Html.ActionLink("Back to Hire Bill Report", "hirebill")
-    </p>
+    
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Project : @ViewBag.ProjectName
     </p>
-    <table>
+    <table class="tblFont">
         <tr>
-            <td rowspan="2">
+            <td rowspan="2" class="tblModel">
                 Date</td>
-            <td rowspan="2">
+            <td rowspan="2" class="tblModel">
                 Vehicle/Machine No</td>
-            <td rowspan="2">
+            <td rowspan="2" class="tblModel">
                 Company Code</td>
-            <td colspan="2">
+            <td colspan="2" class="tblModel">
                 Work Done</td>
-            <td colspan="2">
+            <td colspan="2" class="tblModel">
                 Rate</td>
-            <td rowspan="2">
+            <td rowspan="2" class="tblModel">
                 Amount</td>
         </tr>
         <tr>
-            <td>
+            <td class="tblsubModel">
                 Km</td>
-            <td>
+            <td class="tblsubModel">
                 Hour</td>
-            <td>
+            <td class="tblsubModel">
                 Km</td>
-            <td>
+            <td class="tblsubModel">
                 Hour</td>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="mainColum">
                     @item.BillDate.ToString("d")
                 </td>
                 <td>
@@ -167,3 +174,4 @@ else
         }
     </table>
 }
+</div>
