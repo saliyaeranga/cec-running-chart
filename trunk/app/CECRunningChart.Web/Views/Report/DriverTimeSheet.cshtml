@@ -82,8 +82,7 @@ else
                     </td>
                     <td>
                         @{ 
-                   string otHours = item.OTHours.ToString();
-                   string displayOTHours = otHours.Contains(".") ? item.OTHours.ToString("N") : otHours;
+                            string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
                         }
                         @displayOTHours
                     </td>
