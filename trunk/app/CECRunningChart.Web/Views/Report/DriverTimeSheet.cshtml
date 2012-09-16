@@ -22,47 +22,54 @@
         });
     });
 </script>
+<div class="inrPgHeadding">
 <h2>Driver / Operator Time Sheet</h2>
-<p>
+</div>
+<div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
-</p>
+    @if (Model != null)
+    {
+        @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
+    }
+</div>
+<div class="tblContainer">
 @if (Model == null)
 {
     var drivers = ViewBag.DriverNames as List<string>;
-    var options = drivers.Select(x => new SelectListItem(){ Text = x, Value = x }).ToList<SelectListItem>();
+    var options = drivers.Select(x => new SelectListItem() { Text = x, Value = x }).ToList<SelectListItem>();
     using (Html.BeginForm("drivertimesheet", "report", FormMethod.Post, new { @id = "drivertimesheetform" }))
     {
         @Html.DropDownList("driverName", options)<br />
-        <input type="submit" value="Generate Report" />
+        <div class="row">
+            <input class="genRptBtn" type="submit" value="Generate Report" />
+        </div>
     }
 }
 else
 {
-    <p>
-        @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
-    </p>
+
     <p>
         Driver / Operator Name : @ViewBag.DriverOperatorName
     </p>
-    <table>
+    <table class="tblFont">
             <tr>
-                <th rowspan="2">Date</th>
-                <th rowspan="2">Vehicle/Machine No</th>
-                <th rowspan="2">In Time</th>
-                <th rowspan="2">Out Time</th>
-                <th colspan="2">Work Done</th>
-                <th rowspan="2">OT Hour</th>
+                <th rowspan="2" class="tblModel">Date</th>
+                <th rowspan="2" class="tblModel">Vehicle/Machine No</th>
+                <th rowspan="2" class="tblModel">In Time</th>
+                <th rowspan="2" class="tblModel">Out Time</th>
+                <th colspan="2" class="tblModel">Work Done</th>
+                <th rowspan="2" class="tblModel">OT Hour</th>
             </tr>
             <tr>
-                <td>Km</td>
-                <td>Hour</td>
+                <td class="tblsubModel">Km</td>
+                <td class="tblsubModel">Hour</td>
             </tr>
             @foreach (var item in Model)
             {
                 var workDoneKm = item.IsVehicle ? item.WorkDone.ToString() : string.Empty;
                 var workDoneHr = item.IsVehicle ? string.Empty : item.WorkDone.ToString();
                 <tr>
-                    <td>
+                    <td class="mainColum">
                         @item.BillDate.ToString("d")
                     </td>
                     <td>
@@ -91,3 +98,4 @@ else
             }
         </table>
 }
+</div>

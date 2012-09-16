@@ -52,6 +52,9 @@ Hello @user.UserName*@
                 <a href="@Url.Action("index", "runningchart")">
                     <img src="/Content/images/manaeRuningChart.png" />
                 </a>
+                <a href="@Url.Action("reset", "user")">
+                    <img src="/Content/images/pwChangeIcon.png" />
+                </a>
                 @*<a href="">
                     <img src="/Content/images/viewPastRptIcon.png" />
                 </a>
@@ -68,16 +71,22 @@ Hello @user.UserName*@
                 </a><a href="">
                     <img src="/Content/images/manageRptIcon.png" alt="" />
                 </a>
+                <a href="@Url.Action("reset", "user")">
+                    <img src="/Content/images/pwChangeIcon.png" />
+                </a>
             </div>
         }
         else if (ViewBag.UserRole == CECRunningChart.Common.UserRole.RunningChartOperator)
         {
             <div class="operatorTopIconPanel">
                 <a href="@Url.Action("index", "runningchart")">
-                    <img src="/Content/images/addRunningChartIcon.png" alt="Manage Running Charts" />
+                    <img src="/Content/images/viewPastRptIcon.png" alt="Manage Running Charts" />
                 </a>
                 <a href="@Url.Action("create", "runningchart")">
                     <img src="/Content/images/addRunningChartIcon.png" alt="Manage Running Charts" />
+                </a>
+                <a href="@Url.Action("reset", "user")">
+                    <img src="/Content/images/pwChangeIcon.png" />
                 </a>
             </div>
         }        

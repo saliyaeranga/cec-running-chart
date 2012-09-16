@@ -97,7 +97,7 @@
 {
     float:left;
     margin-top: 8px;
-    height:91px;
+    min-height:91px;
     background-image: url('/Content/images/topNavBg.png');
 }
 .topNavBar .adminTopIcon, .topNavBar .inspectorTopIcon, .topNavBar .operatorTopIconPanel
@@ -298,10 +298,23 @@
     width: 450px;
     color: #4C5BAC;
 }
-.tblsubModel {
-text-align: center;
-background-color: #E8EEF4;
-border: solid 1px #E8EEF4;
-font-weight: bold;
+.tblsubModel 
+{
+    text-align: center;
+    background-color: #E8EEF4;
+    border: solid 1px #E8EEF4;
+    font-weight: bold;
+}
+.addedChrtID 
+{
+    float: right;
+    padding: 20px;
+    clear: both;
+    background-color: #E49138;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+    position: absolute;
+    right: 2%;
 }
 /*styles for commen inner pages End*/

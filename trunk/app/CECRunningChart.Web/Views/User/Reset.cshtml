@@ -34,8 +34,9 @@
         });
     });
 </script>
-<h2>
-    Reset Password</h2>
+<fieldset>
+<legend>
+   Change Password</legend>
 @if (ViewBag.Error != null)
 {
     <div style="color:Red;">
@@ -44,29 +45,44 @@
 }
 @using (Html.BeginForm("reset", "user", FormMethod.Post, new { @id = "resetform" }))
 {
-    <input type="hidden" id="id" name="id" value="@ViewBag.UserId" />
-    <div class="editor-label">
-        Old Password
-    </div>
-    <div class="editor-field">
-        <input type="password" id="oldPassword" name="oldPassword" maxlength="20" />
-    </div>
-    <div class="editor-label">
-        New Password
-    </div>
-    <div class="editor-field">
-        <input type="password" id="newPassword" name="newPassword" maxlength="20" />
-    </div>
-    <div class="editor-label">
-        Confirm New Password
-    </div>
-    <div class="editor-field">
-        <input type="password" id="confNewPassword" name="confNewPassword" maxlength="20" />
-    </div>
-    <p>
-        <input type="submit" value="Reset" />
-    </p>
+    
+    
+        <div class="row">
+            <div class="wrapper"> 
+                <input type="hidden" id="id" name="id" value="@ViewBag.UserId" />
+                <div class="editor-label">
+                    Old Password
+                </div>
+                <div class="editor-field">
+                    <input type="password" id="oldPassword" name="oldPassword" maxlength="20" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper"> 
+                <div class="editor-label">
+                    New Password
+                </div>
+                <div class="editor-field">
+                    <input type="password" id="newPassword" name="newPassword" maxlength="20" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper"> 
+                <div class="editor-label">
+                    Confirm New Password
+                </div>
+                <div class="editor-field">
+                    <input type="password" id="confNewPassword" name="confNewPassword" maxlength="20" />
+                </div>
+            </div>
+       </div>
+       <div class="row">
+            <input class="createBtn" type="submit" value="Reset" />
+        </div>
 }
-<div>
+</fieldset>
+<div class="bckBtn">
     @Html.ActionLink("Back to Home", "manage", "home")
 </div>
