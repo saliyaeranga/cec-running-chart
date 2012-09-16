@@ -42,12 +42,12 @@ namespace CECRunningChart.Web.Controllers
 
             if (user.Role == UserRole.Admin)
             {
-                runningCharts = runningchartService.GetNonePaarovedRunningCharts();
+                runningCharts = runningchartService.GetNoneApprovedRunningCharts();
             }
             else if (user.Role == UserRole.RunningChartInspector)
             {
                 //TODO : Limit running charts by a criteria like inspector projects
-                runningCharts = runningchartService.GetNonePaarovedRunningCharts();
+                runningCharts = runningchartService.GetNoneApprovedRunningCharts();
             }
             else if (user.Role == UserRole.RunningChartOperator)
             {
@@ -228,23 +228,7 @@ namespace CECRunningChart.Web.Controllers
         [HttpGet]
         public ActionResult Approve(int id)
         {
-            IVehicleService vehicleServcie = new VehicleService();
-            IProjectService projectService = new ProjectService();
-            IPumpstationService pumpstationService = new PumpstationService();
-
-            var chart = runningchartService.GetRunningChart(id);
-            var model = ModelMapper.GetRunningchartModel(chart);
-            model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
-            model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
-            model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
-            model.Pumpstations = ModelMapper.GetPumpStationModelList(pumpstationService.GetAllPumpstations());
-            model.VehicleRentalTypes = new List<VehicleRentalTypeModel>()
-            {
-                new VehicleRentalTypeModel() { Id = (int)RentalType.Company, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Company) },
-                new VehicleRentalTypeModel() { Id = (int)RentalType.CompanyHired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.CompanyHired) },
-                new VehicleRentalTypeModel() { Id = (int)RentalType.Hired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Hired) }
-            }; // Not worth to do a DB call since this is very static
-
+            var model = GetRunningchartModel(id);
             return View("Create", model);
         }
 
@@ -268,6 +252,65 @@ namespace CECRunningChart.Web.Controllers
         {
             decimal fuelLeft = runningchartService.GetFuelLeftBegningOfDay(vehicleId);
             return Json(new { FuelLeftBegningOfDay = fuelLeft }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult History()
+        {
+            IVehicleService vehicleServcie = new VehicleService();
+            List<Runningchart> runningCharts = new List<Runningchart>();
+            var user = Session[SessionKeys.UserInfo] as UserModel;
+
+            if (user.Role == UserRole.Admin)
+            {
+                runningCharts = runningchartService.GetApprovedRunningCharts();
+            }
+            else if (user.Role == UserRole.RunningChartInspector)
+            {
+                //TODO : Limit running charts by a criteria like inspector projects
+                runningCharts = runningchartService.GetApprovedRunningCharts();
+            }
+            else if (user.Role == UserRole.RunningChartOperator)
+            {
+                runningCharts = runningchartService.GetOperatorApprovedRunningcharts(user.Id);
+            }
+
+            var model = ModelMapper.GetRunningchartModelList(runningCharts);
+            ViewBag.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var model = GetRunningchartModel(id);
+            return View(model);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private RunningchartModel GetRunningchartModel(int runningChartId)
+        {
+            IVehicleService vehicleServcie = new VehicleService();
+            IProjectService projectService = new ProjectService();
+            IPumpstationService pumpstationService = new PumpstationService();
+
+            var chart = runningchartService.GetRunningChart(runningChartId);
+            var model = ModelMapper.GetRunningchartModel(chart);
+            model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
+            model.Lubricants = ModelMapper.GetLubricantModelList(vehicleServcie.GetAllLubricantTypes());
+            model.Projects = ModelMapper.GetProjectModelList(projectService.GetAllActiveProjects());
+            model.Pumpstations = ModelMapper.GetPumpStationModelList(pumpstationService.GetAllPumpstations());
+            model.VehicleRentalTypes = new List<VehicleRentalTypeModel>()
+            {
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Company, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Company) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.CompanyHired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.CompanyHired) },
+                new VehicleRentalTypeModel() { Id = (int)RentalType.Hired, RentalTypeName = StringEnum.GetEnumStringValue(RentalType.Hired) }
+            }; // Not worth to do a DB call since this is very static
+
+            return model;
         }
 
         #endregion

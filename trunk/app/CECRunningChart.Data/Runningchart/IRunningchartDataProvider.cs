@@ -12,6 +12,8 @@ namespace CECRunningChart.Data.Runningchart
         int AddRunningchart(Core.Runningchart runningChart);
         DataSet GetNoneApprovedRunningCharts();
         DataSet GetOperatorNoneApprovedRunningcharts(int operatorUserId);
+        DataSet GetApprovedRunningCharts();
+        DataSet GetOperatorApprovedRunningcharts(int operatorUserId);
         DataSet GetRunningChart(int chartId);
         void ApproveRunningChart(int runningChartId, int approvedBy, DateTime approvedDate);
         DataSet GetFuelLeftBegningOfDay(int vehicleId);

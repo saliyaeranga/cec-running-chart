@@ -32,7 +32,7 @@ namespace CECRunningChart.Services.Runningchart
             return dataProvider.AddRunningchart(runningChart);
         }
 
-        public List<Core.Runningchart> GetNonePaarovedRunningCharts()
+        public List<Core.Runningchart> GetNoneApprovedRunningCharts()
         {
             var chartData = dataProvider.GetNoneApprovedRunningCharts();
             return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
@@ -41,6 +41,18 @@ namespace CECRunningChart.Services.Runningchart
         public List<Core.Runningchart> GetOperatorNoneApprovedRunningcharts(int operatorUserId)
         {
             var chartData = dataProvider.GetOperatorNoneApprovedRunningcharts(operatorUserId);
+            return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
+        }
+
+        public List<Core.Runningchart> GetApprovedRunningCharts()
+        {
+            var chartData = dataProvider.GetApprovedRunningCharts();
+            return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
+        }
+
+        public List<Core.Runningchart> GetOperatorApprovedRunningcharts(int operatorUserId)
+        {
+            var chartData = dataProvider.GetOperatorApprovedRunningcharts(operatorUserId);
             return ConversionHelper.ConvertToList<Core.Runningchart>(chartData);
         }
 
