@@ -574,7 +574,7 @@ namespace CECRunningChart.Web.Helpers
                                   BillDate = r.BillDate,
                                   VehicleNumber = r.VehicleNumber,
                                   CompanyCode = r.CompanyCode,
-                                  VehicleRate = r.VehicleRate,
+                                  VehicleHireRate = r.VehicleHireRate,
                                   IsVehicle = r.IsVehicle,
                                   KmHrDone = r.KmHrDone,
                                   Amount = r.Amount

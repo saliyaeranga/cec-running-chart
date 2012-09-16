@@ -60,7 +60,6 @@
     using (Html.BeginForm("hirebill", "report", FormMethod.Post, new { @id = "hirebillform" }))
     {
         var projects = ViewBag.Projects as List<CECRunningChart.Web.Models.Project.ProjectModel>;
-        
         <div class="row">
             <div class="wrapper">
                 <div class="editor-label">
@@ -96,12 +95,10 @@
         <div class="row">
              <input  class="genRptBtn" type="submit" value="Generate Report" />
         </div>
-      
     }
 }
 else
 {
-    
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Project : @ViewBag.ProjectName
@@ -158,13 +155,13 @@ else
                 <td>
                     @if (item.IsVehicle)
                     {
-                        <text>@item.VehicleRate</text>
+                        <text>@item.VehicleHireRate</text>
                     }
                 </td>
                 <td>
                     @if (!item.IsVehicle)
                     {
-                        <text>@item.VehicleRate</text>
+                        <text>@item.VehicleHireRate</text>
                     }
                 </td>
                 <td>

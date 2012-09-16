@@ -26,8 +26,8 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("KmHrDone")]
         public string KmHrDone { get; set; }
 
-        [XmlElementAttribute("VehicleRate")]
-        public string VehicleRate { get; set; }
+        [XmlElementAttribute("VehicleHireRate")]
+        public string VehicleHireRate { get; set; }
 
         [XmlElementAttribute("Amount")]
         public string Amount { get; set; }
