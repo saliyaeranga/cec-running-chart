@@ -229,7 +229,7 @@ namespace CECRunningChart.Web.Controllers
         public ActionResult Approve(int id)
         {
             var model = GetRunningchartModel(id);
-            return View("Create", model);
+            return View("Details", model);
         }
 
         [HttpPost]

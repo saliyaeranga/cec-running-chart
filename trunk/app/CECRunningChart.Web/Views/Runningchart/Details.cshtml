@@ -47,10 +47,14 @@
     });
 </script>
 <div class="bckBtn">
-    @Html.ActionLink("Back to Running Charts History", "history")
+    @if (Model.IsApproved)
+    {
+        @Html.ActionLink("Back to Running Charts History", "history")
+    }
+    @Html.ActionLink("Back to Running Charts", "index")
 </div>
 <br /><br />
-@using (Html.BeginForm("print", "runningchart", FormMethod.Post, new { @id = "runningchartform" }))
+@using (Html.BeginForm("approve", "runningchart", FormMethod.Post, new { @id = "runningchartform" }))
 {
     string fuelLeftBegningOfDay = Model.FuelLeftBegningOfDay > 0 ? Model.FuelLeftBegningOfDay.ToString() : string.Empty;
     string dayStart = Model.DayStartime.Equals(DateTime.MinValue) ? string.Empty : Model.DayStartime.ToShortTimeString();
@@ -167,11 +171,21 @@
     }
     </div>
     <br />
-    <div id="Authorization">
-        <input class="createBtn" type="submit" value="Print Running Chart" />
+    @if (!Model.IsApproved)
+    {
+        <div id="Authorization">
+            <input class="createBtn" type="submit" value="Approve" />
+        </div>
+    }
+    <div id="PrintChart">
+        <input class="createBtn" type="button" value="Print Running Chart" />
     </div>
      </fieldset>
 }
 <div class="bckBtn">
-    @Html.ActionLink("Back to Running Charts History", "history")
+    @if (Model.IsApproved)
+    {
+        @Html.ActionLink("Back to Running Charts History", "history")
+    }
+    @Html.ActionLink("Back to Running Charts", "index")
 </div>
