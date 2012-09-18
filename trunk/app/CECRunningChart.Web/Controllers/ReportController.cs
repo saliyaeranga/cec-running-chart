@@ -58,6 +58,27 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult FuelConsumptionPrint(DateTime startDate, DateTime endDate)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+
+            DataTable dataTable = GetFuelConsumptionTable(startDate, endDate);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/FuelConsumptionReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Fuel Consumption Report";
+            reportClass.Database.Tables["FuelConsumptionReport"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #region Hired Fuel Report
@@ -218,6 +239,29 @@ namespace CECRunningChart.Web.Controllers
         #endregion
 
         #region Private Methods
+
+        private DataTable GetFuelConsumptionTable(DateTime startDate, DateTime endDate)
+        {
+            var report = reportService.GetFuelConsumptionReport(startDate, endDate);
+            dsFuelConsumptionReport ds = new dsFuelConsumptionReport();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["VehicleId"] = item.VehicleId;
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["IsVehicle"] = item.IsVehicle;
+                row["DriverOperatorName"] = item.DriverOperatorName;
+                row["KmHrDone"] = item.KmHrDone;
+                row["TotalFuelUsage"] = item.TotalFuelUsage;
+                row["VehicleRate"] = item.VehicleRate.ToString() + " Km/L";
+                row["ActualRate"] = item.ActualRate.ToString("N") + " Km/L";
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
 
         private DataTable GetDriverOperatorTimeSheetTable(string driverName)
         {
