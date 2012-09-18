@@ -38,8 +38,10 @@
 }
 else
 {
+    string print = "/report/timesheetprint?name=" + ViewBag.DriverOperatorName;
     <p>
         @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
+        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     </p>
     <p>
         Driver / Operator Name : @ViewBag.DriverOperatorName

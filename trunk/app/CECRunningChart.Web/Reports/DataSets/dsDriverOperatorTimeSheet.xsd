@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsDriverOperatorTimeSheet" targetNamespace="http://tempuri.org/dsDriverOperatorTimeSheet.xsd" xmlns:mstns="http://tempuri.org/dsDriverOperatorTimeSheet.xsd" xmlns="http://tempuri.org/dsDriverOperatorTimeSheet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsDriverOperatorTimeSheet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsDriverOperatorTimeSheet" msprop:Generator_UserDSName="dsDriverOperatorTimeSheet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DriverOperatorTimeSheet" msprop:Generator_TableClassName="DriverOperatorTimeSheetDataTable" msprop:Generator_TableVarName="tableDriverOperatorTimeSheet" msprop:Generator_TablePropName="DriverOperatorTimeSheet" msprop:Generator_RowDeletingName="DriverOperatorTimeSheetRowDeleting" msprop:Generator_UserTableName="DriverOperatorTimeSheet" msprop:Generator_RowChangingName="DriverOperatorTimeSheetRowChanging" msprop:Generator_RowEvHandlerName="DriverOperatorTimeSheetRowChangeEventHandler" msprop:Generator_RowDeletedName="DriverOperatorTimeSheetRowDeleted" msprop:Generator_RowEvArgName="DriverOperatorTimeSheetRowChangeEvent" msprop:Generator_RowChangedName="DriverOperatorTimeSheetRowChanged" msprop:Generator_RowClassName="DriverOperatorTimeSheetRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RunningchartId" msprop:Generator_ColumnVarNameInTable="columnRunningchartId" msprop:Generator_ColumnPropNameInRow="RunningchartId" msprop:Generator_ColumnPropNameInTable="RunningchartIdColumn" msprop:Generator_UserColumnName="RunningchartId" type="xs:int" minOccurs="0" />
+              <xs:element name="DriverOperatorName" msprop:Generator_ColumnVarNameInTable="columnDriverOperatorName" msprop:Generator_ColumnPropNameInRow="DriverOperatorName" msprop:Generator_ColumnPropNameInTable="DriverOperatorNameColumn" msprop:Generator_UserColumnName="DriverOperatorName" type="xs:string" minOccurs="0" />
+              <xs:element name="BillDate" msprop:Generator_ColumnVarNameInTable="columnBillDate" msprop:Generator_ColumnPropNameInRow="BillDate" msprop:Generator_ColumnPropNameInTable="BillDateColumn" msprop:Generator_UserColumnName="BillDate" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="IsVehicle" msprop:Generator_ColumnVarNameInTable="columnIsVehicle" msprop:Generator_ColumnPropNameInRow="IsVehicle" msprop:Generator_ColumnPropNameInTable="IsVehicleColumn" msprop:Generator_UserColumnName="IsVehicle" type="xs:boolean" minOccurs="0" />
+              <xs:element name="InTime" msprop:Generator_ColumnVarNameInTable="columnInTime" msprop:Generator_ColumnPropNameInRow="InTime" msprop:Generator_ColumnPropNameInTable="InTimeColumn" msprop:Generator_UserColumnName="InTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OutTime" msprop:Generator_ColumnVarNameInTable="columnOutTime" msprop:Generator_ColumnPropNameInRow="OutTime" msprop:Generator_ColumnPropNameInTable="OutTimeColumn" msprop:Generator_UserColumnName="OutTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Km" msprop:Generator_ColumnVarNameInTable="columnKm" msprop:Generator_ColumnPropNameInRow="Km" msprop:Generator_ColumnPropNameInTable="KmColumn" msprop:Generator_UserColumnName="Km" type="xs:string" minOccurs="0" />
+              <xs:element name="Hr" msprop:Generator_ColumnVarNameInTable="columnHr" msprop:Generator_ColumnPropNameInRow="Hr" msprop:Generator_ColumnPropNameInTable="HrColumn" msprop:Generator_UserColumnName="Hr" type="xs:string" minOccurs="0" />
+              <xs:element name="OTHours" msprop:Generator_ColumnVarNameInTable="columnOTHours" msprop:Generator_ColumnPropNameInRow="OTHours" msprop:Generator_ColumnPropNameInTable="OTHoursColumn" msprop:Generator_UserColumnName="OTHours" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
