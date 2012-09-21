@@ -227,6 +227,27 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult VehicleMachineRegisterPrint(DateTime startDate, DateTime endDate)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+
+            DataTable dataTable = GetVehicleMachineRegisterReportTable(startDate, endDate);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/VehicleMachineRegisterReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Vehicle Machine Register Report";
+            reportClass.Database.Tables["VehicleMachineRegister"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #region Hire Bill Report
@@ -310,6 +331,29 @@ namespace CECRunningChart.Web.Controllers
         #endregion
 
         #region Private Methods
+
+        private DataTable GetVehicleMachineRegisterReportTable(DateTime startDate, DateTime endDate)
+        {
+            var report = reportService.GetVehicleMachineRegisterReport(startDate, endDate);
+            dsVehicleMachineRegister ds = new dsVehicleMachineRegister();
+            DataTable dataTable = ds.Tables[0].Clone();
+            int count = 1;
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["No"] = count;
+                row["VehicleId"] = item.VehicleId;
+                row["VehicleType"] = item.VehicleType;
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["CompanyCode"] = item.CompanyCode;
+                row["VehicleLocation"] = item.VehicleLocation;
+                dataTable.Rows.Add(row);
+                count++;
+            }
+
+            return dataTable;
+        }
 
         private DataTable GetFuelConsumptionTable(DateTime startDate, DateTime endDate)
         {
