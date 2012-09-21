@@ -118,6 +118,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsFuelConsumptionReport.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\DataSets\dsHireBillReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DataSets\dsHiredVehicleFuelReport.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,27 +145,15 @@
       <DependentUpon>FuelConsumptionReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\GridDataSet.Designer.cs">
+    <Compile Include="Reports\HireBillReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\GridReport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GridReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
+      <DependentUpon>HireBillReport.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reports\HiredVehicleFuelReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HiredVehicleFuelReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\TestReport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Timesheet.cs">
@@ -426,17 +419,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FuelConsumptionReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\GridReport.rpt">
+    <EmbeddedResource Include="Reports\HireBillReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GridReport.cs</LastGenOutput>
+      <LastGenOutput>HireBillReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\HiredVehicleFuelReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>HiredVehicleFuelReport.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\TestReport.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>TestReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Timesheet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -475,6 +464,17 @@
     <None Include="Reports\DataSets\dsFuelConsumptionReport.xss">
       <DependentUpon>dsFuelConsumptionReport.xsd</DependentUpon>
     </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xsc">
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsHireBillReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xss">
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </None>
     <None Include="Reports\DataSets\dsHiredVehicleFuelReport.xsc">
       <DependentUpon>dsHiredVehicleFuelReport.xsd</DependentUpon>
     </None>
@@ -496,17 +496,6 @@
     </None>
     <None Include="Reports\DataSets\dsFuelAndLubricantReport.xss">
       <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
-    </None>
-    <None Include="Reports\GridDataSet.xsc">
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Reports\GridDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GridDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Reports\GridDataSet.xss">
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup />

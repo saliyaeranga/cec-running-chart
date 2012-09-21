@@ -246,8 +246,33 @@ namespace CECRunningChart.Web.Controllers
             var model = ModelMapper.GetHireBillReportModelList(report);
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
+            ViewBag.ProjectId = projectId;
             ViewBag.ProjectName = projectName;
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult HireBillPrint(DateTime startDate, DateTime endDate, int projectId, string projectName)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+            if (projectId == 0)
+                throw new InvalidArgumentException("Project Id can not be 0", EngineExceptionErrorID.InvalidArgument);
+
+            DataTable dataTable = GetHireBillReportTable(startDate, endDate, projectId);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/HireBillReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Hire Bill Report";
+            reportClass.Database.Tables["HireBillReport"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+            reportClass.SetParameterValue("ProjectParameter", projectName);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
         }
 
         #endregion
@@ -368,6 +393,37 @@ namespace CECRunningChart.Web.Controllers
                     row["LubricantRate"] = item.LubricantRate;
                     row["LubricantAmount"] = (item.LubricantQty * item.LubricantRate).ToString();
                 }
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        private DataTable GetHireBillReportTable(DateTime startDate, DateTime endDate, int projectId)
+        {
+            var report = reportService.GetHireBillReport(startDate, endDate, projectId);
+            dsHireBillReport ds = new dsHireBillReport();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["RunningchartId"] = item.RunningchartId;
+                row["BillDate"] = item.BillDate.ToString("d");
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["CompanyCode"] = item.CompanyCode;
+                row["IsVehicle"] = item.IsVehicle;
+                if (item.IsVehicle)
+                {
+                    row["WorkDoneKm"] = item.KmHrDone;
+                    row["RateHr"] = item.VehicleHireRate;
+                }
+                else
+                {
+                    row["WorkDoneHr"] = item.KmHrDone;
+                    row["RateKm"] = item.VehicleHireRate;
+                }
+                row["Amount"] = item.Amount;
                 dataTable.Rows.Add(row);
             }
 

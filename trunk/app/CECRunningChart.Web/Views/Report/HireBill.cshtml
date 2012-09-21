@@ -50,8 +50,12 @@
 <div class="bckBtn">
     @Html.ActionLink("Back to Reports", "index")
     @if (Model != null)
-    { 
+    {
+        string print = "/report/hirebillprint?startDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.StartDate).ToString("d")) +
+            "&endDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.EndDate).ToString("d")) + "&projectId=" + ViewBag.ProjectId +
+            "&projectName=" + Server.UrlEncode(ViewBag.ProjectName);
         @Html.ActionLink("Back to Hire Bill Report", "hirebill")
+        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     }
 </div>
 <div class="tblContainer">
