@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Data;
 using System.IO;
 using System.Web.Mvc;
@@ -316,6 +317,7 @@ namespace CECRunningChart.Web.Controllers
             var reporthp = reportService.GetHireBillPrivateReport(startDate, endDate, vehicleNo);
             var modelhp = ModelMapper.GetHireBillPrivateReportModelList(reporthp);
 
+            ViewBag.VehicleNo = vehicle.Id;
             ViewBag.IsVehicle = vehicle.IsVehicle;
             ViewBag.OwnerName = vehicle.OwnerName;
             ViewBag.HireRate = vehicle.HireRate.ToString("N");
@@ -326,11 +328,190 @@ namespace CECRunningChart.Web.Controllers
             return View(modelhp);
         }
 
+        [HttpGet]
+        public ActionResult HireBillPrivatePrint(DateTime startDate, DateTime endDate, int vehicleNo)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+            if (vehicleNo == 0)
+                throw new InvalidArgumentException("Vehicle No can not be 0", EngineExceptionErrorID.InvalidArgument);
+
+            IVehicleService vehicleService = new VehicleService();
+            var vehicle = vehicleService.GetVehicle(vehicleNo);
+            DataTable dataTable = GetHireBillPrivateReportTable(startDate, endDate, vehicleNo, vehicle.IsVehicle);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/HireBillPrivateReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Hire Bill (Private) Report";
+            reportClass.Database.Tables["HireBillPrivateReport"].SetDataSource(dataTable);
+            //reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            //reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+            //reportClass.SetParameterValue("PumpstationParameter", pumpstationName);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #endregion
 
         #region Private Methods
+
+        private DataTable GetHireBillPrivateReportTable(DateTime startDate, DateTime endDate, int vehicleNo, bool isVehicle)
+        {
+            
+            var reporthp = reportService.GetHireBillPrivateReport(startDate, endDate, vehicleNo);
+            var modelhp = ModelMapper.GetHireBillPrivateReportModelList(reporthp);
+            dsHireBillPrivateReport ds = new dsHireBillPrivateReport();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            var runningChartIds = modelhp.RunningChartIds;
+            decimal totalWorkDone = decimal.Zero;
+            decimal totalWorkAmount = decimal.Zero;
+            decimal totalFuelQty = decimal.Zero;
+            decimal totalFuelAmount = decimal.Zero;
+            decimal totalLubricantQty = decimal.Zero;
+            decimal totalLubricantAmount = decimal.Zero;
+
+            foreach (var chart in runningChartIds)
+            {
+                var details = modelhp.HireBillPrivateReportDetails.Where(x => x.RunningchartId == chart.Key);
+                var fuel = modelhp.HireBillPrivateReportFuel.Where(x => x.RunningchartId == chart.Key);
+                var lubricant = modelhp.HireBillPrivateReportLubricants.Where(x => x.RunningchartId == chart.Key);
+
+                var detailsCount = details.Count();
+                var fuelCount = fuel.Count();
+                var lubriCount = lubricant.Count();
+                var maxCountForChart = new int[] { detailsCount, fuelCount, lubriCount }.Max();
+
+                var detailsArray = details.ToArray();
+                var fuelArray = fuel.ToArray();
+                var lubricantArray = lubricant.ToArray();
+
+                for (int i = 0; i < maxCountForChart; i++)
+                {
+                    string[] dataValues = new string[15];
+                    string chariId = string.Empty;
+                    string billDate = string.Empty;
+                    // Runningchart
+                    if (i == 0)
+                    {
+                        dataValues[0] = chart.Key.ToString(); // DRC No
+                        dataValues[1] = chart.Value.ToString("d"); // Date
+                    }
+                    // Runningchart details
+                    if (i < detailsArray.Length)
+                    {
+                        dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
+                        dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
+                        dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
+                        var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
+                        dataValues[5] = amt.ToString("N"); // Amount
+                        totalWorkDone += detailsArray[i].KmHrDone;
+                        totalWorkAmount += amt;
+                    }
+                    // Runningchart fuel
+                    if (i < fuelArray.Length)
+                    {
+                        dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
+                        dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
+                        dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
+                        var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
+                        dataValues[9] = amt.ToString("N"); // Amount
+                        totalFuelQty += fuelArray[i].Amount;
+                        totalFuelAmount += amt;
+                    }
+                    // Runningchart lubricant
+                    if (i < lubricantArray.Length)
+                    {
+                        dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
+                        dataValues[11] = lubricantArray[i].PumpstationName; // Lubricant Type
+                        dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
+                        dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
+                        var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
+                        dataValues[14] = amt.ToString("N"); // Amount
+                        totalLubricantQty += lubricantArray[i].Amount;
+                        totalLubricantAmount += amt;
+                    }
+
+                    // Add rows
+                    DataRow row = dataTable.NewRow();
+                    row["RunningchartId"] = dataValues[0];
+                    row["BillDate"] = dataValues[1];
+
+                    row["ProjectLocation"] = dataValues[2];
+                    //row["WorkDoneKm"] = dataValues[3];
+                    if (string.IsNullOrWhiteSpace(dataValues[3]))
+                    {
+                        row["WorkDoneKm"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["WorkDoneKm"] = dataValues[3];
+                    }
+                    row["WorkDoneHour"] = dataValues[4];
+                    //row["WorkDoneAmount"] = dataValues[5];
+                    if (string.IsNullOrWhiteSpace(dataValues[5]))
+                    {
+                        row["WorkDoneAmount"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["WorkDoneAmount"] = dataValues[5];
+                    }
+
+                    row["FuelUsed"] = dataValues[6];
+                    //row["FuelUsedQty"] = dataValues[7];
+                    if (string.IsNullOrWhiteSpace(dataValues[7]))
+                    {
+                        row["FuelUsedQty"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["FuelUsedQty"] = dataValues[7];
+                    }
+                    row["FuelUsedRate"] = dataValues[8];
+                    //row["FuelUsedAmount"] = dataValues[9];
+                    if (string.IsNullOrWhiteSpace(dataValues[9]))
+                    {
+                        row["FuelUsedAmount"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["FuelUsedAmount"] = dataValues[9];
+                    }
+
+                    row["LubricantPumpStation"] = dataValues[10];
+                    row["LubricantType"] = dataValues[11];
+                    //row["LubricantQty"] = dataValues[12];
+                    if (string.IsNullOrWhiteSpace(dataValues[12]))
+                    {
+                        row["LubricantQty"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["LubricantQty"] = dataValues[12];
+                    }
+                    row["LubricantRate"] = dataValues[13];
+                    if(string.IsNullOrWhiteSpace(dataValues[14]))
+                    {
+                        row["LubricantAmount"] = DBNull.Value;
+                    }
+                    else
+                    {
+                        row["LubricantAmount"] = dataValues[14];
+                    }
+                    //row["LubricantAmount"] = dataValues[14];
+
+                    dataTable.Rows.Add(row);
+                }
+            }
+            
+            return dataTable;
+        }
 
         private DataTable GetVehicleMachineRegisterReportTable(DateTime startDate, DateTime endDate)
         {
