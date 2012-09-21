@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsHiredVehicleFuelReport" targetNamespace="http://tempuri.org/dsHiredVehicleFuelReport.xsd" xmlns:mstns="http://tempuri.org/dsHiredVehicleFuelReport.xsd" xmlns="http://tempuri.org/dsHiredVehicleFuelReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsHiredVehicleFuelReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsHiredVehicleFuelReport" msprop:Generator_UserDSName="dsHiredVehicleFuelReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HiredVehicleFuelReport" msprop:Generator_TableClassName="HiredVehicleFuelReportDataTable" msprop:Generator_TableVarName="tableHiredVehicleFuelReport" msprop:Generator_TablePropName="HiredVehicleFuelReport" msprop:Generator_RowDeletingName="HiredVehicleFuelReportRowDeleting" msprop:Generator_UserTableName="HiredVehicleFuelReport" msprop:Generator_RowChangingName="HiredVehicleFuelReportRowChanging" msprop:Generator_RowEvHandlerName="HiredVehicleFuelReportRowChangeEventHandler" msprop:Generator_RowDeletedName="HiredVehicleFuelReportRowDeleted" msprop:Generator_RowEvArgName="HiredVehicleFuelReportRowChangeEvent" msprop:Generator_RowChangedName="HiredVehicleFuelReportRowChanged" msprop:Generator_RowClassName="HiredVehicleFuelReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VehicleId" msprop:Generator_ColumnVarNameInTable="columnVehicleId" msprop:Generator_ColumnPropNameInRow="VehicleId" msprop:Generator_ColumnPropNameInTable="VehicleIdColumn" msprop:Generator_UserColumnName="VehicleId" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="IsVehicle" msprop:Generator_ColumnVarNameInTable="columnIsVehicle" msprop:Generator_ColumnPropNameInRow="IsVehicle" msprop:Generator_ColumnPropNameInTable="IsVehicleColumn" msprop:Generator_UserColumnName="IsVehicle" type="xs:string" minOccurs="0" />
+              <xs:element name="DriverOperatorName" msprop:Generator_ColumnVarNameInTable="columnDriverOperatorName" msprop:Generator_ColumnPropNameInRow="DriverOperatorName" msprop:Generator_ColumnPropNameInTable="DriverOperatorNameColumn" msprop:Generator_UserColumnName="DriverOperatorName" type="xs:string" minOccurs="0" />
+              <xs:element name="OwnerName" msprop:Generator_ColumnVarNameInTable="columnOwnerName" msprop:Generator_ColumnPropNameInRow="OwnerName" msprop:Generator_ColumnPropNameInTable="OwnerNameColumn" msprop:Generator_UserColumnName="OwnerName" type="xs:string" minOccurs="0" />
+              <xs:element name="KmHrDone" msprop:Generator_ColumnVarNameInTable="columnKmHrDone" msprop:Generator_ColumnPropNameInRow="KmHrDone" msprop:Generator_ColumnPropNameInTable="KmHrDoneColumn" msprop:Generator_UserColumnName="KmHrDone" type="xs:string" minOccurs="0" />
+              <xs:element name="FuelDrawn" msprop:Generator_ColumnVarNameInTable="columnFuelDrawn" msprop:Generator_ColumnPropNameInRow="FuelDrawn" msprop:Generator_ColumnPropNameInTable="FuelDrawnColumn" msprop:Generator_UserColumnName="FuelDrawn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -99,6 +99,27 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult HiredFuelReportPrint(DateTime startDate, DateTime endDate)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+
+            DataTable dataTable = GetHiredFuelReportTable(startDate, endDate);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/HiredVehicleFuelReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Fuel Report – Hired Vehicle / Machine";
+            reportClass.Database.Tables["HiredVehicleFuelReport"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #region Driver Operator Time Sheet Report
@@ -157,8 +178,33 @@ namespace CECRunningChart.Web.Controllers
             var model = ModelMapper.GetFuelAndLubricantReportModelList(report);
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
+            ViewBag.PumpstationId = pumpstationId;
             ViewBag.Pumpstation = pumpstationName;
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult FuelAndLubricantPrint(DateTime startDate, DateTime endDate, int pumpstationId, string pumpstationName)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+            if (pumpstationId == 0)
+                throw new InvalidArgumentException("Pumpstation Id can not be 0", EngineExceptionErrorID.InvalidArgument);
+
+            DataTable dataTable = GetFuelAndLubricantReportTable(startDate, endDate, pumpstationId);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/FuelAndLubricantReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Fuel & Lubricant Report";
+            reportClass.Database.Tables["FuelAndLubricantReport"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+            reportClass.SetParameterValue("PumpstationParameter", pumpstationName);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
         }
 
         #endregion
@@ -257,6 +303,71 @@ namespace CECRunningChart.Web.Controllers
                 row["TotalFuelUsage"] = item.TotalFuelUsage;
                 row["VehicleRate"] = item.VehicleRate.ToString() + " Km/L";
                 row["ActualRate"] = item.ActualRate.ToString("N") + " Km/L";
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        private DataTable GetHiredFuelReportTable(DateTime startDate, DateTime endDate)
+        {
+            var report = reportService.GetHiredVehicleFuelReport(startDate, endDate);
+            dsHiredVehicleFuelReport ds = new dsHiredVehicleFuelReport();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["VehicleId"] = item.VehicleId;
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["IsVehicle"] = item.IsVehicle;
+                row["DriverOperatorName"] = item.DriverOperatorName;
+                row["OwnerName"] = item.OwnerName;
+                row["KmHrDone"] = item.KmHrDone;
+                row["FuelDrawn"] = item.FuelDrawn;
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        private DataTable GetFuelAndLubricantReportTable(DateTime startDate, DateTime endDate, int pumpstationId)
+        {
+            var report = reportService.GetFuelAndLubricantReport(startDate, endDate, pumpstationId);
+            dsFuelAndLubricantReport ds = new dsFuelAndLubricantReport();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["RunningchartId"] = item.RunningchartId;
+                row["BillDate"] = item.BillDate.ToString("d");
+                row["VehicleId"] = item.VehicleId;
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["IsVehicle"] = item.IsVehicle;
+                row["DriverOperatorName"] = item.DriverOperatorName;
+                if (item.IsHiredVehicle)
+                {
+                    row["IsHiredVehicle"] = "YES";
+                }
+                else
+                {
+                    row["IsHiredVehicle"] = "NO";
+                }
+                if (item.FuelQty > 0)
+                {
+                    row["FuelType"] = item.FuelType;
+                    row["FuelQty"] = item.FuelQty;
+                    row["FuelRate"] = item.FuelRate;
+                    row["FuelAmount"] = (item.FuelQty * item.FuelRate).ToString();
+                }
+                if (item.LubricantQty > 0)
+                {
+                    row["LubricantType"] = item.LubricantType;
+                    row["LubricantQty"] = item.LubricantQty;
+                    row["LubricantRate"] = item.LubricantRate;
+                    row["LubricantAmount"] = (item.LubricantQty * item.LubricantRate).ToString();
+                }
                 dataTable.Rows.Add(row);
             }
 
