@@ -221,20 +221,20 @@ else
                         <td>@dataValues[1]</td>
 
                         <td>@dataValues[2]</td>
-                        <td>@dataValues[3]</td>
-                        <td>@dataValues[4]</td>
-                        <td>@dataValues[5]</td>
+                        <td style="text-align:right;">@dataValues[3]</td>
+                        <td style="text-align:right;">@dataValues[4]</td>
+                        <td style="text-align:right;">@dataValues[5]</td>
 
                         <td>@dataValues[6]</td>
-                        <td>@dataValues[7]</td>
-                        <td>@dataValues[8]</td>
-                        <td>@dataValues[9]</td>
+                        <td style="text-align:right;">@dataValues[7]</td>
+                        <td style="text-align:right;">@dataValues[8]</td>
+                        <td style="text-align:right;">@dataValues[9]</td>
 
                         <td>@dataValues[10]</td>
                         <td>@dataValues[11]</td>
-                        <td>@dataValues[12]</td>
-                        <td>@dataValues[13]</td>
-                        <td>@dataValues[14]</td>
+                        <td style="text-align:right;">@dataValues[12]</td>
+                        <td style="text-align:right;">@dataValues[13]</td>
+                        <td style="text-align:right;">@dataValues[14]</td>
                     </tr>
                                      }
                                  }
@@ -242,49 +242,49 @@ else
         <tr>
             <td colspan="3" style="text-align: center">TOTAL</td>
             
-            <td>@if (isVehicle)
+            <td style="text-align:right;">@if (isVehicle)
                 { <text>@totalWorkDone.ToString("N")</text>} &nbsp;</td>
-            <td>@if (!isVehicle)
+            <td style="text-align:right;">@if (!isVehicle)
                 { <text>@totalWorkDone.ToString("N")</text>}&nbsp;</td>
-            <td>@totalWorkAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalWorkAmount.ToString("N")</td>
+
+            <td style="text-align:right;">&nbsp;</td>
+            <td style="text-align:right;">@totalFuelQty.ToString("N")</td>
+            <td style="text-align:right;">&nbsp;</td>
+            <td style="text-align:right;">@totalFuelAmount.ToString("N")</td>
 
             <td>&nbsp;</td>
-            <td>@totalFuelQty.ToString("N")</td>
             <td>&nbsp;</td>
-            <td>@totalFuelAmount.ToString("N")</td>
-
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>@totalLubricantQty.ToString("N")</td>
-            <td>&nbsp;</td>
-            <td>@totalLubricantAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalLubricantQty.ToString("N")</td>
+            <td style="text-align:right;">&nbsp;</td>
+            <td style="text-align:right;">@totalLubricantAmount.ToString("N")</td>
         </tr>
     </table>
     <br />
     <table>
         <tr>
             <td>Total Hire Bill</td>
-            <td>@totalWorkAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalWorkAmount.ToString("N")</td>
         </tr>
         <tr>
             <td>Total Fuel</td>
-            <td>@totalFuelAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalFuelAmount.ToString("N")</td>
         </tr>
         <tr>
             <td>Total Lubricant</td>
-            <td>@totalLubricantAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalLubricantAmount.ToString("N")</td>
         </tr>
         <tr>
             <td>Other Deduction</td>
-            <td>0</td>
+            <td style="text-align:right;">0</td>
         </tr>
         <tr>
             <td>Total Deduction</td>
-            <td>@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ToString("N")</td>
+            <td style="text-align:right;">@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ToString("N")</td>
         </tr>
         <tr>
             <td>Total Bill Amount</td>
-            <td>@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ToString("N")</td>
+            <td style="text-align:right;">@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ToString("N")</td>
         </tr>
     </table>
 }

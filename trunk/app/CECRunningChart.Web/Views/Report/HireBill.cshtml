@@ -144,31 +144,31 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyCode)
                 </td>
-                <td>
+                <td style="text-align:right;">
                     @if (item.IsVehicle)
                     {
                         <text>@item.KmHrDone</text>
                     }
                 </td>
-                <td>
+                <td style="text-align:right;">
                     @if (!item.IsVehicle)
                     {
                         <text>@item.KmHrDone</text>
                     }
                 </td>
-                <td>
+                <td style="text-align:right;">
                     @if (item.IsVehicle)
                     {
                         <text>@item.VehicleHireRate</text>
                     }
                 </td>
-                <td>
+                <td style="text-align:right;">
                     @if (!item.IsVehicle)
                     {
                         <text>@item.VehicleHireRate</text>
                     }
                 </td>
-                <td>
+                <td style="text-align:right;">
                     @item.Amount
                 </td>
             </tr>

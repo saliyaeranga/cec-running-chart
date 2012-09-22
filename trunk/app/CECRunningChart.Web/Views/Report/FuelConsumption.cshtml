@@ -116,16 +116,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.DriverOperatorName)
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @Html.DisplayFor(modelItem => item.KmHrDone)
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @Html.DisplayFor(modelItem => item.TotalFuelUsage)
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @Html.DisplayFor(modelItem => item.VehicleRate) Km/L
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @item.ActualRate.ToString("N") Km/L
                     </td>
                 </tr>

@@ -77,19 +77,19 @@ else
                     <td>
                         @Html.DisplayFor(modelItem => item.VehicleNumber)
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @item.InTime.ToString("t")
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @item.OutTime.ToString("t")
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @workDoneKm
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @workDoneHr
                     </td>
-                    <td>
+                    <td style="text-align:right;">
                         @{ 
                    string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
                         }
