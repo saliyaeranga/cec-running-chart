@@ -52,7 +52,11 @@
     @Html.ActionLink("Back to Reports", "index")
     @if (Model != null)
     {
+        string print = "/report/fuelandlubricantprint?startDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.StartDate).ToString("d")) +
+            "&endDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.EndDate).ToString("d")) + "&pumpstationId=" + ViewBag.PumpstationId +
+            "&pumpstationName="+ Server.UrlEncode(ViewBag.Pumpstation);
         @Html.ActionLink("Back to Fuel & Lubricant Report", "fuelandlubricant")
+        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     }
 </div>
 <div class="tblContainer">

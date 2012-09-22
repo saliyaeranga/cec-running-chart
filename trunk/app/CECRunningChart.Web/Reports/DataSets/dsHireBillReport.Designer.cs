@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace CECRunningChart.Web.Reports {
+namespace CECRunningChart.Web.Reports.DataSets {
     
     
     /// <summary>
@@ -20,17 +20,17 @@ namespace CECRunningChart.Web.Reports {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("GridDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("dsHireBillReport")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class GridDataSet : global::System.Data.DataSet {
+    public partial class dsHireBillReport : global::System.Data.DataSet {
         
-        private MyTableDataTable tableMyTable;
+        private HireBillReportDataTable tableHireBillReport;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public GridDataSet() {
+        public dsHireBillReport() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace CECRunningChart.Web.Reports {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected GridDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected dsHireBillReport(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace CECRunningChart.Web.Reports {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["MyTable"] != null)) {
-                    base.Tables.Add(new MyTableDataTable(ds.Tables["MyTable"]));
+                if ((ds.Tables["HireBillReport"] != null)) {
+                    base.Tables.Add(new HireBillReportDataTable(ds.Tables["HireBillReport"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace CECRunningChart.Web.Reports {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MyTableDataTable MyTable {
+        public HireBillReportDataTable HireBillReport {
             get {
-                return this.tableMyTable;
+                return this.tableHireBillReport;
             }
         }
         
@@ -127,7 +127,7 @@ namespace CECRunningChart.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            GridDataSet cln = ((GridDataSet)(base.Clone()));
+            dsHireBillReport cln = ((dsHireBillReport)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace CECRunningChart.Web.Reports {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["MyTable"] != null)) {
-                    base.Tables.Add(new MyTableDataTable(ds.Tables["MyTable"]));
+                if ((ds.Tables["HireBillReport"] != null)) {
+                    base.Tables.Add(new HireBillReportDataTable(ds.Tables["HireBillReport"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace CECRunningChart.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableMyTable = ((MyTableDataTable)(base.Tables["MyTable"]));
+            this.tableHireBillReport = ((HireBillReportDataTable)(base.Tables["HireBillReport"]));
             if ((initTable == true)) {
-                if ((this.tableMyTable != null)) {
-                    this.tableMyTable.InitVars();
+                if ((this.tableHireBillReport != null)) {
+                    this.tableHireBillReport.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace CECRunningChart.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "GridDataSet";
+            this.DataSetName = "dsHireBillReport";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/GridDataSet.xsd";
+            this.Namespace = "http://tempuri.org/dsHireBillReport.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableMyTable = new MyTableDataTable();
-            base.Tables.Add(this.tableMyTable);
+            this.tableHireBillReport = new HireBillReportDataTable();
+            base.Tables.Add(this.tableHireBillReport);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeMyTable() {
+        private bool ShouldSerializeHireBillReport() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace CECRunningChart.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            GridDataSet ds = new GridDataSet();
+            dsHireBillReport ds = new dsHireBillReport();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,23 +270,39 @@ namespace CECRunningChart.Web.Reports {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void MyTableRowChangeEventHandler(object sender, MyTableRowChangeEvent e);
+        public delegate void HireBillReportRowChangeEventHandler(object sender, HireBillReportRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MyTableDataTable : global::System.Data.TypedTableBase<MyTableRow> {
+        public partial class HireBillReportDataTable : global::System.Data.TypedTableBase<HireBillReportRow> {
             
-            private global::System.Data.DataColumn columnABC;
+            private global::System.Data.DataColumn columnRunningchartId;
             
-            private global::System.Data.DataColumn columnDEF;
+            private global::System.Data.DataColumn columnBillDate;
+            
+            private global::System.Data.DataColumn columnVehicleNumber;
+            
+            private global::System.Data.DataColumn columnCompanyCode;
+            
+            private global::System.Data.DataColumn columnIsVehicle;
+            
+            private global::System.Data.DataColumn columnWorkDoneKm;
+            
+            private global::System.Data.DataColumn columnWorkDoneHr;
+            
+            private global::System.Data.DataColumn columnRateKm;
+            
+            private global::System.Data.DataColumn columnRateHr;
+            
+            private global::System.Data.DataColumn columnAmount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableDataTable() {
-                this.TableName = "MyTable";
+            public HireBillReportDataTable() {
+                this.TableName = "HireBillReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -294,7 +310,7 @@ namespace CECRunningChart.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal MyTableDataTable(global::System.Data.DataTable table) {
+            internal HireBillReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -311,24 +327,88 @@ namespace CECRunningChart.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected MyTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected HireBillReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ABCColumn {
+            public global::System.Data.DataColumn RunningchartIdColumn {
                 get {
-                    return this.columnABC;
+                    return this.columnRunningchartId;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DEFColumn {
+            public global::System.Data.DataColumn BillDateColumn {
                 get {
-                    return this.columnDEF;
+                    return this.columnBillDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VehicleNumberColumn {
+                get {
+                    return this.columnVehicleNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CompanyCodeColumn {
+                get {
+                    return this.columnCompanyCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IsVehicleColumn {
+                get {
+                    return this.columnIsVehicle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WorkDoneKmColumn {
+                get {
+                    return this.columnWorkDoneKm;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WorkDoneHrColumn {
+                get {
+                    return this.columnWorkDoneHr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RateKmColumn {
+                get {
+                    return this.columnRateKm;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RateHrColumn {
+                get {
+                    return this.columnRateHr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AmountColumn {
+                get {
+                    return this.columnAmount;
                 }
             }
             
@@ -343,46 +423,54 @@ namespace CECRunningChart.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableRow this[int index] {
+            public HireBillReportRow this[int index] {
                 get {
-                    return ((MyTableRow)(this.Rows[index]));
+                    return ((HireBillReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MyTableRowChangeEventHandler MyTableRowChanging;
+            public event HireBillReportRowChangeEventHandler HireBillReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MyTableRowChangeEventHandler MyTableRowChanged;
+            public event HireBillReportRowChangeEventHandler HireBillReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MyTableRowChangeEventHandler MyTableRowDeleting;
+            public event HireBillReportRowChangeEventHandler HireBillReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MyTableRowChangeEventHandler MyTableRowDeleted;
+            public event HireBillReportRowChangeEventHandler HireBillReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddMyTableRow(MyTableRow row) {
+            public void AddHireBillReportRow(HireBillReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableRow AddMyTableRow(string ABC, string DEF) {
-                MyTableRow rowMyTableRow = ((MyTableRow)(this.NewRow()));
+            public HireBillReportRow AddHireBillReportRow(string RunningchartId, string BillDate, string VehicleNumber, string CompanyCode, string IsVehicle, string WorkDoneKm, string WorkDoneHr, string RateKm, string RateHr, string Amount) {
+                HireBillReportRow rowHireBillReportRow = ((HireBillReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ABC,
-                        DEF};
-                rowMyTableRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMyTableRow);
-                return rowMyTableRow;
+                        RunningchartId,
+                        BillDate,
+                        VehicleNumber,
+                        CompanyCode,
+                        IsVehicle,
+                        WorkDoneKm,
+                        WorkDoneHr,
+                        RateKm,
+                        RateHr,
+                        Amount};
+                rowHireBillReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowHireBillReportRow);
+                return rowHireBillReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                MyTableDataTable cln = ((MyTableDataTable)(base.Clone()));
+                HireBillReportDataTable cln = ((HireBillReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -390,49 +478,73 @@ namespace CECRunningChart.Web.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new MyTableDataTable();
+                return new HireBillReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnABC = base.Columns["ABC"];
-                this.columnDEF = base.Columns["DEF"];
+                this.columnRunningchartId = base.Columns["RunningchartId"];
+                this.columnBillDate = base.Columns["BillDate"];
+                this.columnVehicleNumber = base.Columns["VehicleNumber"];
+                this.columnCompanyCode = base.Columns["CompanyCode"];
+                this.columnIsVehicle = base.Columns["IsVehicle"];
+                this.columnWorkDoneKm = base.Columns["WorkDoneKm"];
+                this.columnWorkDoneHr = base.Columns["WorkDoneHr"];
+                this.columnRateKm = base.Columns["RateKm"];
+                this.columnRateHr = base.Columns["RateHr"];
+                this.columnAmount = base.Columns["Amount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnABC = new global::System.Data.DataColumn("ABC", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnABC);
-                this.columnDEF = new global::System.Data.DataColumn("DEF", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDEF);
+                this.columnRunningchartId = new global::System.Data.DataColumn("RunningchartId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartId);
+                this.columnBillDate = new global::System.Data.DataColumn("BillDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBillDate);
+                this.columnVehicleNumber = new global::System.Data.DataColumn("VehicleNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleNumber);
+                this.columnCompanyCode = new global::System.Data.DataColumn("CompanyCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompanyCode);
+                this.columnIsVehicle = new global::System.Data.DataColumn("IsVehicle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsVehicle);
+                this.columnWorkDoneKm = new global::System.Data.DataColumn("WorkDoneKm", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWorkDoneKm);
+                this.columnWorkDoneHr = new global::System.Data.DataColumn("WorkDoneHr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWorkDoneHr);
+                this.columnRateKm = new global::System.Data.DataColumn("RateKm", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRateKm);
+                this.columnRateHr = new global::System.Data.DataColumn("RateHr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRateHr);
+                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableRow NewMyTableRow() {
-                return ((MyTableRow)(this.NewRow()));
+            public HireBillReportRow NewHireBillReportRow() {
+                return ((HireBillReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MyTableRow(builder);
+                return new HireBillReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(MyTableRow);
+                return typeof(HireBillReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.MyTableRowChanged != null)) {
-                    this.MyTableRowChanged(this, new MyTableRowChangeEvent(((MyTableRow)(e.Row)), e.Action));
+                if ((this.HireBillReportRowChanged != null)) {
+                    this.HireBillReportRowChanged(this, new HireBillReportRowChangeEvent(((HireBillReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -440,8 +552,8 @@ namespace CECRunningChart.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.MyTableRowChanging != null)) {
-                    this.MyTableRowChanging(this, new MyTableRowChangeEvent(((MyTableRow)(e.Row)), e.Action));
+                if ((this.HireBillReportRowChanging != null)) {
+                    this.HireBillReportRowChanging(this, new HireBillReportRowChangeEvent(((HireBillReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -449,8 +561,8 @@ namespace CECRunningChart.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.MyTableRowDeleted != null)) {
-                    this.MyTableRowDeleted(this, new MyTableRowChangeEvent(((MyTableRow)(e.Row)), e.Action));
+                if ((this.HireBillReportRowDeleted != null)) {
+                    this.HireBillReportRowDeleted(this, new HireBillReportRowChangeEvent(((HireBillReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -458,14 +570,14 @@ namespace CECRunningChart.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.MyTableRowDeleting != null)) {
-                    this.MyTableRowDeleting(this, new MyTableRowChangeEvent(((MyTableRow)(e.Row)), e.Action));
+                if ((this.HireBillReportRowDeleting != null)) {
+                    this.HireBillReportRowDeleting(this, new HireBillReportRowChangeEvent(((HireBillReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveMyTableRow(MyTableRow row) {
+            public void RemoveHireBillReportRow(HireBillReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -474,7 +586,7 @@ namespace CECRunningChart.Web.Reports {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GridDataSet ds = new GridDataSet();
+                dsHireBillReport ds = new dsHireBillReport();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -492,7 +604,7 @@ namespace CECRunningChart.Web.Reports {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MyTableDataTable";
+                attribute2.FixedValue = "HireBillReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -536,71 +648,295 @@ namespace CECRunningChart.Web.Reports {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class MyTableRow : global::System.Data.DataRow {
+        public partial class HireBillReportRow : global::System.Data.DataRow {
             
-            private MyTableDataTable tableMyTable;
+            private HireBillReportDataTable tableHireBillReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal MyTableRow(global::System.Data.DataRowBuilder rb) : 
+            internal HireBillReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableMyTable = ((MyTableDataTable)(this.Table));
+                this.tableHireBillReport = ((HireBillReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ABC {
+            public string RunningchartId {
                 get {
                     try {
-                        return ((string)(this[this.tableMyTable.ABCColumn]));
+                        return ((string)(this[this.tableHireBillReport.RunningchartIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ABC\' in table \'MyTable\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartId\' in table \'HireBillReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMyTable.ABCColumn] = value;
+                    this[this.tableHireBillReport.RunningchartIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DEF {
+            public string BillDate {
                 get {
                     try {
-                        return ((string)(this[this.tableMyTable.DEFColumn]));
+                        return ((string)(this[this.tableHireBillReport.BillDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DEF\' in table \'MyTable\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BillDate\' in table \'HireBillReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMyTable.DEFColumn] = value;
+                    this[this.tableHireBillReport.BillDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsABCNull() {
-                return this.IsNull(this.tableMyTable.ABCColumn);
+            public string VehicleNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.VehicleNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleNumber\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.VehicleNumberColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetABCNull() {
-                this[this.tableMyTable.ABCColumn] = global::System.Convert.DBNull;
+            public string CompanyCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.CompanyCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CompanyCode\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.CompanyCodeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDEFNull() {
-                return this.IsNull(this.tableMyTable.DEFColumn);
+            public string IsVehicle {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.IsVehicleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsVehicle\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.IsVehicleColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDEFNull() {
-                this[this.tableMyTable.DEFColumn] = global::System.Convert.DBNull;
+            public string WorkDoneKm {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.WorkDoneKmColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'WorkDoneKm\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.WorkDoneKmColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WorkDoneHr {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.WorkDoneHrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'WorkDoneHr\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.WorkDoneHrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RateKm {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.RateKmColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RateKm\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.RateKmColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RateHr {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.RateHrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RateHr\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.RateHrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Amount {
+                get {
+                    try {
+                        return ((string)(this[this.tableHireBillReport.AmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'HireBillReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHireBillReport.AmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRunningchartIdNull() {
+                return this.IsNull(this.tableHireBillReport.RunningchartIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRunningchartIdNull() {
+                this[this.tableHireBillReport.RunningchartIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBillDateNull() {
+                return this.IsNull(this.tableHireBillReport.BillDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBillDateNull() {
+                this[this.tableHireBillReport.BillDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVehicleNumberNull() {
+                return this.IsNull(this.tableHireBillReport.VehicleNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVehicleNumberNull() {
+                this[this.tableHireBillReport.VehicleNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCompanyCodeNull() {
+                return this.IsNull(this.tableHireBillReport.CompanyCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCompanyCodeNull() {
+                this[this.tableHireBillReport.CompanyCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIsVehicleNull() {
+                return this.IsNull(this.tableHireBillReport.IsVehicleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIsVehicleNull() {
+                this[this.tableHireBillReport.IsVehicleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsWorkDoneKmNull() {
+                return this.IsNull(this.tableHireBillReport.WorkDoneKmColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetWorkDoneKmNull() {
+                this[this.tableHireBillReport.WorkDoneKmColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsWorkDoneHrNull() {
+                return this.IsNull(this.tableHireBillReport.WorkDoneHrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetWorkDoneHrNull() {
+                this[this.tableHireBillReport.WorkDoneHrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRateKmNull() {
+                return this.IsNull(this.tableHireBillReport.RateKmColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRateKmNull() {
+                this[this.tableHireBillReport.RateKmColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRateHrNull() {
+                return this.IsNull(this.tableHireBillReport.RateHrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRateHrNull() {
+                this[this.tableHireBillReport.RateHrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAmountNull() {
+                return this.IsNull(this.tableHireBillReport.AmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAmountNull() {
+                this[this.tableHireBillReport.AmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -608,22 +944,22 @@ namespace CECRunningChart.Web.Reports {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class MyTableRowChangeEvent : global::System.EventArgs {
+        public class HireBillReportRowChangeEvent : global::System.EventArgs {
             
-            private MyTableRow eventRow;
+            private HireBillReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableRowChangeEvent(MyTableRow row, global::System.Data.DataRowAction action) {
+            public HireBillReportRowChangeEvent(HireBillReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MyTableRow Row {
+            public HireBillReportRow Row {
                 get {
                     return this.eventRow;
                 }

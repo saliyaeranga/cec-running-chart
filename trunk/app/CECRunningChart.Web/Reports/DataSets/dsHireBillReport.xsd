@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsHireBillReport" targetNamespace="http://tempuri.org/dsHireBillReport.xsd" xmlns:mstns="http://tempuri.org/dsHireBillReport.xsd" xmlns="http://tempuri.org/dsHireBillReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsHireBillReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsHireBillReport" msprop:Generator_UserDSName="dsHireBillReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HireBillReport" msprop:Generator_TableClassName="HireBillReportDataTable" msprop:Generator_TableVarName="tableHireBillReport" msprop:Generator_TablePropName="HireBillReport" msprop:Generator_RowDeletingName="HireBillReportRowDeleting" msprop:Generator_UserTableName="HireBillReport" msprop:Generator_RowChangingName="HireBillReportRowChanging" msprop:Generator_RowEvHandlerName="HireBillReportRowChangeEventHandler" msprop:Generator_RowDeletedName="HireBillReportRowDeleted" msprop:Generator_RowEvArgName="HireBillReportRowChangeEvent" msprop:Generator_RowChangedName="HireBillReportRowChanged" msprop:Generator_RowClassName="HireBillReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RunningchartId" msprop:Generator_ColumnVarNameInTable="columnRunningchartId" msprop:Generator_ColumnPropNameInRow="RunningchartId" msprop:Generator_ColumnPropNameInTable="RunningchartIdColumn" msprop:Generator_UserColumnName="RunningchartId" type="xs:string" minOccurs="0" />
+              <xs:element name="BillDate" msprop:Generator_ColumnVarNameInTable="columnBillDate" msprop:Generator_ColumnPropNameInRow="BillDate" msprop:Generator_ColumnPropNameInTable="BillDateColumn" msprop:Generator_UserColumnName="BillDate" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyCode" msprop:Generator_ColumnVarNameInTable="columnCompanyCode" msprop:Generator_ColumnPropNameInRow="CompanyCode" msprop:Generator_ColumnPropNameInTable="CompanyCodeColumn" msprop:Generator_UserColumnName="CompanyCode" type="xs:string" minOccurs="0" />
+              <xs:element name="IsVehicle" msprop:Generator_ColumnVarNameInTable="columnIsVehicle" msprop:Generator_ColumnPropNameInRow="IsVehicle" msprop:Generator_ColumnPropNameInTable="IsVehicleColumn" msprop:Generator_UserColumnName="IsVehicle" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkDoneKm" msprop:Generator_ColumnVarNameInTable="columnWorkDoneKm" msprop:Generator_ColumnPropNameInRow="WorkDoneKm" msprop:Generator_ColumnPropNameInTable="WorkDoneKmColumn" msprop:Generator_UserColumnName="WorkDoneKm" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkDoneHr" msprop:Generator_ColumnVarNameInTable="columnWorkDoneHr" msprop:Generator_ColumnPropNameInRow="WorkDoneHr" msprop:Generator_ColumnPropNameInTable="WorkDoneHrColumn" msprop:Generator_UserColumnName="WorkDoneHr" type="xs:string" minOccurs="0" />
+              <xs:element name="RateKm" msprop:Generator_ColumnVarNameInTable="columnRateKm" msprop:Generator_ColumnPropNameInRow="RateKm" msprop:Generator_ColumnPropNameInTable="RateKmColumn" msprop:Generator_UserColumnName="RateKm" type="xs:string" minOccurs="0" />
+              <xs:element name="RateHr" msprop:Generator_ColumnVarNameInTable="columnRateHr" msprop:Generator_ColumnPropNameInRow="RateHr" msprop:Generator_ColumnPropNameInTable="RateHrColumn" msprop:Generator_UserColumnName="RateHr" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -16,14 +16,14 @@ namespace CECRunningChart.Web.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class TestReport : ReportClass {
+    public class FuelAndLubricantReport : ReportClass {
         
-        public TestReport() {
+        public FuelAndLubricantReport() {
         }
         
         public override string ResourceName {
             get {
-                return "TestReport.rpt";
+                return "FuelAndLubricantReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CECRunningChart.Web.Reports {
         
         public override string FullResourceName {
             get {
-                return "CECRunningChart.Web.Reports.TestReport.rpt";
+                return "CECRunningChart.Web.Reports.FuelAndLubricantReport.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,36 @@ namespace CECRunningChart.Web.Reports {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_StartDateParameter {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_EndDateParameter {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_PumpstationParameter {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedTestReport : Component, ICachedReport {
+    public class CachedFuelAndLubricantReport : Component, ICachedReport {
         
-        public CachedTestReport() {
+        public CachedFuelAndLubricantReport() {
         }
         
         [Browsable(false)]
@@ -129,7 +153,7 @@ namespace CECRunningChart.Web.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            TestReport rpt = new TestReport();
+            FuelAndLubricantReport rpt = new FuelAndLubricantReport();
             rpt.Site = this.Site;
             return rpt;
         }

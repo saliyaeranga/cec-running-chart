@@ -48,7 +48,10 @@
     @Html.ActionLink("Back to Reports", "index")
     @if (Model != null)
     {
+        string print = "/report/hirebillprivateprint?startDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.StartDate).ToString("d")) +
+            "&endDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.EndDate).ToString("d")) + "&vehicleNo=" + ViewBag.VehicleNo;
         @Html.ActionLink("Back to Hire Bill (Private) Report", "hirebillprivate")
+        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     }
 </div>
 <div class="tblContainer">
@@ -90,7 +93,6 @@
         <div class="row">
             <input class="genRptBtn" type="submit" value="Generate Report" />
         </div>
-       
     }
 }
 else

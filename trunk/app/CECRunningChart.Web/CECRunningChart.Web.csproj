@@ -118,33 +118,71 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsFuelConsumptionReport.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\DataSets\dsHireBillPrivateReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHireBillPrivateReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsHireBillReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsHiredVehicleFuelReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHiredVehicleFuelReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsFuelAndLubricantReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DataSets\dsVehicleMachineRegister.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsVehicleMachineRegister.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FuelAndLubricantReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuelAndLubricantReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\FuelConsumptionReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FuelConsumptionReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\GridDataSet.Designer.cs">
+    <Compile Include="Reports\HireBillPrivateReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\GridReport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GridReport.rpt</DependentUpon>
+      <DependentUpon>HireBillPrivateReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\TestReport.cs">
+    <Compile Include="Reports\HireBillReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestReport.rpt</DependentUpon>
+      <DependentUpon>HireBillReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\HiredVehicleFuelReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HiredVehicleFuelReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Timesheet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Timesheet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VehicleMachineRegisterReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleMachineRegisterReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -396,21 +434,33 @@
     <Content Include="Views\Report\HireBillPrivate.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\FuelAndLubricantReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FuelAndLubricantReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\FuelConsumptionReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FuelConsumptionReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\GridReport.rpt">
+    <EmbeddedResource Include="Reports\HireBillPrivateReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GridReport.cs</LastGenOutput>
+      <LastGenOutput>HireBillPrivateReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\TestReport.rpt">
+    <EmbeddedResource Include="Reports\HireBillReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>TestReport.cs</LastGenOutput>
+      <LastGenOutput>HireBillReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\HiredVehicleFuelReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HiredVehicleFuelReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Timesheet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Timesheet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VehicleMachineRegisterReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VehicleMachineRegisterReport.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -445,16 +495,60 @@
     <None Include="Reports\DataSets\dsFuelConsumptionReport.xss">
       <DependentUpon>dsFuelConsumptionReport.xsd</DependentUpon>
     </None>
-    <None Include="Reports\GridDataSet.xsc">
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
+    <None Include="Reports\DataSets\dsHireBillPrivateReport.xsc">
+      <DependentUpon>dsHireBillPrivateReport.xsd</DependentUpon>
     </None>
-    <None Include="Reports\GridDataSet.xsd">
+    <None Include="Reports\DataSets\dsHireBillPrivateReport.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GridDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>dsHireBillPrivateReport.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reports\GridDataSet.xss">
-      <DependentUpon>GridDataSet.xsd</DependentUpon>
+    <None Include="Reports\DataSets\dsHireBillPrivateReport.xss">
+      <DependentUpon>dsHireBillPrivateReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xsc">
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsHireBillReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsHireBillReport.xss">
+      <DependentUpon>dsHireBillReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsHiredVehicleFuelReport.xsc">
+      <DependentUpon>dsHiredVehicleFuelReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsHiredVehicleFuelReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsHiredVehicleFuelReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsHiredVehicleFuelReport.xss">
+      <DependentUpon>dsHiredVehicleFuelReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsFuelAndLubricantReport.xsc">
+      <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsFuelAndLubricantReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFuelAndLubricantReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsFuelAndLubricantReport.xss">
+      <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsVehicleMachineRegister.xsc">
+      <DependentUpon>dsVehicleMachineRegister.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsVehicleMachineRegister.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVehicleMachineRegister.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsVehicleMachineRegister.xss">
+      <DependentUpon>dsVehicleMachineRegister.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup />

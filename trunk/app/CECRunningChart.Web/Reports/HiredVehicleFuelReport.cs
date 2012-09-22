@@ -16,14 +16,14 @@ namespace CECRunningChart.Web.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class GridReport : ReportClass {
+    public class HiredVehicleFuelReport : ReportClass {
         
-        public GridReport() {
+        public HiredVehicleFuelReport() {
         }
         
         public override string ResourceName {
             get {
-                return "GridReport.rpt";
+                return "HiredVehicleFuelReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CECRunningChart.Web.Reports {
         
         public override string FullResourceName {
             get {
-                return "CECRunningChart.Web.Reports.GridReport.rpt";
+                return "CECRunningChart.Web.Reports.HiredVehicleFuelReport.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,28 @@ namespace CECRunningChart.Web.Reports {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_StartDateParameter {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_EndDateParameter {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedGridReport : Component, ICachedReport {
+    public class CachedHiredVehicleFuelReport : Component, ICachedReport {
         
-        public CachedGridReport() {
+        public CachedHiredVehicleFuelReport() {
         }
         
         [Browsable(false)]
@@ -129,7 +145,7 @@ namespace CECRunningChart.Web.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            GridReport rpt = new GridReport();
+            HiredVehicleFuelReport rpt = new HiredVehicleFuelReport();
             rpt.Site = this.Site;
             return rpt;
         }
