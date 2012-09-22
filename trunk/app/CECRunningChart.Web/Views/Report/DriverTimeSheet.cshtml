@@ -29,7 +29,9 @@
     @Html.ActionLink("Back to Reports", "index")
     @if (Model != null)
     {
+        string print = "/report/timesheetprint?name=" + ViewBag.DriverOperatorName;
         @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
+        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     }
 </div>
 <div class="tblContainer">
@@ -89,7 +91,7 @@ else
                     </td>
                     <td>
                         @{ 
-                            string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
+                   string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
                         }
                         @displayOTHours
                     </td>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.IO;
 using System.Web.Mvc;
 using CECRunningChart.Services.ProjectService;
 using CECRunningChart.Services.Pumpstation;
@@ -6,9 +8,8 @@ using CECRunningChart.Services.ReportService;
 using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
-using System.Data;
+using CECRunningChart.Web.Reports.DataSets;
 using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -57,6 +58,27 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult FuelConsumptionPrint(DateTime startDate, DateTime endDate)
+        {
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+
+            DataTable dataTable = GetFuelConsumptionTable(startDate, endDate);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/FuelConsumptionReport.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Fuel Consumption Report";
+            reportClass.Database.Tables["FuelConsumptionReport"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #region Hired Fuel Report
@@ -96,6 +118,24 @@ namespace CECRunningChart.Web.Controllers
             var model = ModelMapper.GetDriverOperatorTimeSheetModelList(report);
             ViewBag.DriverOperatorName = driverName;
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult TimeSheetPrint(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(name);
+            
+            DataTable dataTable = GetDriverOperatorTimeSheetTable(name);
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/Timesheet.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Driver / Operator Time Sheet";
+            reportClass.Database.Tables["DriverOperatorTimeSheet"].SetDataSource(dataTable);
+            reportClass.SetParameterValue("DriverOperatorNameParameter", name);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
         }
 
         #endregion
@@ -198,18 +238,58 @@ namespace CECRunningChart.Web.Controllers
 
         #endregion
 
-        [Authorize]
-        public ActionResult Test()
+        #region Private Methods
+
+        private DataTable GetFuelConsumptionTable(DateTime startDate, DateTime endDate)
         {
-            //DataTable dataTable = new DataTable("testTable");
-            ReportClass reportClass = new ReportClass();
-            reportClass.FileName = Server.MapPath("~/Reports/TestReport.rpt");
-            reportClass.Load();
+            var report = reportService.GetFuelConsumptionReport(startDate, endDate);
+            dsFuelConsumptionReport ds = new dsFuelConsumptionReport();
+            DataTable dataTable = ds.Tables[0].Clone();
 
-            //reportClass.Database.Tables["testTable"].SetDataSource(dataTable);
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["VehicleId"] = item.VehicleId;
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["IsVehicle"] = item.IsVehicle;
+                row["DriverOperatorName"] = item.DriverOperatorName;
+                row["KmHrDone"] = item.KmHrDone;
+                row["TotalFuelUsage"] = item.TotalFuelUsage;
+                row["VehicleRate"] = item.VehicleRate.ToString() + " Km/L";
+                row["ActualRate"] = item.ActualRate.ToString("N") + " Km/L";
+                dataTable.Rows.Add(row);
+            }
 
-            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-            return File(compStream, "application/pdf");
+            return dataTable;
         }
+
+        private DataTable GetDriverOperatorTimeSheetTable(string driverName)
+        {
+            var report = reportService.GetDriverTimeSheetReport(driverName);
+            dsDriverOperatorTimeSheet ds = new dsDriverOperatorTimeSheet();
+            DataTable dataTable = ds.Tables[0].Clone();
+
+            foreach (var item in report)
+            {
+                DataRow row = dataTable.NewRow();
+                row["RunningchartId"] = item.RunningchartId;
+                row["DriverOperatorName"] = item.DriverOperatorName;
+                row["BillDate"] = item.BillDate.ToString("d");
+                row["VehicleNumber"] = item.VehicleNumber;
+                row["IsVehicle"] = item.IsVehicle;
+                row["InTime"] = item.InTime;
+                row["OutTime"] = item.OutTime;
+                row["OTHours"] = item.OTHours;
+                if (item.IsVehicle)
+                    row["Km"] = item.WorkDone;
+                else
+                    row["Hr"] = item.WorkDone;
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        #endregion
     }
 }

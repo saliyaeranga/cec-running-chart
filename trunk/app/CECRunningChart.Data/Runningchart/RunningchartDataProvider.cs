@@ -104,6 +104,32 @@ namespace CECRunningChart.Data.Runningchart
             }
         }
 
+        public DataSet GetApprovedRunningCharts()
+        {
+            try
+            {
+                return ExecuteDataSet("proc_GetApprovedRunningcharts", null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet GetOperatorApprovedRunningcharts(int operatorUserId)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@UserId", operatorUserId);
+                return ExecuteDataSet("proc_GetOperatorApprovedRunningcharts", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public DataSet GetRunningChart(int chartId)
         {
             try
