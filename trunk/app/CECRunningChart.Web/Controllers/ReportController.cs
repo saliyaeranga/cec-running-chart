@@ -408,7 +408,7 @@ namespace CECRunningChart.Web.Controllers
                         dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
                         dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
                         dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
-                        var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
+                        var amt = detailsArray[i].HireAmount; // detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
                         dataValues[5] = amt.ToString("N"); // Amount
                         totalWorkDone += detailsArray[i].KmHrDone;
                         totalWorkAmount += amt;
@@ -428,7 +428,7 @@ namespace CECRunningChart.Web.Controllers
                     if (i < lubricantArray.Length)
                     {
                         dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
-                        dataValues[11] = lubricantArray[i].PumpstationName; // Lubricant Type
+                        dataValues[11] = lubricantArray[i].LubricantType; // Lubricant Type
                         dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
                         dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
                         var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
