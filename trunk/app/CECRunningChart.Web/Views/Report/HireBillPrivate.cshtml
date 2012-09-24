@@ -189,7 +189,7 @@ else
                                              dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
                                              dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
                                              var amt = detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
-                                             dataValues[5] = amt.ToString("N"); // Amount
+                                             dataValues[5] = detailsArray[i].HireAmount.ToString("N"); // amt.ToString("N"); // Amount
                                              totalWorkDone += detailsArray[i].KmHrDone;
                                              totalWorkAmount += amt;
                                          }
