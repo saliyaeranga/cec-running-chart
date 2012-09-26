@@ -18,7 +18,7 @@ namespace CECRunningChart.Data
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings[CONN_ST_KEY].ProviderName;
+                return "System.Data.SqlClient"; // ConfigurationManager.ConnectionStrings[CONN_ST_KEY].ProviderName;
             }
         }
     }

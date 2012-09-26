@@ -669,9 +669,10 @@ namespace CECRunningChart.Web.Controllers
                 row["BillDate"] = item.BillDate.ToString("d");
                 row["VehicleNumber"] = item.VehicleNumber;
                 row["IsVehicle"] = item.IsVehicle;
-                row["InTime"] = item.InTime;
-                row["OutTime"] = item.OutTime;
-                row["OTHours"] = item.OTHours;
+                row["InTime"] = item.InTime.ToString("t");
+                row["OutTime"] = item.OutTime.ToString("t");
+                string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
+                row["OTHours"] = displayOTHours;
                 if (item.IsVehicle)
                     row["Km"] = item.WorkDone;
                 else

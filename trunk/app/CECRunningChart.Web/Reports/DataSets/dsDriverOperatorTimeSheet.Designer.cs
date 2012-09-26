@@ -449,7 +449,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DriverOperatorTimeSheetRow AddDriverOperatorTimeSheetRow(int RunningchartId, string DriverOperatorName, string BillDate, string VehicleNumber, bool IsVehicle, System.DateTime InTime, System.DateTime OutTime, string Km, string Hr, string OTHours) {
+            public DriverOperatorTimeSheetRow AddDriverOperatorTimeSheetRow(int RunningchartId, string DriverOperatorName, string BillDate, string VehicleNumber, bool IsVehicle, string InTime, string OutTime, string Km, string Hr, string OTHours) {
                 DriverOperatorTimeSheetRow rowDriverOperatorTimeSheetRow = ((DriverOperatorTimeSheetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RunningchartId,
@@ -509,9 +509,9 @@ namespace CECRunningChart.Web.Reports.DataSets {
                 base.Columns.Add(this.columnVehicleNumber);
                 this.columnIsVehicle = new global::System.Data.DataColumn("IsVehicle", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsVehicle);
-                this.columnInTime = new global::System.Data.DataColumn("InTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnInTime = new global::System.Data.DataColumn("InTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInTime);
-                this.columnOutTime = new global::System.Data.DataColumn("OutTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnOutTime = new global::System.Data.DataColumn("OutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOutTime);
                 this.columnKm = new global::System.Data.DataColumn("Km", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKm);
@@ -744,10 +744,10 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime InTime {
+            public string InTime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableDriverOperatorTimeSheet.InTimeColumn]));
+                        return ((string)(this[this.tableDriverOperatorTimeSheet.InTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'InTime\' in table \'DriverOperatorTimeSheet\' is DBNull.", e);
@@ -760,10 +760,10 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime OutTime {
+            public string OutTime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableDriverOperatorTimeSheet.OutTimeColumn]));
+                        return ((string)(this[this.tableDriverOperatorTimeSheet.OutTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'OutTime\' in table \'DriverOperatorTimeSheet\' is DBNull.", e);
