@@ -346,9 +346,12 @@ namespace CECRunningChart.Web.Controllers
             reportClass.Load();
             reportClass.SummaryInfo.ReportTitle = "Hire Bill (Private) Report";
             reportClass.Database.Tables["HireBillPrivateReport"].SetDataSource(dataTable);
-            //reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
-            //reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
-            //reportClass.SetParameterValue("PumpstationParameter", pumpstationName);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
+            reportClass.SetParameterValue("VehicleNumberParameter", vehicle.VehicleNumber);
+            reportClass.SetParameterValue("OwnerNameParameter", vehicle.OwnerName);
+            string measure = vehicle.IsVehicle ? " Rs/Km" : " Rs/Hr";
+            reportClass.SetParameterValue("HireRateParameter", vehicle.HireRate.ToString("N") + measure);
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
