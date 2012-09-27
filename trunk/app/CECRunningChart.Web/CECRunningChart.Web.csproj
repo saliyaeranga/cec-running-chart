@@ -209,6 +209,7 @@
   <ItemGroup>
     <Content Include="Content\css\logIn.css" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\logo_fav.png" />
     <Content Include="Content\images\manaeRuningChart.png" />
     <Content Include="Content\images\topNavBg.png" />
     <Content Include="Content\images\viewPastRptIcon.png" />
