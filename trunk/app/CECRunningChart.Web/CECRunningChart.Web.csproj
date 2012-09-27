@@ -158,6 +158,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\DataSets\dsRunningchart.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRunningchart.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DataSets\dsVehicleMachineRegister.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -191,6 +196,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HiredVehicleFuelReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\TestRunningchart.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestRunningchart.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Timesheet.cs">
@@ -474,6 +485,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>HiredVehicleFuelReport.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\TestRunningchart.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TestRunningchart.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Timesheet.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Timesheet.cs</LastGenOutput>
@@ -558,6 +573,17 @@
     </None>
     <None Include="Reports\DataSets\dsFuelAndLubricantReport.xss">
       <DependentUpon>dsFuelAndLubricantReport.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsRunningchart.xsc">
+      <DependentUpon>dsRunningchart.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSets\dsRunningchart.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRunningchart.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DataSets\dsRunningchart.xss">
+      <DependentUpon>dsRunningchart.xsd</DependentUpon>
     </None>
     <None Include="Reports\DataSets\dsVehicleMachineRegister.xsc">
       <DependentUpon>dsVehicleMachineRegister.xsd</DependentUpon>

@@ -11,6 +11,7 @@ using CECRunningChart.Web.Common;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Reports.DataSets;
 using CrystalDecisions.CrystalReports.Engine;
+using CECRunningChart.Services.Runningchart;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -358,6 +359,15 @@ namespace CECRunningChart.Web.Controllers
         }
 
         #endregion
+
+        [HttpGet]
+        public ActionResult testrc()
+        {
+            IRunningchartService runningchartService = new RunningchartService();
+            var chart = runningchartService.GetRunningChart(19);
+
+            return View();
+        }
 
         #endregion
 
