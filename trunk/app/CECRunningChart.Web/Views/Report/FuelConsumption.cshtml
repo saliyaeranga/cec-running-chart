@@ -107,9 +107,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<td>
-                @Html.DisplayFor(modelItem => item.VehicleId)
-            </td>*@
                     <td class="mainColum">
                         @Html.DisplayFor(modelItem => item.VehicleNumber)
                     </td>
@@ -123,10 +120,10 @@
                         @Html.DisplayFor(modelItem => item.TotalFuelUsage)
                     </td>
                     <td style="text-align:right;">
-                        @Html.DisplayFor(modelItem => item.VehicleRate) Km/L
+                        @String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) Km/L
                     </td>
                     <td style="text-align:right;">
-                        @item.ActualRate.ToString("N") Km/L
+                        @String.Format("{0:0.00}", Math.Truncate(item.ActualRate * 100) / 100) Km/L
                     </td>
                 </tr>
             }

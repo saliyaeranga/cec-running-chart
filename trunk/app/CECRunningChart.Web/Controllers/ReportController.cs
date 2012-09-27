@@ -564,8 +564,8 @@ namespace CECRunningChart.Web.Controllers
                 row["DriverOperatorName"] = item.DriverOperatorName;
                 row["KmHrDone"] = item.KmHrDone;
                 row["TotalFuelUsage"] = item.TotalFuelUsage;
-                row["VehicleRate"] = item.VehicleRate.ToString() + " Km/L";
-                row["ActualRate"] = item.ActualRate.ToString("N") + " Km/L";
+                row["VehicleRate"] = String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) + " Km/L";
+                row["ActualRate"] = String.Format("{0:0.00}", Math.Truncate(item.ActualRate * 100) / 100) + " Km/L";
                 dataTable.Rows.Add(row);
             }
 

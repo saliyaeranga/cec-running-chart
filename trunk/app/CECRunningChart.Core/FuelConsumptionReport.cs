@@ -22,13 +22,13 @@ namespace CECRunningChart.Core
         public int KmHrDone { get; set; }
 
         [XmlElementAttribute("TotalFuelUsage")]
-        public int TotalFuelUsage { get; set; }
+        public decimal TotalFuelUsage { get; set; }
 
         [XmlElementAttribute("VehicleRate")]
-        public int VehicleRate { get; set; }
+        public decimal VehicleRate { get; set; }
 
         [XmlElementAttribute("ActualRate")]
-        public float ActualRate { get; set; }
+        public decimal ActualRate { get; set; }
 
         #endregion
     }
