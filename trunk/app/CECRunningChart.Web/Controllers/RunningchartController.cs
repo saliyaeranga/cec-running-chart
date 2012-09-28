@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using CECRunningChart.Common;
 using CECRunningChart.Core;
@@ -10,6 +13,8 @@ using CECRunningChart.Services.Vehicle;
 using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Models.Runningchart;
 using CECRunningChart.Web.Models.User;
+using CECRunningChart.Web.Reports.DataSets;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -287,6 +292,42 @@ namespace CECRunningChart.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Print(int id)
+        {
+            IVehicleService vehicleServcie = new VehicleService();
+            IProjectService projectService = new ProjectService();
+            IPumpstationService pumpstationService = new PumpstationService();
+            var pumpstations = pumpstationService.GetAllPumpstations();
+            var projects = projectService.GetAllActiveProjects();
+            var lubricants = vehicleServcie.GetAllLubricantTypes();
+            var vehicles = vehicleServcie.GetAllVehicles();
+            var chart = runningchartService.GetRunningChart(id);
+
+            dsRunningchart ds = new dsRunningchart();
+            DataTable runningchartTable = ds.Tables["Runningchart"].Clone();
+            DataTable runningchartDetailsTable = ds.Tables["RunningchartDetails"].Clone();
+            DataTable runningchartPumpstationsTable = ds.Tables["RunningchartPumpstation"].Clone();
+            DataTable runningchartLubricantsTable = ds.Tables["RunningchartLubricant"].Clone();
+
+            PopulateRunningchartTable(chart, runningchartTable, vehicles);
+            PopulateRunningchartDetailsTable(chart.RunningchartDetails, runningchartDetailsTable, projects);
+            PopulateRunningchartPumpstationTable(chart.RunningchartPumpstation, runningchartPumpstationsTable, pumpstations);
+            PopulateRunningchartLubricantTable(chart.RunningchartLubricants, runningchartLubricantsTable, pumpstations, lubricants);
+
+            ReportClass reportClass = new ReportClass();
+            reportClass.FileName = Server.MapPath("~/Reports/Runningchart.rpt");
+            reportClass.Load();
+            reportClass.SummaryInfo.ReportTitle = "Running Chart";
+            reportClass.Database.Tables["Runningchart"].SetDataSource(runningchartTable);
+            reportClass.Database.Tables["RunningchartDetails"].SetDataSource(runningchartDetailsTable);
+            reportClass.Database.Tables["RunningchartPumpstation"].SetDataSource(runningchartPumpstationsTable);
+            reportClass.Database.Tables["RunningchartLubricant"].SetDataSource(runningchartLubricantsTable);
+
+            Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(compStream, "application/pdf");
+        }
+
         #endregion
 
         #region Private Methods
@@ -296,7 +337,6 @@ namespace CECRunningChart.Web.Controllers
             IVehicleService vehicleServcie = new VehicleService();
             IProjectService projectService = new ProjectService();
             IPumpstationService pumpstationService = new PumpstationService();
-
             var chart = runningchartService.GetRunningChart(runningChartId);
             var model = ModelMapper.GetRunningchartModel(chart);
             model.Vehicles = ModelMapper.GetVehicleModelList(vehicleServcie.GetAllVehicles());
@@ -311,6 +351,81 @@ namespace CECRunningChart.Web.Controllers
             }; // Not worth to do a DB call since this is very static
 
             return model;
+        }
+
+        private void PopulateRunningchartTable(Runningchart chart, DataTable runningchartTable, List<Vehicle> vehicles)
+        {
+            DataRow row = runningchartTable.NewRow();
+            row["RunningchartId"] = chart.Id;
+            row["BillNumber"] = chart.BillNumber;
+            row["BillDate"] = chart.BillDate.ToString("d");
+            row["DriverName"] = chart.DriverName;
+            row["VehicleName"] = vehicles.Single(x => x.Id == chart.VehicleId).VehicleNumber;
+            row["VehicleRate"] = chart.VehicleRate.ConvertToDecimalString();
+            row["VehicleHireRate"] = chart.VehicleHireRate.ConvertToDecimalString();
+            row["FuelRate"] = chart.FuelRate.ConvertToDecimalString();
+            row["FuelLeftBegning"] = chart.FuelLeftBegning.ConvertToDecimalString();
+            row["FuelLeftEnd"] = chart.FuelLeftEnd.ConvertToDecimalString();
+            row["FuelUsageOfDay"] = chart.FuelUsageOfDay.ConvertToDecimalString();
+            row["DailyNote"] = chart.DailyNote;
+            row["DayStartime"] = chart.DayStartime.ToString("d");
+            row["DayEndTime"] = chart.DayEndTime.ToString("d");
+            row["EnteredBy"] = chart.EnteredBy;
+            row["IsApproved"] = chart.IsApproved;
+            row["ApprovedBy"] = chart.ApprovedBy;
+            row["ApprovedDate"] = chart.ApprovedDate.ToString("d");
+            runningchartTable.Rows.Add(row);
+        }
+
+        private void PopulateRunningchartDetailsTable(List<RunningchartDetails> runningchartDetails, 
+            DataTable runningchartDetailsTable, List<Project> projects)
+        {
+            foreach (var item in runningchartDetails)
+            {
+                DataRow drow = runningchartDetailsTable.NewRow();
+                drow["RunningchartDetailsId"] = item.Id;
+                drow["RunningchartId"] = item.RunningchartId;
+                drow["StartTime"] = item.StartTime.ToString("t");
+                drow["EndTime"] = item.EndTime.ToString("t");
+                drow["TimeDifference"] = item.TimeDifference;
+                drow["StartMeter"] = item.StartMeter;
+                drow["EndMeter"] = item.EndMeter;
+                drow["MeterDifference"] = item.MeterDifference;
+                drow["ProjectName"] = projects.Single(x => x.Id == item.ProjectId).ProjectName;
+                drow["ProjectManagerName"] = item.ProjectManagerName;
+                drow["RentalTypeId"] = StringEnum.GetEnumStringValue((RentalType)item.RentalTypeId);
+                drow["IdleHours"] = item.IdleHours;
+                runningchartDetailsTable.Rows.Add(drow);
+            }
+        }
+
+        private void PopulateRunningchartPumpstationTable(List<RunningchartPumpstation> runningchartPumpstations,
+            DataTable runningchartDetailsPumpstationTable, List<PumpStation> pumpstations)
+        {
+            foreach (var item in runningchartPumpstations)
+            {
+                DataRow drow = runningchartDetailsPumpstationTable.NewRow();
+                drow["RunningchartPumpstationId"] = item.Id;
+                drow["RunningchartId"] = item.RunningchartId;
+                drow["PumpstationName"] = pumpstations.Single(x => x.Id == item.PumpstationId).PumpStationName;
+                drow["PumpAmount"] = item.Amount.ConvertToDecimalString();
+                runningchartDetailsPumpstationTable.Rows.Add(drow);
+            }
+        }
+
+        private void PopulateRunningchartLubricantTable(List<RunningchartLubricant> runningchartLubricants,
+            DataTable runningchartLubricantTable, List<PumpStation> pumpstations, List<LubricantType> lubricants)
+        {
+            foreach (var item in runningchartLubricants)
+            {
+                DataRow drow = runningchartLubricantTable.NewRow();
+                drow["RunningchartLubricantId"] = item.Id;
+                drow["RunningchartId"] = item.RunningchartId;
+                drow["PumpstationName"] = pumpstations.Single(x => x.Id == item.PumpstationId).PumpStationName;
+                drow["LubricantType"] = lubricants.Single(x => x.Id == item.LubricantTypeId).LubricantName;
+                drow["PumpAmount"] = item.Amount.ConvertToDecimalString();
+                runningchartLubricantTable.Rows.Add(drow);
+            }
         }
 
         #endregion

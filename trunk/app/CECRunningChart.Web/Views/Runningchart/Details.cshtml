@@ -47,11 +47,15 @@
     });
 </script>
 <div class="bckBtn">
+    @{
+        string print = "/runningchart/print?id=" + Model.RunningchartId;
+    }
     @if (Model.IsApproved)
     {
         @Html.ActionLink("Back to Running Charts History", "history")
     }
     @Html.ActionLink("Back to Running Charts", "index")
+    <a href="@print" target="_blank">Print Running Chart</a>
 </div>
 <br /><br />
 @using (Html.BeginForm("approve", "runningchart", FormMethod.Post, new { @id = "runningchartform" }))
@@ -177,9 +181,6 @@
             <input class="createBtn" type="submit" value="Approve" />
         </div>
     }
-    <div id="PrintChart">
-        <input class="createBtn" type="button" value="Print Running Chart" />
-    </div>
      </fieldset>
 }
 <div class="bckBtn">
@@ -188,4 +189,5 @@
         @Html.ActionLink("Back to Running Charts History", "history")
     }
     @Html.ActionLink("Back to Running Charts", "index")
+    <a href="@print" target="_blank">Print Running Chart</a>
 </div>

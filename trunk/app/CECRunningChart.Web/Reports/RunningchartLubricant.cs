@@ -16,14 +16,14 @@ namespace CECRunningChart.Web.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class TestRunningchart : ReportClass {
+    public class RunningchartLubricant : ReportClass {
         
-        public TestRunningchart() {
+        public RunningchartLubricant() {
         }
         
         public override string ResourceName {
             get {
-                return "TestRunningchart.rpt";
+                return "RunningchartLubricant.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CECRunningChart.Web.Reports {
         
         public override string FullResourceName {
             get {
-                return "CECRunningChart.Web.Reports.TestRunningchart.rpt";
+                return "CECRunningChart.Web.Reports.RunningchartLubricant.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace CECRunningChart.Web.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedTestRunningchart : Component, ICachedReport {
+    public class CachedRunningchartLubricant : Component, ICachedReport {
         
-        public CachedTestRunningchart() {
+        public CachedRunningchartLubricant() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace CECRunningChart.Web.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            TestRunningchart rpt = new TestRunningchart();
+            RunningchartLubricant rpt = new RunningchartLubricant();
             rpt.Site = this.Site;
             return rpt;
         }

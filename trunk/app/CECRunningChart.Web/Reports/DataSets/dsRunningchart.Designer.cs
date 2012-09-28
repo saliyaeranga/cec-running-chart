@@ -28,6 +28,10 @@ namespace CECRunningChart.Web.Reports.DataSets {
         
         private RunningchartDetailsDataTable tableRunningchartDetails;
         
+        private RunningchartPumpstationDataTable tableRunningchartPumpstation;
+        
+        private RunningchartLubricantDataTable tableRunningchartLubricant;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +65,12 @@ namespace CECRunningChart.Web.Reports.DataSets {
                 }
                 if ((ds.Tables["RunningchartDetails"] != null)) {
                     base.Tables.Add(new RunningchartDetailsDataTable(ds.Tables["RunningchartDetails"]));
+                }
+                if ((ds.Tables["RunningchartPumpstation"] != null)) {
+                    base.Tables.Add(new RunningchartPumpstationDataTable(ds.Tables["RunningchartPumpstation"]));
+                }
+                if ((ds.Tables["RunningchartLubricant"] != null)) {
+                    base.Tables.Add(new RunningchartLubricantDataTable(ds.Tables["RunningchartLubricant"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +107,26 @@ namespace CECRunningChart.Web.Reports.DataSets {
         public RunningchartDetailsDataTable RunningchartDetails {
             get {
                 return this.tableRunningchartDetails;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public RunningchartPumpstationDataTable RunningchartPumpstation {
+            get {
+                return this.tableRunningchartPumpstation;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public RunningchartLubricantDataTable RunningchartLubricant {
+            get {
+                return this.tableRunningchartLubricant;
             }
         }
         
@@ -173,6 +203,12 @@ namespace CECRunningChart.Web.Reports.DataSets {
                 if ((ds.Tables["RunningchartDetails"] != null)) {
                     base.Tables.Add(new RunningchartDetailsDataTable(ds.Tables["RunningchartDetails"]));
                 }
+                if ((ds.Tables["RunningchartPumpstation"] != null)) {
+                    base.Tables.Add(new RunningchartPumpstationDataTable(ds.Tables["RunningchartPumpstation"]));
+                }
+                if ((ds.Tables["RunningchartLubricant"] != null)) {
+                    base.Tables.Add(new RunningchartLubricantDataTable(ds.Tables["RunningchartLubricant"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +254,18 @@ namespace CECRunningChart.Web.Reports.DataSets {
                     this.tableRunningchartDetails.InitVars();
                 }
             }
+            this.tableRunningchartPumpstation = ((RunningchartPumpstationDataTable)(base.Tables["RunningchartPumpstation"]));
+            if ((initTable == true)) {
+                if ((this.tableRunningchartPumpstation != null)) {
+                    this.tableRunningchartPumpstation.InitVars();
+                }
+            }
+            this.tableRunningchartLubricant = ((RunningchartLubricantDataTable)(base.Tables["RunningchartLubricant"]));
+            if ((initTable == true)) {
+                if ((this.tableRunningchartLubricant != null)) {
+                    this.tableRunningchartLubricant.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +280,10 @@ namespace CECRunningChart.Web.Reports.DataSets {
             base.Tables.Add(this.tableRunningchart);
             this.tableRunningchartDetails = new RunningchartDetailsDataTable();
             base.Tables.Add(this.tableRunningchartDetails);
+            this.tableRunningchartPumpstation = new RunningchartPumpstationDataTable();
+            base.Tables.Add(this.tableRunningchartPumpstation);
+            this.tableRunningchartLubricant = new RunningchartLubricantDataTable();
+            base.Tables.Add(this.tableRunningchartLubricant);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +295,18 @@ namespace CECRunningChart.Web.Reports.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeRunningchartDetails() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeRunningchartPumpstation() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeRunningchartLubricant() {
             return false;
         }
         
@@ -307,6 +371,12 @@ namespace CECRunningChart.Web.Reports.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void RunningchartDetailsRowChangeEventHandler(object sender, RunningchartDetailsRowChangeEvent e);
         
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void RunningchartPumpstationRowChangeEventHandler(object sender, RunningchartPumpstationRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void RunningchartLubricantRowChangeEventHandler(object sender, RunningchartLubricantRowChangeEvent e);
+        
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
@@ -314,7 +384,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class RunningchartDataTable : global::System.Data.TypedTableBase<RunningchartRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnRunningchartId;
             
             private global::System.Data.DataColumn columnBillNumber;
             
@@ -322,7 +392,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             private global::System.Data.DataColumn columnDriverName;
             
-            private global::System.Data.DataColumn columnVehicleId;
+            private global::System.Data.DataColumn columnVehicleName;
             
             private global::System.Data.DataColumn columnVehicleRate;
             
@@ -385,9 +455,9 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn RunningchartIdColumn {
                 get {
-                    return this.columnId;
+                    return this.columnRunningchartId;
                 }
             }
             
@@ -417,9 +487,9 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VehicleIdColumn {
+            public global::System.Data.DataColumn VehicleNameColumn {
                 get {
-                    return this.columnVehicleId;
+                    return this.columnVehicleName;
                 }
             }
             
@@ -565,11 +635,11 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RunningchartRow AddRunningchartRow(
-                        string Id, 
+                        string RunningchartId, 
                         string BillNumber, 
                         string BillDate, 
                         string DriverName, 
-                        string VehicleId, 
+                        string VehicleName, 
                         string VehicleRate, 
                         string VehicleHireRate, 
                         string FuelRate, 
@@ -585,11 +655,11 @@ namespace CECRunningChart.Web.Reports.DataSets {
                         string ApprovedDate) {
                 RunningchartRow rowRunningchartRow = ((RunningchartRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        RunningchartId,
                         BillNumber,
                         BillDate,
                         DriverName,
-                        VehicleId,
+                        VehicleName,
                         VehicleRate,
                         VehicleHireRate,
                         FuelRate,
@@ -625,11 +695,11 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnRunningchartId = base.Columns["RunningchartId"];
                 this.columnBillNumber = base.Columns["BillNumber"];
                 this.columnBillDate = base.Columns["BillDate"];
                 this.columnDriverName = base.Columns["DriverName"];
-                this.columnVehicleId = base.Columns["VehicleId"];
+                this.columnVehicleName = base.Columns["VehicleName"];
                 this.columnVehicleRate = base.Columns["VehicleRate"];
                 this.columnVehicleHireRate = base.Columns["VehicleHireRate"];
                 this.columnFuelRate = base.Columns["FuelRate"];
@@ -648,16 +718,16 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnRunningchartId = new global::System.Data.DataColumn("RunningchartId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartId);
                 this.columnBillNumber = new global::System.Data.DataColumn("BillNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBillNumber);
                 this.columnBillDate = new global::System.Data.DataColumn("BillDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBillDate);
                 this.columnDriverName = new global::System.Data.DataColumn("DriverName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDriverName);
-                this.columnVehicleId = new global::System.Data.DataColumn("VehicleId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVehicleId);
+                this.columnVehicleName = new global::System.Data.DataColumn("VehicleName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleName);
                 this.columnVehicleRate = new global::System.Data.DataColumn("VehicleRate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVehicleRate);
                 this.columnVehicleHireRate = new global::System.Data.DataColumn("VehicleHireRate", typeof(string), null, global::System.Data.MappingType.Element);
@@ -817,7 +887,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class RunningchartDetailsDataTable : global::System.Data.TypedTableBase<RunningchartDetailsRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnRunningchartDetailsId;
             
             private global::System.Data.DataColumn columnRunningchartId;
             
@@ -833,7 +903,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             private global::System.Data.DataColumn columnMeterDifference;
             
-            private global::System.Data.DataColumn columnProjectId;
+            private global::System.Data.DataColumn columnProjectName;
             
             private global::System.Data.DataColumn columnProjectManagerName;
             
@@ -876,9 +946,9 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn RunningchartDetailsIdColumn {
                 get {
-                    return this.columnId;
+                    return this.columnRunningchartDetailsId;
                 }
             }
             
@@ -940,9 +1010,9 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ProjectIdColumn {
+            public global::System.Data.DataColumn ProjectNameColumn {
                 get {
-                    return this.columnProjectId;
+                    return this.columnProjectName;
                 }
             }
             
@@ -1007,10 +1077,10 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RunningchartDetailsRow AddRunningchartDetailsRow(string Id, string RunningchartId, string StartTime, string EndTime, string TimeDifference, string StartMeter, string EndMeter, string MeterDifference, string ProjectId, string ProjectManagerName, string RentalTypeId, string IdleHours) {
+            public RunningchartDetailsRow AddRunningchartDetailsRow(string RunningchartDetailsId, string RunningchartId, string StartTime, string EndTime, string TimeDifference, string StartMeter, string EndMeter, string MeterDifference, string ProjectName, string ProjectManagerName, string RentalTypeId, string IdleHours) {
                 RunningchartDetailsRow rowRunningchartDetailsRow = ((RunningchartDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        RunningchartDetailsId,
                         RunningchartId,
                         StartTime,
                         EndTime,
@@ -1018,7 +1088,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
                         StartMeter,
                         EndMeter,
                         MeterDifference,
-                        ProjectId,
+                        ProjectName,
                         ProjectManagerName,
                         RentalTypeId,
                         IdleHours};
@@ -1044,7 +1114,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnRunningchartDetailsId = base.Columns["RunningchartDetailsId"];
                 this.columnRunningchartId = base.Columns["RunningchartId"];
                 this.columnStartTime = base.Columns["StartTime"];
                 this.columnEndTime = base.Columns["EndTime"];
@@ -1052,7 +1122,7 @@ namespace CECRunningChart.Web.Reports.DataSets {
                 this.columnStartMeter = base.Columns["StartMeter"];
                 this.columnEndMeter = base.Columns["EndMeter"];
                 this.columnMeterDifference = base.Columns["MeterDifference"];
-                this.columnProjectId = base.Columns["ProjectId"];
+                this.columnProjectName = base.Columns["ProjectName"];
                 this.columnProjectManagerName = base.Columns["ProjectManagerName"];
                 this.columnRentalTypeId = base.Columns["RentalTypeId"];
                 this.columnIdleHours = base.Columns["IdleHours"];
@@ -1061,8 +1131,8 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnRunningchartDetailsId = new global::System.Data.DataColumn("RunningchartDetailsId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartDetailsId);
                 this.columnRunningchartId = new global::System.Data.DataColumn("RunningchartId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRunningchartId);
                 this.columnStartTime = new global::System.Data.DataColumn("StartTime", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1077,8 +1147,8 @@ namespace CECRunningChart.Web.Reports.DataSets {
                 base.Columns.Add(this.columnEndMeter);
                 this.columnMeterDifference = new global::System.Data.DataColumn("MeterDifference", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMeterDifference);
-                this.columnProjectId = new global::System.Data.DataColumn("ProjectId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProjectId);
+                this.columnProjectName = new global::System.Data.DataColumn("ProjectName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProjectName);
                 this.columnProjectManagerName = new global::System.Data.DataColumn("ProjectManagerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProjectManagerName);
                 this.columnRentalTypeId = new global::System.Data.DataColumn("RentalTypeId", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1212,6 +1282,598 @@ namespace CECRunningChart.Web.Reports.DataSets {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RunningchartPumpstationDataTable : global::System.Data.TypedTableBase<RunningchartPumpstationRow> {
+            
+            private global::System.Data.DataColumn columnRunningchartPumpstationId;
+            
+            private global::System.Data.DataColumn columnRunningchartId;
+            
+            private global::System.Data.DataColumn columnPumpstationName;
+            
+            private global::System.Data.DataColumn columnPumpAmount;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationDataTable() {
+                this.TableName = "RunningchartPumpstation";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RunningchartPumpstationDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected RunningchartPumpstationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RunningchartPumpstationIdColumn {
+                get {
+                    return this.columnRunningchartPumpstationId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RunningchartIdColumn {
+                get {
+                    return this.columnRunningchartId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PumpstationNameColumn {
+                get {
+                    return this.columnPumpstationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PumpAmountColumn {
+                get {
+                    return this.columnPumpAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationRow this[int index] {
+                get {
+                    return ((RunningchartPumpstationRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartPumpstationRowChangeEventHandler RunningchartPumpstationRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartPumpstationRowChangeEventHandler RunningchartPumpstationRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartPumpstationRowChangeEventHandler RunningchartPumpstationRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartPumpstationRowChangeEventHandler RunningchartPumpstationRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddRunningchartPumpstationRow(RunningchartPumpstationRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationRow AddRunningchartPumpstationRow(string RunningchartPumpstationId, string RunningchartId, string PumpstationName, string PumpAmount) {
+                RunningchartPumpstationRow rowRunningchartPumpstationRow = ((RunningchartPumpstationRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        RunningchartPumpstationId,
+                        RunningchartId,
+                        PumpstationName,
+                        PumpAmount};
+                rowRunningchartPumpstationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRunningchartPumpstationRow);
+                return rowRunningchartPumpstationRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RunningchartPumpstationDataTable cln = ((RunningchartPumpstationDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RunningchartPumpstationDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnRunningchartPumpstationId = base.Columns["RunningchartPumpstationId"];
+                this.columnRunningchartId = base.Columns["RunningchartId"];
+                this.columnPumpstationName = base.Columns["PumpstationName"];
+                this.columnPumpAmount = base.Columns["PumpAmount"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnRunningchartPumpstationId = new global::System.Data.DataColumn("RunningchartPumpstationId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartPumpstationId);
+                this.columnRunningchartId = new global::System.Data.DataColumn("RunningchartId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartId);
+                this.columnPumpstationName = new global::System.Data.DataColumn("PumpstationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPumpstationName);
+                this.columnPumpAmount = new global::System.Data.DataColumn("PumpAmount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPumpAmount);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationRow NewRunningchartPumpstationRow() {
+                return ((RunningchartPumpstationRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RunningchartPumpstationRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RunningchartPumpstationRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RunningchartPumpstationRowChanged != null)) {
+                    this.RunningchartPumpstationRowChanged(this, new RunningchartPumpstationRowChangeEvent(((RunningchartPumpstationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RunningchartPumpstationRowChanging != null)) {
+                    this.RunningchartPumpstationRowChanging(this, new RunningchartPumpstationRowChangeEvent(((RunningchartPumpstationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RunningchartPumpstationRowDeleted != null)) {
+                    this.RunningchartPumpstationRowDeleted(this, new RunningchartPumpstationRowChangeEvent(((RunningchartPumpstationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RunningchartPumpstationRowDeleting != null)) {
+                    this.RunningchartPumpstationRowDeleting(this, new RunningchartPumpstationRowChangeEvent(((RunningchartPumpstationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveRunningchartPumpstationRow(RunningchartPumpstationRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsRunningchart ds = new dsRunningchart();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RunningchartPumpstationDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RunningchartLubricantDataTable : global::System.Data.TypedTableBase<RunningchartLubricantRow> {
+            
+            private global::System.Data.DataColumn columnRunningchartLubricantId;
+            
+            private global::System.Data.DataColumn columnRunningchartId;
+            
+            private global::System.Data.DataColumn columnPumpstationName;
+            
+            private global::System.Data.DataColumn columnLubricantType;
+            
+            private global::System.Data.DataColumn columnPumpAmount;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantDataTable() {
+                this.TableName = "RunningchartLubricant";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RunningchartLubricantDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected RunningchartLubricantDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RunningchartLubricantIdColumn {
+                get {
+                    return this.columnRunningchartLubricantId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RunningchartIdColumn {
+                get {
+                    return this.columnRunningchartId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PumpstationNameColumn {
+                get {
+                    return this.columnPumpstationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LubricantTypeColumn {
+                get {
+                    return this.columnLubricantType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PumpAmountColumn {
+                get {
+                    return this.columnPumpAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantRow this[int index] {
+                get {
+                    return ((RunningchartLubricantRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartLubricantRowChangeEventHandler RunningchartLubricantRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartLubricantRowChangeEventHandler RunningchartLubricantRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartLubricantRowChangeEventHandler RunningchartLubricantRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event RunningchartLubricantRowChangeEventHandler RunningchartLubricantRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddRunningchartLubricantRow(RunningchartLubricantRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantRow AddRunningchartLubricantRow(string RunningchartLubricantId, string RunningchartId, string PumpstationName, string LubricantType, string PumpAmount) {
+                RunningchartLubricantRow rowRunningchartLubricantRow = ((RunningchartLubricantRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        RunningchartLubricantId,
+                        RunningchartId,
+                        PumpstationName,
+                        LubricantType,
+                        PumpAmount};
+                rowRunningchartLubricantRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRunningchartLubricantRow);
+                return rowRunningchartLubricantRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RunningchartLubricantDataTable cln = ((RunningchartLubricantDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RunningchartLubricantDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnRunningchartLubricantId = base.Columns["RunningchartLubricantId"];
+                this.columnRunningchartId = base.Columns["RunningchartId"];
+                this.columnPumpstationName = base.Columns["PumpstationName"];
+                this.columnLubricantType = base.Columns["LubricantType"];
+                this.columnPumpAmount = base.Columns["PumpAmount"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnRunningchartLubricantId = new global::System.Data.DataColumn("RunningchartLubricantId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartLubricantId);
+                this.columnRunningchartId = new global::System.Data.DataColumn("RunningchartId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRunningchartId);
+                this.columnPumpstationName = new global::System.Data.DataColumn("PumpstationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPumpstationName);
+                this.columnLubricantType = new global::System.Data.DataColumn("LubricantType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLubricantType);
+                this.columnPumpAmount = new global::System.Data.DataColumn("PumpAmount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPumpAmount);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantRow NewRunningchartLubricantRow() {
+                return ((RunningchartLubricantRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RunningchartLubricantRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RunningchartLubricantRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RunningchartLubricantRowChanged != null)) {
+                    this.RunningchartLubricantRowChanged(this, new RunningchartLubricantRowChangeEvent(((RunningchartLubricantRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RunningchartLubricantRowChanging != null)) {
+                    this.RunningchartLubricantRowChanging(this, new RunningchartLubricantRowChangeEvent(((RunningchartLubricantRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RunningchartLubricantRowDeleted != null)) {
+                    this.RunningchartLubricantRowDeleted(this, new RunningchartLubricantRowChangeEvent(((RunningchartLubricantRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RunningchartLubricantRowDeleting != null)) {
+                    this.RunningchartLubricantRowDeleting(this, new RunningchartLubricantRowChangeEvent(((RunningchartLubricantRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveRunningchartLubricantRow(RunningchartLubricantRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsRunningchart ds = new dsRunningchart();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RunningchartLubricantDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class RunningchartRow : global::System.Data.DataRow {
@@ -1227,17 +1889,17 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id {
+            public string RunningchartId {
                 get {
                     try {
-                        return ((string)(this[this.tableRunningchart.IdColumn]));
+                        return ((string)(this[this.tableRunningchart.RunningchartIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'Runningchart\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartId\' in table \'Runningchart\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableRunningchart.IdColumn] = value;
+                    this[this.tableRunningchart.RunningchartIdColumn] = value;
                 }
             }
             
@@ -1291,17 +1953,17 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VehicleId {
+            public string VehicleName {
                 get {
                     try {
-                        return ((string)(this[this.tableRunningchart.VehicleIdColumn]));
+                        return ((string)(this[this.tableRunningchart.VehicleNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleId\' in table \'Runningchart\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleName\' in table \'Runningchart\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableRunningchart.VehicleIdColumn] = value;
+                    this[this.tableRunningchart.VehicleNameColumn] = value;
                 }
             }
             
@@ -1515,14 +2177,14 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableRunningchart.IdColumn);
+            public bool IsRunningchartIdNull() {
+                return this.IsNull(this.tableRunningchart.RunningchartIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableRunningchart.IdColumn] = global::System.Convert.DBNull;
+            public void SetRunningchartIdNull() {
+                this[this.tableRunningchart.RunningchartIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1563,14 +2225,14 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVehicleIdNull() {
-                return this.IsNull(this.tableRunningchart.VehicleIdColumn);
+            public bool IsVehicleNameNull() {
+                return this.IsNull(this.tableRunningchart.VehicleNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVehicleIdNull() {
-                this[this.tableRunningchart.VehicleIdColumn] = global::System.Convert.DBNull;
+            public void SetVehicleNameNull() {
+                this[this.tableRunningchart.VehicleNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1746,17 +2408,18 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Id {
+            public string RunningchartDetailsId {
                 get {
                     try {
-                        return ((string)(this[this.tableRunningchartDetails.IdColumn]));
+                        return ((string)(this[this.tableRunningchartDetails.RunningchartDetailsIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'RunningchartDetails\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartDetailsId\' in table \'RunningchartDetails\' is DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tableRunningchartDetails.IdColumn] = value;
+                    this[this.tableRunningchartDetails.RunningchartDetailsIdColumn] = value;
                 }
             }
             
@@ -1874,17 +2537,17 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ProjectId {
+            public string ProjectName {
                 get {
                     try {
-                        return ((string)(this[this.tableRunningchartDetails.ProjectIdColumn]));
+                        return ((string)(this[this.tableRunningchartDetails.ProjectNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProjectId\' in table \'RunningchartDetails\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProjectName\' in table \'RunningchartDetails\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableRunningchartDetails.ProjectIdColumn] = value;
+                    this[this.tableRunningchartDetails.ProjectNameColumn] = value;
                 }
             }
             
@@ -1939,14 +2602,14 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableRunningchartDetails.IdColumn);
+            public bool IsRunningchartDetailsIdNull() {
+                return this.IsNull(this.tableRunningchartDetails.RunningchartDetailsIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableRunningchartDetails.IdColumn] = global::System.Convert.DBNull;
+            public void SetRunningchartDetailsIdNull() {
+                this[this.tableRunningchartDetails.RunningchartDetailsIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2035,14 +2698,14 @@ namespace CECRunningChart.Web.Reports.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsProjectIdNull() {
-                return this.IsNull(this.tableRunningchartDetails.ProjectIdColumn);
+            public bool IsProjectNameNull() {
+                return this.IsNull(this.tableRunningchartDetails.ProjectNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetProjectIdNull() {
-                this[this.tableRunningchartDetails.ProjectIdColumn] = global::System.Convert.DBNull;
+            public void SetProjectNameNull() {
+                this[this.tableRunningchartDetails.ProjectNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2079,6 +2742,294 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetIdleHoursNull() {
                 this[this.tableRunningchartDetails.IdleHoursColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RunningchartPumpstationRow : global::System.Data.DataRow {
+            
+            private RunningchartPumpstationDataTable tableRunningchartPumpstation;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RunningchartPumpstationRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRunningchartPumpstation = ((RunningchartPumpstationDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RunningchartPumpstationId {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartPumpstation.RunningchartPumpstationIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartPumpstationId\' in table \'RunningchartPumpstatio" +
+                                "n\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartPumpstation.RunningchartPumpstationIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RunningchartId {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartPumpstation.RunningchartIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartId\' in table \'RunningchartPumpstation\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartPumpstation.RunningchartIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PumpstationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartPumpstation.PumpstationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PumpstationName\' in table \'RunningchartPumpstation\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartPumpstation.PumpstationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PumpAmount {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartPumpstation.PumpAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PumpAmount\' in table \'RunningchartPumpstation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartPumpstation.PumpAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRunningchartPumpstationIdNull() {
+                return this.IsNull(this.tableRunningchartPumpstation.RunningchartPumpstationIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRunningchartPumpstationIdNull() {
+                this[this.tableRunningchartPumpstation.RunningchartPumpstationIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRunningchartIdNull() {
+                return this.IsNull(this.tableRunningchartPumpstation.RunningchartIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRunningchartIdNull() {
+                this[this.tableRunningchartPumpstation.RunningchartIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPumpstationNameNull() {
+                return this.IsNull(this.tableRunningchartPumpstation.PumpstationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPumpstationNameNull() {
+                this[this.tableRunningchartPumpstation.PumpstationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPumpAmountNull() {
+                return this.IsNull(this.tableRunningchartPumpstation.PumpAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPumpAmountNull() {
+                this[this.tableRunningchartPumpstation.PumpAmountColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RunningchartLubricantRow : global::System.Data.DataRow {
+            
+            private RunningchartLubricantDataTable tableRunningchartLubricant;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal RunningchartLubricantRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRunningchartLubricant = ((RunningchartLubricantDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RunningchartLubricantId {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartLubricant.RunningchartLubricantIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartLubricantId\' in table \'RunningchartLubricant\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartLubricant.RunningchartLubricantIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RunningchartId {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartLubricant.RunningchartIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RunningchartId\' in table \'RunningchartLubricant\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartLubricant.RunningchartIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PumpstationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartLubricant.PumpstationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PumpstationName\' in table \'RunningchartLubricant\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartLubricant.PumpstationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string LubricantType {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartLubricant.LubricantTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LubricantType\' in table \'RunningchartLubricant\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartLubricant.LubricantTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PumpAmount {
+                get {
+                    try {
+                        return ((string)(this[this.tableRunningchartLubricant.PumpAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PumpAmount\' in table \'RunningchartLubricant\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRunningchartLubricant.PumpAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRunningchartLubricantIdNull() {
+                return this.IsNull(this.tableRunningchartLubricant.RunningchartLubricantIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRunningchartLubricantIdNull() {
+                this[this.tableRunningchartLubricant.RunningchartLubricantIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRunningchartIdNull() {
+                return this.IsNull(this.tableRunningchartLubricant.RunningchartIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRunningchartIdNull() {
+                this[this.tableRunningchartLubricant.RunningchartIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPumpstationNameNull() {
+                return this.IsNull(this.tableRunningchartLubricant.PumpstationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPumpstationNameNull() {
+                this[this.tableRunningchartLubricant.PumpstationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLubricantTypeNull() {
+                return this.IsNull(this.tableRunningchartLubricant.LubricantTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLubricantTypeNull() {
+                this[this.tableRunningchartLubricant.LubricantTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPumpAmountNull() {
+                return this.IsNull(this.tableRunningchartLubricant.PumpAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPumpAmountNull() {
+                this[this.tableRunningchartLubricant.PumpAmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2136,6 +3087,74 @@ namespace CECRunningChart.Web.Reports.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RunningchartDetailsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class RunningchartPumpstationRowChangeEvent : global::System.EventArgs {
+            
+            private RunningchartPumpstationRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationRowChangeEvent(RunningchartPumpstationRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartPumpstationRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class RunningchartLubricantRowChangeEvent : global::System.EventArgs {
+            
+            private RunningchartLubricantRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantRowChangeEvent(RunningchartLubricantRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public RunningchartLubricantRow Row {
                 get {
                     return this.eventRow;
                 }
