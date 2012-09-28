@@ -30,18 +30,18 @@ namespace CECRunningChart.Core
         public string FuelType { get; set; }
 
         [XmlElementAttribute("FuelQty")]
-        public float FuelQty { get; set; }
+        public decimal FuelQty { get; set; }
 
         [XmlElementAttribute("FuelRate")]
-        public float FuelRate { get; set; }
+        public decimal FuelRate { get; set; }
 
         [XmlElementAttribute("LubricantType")]
         public string LubricantType { get; set; }
 
         [XmlElementAttribute("LubricantQty")]
-        public float LubricantQty { get; set; }
+        public decimal LubricantQty { get; set; }
 
         [XmlElementAttribute("LubricantRate")]
-        public float LubricantRate { get; set; }
+        public decimal LubricantRate { get; set; }
     }
 }

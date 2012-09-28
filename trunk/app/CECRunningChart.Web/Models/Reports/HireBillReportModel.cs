@@ -12,8 +12,8 @@ namespace CECRunningChart.Web.Models.Reports
         public string VehicleNumber { get; set; }
         public string CompanyCode { get; set; }
         public bool IsVehicle { get; set; }
-        public string KmHrDone { get; set; }
-        public string VehicleHireRate { get; set; }
-        public string Amount { get; set; }
+        public decimal KmHrDone { get; set; }
+        public decimal VehicleHireRate { get; set; }
+        public decimal Amount { get; set; }
     }
 }

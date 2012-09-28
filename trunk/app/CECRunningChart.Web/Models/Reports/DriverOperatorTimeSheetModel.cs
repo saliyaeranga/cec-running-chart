@@ -16,8 +16,8 @@ namespace CECRunningChart.Web.Models.Reports
         public bool IsVehicle { get; set; }
         public DateTime InTime { get; set; }
         public DateTime OutTime { get; set; }
-        public int WorkDone { get; set; }
-        public float OTHours { get; set; }
+        public decimal WorkDone { get; set; }
+        public decimal OTHours { get; set; }
 
         #endregion
     }

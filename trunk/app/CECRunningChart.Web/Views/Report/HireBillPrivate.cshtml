@@ -1,5 +1,5 @@
 ﻿@model CECRunningChart.Web.Models.Reports.HireBillPrivateReportModel
-
+@using CECRunningChart.Common;
 @{
     ViewBag.Title = "Hire Bill (Private) Report";
 }
@@ -186,10 +186,10 @@ else
                                          if (i < detailsArray.Length)
                                          {
                                              dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
-                                             dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
-                                             dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
+                                             dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ConvertToDecimalString() : string.Empty; // Work Done - Km
+                                             dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ConvertToDecimalString(); // Work Done - Hour
                                              var amt = detailsArray[i].HireAmount; // detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
-                                             dataValues[5] = amt.ToString("N"); // Amount
+                                             dataValues[5] = amt.ConvertToDecimalString(); // Amount
                                              totalWorkDone += detailsArray[i].KmHrDone;
                                              totalWorkAmount += amt;
                                          }
@@ -197,10 +197,10 @@ else
                                          if (i < fuelArray.Length)
                                          {
                                              dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
-                                             dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
-                                             dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
+                                             dataValues[7] = fuelArray[i].Amount.ConvertToDecimalString(); // Qty
+                                             dataValues[8] = fuelArray[i].FuelRate.ConvertToDecimalString(); // Rate
                                              var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
-                                             dataValues[9] = amt.ToString("N"); // Amount
+                                             dataValues[9] = amt.ConvertToDecimalString(); // Amount
                                              totalFuelQty += fuelArray[i].Amount;
                                              totalFuelAmount += amt;
                                          }
@@ -209,10 +209,10 @@ else
                                          {
                                              dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
                                              dataValues[11] = lubricantArray[i].LubricantType; // Lubricant Type
-                                             dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
-                                             dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
+                                             dataValues[12] = lubricantArray[i].Amount.ConvertToDecimalString(); // Qty
+                                             dataValues[13] = lubricantArray[i].LubricantRate.ConvertToDecimalString(); // Rate
                                              var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
-                                             dataValues[14] = amt.ToString("N"); // Amount
+                                             dataValues[14] = amt.ConvertToDecimalString(); // Amount
                                              totalLubricantQty += lubricantArray[i].Amount;
                                              totalLubricantAmount += amt;
                                          }
@@ -243,36 +243,36 @@ else
             <td colspan="3" style="text-align: center">TOTAL</td>
             
             <td style="text-align:right;">@if (isVehicle)
-                { <text>@totalWorkDone.ToString("N")</text>} &nbsp;</td>
+                { <text>@totalWorkDone.ConvertToDecimalString()</text>} &nbsp;</td>
             <td style="text-align:right;">@if (!isVehicle)
-                { <text>@totalWorkDone.ToString("N")</text>}&nbsp;</td>
-            <td style="text-align:right;">@totalWorkAmount.ToString("N")</td>
+                { <text>@totalWorkDone.ConvertToDecimalString()</text>}&nbsp;</td>
+            <td style="text-align:right;">@totalWorkAmount.ConvertToDecimalString()</td>
 
             <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalFuelQty.ToString("N")</td>
+            <td style="text-align:right;">@totalFuelQty.ConvertToDecimalString()</td>
             <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalFuelAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalFuelAmount.ConvertToDecimalString()</td>
 
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td style="text-align:right;">@totalLubricantQty.ToString("N")</td>
+            <td style="text-align:right;">@totalLubricantQty.ConvertToDecimalString()</td>
             <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalLubricantAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalLubricantAmount.ConvertToDecimalString()</td>
         </tr>
     </table>
     <br />
     <table>
         <tr>
             <td>Total Hire Bill</td>
-            <td style="text-align:right;">@totalWorkAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalWorkAmount.ConvertToDecimalString()</td>
         </tr>
         <tr>
             <td>Total Fuel</td>
-            <td style="text-align:right;">@totalFuelAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalFuelAmount.ConvertToDecimalString()</td>
         </tr>
         <tr>
             <td>Total Lubricant</td>
-            <td style="text-align:right;">@totalLubricantAmount.ToString("N")</td>
+            <td style="text-align:right;">@totalLubricantAmount.ConvertToDecimalString()</td>
         </tr>
         <tr>
             <td>Other Deduction</td>
@@ -280,11 +280,11 @@ else
         </tr>
         <tr>
             <td>Total Deduction</td>
-            <td style="text-align:right;">@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ToString("N")</td>
+            <td style="text-align:right;">@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ConvertToDecimalString()</td>
         </tr>
         <tr>
             <td>Total Bill Amount</td>
-            <td style="text-align:right;">@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ToString("N")</td>
+            <td style="text-align:right;">@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ConvertToDecimalString()</td>
         </tr>
     </table>
 }

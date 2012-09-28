@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.DriverOperatorTimeSheetModel>
-
+@using CECRunningChart.Common;
 @{
     ViewBag.Title = "Driver / Operator Time Sheet";
 }
@@ -68,8 +68,8 @@ else
             </tr>
             @foreach (var item in Model)
             {
-                var workDoneKm = item.IsVehicle ? item.WorkDone.ToString() : string.Empty;
-                var workDoneHr = item.IsVehicle ? string.Empty : item.WorkDone.ToString();
+                var workDoneKm = item.IsVehicle ? item.WorkDone.ConvertToDecimalString() : string.Empty;
+                var workDoneHr = item.IsVehicle ? string.Empty : item.WorkDone.ConvertToDecimalString();
                 <tr>
                     <td class="mainColum">
                         @item.BillDate.ToString("d")
@@ -91,7 +91,7 @@ else
                     </td>
                     <td style="text-align:right;">
                         @{ 
-                   string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
+                string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ConvertToDecimalString();
                         }
                         @displayOTHours
                     </td>

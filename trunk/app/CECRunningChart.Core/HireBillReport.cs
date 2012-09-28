@@ -24,12 +24,12 @@ namespace CECRunningChart.Core
         public bool IsVehicle { get; set; }
 
         [XmlElementAttribute("KmHrDone")]
-        public string KmHrDone { get; set; }
+        public decimal KmHrDone { get; set; }
 
         [XmlElementAttribute("VehicleHireRate")]
-        public string VehicleHireRate { get; set; }
+        public decimal VehicleHireRate { get; set; }
 
         [XmlElementAttribute("Amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

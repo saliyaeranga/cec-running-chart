@@ -32,10 +32,10 @@ namespace CECRunningChart.Core
         public DateTime OutTime { get; set; }
         
         [XmlElementAttribute("WorkDone")]
-        public int WorkDone { get; set; }
+        public decimal WorkDone { get; set; }
 
         [XmlElementAttribute("OTHours")]
-        public float OTHours { get; set; }
+        public decimal OTHours { get; set; }
 
         #endregion
     }

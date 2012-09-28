@@ -12,6 +12,7 @@ using CECRunningChart.Web.Helpers;
 using CECRunningChart.Web.Reports.DataSets;
 using CrystalDecisions.CrystalReports.Engine;
 using CECRunningChart.Services.Runningchart;
+using CECRunningChart.Common;
 
 namespace CECRunningChart.Web.Controllers
 {
@@ -321,7 +322,7 @@ namespace CECRunningChart.Web.Controllers
             ViewBag.VehicleNo = vehicle.Id;
             ViewBag.IsVehicle = vehicle.IsVehicle;
             ViewBag.OwnerName = vehicle.OwnerName;
-            ViewBag.HireRate = vehicle.HireRate.ToString("N");
+            ViewBag.HireRate = vehicle.HireRate.ConvertToDecimalString(); //.ToString("N");
             ViewBag.StartDate = startDate;
             ViewBag.EndDate = endDate;
             ViewBag.VehicleNumber = vehicle.VehicleNumber;
@@ -352,7 +353,7 @@ namespace CECRunningChart.Web.Controllers
             reportClass.SetParameterValue("VehicleNumberParameter", vehicle.VehicleNumber);
             reportClass.SetParameterValue("OwnerNameParameter", vehicle.OwnerName);
             string measure = vehicle.IsVehicle ? " Rs/Km" : " Rs/Hr";
-            reportClass.SetParameterValue("HireRateParameter", vehicle.HireRate.ToString("N") + measure);
+            reportClass.SetParameterValue("HireRateParameter", vehicle.HireRate.ConvertToDecimalString() + measure);
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
@@ -419,10 +420,10 @@ namespace CECRunningChart.Web.Controllers
                     if (i < detailsArray.Length)
                     {
                         dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
-                        dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ToString("N") : string.Empty; // Work Done - Km
-                        dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ToString("N"); // Work Done - Hour
-                        var amt = detailsArray[i].HireAmount; // detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
-                        dataValues[5] = amt.ToString("N"); // Amount
+                        dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ConvertToDecimalString() : string.Empty; // Work Done - Km
+                        dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ConvertToDecimalString(); // Work Done - Hour
+                        var amt = detailsArray[i].HireAmount;
+                        dataValues[5] = amt.ConvertToDecimalString(); // Amount
                         totalWorkDone += detailsArray[i].KmHrDone;
                         totalWorkAmount += amt;
                     }
@@ -430,10 +431,10 @@ namespace CECRunningChart.Web.Controllers
                     if (i < fuelArray.Length)
                     {
                         dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
-                        dataValues[7] = fuelArray[i].Amount.ToString("N"); // Qty
-                        dataValues[8] = fuelArray[i].FuelRate.ToString("N"); // Rate
+                        dataValues[7] = fuelArray[i].Amount.ConvertToDecimalString(); // Qty
+                        dataValues[8] = fuelArray[i].FuelRate.ConvertToDecimalString(); // Rate
                         var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
-                        dataValues[9] = amt.ToString("N"); // Amount
+                        dataValues[9] = amt.ConvertToDecimalString(); // Amount
                         totalFuelQty += fuelArray[i].Amount;
                         totalFuelAmount += amt;
                     }
@@ -442,10 +443,10 @@ namespace CECRunningChart.Web.Controllers
                     {
                         dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
                         dataValues[11] = lubricantArray[i].LubricantType; // Lubricant Type
-                        dataValues[12] = lubricantArray[i].Amount.ToString("N"); // Qty
-                        dataValues[13] = lubricantArray[i].LubricantRate.ToString("N"); // Rate
+                        dataValues[12] = lubricantArray[i].Amount.ConvertToDecimalString(); // Qty
+                        dataValues[13] = lubricantArray[i].LubricantRate.ConvertToDecimalString(); // Rate
                         var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
-                        dataValues[14] = amt.ToString("N"); // Amount
+                        dataValues[14] = amt.ConvertToDecimalString(); // Amount
                         totalLubricantQty += lubricantArray[i].Amount;
                         totalLubricantAmount += amt;
                     }
@@ -564,8 +565,8 @@ namespace CECRunningChart.Web.Controllers
                 row["DriverOperatorName"] = item.DriverOperatorName;
                 row["KmHrDone"] = item.KmHrDone;
                 row["TotalFuelUsage"] = item.TotalFuelUsage;
-                row["VehicleRate"] = String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) + " Km/L";
-                row["ActualRate"] = String.Format("{0:0.00}", Math.Truncate(item.ActualRate * 100) / 100) + " Km/L";
+                row["VehicleRate"] = item.VehicleRate.ConvertToDecimalString() + " Km/L";
+                row["ActualRate"] = item.ActualRate.ConvertToDecimalString() + " Km/L";
                 dataTable.Rows.Add(row);
             }
 
@@ -586,8 +587,8 @@ namespace CECRunningChart.Web.Controllers
                 row["IsVehicle"] = item.IsVehicle;
                 row["DriverOperatorName"] = item.DriverOperatorName;
                 row["OwnerName"] = item.OwnerName;
-                row["KmHrDone"] = item.KmHrDone;
-                row["FuelDrawn"] = item.FuelDrawn;
+                row["KmHrDone"] = item.KmHrDone.ConvertToDecimalString();
+                row["FuelDrawn"] = item.FuelDrawn.ConvertToDecimalString();
                 dataTable.Rows.Add(row);
             }
 
@@ -620,16 +621,16 @@ namespace CECRunningChart.Web.Controllers
                 if (item.FuelQty > 0)
                 {
                     row["FuelType"] = item.FuelType;
-                    row["FuelQty"] = item.FuelQty;
-                    row["FuelRate"] = item.FuelRate;
-                    row["FuelAmount"] = (item.FuelQty * item.FuelRate).ToString();
+                    row["FuelQty"] = item.FuelQty.ConvertToDecimalString();
+                    row["FuelRate"] = item.FuelRate.ConvertToDecimalString();
+                    row["FuelAmount"] = (item.FuelQty * item.FuelRate).ConvertToDecimalString();
                 }
                 if (item.LubricantQty > 0)
                 {
                     row["LubricantType"] = item.LubricantType;
-                    row["LubricantQty"] = item.LubricantQty;
-                    row["LubricantRate"] = item.LubricantRate;
-                    row["LubricantAmount"] = (item.LubricantQty * item.LubricantRate).ToString();
+                    row["LubricantQty"] = item.LubricantQty.ConvertToDecimalString();
+                    row["LubricantRate"] = item.LubricantRate.ConvertToDecimalString();
+                    row["LubricantAmount"] = (item.LubricantQty * item.LubricantRate).ConvertToDecimalString();
                 }
                 dataTable.Rows.Add(row);
             }
@@ -653,15 +654,15 @@ namespace CECRunningChart.Web.Controllers
                 row["IsVehicle"] = item.IsVehicle;
                 if (item.IsVehicle)
                 {
-                    row["WorkDoneKm"] = item.KmHrDone;
-                    row["RateHr"] = item.VehicleHireRate;
+                    row["WorkDoneKm"] = item.KmHrDone.ConvertToDecimalString();
+                    row["RateHr"] = item.VehicleHireRate.ConvertToDecimalString();
                 }
                 else
                 {
-                    row["WorkDoneHr"] = item.KmHrDone;
-                    row["RateKm"] = item.VehicleHireRate;
+                    row["WorkDoneHr"] = item.KmHrDone.ConvertToDecimalString();
+                    row["RateKm"] = item.VehicleHireRate.ConvertToDecimalString();
                 }
-                row["Amount"] = item.Amount;
+                row["Amount"] = item.Amount.ConvertToDecimalString();
                 dataTable.Rows.Add(row);
             }
 
@@ -684,12 +685,12 @@ namespace CECRunningChart.Web.Controllers
                 row["IsVehicle"] = item.IsVehicle;
                 row["InTime"] = item.InTime.ToString("t");
                 row["OutTime"] = item.OutTime.ToString("t");
-                string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ToString("N");
+                string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ConvertToDecimalString();
                 row["OTHours"] = displayOTHours;
                 if (item.IsVehicle)
-                    row["Km"] = item.WorkDone;
+                    row["Km"] = item.WorkDone.ConvertToDecimalString();
                 else
-                    row["Hr"] = item.WorkDone;
+                    row["Hr"] = item.WorkDone.ConvertToDecimalString();
                 dataTable.Rows.Add(row);
             }
 

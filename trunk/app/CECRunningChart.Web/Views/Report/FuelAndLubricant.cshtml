@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.FuelAndLubricantReportModel>
+@using CECRunningChart.Common;
 @{
     ViewBag.Title = "Fuel & Lubricant Report";
 }
@@ -104,7 +105,6 @@
     }
     else
     {
-    
         <p>
             Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
             <br />
@@ -173,16 +173,16 @@
                 if (item.FuelQty > 0)
                 {
                     fuelType = item.FuelType;
-                    fuelQty = item.FuelQty.ToString();
-                    fuelRate = item.FuelRate.ToString();
-                    fuelAmt = (item.FuelQty * item.FuelRate).ToString();
+                    fuelQty = item.FuelQty.ConvertToDecimalString();
+                    fuelRate = item.FuelRate.ConvertToDecimalString();
+                    fuelAmt = (item.FuelQty * item.FuelRate).ConvertToDecimalString();
                 }
                 if (item.LubricantQty > 0)
                 {
                     lubType = item.LubricantType;
-                    lubQty = item.LubricantQty.ToString();
-                    lubRate = item.LubricantRate.ToString();
-                    lubAmt = (item.LubricantQty * item.LubricantRate).ToString();
+                    lubQty = item.LubricantQty.ConvertToDecimalString();
+                    lubRate = item.LubricantRate.ConvertToDecimalString();
+                    lubAmt = (item.LubricantQty * item.LubricantRate).ConvertToDecimalString();
                 }
                 <tr>
                     <td class="mainColum">

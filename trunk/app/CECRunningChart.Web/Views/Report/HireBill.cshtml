@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.HireBillReportModel>
-
+@using CECRunningChart.Common;
 @{
     ViewBag.Title = "Hire Bill Report";
 }
@@ -147,29 +147,29 @@ else
                 <td style="text-align:right;">
                     @if (item.IsVehicle)
                     {
-                        <text>@item.KmHrDone</text>
+                        <text>@item.KmHrDone.ConvertToDecimalString()</text>
                     }
                 </td>
                 <td style="text-align:right;">
                     @if (!item.IsVehicle)
                     {
-                        <text>@item.KmHrDone</text>
+                        <text>@item.KmHrDone.ConvertToDecimalString()</text>
                     }
                 </td>
                 <td style="text-align:right;">
                     @if (item.IsVehicle)
                     {
-                        <text>@item.VehicleHireRate</text>
+                        <text>@item.VehicleHireRate.ConvertToDecimalString()</text>
                     }
                 </td>
                 <td style="text-align:right;">
                     @if (!item.IsVehicle)
                     {
-                        <text>@item.VehicleHireRate</text>
+                        <text>@item.VehicleHireRate.ConvertToDecimalString()</text>
                     }
                 </td>
                 <td style="text-align:right;">
-                    @item.Amount
+                    @item.Amount.ConvertToDecimalString()
                 </td>
             </tr>
         }

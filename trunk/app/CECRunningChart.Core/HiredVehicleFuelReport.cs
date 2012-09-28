@@ -26,10 +26,10 @@ namespace CECRunningChart.Core
         public string OwnerName { get; set; }
 
         [XmlElementAttribute("KmHrDone")]
-        public int KmHrDone { get; set; }
+        public decimal KmHrDone { get; set; }
 
         [XmlElementAttribute("FuelDrawn")]
-        public int FuelDrawn { get; set; }
+        public decimal FuelDrawn { get; set; }
 
         #endregion
     }

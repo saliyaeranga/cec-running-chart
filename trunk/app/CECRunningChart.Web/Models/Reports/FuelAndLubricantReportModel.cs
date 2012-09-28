@@ -16,10 +16,10 @@ namespace CECRunningChart.Web.Models.Reports
         public string DriverOperatorName { get; set; }
         public bool IsHiredVehicle { get; set; }
         public string FuelType { get; set; }
-        public float FuelQty { get; set; }
-        public float FuelRate { get; set; }
+        public decimal FuelQty { get; set; }
+        public decimal FuelRate { get; set; }
         public string LubricantType { get; set; }
-        public float LubricantQty { get; set; }
-        public float LubricantRate { get; set; }
+        public decimal LubricantQty { get; set; }
+        public decimal LubricantRate { get; set; }
     }
 }

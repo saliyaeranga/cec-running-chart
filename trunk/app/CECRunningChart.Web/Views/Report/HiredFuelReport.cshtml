@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.HiredVehicleFuelReportModel>
+@using CECRunningChart.Common;
 @{
     ViewBag.Title = "Fuel Report – Hired Vehicle / Machine";
 }
@@ -83,15 +84,9 @@ else
     </p>
     <table class="tblFont">
         <tr>
-            @*<th>
-                VehicleId
-            </th>*@
             <th class="tblModel">
                 Vehicle/Machine No
             </th>
-            @*<th>
-                IsVehicle
-            </th>*@
             <th class="tblModel">
                 Driver/Operator Name
             </th>
@@ -108,15 +103,9 @@ else
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
-                @Html.DisplayFor(modelItem => item.VehicleId)
-            </td>*@
                 <td class="mainColum">
                     @Html.DisplayFor(modelItem => item.VehicleNumber)
                 </td>
-                @*<td>
-                @Html.DisplayFor(modelItem => item.IsVehicle)
-            </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.DriverOperatorName)
                 </td>
@@ -124,10 +113,10 @@ else
                     @Html.DisplayFor(modelItem => item.OwnerName)
                 </td>
                 <td style="text-align:right;">
-                    @Html.DisplayFor(modelItem => item.KmHrDone)
+                    @item.KmHrDone.ConvertToDecimalString()
                 </td>
                 <td style="text-align:right;">
-                    @Html.DisplayFor(modelItem => item.FuelDrawn)
+                    @item.FuelDrawn.ConvertToDecimalString()
                 </td>
             </tr>
         }

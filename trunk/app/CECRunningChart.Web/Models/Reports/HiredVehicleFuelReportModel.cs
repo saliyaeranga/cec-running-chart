@@ -14,8 +14,8 @@ namespace CECRunningChart.Web.Models.Reports
         public bool IsVehicle { get; set; }
         public string DriverOperatorName { get; set; }
         public string OwnerName { get; set; }
-        public int KmHrDone { get; set; }
-        public int FuelDrawn { get; set; }
+        public decimal KmHrDone { get; set; }
+        public decimal FuelDrawn { get; set; }
 
         #endregion
     }
