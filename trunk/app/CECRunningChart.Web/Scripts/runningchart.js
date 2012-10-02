@@ -389,7 +389,14 @@ function calculateFuelLeftEndOfTheDay() {
 //    }
 
     var totalFuel = fuelLeftBOD + pumpQty;
-    var fuelUsageOfDay = (totalUsage / vehicleUsagePerLeter).toFixed(2);
+    var fuelUsageOfDay = 0;
+    if (isVehicle == "False") {
+        fuelUsageOfDay = (totalUsage * vehicleUsagePerLeter).toFixed(2);
+    }
+    else {
+        fuelUsageOfDay = (totalUsage / vehicleUsagePerLeter).toFixed(2);
+    }
+
     var fuelLeftEndOfDay = (totalFuel - fuelUsageOfDay).toFixed(2);
     $("#FuelLeftEndOfDay").val(fuelLeftEndOfDay);
     $("#FuelUsageOfDay").val(fuelUsageOfDay);
