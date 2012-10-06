@@ -3,20 +3,38 @@
 @{
     ViewBag.Title = "Driver / Operator Time Sheet";
 }
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ui/jquery.ui.datepicker.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $(".dateselect").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
         $.validator.addMethod("selectDriverName", function (value, element) {
             return value != "- SELECT -";
         }, " *");
 
         $("#drivertimesheetform").validate({
             rules: {
+                startDate: {
+                    required: true,
+                    maxlength: 50
+                },
+                endDate: {
+                    required: true,
+                    maxlength: 50
+                },
                 driverName: {
                     selectDriverName: true
                 }
             },
             messages: {
+                startDate: " *",
+                endDate: " *",
                 driverName: " *"
             }
         });
@@ -29,7 +47,9 @@
     @Html.ActionLink("Back to Reports", "index")
     @if (Model != null)
     {
-        string print = "/report/timesheetprint?name=" + ViewBag.DriverOperatorName;
+        string print = "/report/timesheetprint?name=" + Server.UrlEncode(ViewBag.DriverOperatorName) +
+            "&startDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.StartDate).ToString("d")) +
+            "&endDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.EndDate).ToString("d"));
         @Html.ActionLink("Back to Driver / Operator Time Sheet", "drivertimesheet")
         <a href="@print" target="_blank" id="PrintReport">Print Report</a>
     }
@@ -41,7 +61,36 @@
     var options = drivers.Select(x => new SelectListItem() { Text = x, Value = x }).ToList<SelectListItem>();
     using (Html.BeginForm("drivertimesheet", "report", FormMethod.Post, new { @id = "drivertimesheetform" }))
     {
-        @Html.DropDownList("driverName", options)<br />
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report Start Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="startDate" name="startDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Report End Date:
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="endDate" name="endDate" class="dateselect" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrapper">
+                <div class="editor-label">
+                    Driver/Operator Name:
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("driverName", options)
+                </div>
+            </div>
+        </div>
         <div class="row">
             <input class="genRptBtn" type="submit" value="Generate Report" />
         </div>
@@ -49,8 +98,9 @@
 }
 else
 {
-
     <p>
+        Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d")
+        <br />
         Driver / Operator Name : @ViewBag.DriverOperatorName
     </p>
     <table class="tblFont">
@@ -91,7 +141,7 @@ else
                     </td>
                     <td style="text-align:right;">
                         @{ 
-                string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ConvertToDecimalString();
+                   string displayOTHours = item.OTHours <= 0 ? "0" : item.OTHours.ConvertToDecimalString();
                         }
                         @displayOTHours
                     </td>

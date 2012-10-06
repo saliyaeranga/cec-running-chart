@@ -136,27 +136,35 @@ namespace CECRunningChart.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult DriverTimeSheet(string driverName)
+        public ActionResult DriverTimeSheet(string driverName, DateTime startDate, DateTime endDate)
         {
-            var report = reportService.GetDriverTimeSheetReport(driverName);
+            var report = reportService.GetDriverTimeSheetReport(driverName, startDate, endDate);
             var model = ModelMapper.GetDriverOperatorTimeSheetModelList(report);
             ViewBag.DriverOperatorName = driverName;
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
             return View(model);
         }
 
         [HttpGet]
-        public ActionResult TimeSheetPrint(string name)
+        public ActionResult TimeSheetPrint(string name, DateTime startDate, DateTime endDate)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(name);
-            
-            DataTable dataTable = GetDriverOperatorTimeSheetTable(name);
+            if (startDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("startDate");
+            if (endDate.Equals(DateTime.MinValue))
+                throw new ArgumentNullException("endDate");
+
+            DataTable dataTable = GetDriverOperatorTimeSheetTable(name, startDate, endDate);
             ReportClass reportClass = new ReportClass();
             reportClass.FileName = Server.MapPath("~/Reports/Timesheet.rpt");
             reportClass.Load();
             reportClass.SummaryInfo.ReportTitle = "Driver / Operator Time Sheet";
             reportClass.Database.Tables["DriverOperatorTimeSheet"].SetDataSource(dataTable);
             reportClass.SetParameterValue("DriverOperatorNameParameter", name);
+            reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
+            reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
@@ -669,9 +677,9 @@ namespace CECRunningChart.Web.Controllers
             return dataTable;
         }
 
-        private DataTable GetDriverOperatorTimeSheetTable(string driverName)
+        private DataTable GetDriverOperatorTimeSheetTable(string driverName, DateTime startDate, DateTime endDate)
         {
-            var report = reportService.GetDriverTimeSheetReport(driverName);
+            var report = reportService.GetDriverTimeSheetReport(driverName, startDate, endDate);
             dsDriverOperatorTimeSheet ds = new dsDriverOperatorTimeSheet();
             DataTable dataTable = ds.Tables[0].Clone();
 
