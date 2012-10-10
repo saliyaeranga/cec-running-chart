@@ -86,5 +86,9 @@ namespace CECRunningChart.Services.Runningchart
             return fuelLeft;
         }
 
+        public void DeleteRunningChart(int runningchartId)
+        {
+            dataProvider.DeleteRunningChart(runningchartId);
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace CECRunningChart.Services.Runningchart
         Core.Runningchart GetRunningChart(int chartId);
         void ApproveRunningChart(int runningChartId, int approvedBy);
         decimal GetFuelLeftBegningOfDay(int vehicleId);
+        void DeleteRunningChart(int runningchartId);
     }
 }

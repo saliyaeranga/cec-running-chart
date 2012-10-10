@@ -627,6 +627,7 @@
     <None Include="Reports\DataSets\dsVehicleMachineRegister.xss">
       <DependentUpon>dsVehicleMachineRegister.xsd</DependentUpon>
     </None>
+    <Content Include="Views\Runningchart\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -37,6 +37,8 @@
         </th>
         <th class="tblModel">
         </th>
+        <th class="tblModel">
+        </th>
     </tr>
     @{ 
         var vehicles = ViewBag.Vehicles as List<CECRunningChart.Web.Models.Vehicle.VehicleModel>;
@@ -64,6 +66,13 @@
                 @if (user.Role == CECRunningChart.Common.UserRole.RunningChartInspector || user.Role == CECRunningChart.Common.UserRole.Admin)
                 {
                     @Html.ActionLink("Approve", "approve", new { id = item.RunningchartId })
+                }
+                &nbsp;
+            </td>
+            <td>
+                @if (user.Role == CECRunningChart.Common.UserRole.RunningChartInspector || user.Role == CECRunningChart.Common.UserRole.Admin)
+                {
+                    @Html.ActionLink("Delete", "delete", new { id = item.RunningchartId })
                 }
                 &nbsp;
             </td>

@@ -191,7 +191,21 @@ namespace CECRunningChart.Data.Runningchart
                 throw;
             }
         }
-        
+
+        public void DeleteRunningChart(int runningchartId)
+        {
+            try
+            {
+                Parameters cleanupParameters = new Parameters();
+                cleanupParameters.Add("@RunningchartId", runningchartId);
+                ExecuteNoneQuery("proc_CleanupRunningchartRecords", cleanupParameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         #region Private Methods
 

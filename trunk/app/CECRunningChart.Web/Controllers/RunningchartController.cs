@@ -328,6 +328,20 @@ namespace CECRunningChart.Web.Controllers
             return File(compStream, "application/pdf");
         }
 
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var model = GetRunningchartModel(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, string s)
+        {
+            runningchartService.DeleteRunningChart(id);
+            return RedirectToAction("Index");
+        }
+
         #endregion
 
         #region Private Methods

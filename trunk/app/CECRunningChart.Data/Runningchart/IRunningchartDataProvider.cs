@@ -17,5 +17,6 @@ namespace CECRunningChart.Data.Runningchart
         DataSet GetRunningChart(int chartId);
         void ApproveRunningChart(int runningChartId, int approvedBy, DateTime approvedDate);
         DataSet GetFuelLeftBegningOfDay(int vehicleId);
+        void DeleteRunningChart(int runningchartId);
     }
 }
