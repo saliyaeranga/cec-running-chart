@@ -571,10 +571,10 @@ namespace CECRunningChart.Web.Controllers
                 row["VehicleNumber"] = item.VehicleNumber;
                 row["IsVehicle"] = item.IsVehicle;
                 row["DriverOperatorName"] = item.DriverOperatorName;
-                row["KmHrDone"] = item.KmHrDone;
-                row["TotalFuelUsage"] = item.TotalFuelUsage;
+                //row["KmHrDone"] = item.KmHrDone;
+                //row["TotalFuelUsage"] = item.TotalFuelUsage;
                 row["VehicleRate"] = item.VehicleRate.ConvertToDecimalString() + " Km/L";
-                row["ActualRate"] = item.ActualRate.ConvertToDecimalString() + " Km/L";
+                //row["ActualRate"] = item.ActualRate.ConvertToDecimalString() + " Km/L";
                 dataTable.Rows.Add(row);
             }
 

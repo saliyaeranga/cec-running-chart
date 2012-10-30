@@ -480,19 +480,45 @@ namespace CECRunningChart.Web.Helpers
 
         public static List<FuelConsumptionReportModel> GetFuelConsumptionReportList(List<FuelConsumptionReport> report)
         {
-            var reportModel = from r in report
-                              select new FuelConsumptionReportModel
-                              {
-                                  VehicleId = r.VehicleId,
-                                  VehicleNumber = r.VehicleNumber,
-                                  IsVehicle = r.IsVehicle,
-                                  DriverOperatorName = r.DriverOperatorName,
-                                  KmHrDone = r.KmHrDone,
-                                  TotalFuelUsage = r.TotalFuelUsage,
-                                  VehicleRate = r.VehicleRate,
-                                  ActualRate = r.ActualRate
-                              };
-            return reportModel.ToList<FuelConsumptionReportModel>();
+            List<FuelConsumptionReportModel> model = new List<FuelConsumptionReportModel>();
+            var vehIds = (from v in report select v.VehicleId).Distinct();
+            foreach (var vehicleId in vehIds)
+            {
+                var recs = report.Where(x => x.VehicleId == vehicleId);
+                FuelConsumptionReportModel m = new FuelConsumptionReportModel()
+                {
+                    VehicleId = recs.First().VehicleId,
+                    VehicleNumber = recs.First().VehicleNumber,
+                    IsVehicle = recs.First().IsVehicle,
+                    DriverOperatorName = recs.First().DriverOperatorName,
+                    VehicleRate = recs.First().VehicleRate
+                };
+                var totalFuelPumped = recs.Sum(x => x.PumpAmount);;
+                var totalMeterDiff = recs.Sum(x => x.MeterDifference);
+                var actualRate = decimal.Zero;
+                if (totalFuelPumped > 0)
+                    actualRate = totalMeterDiff / totalFuelPumped;
+
+                m.KmHrDone = totalMeterDiff;
+                m.TotalFuelUsage = totalFuelPumped;
+                m.ActualRate = actualRate;
+                model.Add(m);
+            }
+
+            return model;
+            //var reportModel = from r in report
+            //                  select new FuelConsumptionReportModel
+            //                  {
+            //                      VehicleId = r.VehicleId,
+            //                      VehicleNumber = r.VehicleNumber,
+            //                      IsVehicle = r.IsVehicle,
+            //                      DriverOperatorName = r.DriverOperatorName,
+            //                      KmHrDone = r.KmHrDone,
+            //                      TotalFuelUsage = r.TotalFuelUsage,
+            //                      VehicleRate = r.VehicleRate,
+            //                      ActualRate = r.ActualRate
+            //                  };
+            //return reportModel.ToList<FuelConsumptionReportModel>();
         }
 
         public static List<HiredVehicleFuelReportModel> GetHiredVehicleFuelReportList(List<HiredVehicleFuelReport> report)

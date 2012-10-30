@@ -14,7 +14,8 @@ namespace CECRunningChart.Data.Report
                 Parameters parameters = new Parameters();
                 parameters.Add("@StartDate", startDate);
                 parameters.Add("@EndDate", endDate);
-                return ExecuteDataSet("proc_FuelConsumptionReport", parameters);
+                return ExecuteDataSet("proc_RptFuelConsumptionReport", parameters);
+                //return ExecuteDataSet("proc_FuelConsumptionReport", parameters);
             }
             catch (Exception)
             {

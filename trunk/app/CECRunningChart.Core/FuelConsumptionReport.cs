@@ -6,6 +6,12 @@ namespace CECRunningChart.Core
     {
         #region Public Members
 
+        [XmlElementAttribute("RunningchartId")]
+        public int RunningchartId { get; set; }
+
+        [XmlElementAttribute("VehicleRate")]
+        public decimal VehicleRate { get; set; }
+
         [XmlElementAttribute("VehicleId")]
         public int VehicleId { get; set; }
 
@@ -18,17 +24,20 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("DriverOperatorName")]
         public string DriverOperatorName { get; set; }
 
-        [XmlElementAttribute("KmHrDone")]
-        public int KmHrDone { get; set; }
+        [XmlElementAttribute("RdRunningchartId")]
+        public int RdRunningchartId { get; set; }
 
-        [XmlElementAttribute("TotalFuelUsage")]
-        public decimal TotalFuelUsage { get; set; }
+        [XmlElementAttribute("MeterDifference")]
+        public decimal MeterDifference { get; set; }
 
-        [XmlElementAttribute("VehicleRate")]
-        public decimal VehicleRate { get; set; }
+        [XmlElementAttribute("RpRunningchartId")]
+        public int RpRunningchartId { get; set; }
 
-        [XmlElementAttribute("ActualRate")]
-        public decimal ActualRate { get; set; }
+        [XmlElementAttribute("PumpAmount")]
+        public decimal PumpAmount { get; set; }
+
+        //[XmlElementAttribute("ActualRate")]
+        //public decimal ActualRate { get; set; }
 
         #endregion
     }
