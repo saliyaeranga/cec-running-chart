@@ -561,20 +561,22 @@ namespace CECRunningChart.Web.Controllers
         private DataTable GetFuelConsumptionTable(DateTime startDate, DateTime endDate)
         {
             var report = reportService.GetFuelConsumptionReport(startDate, endDate);
+            var model = ModelMapper.GetFuelConsumptionReportList(report);
             dsFuelConsumptionReport ds = new dsFuelConsumptionReport();
             DataTable dataTable = ds.Tables[0].Clone();
 
-            foreach (var item in report)
+            foreach (var item in model)
             {
+                var measure = item.IsVehicle ? " Km/L" : " L/Hr";
                 DataRow row = dataTable.NewRow();
                 row["VehicleId"] = item.VehicleId;
                 row["VehicleNumber"] = item.VehicleNumber;
                 row["IsVehicle"] = item.IsVehicle;
                 row["DriverOperatorName"] = item.DriverOperatorName;
-                //row["KmHrDone"] = item.KmHrDone;
-                //row["TotalFuelUsage"] = item.TotalFuelUsage;
-                row["VehicleRate"] = item.VehicleRate.ConvertToDecimalString() + " Km/L";
-                //row["ActualRate"] = item.ActualRate.ConvertToDecimalString() + " Km/L";
+                row["KmHrDone"] = item.KmHrDone;
+                row["TotalFuelUsage"] = item.TotalFuelUsage;
+                row["VehicleRate"] = item.VehicleRate.ConvertToDecimalString() + measure;
+                row["ActualRate"] = item.ActualRate.ConvertToDecimalString() + measure;
                 dataTable.Rows.Add(row);
             }
 

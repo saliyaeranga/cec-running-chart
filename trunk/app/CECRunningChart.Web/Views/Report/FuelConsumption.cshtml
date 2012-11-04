@@ -103,6 +103,7 @@
             </tr>
             @foreach (var item in Model)
             {
+                var measure = item.IsVehicle ? " Km/L" : " L/Hr";
                 <tr>
                     <td class="mainColum">
                         @Html.DisplayFor(modelItem => item.VehicleNumber)
@@ -117,10 +118,10 @@
                         @Html.DisplayFor(modelItem => item.TotalFuelUsage)
                     </td>
                     <td style="text-align:right;">
-                        @String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) Km/L
+                        @String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) @measure
                     </td>
                     <td style="text-align:right;">
-                        @String.Format("{0:0.00}", Math.Truncate(item.ActualRate * 100) / 100) Km/L
+                        @String.Format("{0:0.00}", Math.Truncate(item.ActualRate * 100) / 100) @measure
                     </td>
                 </tr>
             }

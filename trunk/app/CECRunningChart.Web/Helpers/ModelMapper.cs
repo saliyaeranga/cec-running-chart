@@ -493,11 +493,22 @@ namespace CECRunningChart.Web.Helpers
                     DriverOperatorName = recs.First().DriverOperatorName,
                     VehicleRate = recs.First().VehicleRate
                 };
-                var totalFuelPumped = recs.Sum(x => x.PumpAmount);;
+                var totalFuelPumped = recs.Sum(x => x.PumpAmount);
                 var totalMeterDiff = recs.Sum(x => x.MeterDifference);
                 var actualRate = decimal.Zero;
                 if (totalFuelPumped > 0)
-                    actualRate = totalMeterDiff / totalFuelPumped;
+                {
+                    if (m.IsVehicle)
+                    {
+                        actualRate = totalMeterDiff / totalFuelPumped;
+                    }
+                    else
+                    {
+                        actualRate = totalFuelPumped / totalMeterDiff;
+                    }
+                }
+                //if (totalFuelPumped > 0)
+                //    actualRate = totalMeterDiff / totalFuelPumped;
 
                 m.KmHrDone = totalMeterDiff;
                 m.TotalFuelUsage = totalFuelPumped;

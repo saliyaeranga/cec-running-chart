@@ -43,6 +43,11 @@ namespace CECRunningChart.Web.Controllers
         {
             IVehicleService vehicleServcie = new VehicleService();
             List<Runningchart> runningCharts = new List<Runningchart>();
+            if (Session[SessionKeys.UserInfo] == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
             var user = Session[SessionKeys.UserInfo] as UserModel;
 
             if (user.Role == UserRole.Admin)
