@@ -103,6 +103,7 @@
 }
 else
 {
+    decimal totalAmount = decimal.Zero;
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Project : @ViewBag.ProjectName
@@ -134,6 +135,7 @@ else
         </tr>
         @foreach (var item in Model)
         {
+            totalAmount += item.Amount;
             <tr>
                 <td class="mainColum">
                     @item.BillDate.ToString("d")
@@ -173,6 +175,10 @@ else
                 </td>
             </tr>
         }
+        <tr>
+            <td colspan="7" style="text-align: center">TOTAL</td>
+            <td class="mainColum">@totalAmount.ToString("C").Replace("$", string.Empty)</td>
+        </tr>
     </table>
 }
 </div>

@@ -293,7 +293,8 @@ namespace CECRunningChart.Web.Controllers
             if (projectId == 0)
                 throw new InvalidArgumentException("Project Id can not be 0", EngineExceptionErrorID.InvalidArgument);
 
-            DataTable dataTable = GetHireBillReportTable(startDate, endDate, projectId);
+            decimal totalAmount = decimal.Zero;
+            DataTable dataTable = GetHireBillReportTable(startDate, endDate, projectId, out totalAmount);
             ReportClass reportClass = new ReportClass();
             reportClass.FileName = Server.MapPath("~/Reports/HireBillReport.rpt");
             reportClass.Load();
@@ -302,6 +303,7 @@ namespace CECRunningChart.Web.Controllers
             reportClass.SetParameterValue("StartDateParameter", startDate.ToString("d"));
             reportClass.SetParameterValue("EndDateParameter", endDate.ToString("d"));
             reportClass.SetParameterValue("ProjectParameter", projectName);
+            reportClass.SetParameterValue("TotalAmountParameter", totalAmount.ToString("C").Replace("$", string.Empty));
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
@@ -648,11 +650,12 @@ namespace CECRunningChart.Web.Controllers
             return dataTable;
         }
 
-        private DataTable GetHireBillReportTable(DateTime startDate, DateTime endDate, int projectId)
+        private DataTable GetHireBillReportTable(DateTime startDate, DateTime endDate, int projectId, out decimal totalAmount)
         {
             var report = reportService.GetHireBillReport(startDate, endDate, projectId);
             dsHireBillReport ds = new dsHireBillReport();
             DataTable dataTable = ds.Tables[0].Clone();
+            var totAmount = decimal.Zero;
 
             foreach (var item in report)
             {
@@ -674,8 +677,11 @@ namespace CECRunningChart.Web.Controllers
                 }
                 row["Amount"] = item.Amount.ConvertToDecimalString();
                 dataTable.Rows.Add(row);
+
+                totAmount += item.Amount;
             }
 
+            totalAmount = totAmount;
             return dataTable;
         }
 
