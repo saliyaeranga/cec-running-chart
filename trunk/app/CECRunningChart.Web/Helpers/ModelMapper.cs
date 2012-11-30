@@ -722,7 +722,24 @@ namespace CECRunningChart.Web.Helpers
                                Value = v.Id.ToString()
                            };
 
-            return options.Concat(projects.ToList());
+            return options.Concat(projects.ToList().OrderBy(x => x.Text));
+        }
+
+        public static IEnumerable<SelectListItem> GetCompanyCodeOptions(List<VehicleModel> vehicleList)
+        {
+            List<SelectListItem> options = new List<SelectListItem>()
+            {
+                new SelectListItem(){ Text = "- SELECT -", Value = "0", Selected = true },
+                new SelectListItem(){ Text = "- N/A -", Value = "-1" }
+            };
+            var codes = from v in vehicleList
+                           select new SelectListItem
+                           {
+                               Text = v.CompanyCode,
+                               Value = v.Id.ToString()
+                           };
+
+            return options.Concat(codes.ToList().Where(x => !string.Equals(x.Text.ToLower(), "no")).OrderBy(x => x.Text));
         }
 
         #endregion

@@ -371,6 +371,24 @@ namespace CECRunningChart.Web.Controllers
 
         #endregion
 
+        #region Work Done Report – Vehicle/Machine
+
+        [HttpGet]
+        public ActionResult WorkDone()
+        {
+            IVehicleService vehicleService = new VehicleService();
+            ViewBag.Vehicles = ModelMapper.GetVehicleModelList(vehicleService.GetAllVehicles());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WorkDone(DateTime startDate, DateTime endDate, int vehicleNo, int companyCode)
+        {
+            return RedirectToAction("index");
+        }
+
+        #endregion
+
         [HttpGet]
         public ActionResult testrc()
         {
