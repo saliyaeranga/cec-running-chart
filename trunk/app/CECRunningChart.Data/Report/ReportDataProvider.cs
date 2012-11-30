@@ -127,6 +127,23 @@ namespace CECRunningChart.Data.Report
             return ExecuteDataSet("dbo.proc_GetDriverNames", null);
         }
 
+        public DataSet GetWorkDoneReport(DateTime startDate, DateTime endDate, int vehicleId)
+        {
+            try
+            {
+                Parameters parameters = new Parameters();
+                parameters.Add("@StartDate", startDate);
+                parameters.Add("@EndDate", endDate);
+                parameters.Add("@VehicleId", vehicleId);
+
+                return ExecuteDataSet("dbo.proc_RptWorkDoneReport", parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

@@ -82,6 +82,12 @@ namespace CECRunningChart.Services.ReportService
             return reportData;
         }
 
+        public List<WorkDoneReport> GetWorkDoneReport(DateTime startDate, DateTime endDate, int vehicleId)
+        {
+            var reportData = reportDataProvider.GetWorkDoneReport(startDate, endDate, vehicleId);
+            return ConversionHelper.ConvertToList<WorkDoneReport>(reportData);
+        }
+
         public List<string> GetDriverNames()
         {
             var data = reportDataProvider.GetDriverNames();

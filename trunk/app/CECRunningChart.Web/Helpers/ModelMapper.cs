@@ -677,6 +677,21 @@ namespace CECRunningChart.Web.Helpers
             return model;
         }
 
+        public static List<WorkDoneReportModel> GetWorkDoneReportModelList(List<WorkDoneReport> report)
+        {
+            var reportModel = from r in report
+                              select new WorkDoneReportModel
+                              {
+                                  RunningchartId = r.RunningchartId,
+                                  BillDate = r.BillDate,
+                                  DriverName = r.DriverName,
+                                  WorkDone = r.WorkDone,
+                                  FuelUsageOfDay = r.FuelUsageOfDay,
+                                  ProjectLocation = r.ProjectLocation
+                              };
+            return reportModel.ToList<WorkDoneReportModel>();
+        }
+
         public static IEnumerable<SelectListItem> GetPumpstationOptions(List<PumpstationModel> pumpstationsList)
         {
             List<SelectListItem> options = new List<SelectListItem>(pumpstationsList.Count + 1)

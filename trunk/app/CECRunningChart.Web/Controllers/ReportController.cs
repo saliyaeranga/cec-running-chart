@@ -384,7 +384,19 @@ namespace CECRunningChart.Web.Controllers
         [HttpPost]
         public ActionResult WorkDone(DateTime startDate, DateTime endDate, int vehicleNo, int companyCode)
         {
-            return RedirectToAction("index");
+            IVehicleService vehicleService = new VehicleService();
+            var vehicle = vehicleService.GetVehicle(vehicleNo);
+            var compCode = string.IsNullOrWhiteSpace(vehicle.CompanyCode) || string.Equals(vehicle.CompanyCode.ToLower(), "no") ? "N/A" : vehicle.CompanyCode;
+            var report = reportService.GetWorkDoneReport(startDate, endDate, vehicleNo);
+            var model = ModelMapper.GetWorkDoneReportModelList(report);
+
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+            ViewBag.VehicleNumber = vehicle.VehicleNumber;
+            ViewBag.CompanyCode = compCode;
+            ViewBag.IsVehicle = vehicle.IsVehicle;
+
+            return View(model);
         }
 
         #endregion

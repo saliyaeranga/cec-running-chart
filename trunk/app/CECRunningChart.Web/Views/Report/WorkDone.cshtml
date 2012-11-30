@@ -1,4 +1,4 @@
-﻿@model CECRunningChart.Web.Models.Reports.HireBillPrivateReportModel
+﻿@model IEnumerable<CECRunningChart.Web.Models.Reports.WorkDoneReportModel>
 @using CECRunningChart.Common;
 @{
     ViewBag.Title = "Work Done Report – Vehicle/Machine";
@@ -81,8 +81,8 @@
     {
         string print = "/report/hirebillprivateprint?startDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.StartDate).ToString("d")) +
             "&endDate=" + Server.UrlEncode(Convert.ToDateTime(ViewBag.EndDate).ToString("d")) + "&vehicleNo=" + ViewBag.VehicleNo;
-        @Html.ActionLink("Back to Hire Bill (Private) Report", "hirebillprivate")
-        <a href="@print" target="_blank" id="PrintReport">Print Report</a>
+        @Html.ActionLink("Back to Work Done Report – Vehicle/Machine", "workdone")
+        @*<a href="@print" target="_blank" id="PrintReport">Print Report</a>*@
     }
 </div>
 <div class="tblContainer">
@@ -136,195 +136,34 @@
 }
 else
 {
-    bool isVehicle = Convert.ToBoolean(ViewBag.IsVehicle);
-    string measure = isVehicle ? "Rs/Km" : "Rs/Hr";
-
+    var measure = Convert.ToBoolean(ViewBag.IsVehicle) ? "Km" : "Hrs";
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Vehicle/Machine No : @ViewBag.VehicleNumber <br />
-        Owner : @ViewBag.OwnerName <br />
-        Rate : @ViewBag.HireRate&nbsp;@measure<br />
+        Company Code : @ViewBag.CompanyCode <br />
     </p>
     <table class="tblFont">
         <tr>
-            <td rowspan="2" style="text-align: center" class="tblModel">
-                DRC No</td>
-            <td rowspan="2" style="text-align: center" class="tblModel">
-                Date</td>
-            <td rowspan="2" style="text-align: center" class="tblModel">
-                Project Location</td>
-            <td colspan="2" style="text-align: center" class="tblModel">
-                Work Done</td>
-            <td rowspan="2" style="text-align: center" class="tblModel">
-                Amount</td>
-            <td colspan="4" style="text-align: center" class="tblModel">
-                Fuel Used</td>
-            <td colspan="5" style="text-align: center" class="tblModel">
-                Lubricant</td>
+            <td>Date</td>
+            <td>Name of Driver/Operator</td>
+            <td>Work Done  Km/Hrs</td>
+            <td>Fuel Used</td>
+            <td>Location (Project)</td>
+            <td>Condition</td>
         </tr>
-        <tr>
-            <td style="text-align: center" class="tblsubModel">
-                Km</td>
-            <td style="text-align: center" class="tblsubModel">
-                Hour</td>
-            <td style="text-align: center" class="tblsubModel">
-                Pump Station</td>
-            <td class="tblsubModel">
-                Qty</td>
-            <td class="tblsubModel">
-                Rate</td>
-            <td class="tblsubModel">
-                Amount</td>
-            <td style="text-align: center" class="tblsubModel">
-                Pump Station</td>
-            <td style="text-align: center" class="tblsubModel">
-                Lubricant Type</td>
-            <td class="tblsubModel">
-                Qty</td>
-            <td class="tblsubModel">
-                Rate</td>
-            <td class="tblsubModel">
-                Amount</td>
-        </tr>
-        @{
-                                 var runningChartIds = Model.RunningChartIds;
-                                 decimal totalWorkDone = decimal.Zero;
-                                 decimal totalWorkAmount = decimal.Zero;
-                                 decimal totalFuelQty = decimal.Zero;
-                                 decimal totalFuelAmount = decimal.Zero;
-                                 decimal totalLubricantQty = decimal.Zero;
-                                 decimal totalLubricantAmount = decimal.Zero;
-
-                                 foreach (var chart in runningChartIds)
-                                 {
-                                     var details = Model.HireBillPrivateReportDetails.Where(x => x.RunningchartId == chart.Key);
-                                     var fuel = Model.HireBillPrivateReportFuel.Where(x => x.RunningchartId == chart.Key);
-                                     var lubricant = Model.HireBillPrivateReportLubricants.Where(x => x.RunningchartId == chart.Key);
-
-                                     var detailsCount = details.Count();
-                                     var fuelCount = fuel.Count();
-                                     var lubriCount = lubricant.Count();
-                                     var maxCountForChart = new int[] { detailsCount, fuelCount, lubriCount }.Max();
-
-                                     var detailsArray = details.ToArray();
-                                     var fuelArray = fuel.ToArray();
-                                     var lubricantArray = lubricant.ToArray();
-
-                                     for (int i = 0; i < maxCountForChart; i++)
-                                     {
-                                         string[] dataValues = new string[15];
-                                         string chariId = string.Empty;
-                                         string billDate = string.Empty;
-                                         // Runningchart
-                                         if (i == 0)
-                                         {
-                                             dataValues[0] = chart.Key.ToString(); // DRC No
-                                             dataValues[1] = chart.Value.ToString("d"); // Date
-                                         }
-                                         // Runningchart details
-                                         if (i < detailsArray.Length)
-                                         {
-                                             dataValues[2] = detailsArray[i].ProjectLocation; // Project Location
-                                             dataValues[3] = isVehicle ? detailsArray[i].KmHrDone.ConvertToDecimalString() : string.Empty; // Work Done - Km
-                                             dataValues[4] = isVehicle ? string.Empty : detailsArray[i].KmHrDone.ConvertToDecimalString(); // Work Done - Hour
-                                             var amt = detailsArray[i].HireAmount; // detailsArray[i].KmHrDone * detailsArray[i].VehicleRate;
-                                             dataValues[5] = amt.ConvertToDecimalString(); // Amount
-                                             totalWorkDone += detailsArray[i].KmHrDone;
-                                             totalWorkAmount += amt;
-                                         }
-                                         // Runningchart fuel
-                                         if (i < fuelArray.Length)
-                                         {
-                                             dataValues[6] = fuelArray[i].PumpstationName; // Pump Station
-                                             dataValues[7] = fuelArray[i].Amount.ConvertToDecimalString(); // Qty
-                                             dataValues[8] = fuelArray[i].FuelRate.ConvertToDecimalString(); // Rate
-                                             var amt = fuelArray[i].Amount * fuelArray[i].FuelRate;
-                                             dataValues[9] = amt.ConvertToDecimalString(); // Amount
-                                             totalFuelQty += fuelArray[i].Amount;
-                                             totalFuelAmount += amt;
-                                         }
-                                         // Runningchart lubricant
-                                         if (i < lubricantArray.Length)
-                                         {
-                                             dataValues[10] = lubricantArray[i].PumpstationName; // Pump Station
-                                             dataValues[11] = lubricantArray[i].LubricantType; // Lubricant Type
-                                             dataValues[12] = lubricantArray[i].Amount.ConvertToDecimalString(); // Qty
-                                             dataValues[13] = lubricantArray[i].LubricantRate.ConvertToDecimalString(); // Rate
-                                             var amt = lubricantArray[i].Amount * lubricantArray[i].LubricantRate;
-                                             dataValues[14] = amt.ConvertToDecimalString(); // Amount
-                                             totalLubricantQty += lubricantArray[i].Amount;
-                                             totalLubricantAmount += amt;
-                                         }
-                    <tr>
-                        <td>@dataValues[0]</td>
-                        <td>@dataValues[1]</td>
-
-                        <td>@dataValues[2]</td>
-                        <td style="text-align:right;">@dataValues[3]</td>
-                        <td style="text-align:right;">@dataValues[4]</td>
-                        <td style="text-align:right;">@dataValues[5]</td>
-
-                        <td>@dataValues[6]</td>
-                        <td style="text-align:right;">@dataValues[7]</td>
-                        <td style="text-align:right;">@dataValues[8]</td>
-                        <td style="text-align:right;">@dataValues[9]</td>
-
-                        <td>@dataValues[10]</td>
-                        <td>@dataValues[11]</td>
-                        <td style="text-align:right;">@dataValues[12]</td>
-                        <td style="text-align:right;">@dataValues[13]</td>
-                        <td style="text-align:right;">@dataValues[14]</td>
-                    </tr>
-                                     }
-                                 }
-        }
-        <tr>
-            <td colspan="3" style="text-align: center">TOTAL</td>
-            
-            <td style="text-align:right;">@if (isVehicle)
-                { <text>@totalWorkDone.ConvertToDecimalString()</text>} &nbsp;</td>
-            <td style="text-align:right;">@if (!isVehicle)
-                { <text>@totalWorkDone.ConvertToDecimalString()</text>}&nbsp;</td>
-            <td style="text-align:right;">@totalWorkAmount.ConvertToDecimalString()</td>
-
-            <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalFuelQty.ConvertToDecimalString()</td>
-            <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalFuelAmount.ConvertToDecimalString()</td>
-
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td style="text-align:right;">@totalLubricantQty.ConvertToDecimalString()</td>
-            <td style="text-align:right;">&nbsp;</td>
-            <td style="text-align:right;">@totalLubricantAmount.ConvertToDecimalString()</td>
-        </tr>
+        @foreach (var item in Model)
+	    {
+            <tr>
+                <td>@item.BillDate.ToString("d")</td>
+                <td>@item.DriverName</td>
+                <td>@string.Format("{0} {1}", item.WorkDone.ConvertToDecimalString(), measure)</td>
+                <td>@item.FuelUsageOfDay.ConvertToDecimalString()</td>
+                <td>@item.ProjectLocation</td>
+                <td>&nbsp;</td>
+            </tr>
+	    }
     </table>
     <br />
-    <table>
-        <tr>
-            <td>Total Hire Bill</td>
-            <td style="text-align:right;">@totalWorkAmount.ConvertToDecimalString()</td>
-        </tr>
-        <tr>
-            <td>Total Fuel</td>
-            <td style="text-align:right;">@totalFuelAmount.ConvertToDecimalString()</td>
-        </tr>
-        <tr>
-            <td>Total Lubricant</td>
-            <td style="text-align:right;">@totalLubricantAmount.ConvertToDecimalString()</td>
-        </tr>
-        <tr>
-            <td>Other Deduction</td>
-            <td style="text-align:right;">0</td>
-        </tr>
-        <tr>
-            <td>Total Deduction</td>
-            <td style="text-align:right;">@{ var totDed = totalFuelAmount + totalLubricantAmount; } @totDed.ConvertToDecimalString()</td>
-        </tr>
-        <tr>
-            <td>Total Bill Amount</td>
-            <td style="text-align:right;">@{ var totBillAmt = totalWorkAmount - totDed; } @totBillAmt.ConvertToDecimalString()</td>
-        </tr>
-    </table>
+    <div>Note : B/D – Break Down, W- Working condition</div>
 }
 </div>

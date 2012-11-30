@@ -16,5 +16,6 @@ namespace CECRunningChart.Data.Report
         DataSet GetVehicleMachineRegisterReport(DateTime startDate, DateTime endDate);
         DataSet GetHireBillReport(DateTime startDate, DateTime endDate, int projectId);
         DataSet GetHireBillPrivateReport(DateTime startDate, DateTime endDate, int vehicleId, out DataSet pumpStationDataSet, out DataSet lubricantsDataSet);
+        DataSet GetWorkDoneReport(DateTime startDate, DateTime endDate, int vehicleId);
     }
 }

@@ -116,6 +116,7 @@
     <Compile Include="Models\Reports\HireBillReportModel.cs" />
     <Compile Include="Models\Reports\HiredVehicleFuelReportModel.cs" />
     <Compile Include="Models\Reports\VehicleMachineRegisterModel.cs" />
+    <Compile Include="Models\Reports\WorkDoneReportModel.cs" />
     <Compile Include="Models\Runningchart\ChartItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartLubricantItemModel.cs" />
     <Compile Include="Models\Runningchart\ChartPumpstationItemModel.cs" />

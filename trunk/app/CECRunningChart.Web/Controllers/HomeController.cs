@@ -81,6 +81,12 @@ namespace CECRunningChart.Web.Controllers
         [Authorize]
         public ActionResult Manage()
         {
+            if (Session[SessionKeys.UserInfo] == null)
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewBag.UserRole = (Session[SessionKeys.UserInfo] as UserModel).Role;
             return View();
         }
