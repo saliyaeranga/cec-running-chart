@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsWorkDoneReport" targetNamespace="http://tempuri.org/dsWorkDoneReport.xsd" xmlns:mstns="http://tempuri.org/dsWorkDoneReport.xsd" xmlns="http://tempuri.org/dsWorkDoneReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsWorkDoneReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsWorkDoneReport" msprop:Generator_UserDSName="dsWorkDoneReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="WorkDoneReport" msprop:Generator_TableClassName="WorkDoneReportDataTable" msprop:Generator_TableVarName="tableWorkDoneReport" msprop:Generator_TablePropName="WorkDoneReport" msprop:Generator_RowDeletingName="WorkDoneReportRowDeleting" msprop:Generator_UserTableName="WorkDoneReport" msprop:Generator_RowChangingName="WorkDoneReportRowChanging" msprop:Generator_RowEvHandlerName="WorkDoneReportRowChangeEventHandler" msprop:Generator_RowDeletedName="WorkDoneReportRowDeleted" msprop:Generator_RowEvArgName="WorkDoneReportRowChangeEvent" msprop:Generator_RowChangedName="WorkDoneReportRowChanged" msprop:Generator_RowClassName="WorkDoneReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RunningchartId" msprop:Generator_ColumnVarNameInTable="columnRunningchartId" msprop:Generator_ColumnPropNameInRow="RunningchartId" msprop:Generator_ColumnPropNameInTable="RunningchartIdColumn" msprop:Generator_UserColumnName="RunningchartId" type="xs:string" minOccurs="0" />
+              <xs:element name="BillDate" msprop:Generator_ColumnVarNameInTable="columnBillDate" msprop:Generator_ColumnPropNameInRow="BillDate" msprop:Generator_ColumnPropNameInTable="BillDateColumn" msprop:Generator_UserColumnName="BillDate" type="xs:string" minOccurs="0" />
+              <xs:element name="DriverName" msprop:Generator_ColumnVarNameInTable="columnDriverName" msprop:Generator_ColumnPropNameInRow="DriverName" msprop:Generator_ColumnPropNameInTable="DriverNameColumn" msprop:Generator_UserColumnName="DriverName" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkDone" msprop:Generator_ColumnVarNameInTable="columnWorkDone" msprop:Generator_ColumnPropNameInRow="WorkDone" msprop:Generator_ColumnPropNameInTable="WorkDoneColumn" msprop:Generator_UserColumnName="WorkDone" type="xs:string" minOccurs="0" />
+              <xs:element name="FuelUsageOfDay" msprop:Generator_ColumnVarNameInTable="columnFuelUsageOfDay" msprop:Generator_ColumnPropNameInRow="FuelUsageOfDay" msprop:Generator_ColumnPropNameInTable="FuelUsageOfDayColumn" msprop:Generator_UserColumnName="FuelUsageOfDay" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectLocation" msprop:Generator_ColumnVarNameInTable="columnProjectLocation" msprop:Generator_ColumnPropNameInRow="ProjectLocation" msprop:Generator_ColumnPropNameInTable="ProjectLocationColumn" msprop:Generator_UserColumnName="ProjectLocation" type="xs:string" minOccurs="0" />
+              <xs:element name="Condition" msprop:Generator_ColumnVarNameInTable="columnCondition" msprop:Generator_ColumnPropNameInRow="Condition" msprop:Generator_ColumnPropNameInTable="ConditionColumn" msprop:Generator_UserColumnName="Condition" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
