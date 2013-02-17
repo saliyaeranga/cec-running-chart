@@ -137,6 +137,8 @@
 else
 {
     var measure = Convert.ToBoolean(ViewBag.IsVehicle) ? "Km" : "Hrs";
+    var totalWorkDone = decimal.Zero;
+    var totalFuelUsed = decimal.Zero;
     <p>
         Period : @Convert.ToDateTime(ViewBag.StartDate).ToString("d") - @Convert.ToDateTime(ViewBag.EndDate).ToString("d") <br />
         Vehicle/Machine No : @ViewBag.VehicleNumber <br />
@@ -153,6 +155,8 @@ else
         </tr>
         @foreach (var item in Model)
 	    {
+            totalWorkDone += item.WorkDone;
+            totalFuelUsed += item.FuelUsageOfDay;
             <tr>
                 <td>@item.BillDate.ToString("d")</td>
                 <td>@item.DriverName</td>
@@ -162,6 +166,12 @@ else
                 <td>&nbsp;</td>
             </tr>
 	    }
+        <tr>
+            <td colspan="2">Total</td>
+            <td>@totalWorkDone.ToString("C").Replace("$", string.Empty)</td>
+            <td>@totalFuelUsed.ToString("C").Replace("$", string.Empty)</td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
     </table>
     <br />
     <div>Note : B/D – Break Down, W- Working condition</div>

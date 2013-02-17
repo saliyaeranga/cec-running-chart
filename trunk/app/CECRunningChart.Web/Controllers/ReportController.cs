@@ -413,9 +413,11 @@ namespace CECRunningChart.Web.Controllers
             IVehicleService vehicleService = new VehicleService();
             var vehicle = vehicleService.GetVehicle(vehicleNo);
             var compCode = string.IsNullOrWhiteSpace(vehicle.CompanyCode) || string.Equals(vehicle.CompanyCode.ToLower(), "no") ? "N/A" : vehicle.CompanyCode;
-            string measure = vehicle.IsVehicle ? " Km" : " Hrs";
-            
-            DataTable dataTable = GetWorkDoneReportTable(startDate, endDate, vehicleNo, measure);
+            var measure = vehicle.IsVehicle ? " Km" : " Hrs";
+            var totalWorkDone = decimal.Zero;
+            var totalFuelUsed = decimal.Zero;
+
+            DataTable dataTable = GetWorkDoneReportTable(startDate, endDate, vehicleNo, measure, out totalWorkDone, out totalFuelUsed);
             ReportClass reportClass = new ReportClass();
             reportClass.FileName = Server.MapPath("~/Reports/WorkDoneReport.rpt");
             reportClass.Load();
@@ -425,6 +427,8 @@ namespace CECRunningChart.Web.Controllers
             reportClass.SetParameterValue("EndDate", endDate.ToString("d"));
             reportClass.SetParameterValue("VehicleNo", vehicle.VehicleNumber);
             reportClass.SetParameterValue("CompanyCode", compCode);
+            reportClass.SetParameterValue("TotalWorkDone", totalWorkDone.ToString("C").Replace("$", string.Empty));
+            reportClass.SetParameterValue("TotalFuelUsed", totalFuelUsed.ToString("C").Replace("$", string.Empty));
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
@@ -774,12 +778,15 @@ namespace CECRunningChart.Web.Controllers
             return dataTable;
         }
 
-        private DataTable GetWorkDoneReportTable(DateTime startDate, DateTime endDate, int vehicleId, string measure)
+        private DataTable GetWorkDoneReportTable(DateTime startDate, DateTime endDate, int vehicleId, string measure,
+            out decimal totalWorkDone, out decimal totalFuelUsed)
         {
             var report = reportService.GetWorkDoneReport(startDate, endDate, vehicleId);
             dsWorkDoneReport ds = new dsWorkDoneReport();
             DataTable dataTable = ds.Tables[0].Clone();
 
+            var totWorkDone = decimal.Zero;
+            var totFuelUsed = decimal.Zero;
             foreach (var item in report)
             {
                 DataRow row = dataTable.NewRow();
@@ -790,8 +797,13 @@ namespace CECRunningChart.Web.Controllers
                 row["FuelUsageOfDay"] = item.FuelUsageOfDay.ConvertToDecimalString();
                 row["ProjectLocation"] = item.ProjectLocation;
                 dataTable.Rows.Add(row);
+
+                totWorkDone += item.WorkDone;
+                totFuelUsed += item.FuelUsageOfDay;
             }
 
+            totalWorkDone = totWorkDone;
+            totalFuelUsed = totFuelUsed;
             return dataTable;
         }
 
