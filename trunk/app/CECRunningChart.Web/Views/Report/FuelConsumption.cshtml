@@ -115,7 +115,8 @@
                         @Html.DisplayFor(modelItem => item.KmHrDone)
                     </td>
                     <td style="text-align:right;">
-                        @Html.DisplayFor(modelItem => item.TotalFuelUsage)
+                        @*@Html.DisplayFor(modelItem => item.TotalFuelUsage)*@
+                        @Html.DisplayFor(modelItem => item.FuelUsageOfVehicle)
                     </td>
                     <td style="text-align:right;">
                         @String.Format("{0:0.00}", Math.Truncate(item.VehicleRate * 100) / 100) @measure

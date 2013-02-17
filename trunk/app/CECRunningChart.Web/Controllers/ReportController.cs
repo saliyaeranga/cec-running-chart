@@ -427,8 +427,9 @@ namespace CECRunningChart.Web.Controllers
             reportClass.SetParameterValue("EndDate", endDate.ToString("d"));
             reportClass.SetParameterValue("VehicleNo", vehicle.VehicleNumber);
             reportClass.SetParameterValue("CompanyCode", compCode);
-            reportClass.SetParameterValue("TotalWorkDone", totalWorkDone.ToString("C").Replace("$", string.Empty));
-            reportClass.SetParameterValue("TotalFuelUsed", totalFuelUsed.ToString("C").Replace("$", string.Empty));
+            reportClass.SetParameterValue("TotalWorkDone", totalWorkDone.ToString("C").Replace("$", string.Empty) + " " + measure);
+            reportClass.SetParameterValue("TotalFuelUsed", totalFuelUsed.ToString("C").Replace("$", string.Empty) + " L");
+            reportClass.SetParameterValue("WorkDoneHeading", "Work Done (" + measure.Trim() + ")");
 
             Stream compStream = reportClass.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             return File(compStream, "application/pdf");
@@ -793,7 +794,7 @@ namespace CECRunningChart.Web.Controllers
                 row["RunningchartId"] = item.RunningchartId;
                 row["BillDate"] = item.BillDate.ToString("d");
                 row["DriverName"] = item.DriverName;
-                row["WorkDone"] = item.WorkDone.ConvertToDecimalString() + measure;
+                row["WorkDone"] = item.WorkDone.ConvertToDecimalString();// +measure;
                 row["FuelUsageOfDay"] = item.FuelUsageOfDay.ConvertToDecimalString();
                 row["ProjectLocation"] = item.ProjectLocation;
                 dataTable.Rows.Add(row);

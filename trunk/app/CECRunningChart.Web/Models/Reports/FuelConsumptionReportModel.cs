@@ -19,6 +19,7 @@ namespace CECRunningChart.Web.Models.Reports
         public decimal TotalFuelUsage { get; set; }
         public decimal VehicleRate { get; set; }
         public decimal ActualRate { get; set; }
+        public decimal FuelUsageOfVehicle { get; set; }
 
         #endregion
     }

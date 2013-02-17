@@ -485,13 +485,15 @@ namespace CECRunningChart.Web.Helpers
             foreach (var vehicleId in vehIds)
             {
                 var recs = report.Where(x => x.VehicleId == vehicleId);
+                var first = recs.First();
                 FuelConsumptionReportModel m = new FuelConsumptionReportModel()
                 {
-                    VehicleId = recs.First().VehicleId,
-                    VehicleNumber = recs.First().VehicleNumber,
-                    IsVehicle = recs.First().IsVehicle,
-                    DriverOperatorName = recs.First().DriverOperatorName,
-                    VehicleRate = recs.First().VehicleRate
+                    VehicleId = first.VehicleId,
+                    VehicleNumber = first.VehicleNumber,
+                    IsVehicle = first.IsVehicle,
+                    DriverOperatorName = first.DriverOperatorName,
+                    VehicleRate = first.VehicleRate,
+                    FuelUsageOfVehicle = recs.Sum(x => x.FuelUsageOfDay)
                 };
                 var totalFuelPumped = recs.Sum(x => x.PumpAmount);
                 var totalMeterDiff = recs.Sum(x => x.MeterDifference);

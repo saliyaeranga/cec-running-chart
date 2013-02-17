@@ -148,8 +148,8 @@ else
         <tr>
             <td>Date</td>
             <td>Name of Driver/Operator</td>
-            <td>Work Done  Km/Hrs</td>
-            <td>Fuel Used</td>
+            <td>Work Done  (@measure)</td>
+            <td>Fuel Used (L)</td>
             <td>Location (Project)</td>
             <td>Condition</td>
         </tr>
@@ -160,7 +160,7 @@ else
             <tr>
                 <td>@item.BillDate.ToString("d")</td>
                 <td>@item.DriverName</td>
-                <td>@string.Format("{0} {1}", item.WorkDone.ConvertToDecimalString(), measure)</td>
+                <td>@item.WorkDone.ConvertToDecimalString() @*@string.Format("{0} {1}", item.WorkDone.ConvertToDecimalString(), measure)*@</td>
                 <td>@item.FuelUsageOfDay.ConvertToDecimalString()</td>
                 <td>@item.ProjectLocation</td>
                 <td>&nbsp;</td>
@@ -168,8 +168,8 @@ else
 	    }
         <tr>
             <td colspan="2">Total</td>
-            <td>@totalWorkDone.ToString("C").Replace("$", string.Empty)</td>
-            <td>@totalFuelUsed.ToString("C").Replace("$", string.Empty)</td>
+            <td>@string.Format("{0} {1}", totalWorkDone.ToString("C").Replace("$", string.Empty), measure)</td>
+            <td>@totalFuelUsed.ToString("C").Replace("$", string.Empty)&nbsp;L</td>
             <td colspan="2">&nbsp;</td>
         </tr>
     </table>

@@ -36,6 +36,9 @@ namespace CECRunningChart.Core
         [XmlElementAttribute("PumpAmount")]
         public decimal PumpAmount { get; set; }
 
+        [XmlElementAttribute("FuelUsageOfDay")]
+        public decimal FuelUsageOfDay { get; set; }
+
         //[XmlElementAttribute("ActualRate")]
         //public decimal ActualRate { get; set; }
 
